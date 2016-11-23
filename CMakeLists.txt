@@ -18,9 +18,11 @@ if(Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIR})
 endif()
 
+add_subdirectory(glfw)
+include_directories(glfw/include)
 
-set(SOURCE_FILES main.cpp Engine/GraphicContextInterface.h Core/Initializable.h Engine/OpenglGraphicContext.cpp Engine/OpenglGraphicContext.h)
+set(SOURCE_FILES main.cpp Engine/GraphicContextInterface.h Core/Initializable.h Engine/OpenglGraphicContext.cpp Engine/OpenglGraphicContext.h Core/CoreGraphics.h Engine/Renderer/Material.h Core/Filesystem/VirtualFilesystem.cpp Core/Filesystem/VirtualFilesystem.h Engine/Renderer/Texture.h Engine/Renderer/Shader.h Engine/Renderer/ShaderBuilder.h Engine/CameraInterface.h)
 set(EXECUTABLE_OUTPUT_PATH ${SOURCE_FILES})
 
 add_executable(KiwiEngine ${SOURCE_FILES})
-target_link_libraries(KiwiEngine ${Boost_LIBRARIES})
+target_link_libraries(KiwiEngine glfw ${GLFW_LIBRAIRIES} ${Boost_LIBRARIES})

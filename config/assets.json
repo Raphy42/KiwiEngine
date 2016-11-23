@@ -1,0 +1,14 @@
+{
+  "materials" : {
+    "test": {
+      "textures": {
+        "normal": "normal.tga",
+        "bump": "test.tga"
+      }
+    },
+    "other_test": {
+      "normal": "other_normal.tga",
+      "bump"
+    }
+  }
+}

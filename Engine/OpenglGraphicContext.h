@@ -7,6 +7,8 @@
 
 
 #include <utility>
+#include <vector>
+#include "../Core/CoreGraphics.h"
 #include "GraphicContextInterface.h"
 
 namespace Kiwi { namespace Engine {
@@ -15,10 +17,26 @@ namespace Kiwi { namespace Engine {
             OpenglGraphicContext();
             OpenglGraphicContext(std::pair<int, int> size, const char *title);
             OpenglGraphicContext(std::pair<int, int> size, const char *title, std::pair<int, int> version);
+            OpenglGraphicContext(std::pair<int, int> size, const char *title, std::pair<int, int> version, std::vector<std::pair<int, int>> windowhints);
+
+            virtual void bind(std::vector<IniterHandle> initers) override;
+
+        protected:
+            virtual void PreInit() override;
+
+            virtual void Init() override;
+
+            virtual void PostInit() override;
 
         private:
-            std::pair<int, int>     _size;
+            std::pair<int, int>                 _size;
+            std::pair<int, int>                 _framebuffer;
+            std::pair<int, int>                 _version;
+            std::vector<std::pair<int, int>>    _windowHints;
 
+            const char              *_title;
+
+            GLFWwindow              *_window;
         };
     }
 }
