@@ -10,7 +10,7 @@ set(BOOST_ALL_DYN_LINK           ON)   # force dynamic linking for all libraries
 set(Boost_ADDITIONAL_VERSION    "1.62.0")
 
 
-find_package(Boost 1.62.0)
+find_package(Boost 1.62.0 COMPONENTS filesystem system REQUIRED)
 message(status "** Boost Include: ${Boost_INCLUDE_DIR}")
 message(status "** Boost Libraries: ${Boost_LIBRARY_DIRS}")
 message(status "** Boost Libraries: ${Boost_LIBRARIES}")
@@ -18,11 +18,20 @@ if(Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIR})
 endif()
 
+
+find_package(OpenGL REQUIRED)
+include_directories(${OpenGL_INCLUDE_DIRS})
+link_directories(${OpenGL_LIBRARY_DIRS})
+add_definitions(${OpenGL_DEFINITIONS})
+if (NOT OPENGL_FOUND)
+    message(ERROR " OPENGL not found!")
+endif (NOT OPENGL_FOUND)
+
 add_subdirectory(glfw)
 include_directories(glfw/include)
 
-set(SOURCE_FILES main.cpp Engine/GraphicContextInterface.h Core/Initializable.h Engine/OpenglGraphicContext.cpp Engine/OpenglGraphicContext.h Core/CoreGraphics.h Engine/Renderer/Material.h Core/Filesystem/VirtualFilesystem.cpp Core/Filesystem/VirtualFilesystem.h Engine/Renderer/Texture.h Engine/Renderer/Shader.h Engine/Renderer/ShaderBuilder.h Engine/CameraInterface.h)
+set(SOURCE_FILES main.cpp Engine/GraphicContextInterface.h Core/Initializable.h Engine/OpenglGraphicContext.cpp Engine/OpenglGraphicContext.h Core/CoreGraphics.h Engine/Renderer/Material.h Core/Filesystem/VirtualFilesystem.cpp Core/Filesystem/VirtualFilesystem.h Engine/Renderer/Texture.h Engine/Renderer/Shader.h Engine/Renderer/ShaderBuilder.h Engine/CameraInterface.h Engine/Renderer/ShaderBuilder.cpp Engine/Renderer/Program.h Engine/Renderer/ProgramBuilder.cpp Engine/Renderer/ProgramBuilder.h Engine/App.cpp Engine/App.h Engine/Event/Notifier.h Engine/Event/Pool.h Engine/Event/Notification.h Engine/Event/Pool.cpp Engine/Event/Manager.cpp Engine/Event/Manager.h Engine/Event/Listener.h)
 set(EXECUTABLE_OUTPUT_PATH ${SOURCE_FILES})
 
 add_executable(KiwiEngine ${SOURCE_FILES})
-target_link_libraries(KiwiEngine glfw ${GLFW_LIBRAIRIES} ${Boost_LIBRARIES})
+target_link_libraries(KiwiEngine glfw ${GLFW_LIBRAIRIES} ${Boost_LIBRARIES} ${OPENGL_LIBRARIES})

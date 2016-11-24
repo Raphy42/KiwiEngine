@@ -1,8 +1,12 @@
 #include <iostream>
 #include "Engine/Renderer/Texture.h"
+#include "Core/Filesystem/VirtualFilesystem.h"
+#include "Engine/App.h"
 
 int main(void)
 {
-    Texture<GLenum, GLuint>         texture(GL_SAMPLER_CUBE, 10);
+    Kiwi::Engine::App app;
 
+    app.start();
+    return 0;
 }

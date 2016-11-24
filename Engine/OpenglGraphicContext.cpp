@@ -9,6 +9,8 @@ Kiwi::Engine::OpenglGraphicContext::OpenglGraphicContext() :
     _title("Default"),
     _version(std::pair<int, int>(4, 1)),
     _windowHints(std::vector<std::pair<int, int>>({
+                                                          {GLFW_CONTEXT_VERSION_MAJOR, _version.first},
+                                                          {GLFW_CONTEXT_VERSION_MINOR, _version.second},
                                                           {GLFW_OPENGL_FORWARD_COMPAT, true},
                                                           {GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE}
                                                   }))
@@ -21,6 +23,8 @@ Kiwi::Engine::OpenglGraphicContext::OpenglGraphicContext(std::pair<int, int> siz
         _title(title),
         _version(std::pair<int, int>(4, 1)),
         _windowHints(std::vector<std::pair<int, int>>({
+                                                              {GLFW_CONTEXT_VERSION_MAJOR, _version.first},
+                                                              {GLFW_CONTEXT_VERSION_MINOR, _version.second},
                                                               {GLFW_OPENGL_FORWARD_COMPAT, true},
                                                               {GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE}
                                                       }))
@@ -51,12 +55,12 @@ Kiwi::Engine::OpenglGraphicContext::OpenglGraphicContext(std::pair<int, int> siz
 {
 }
 
-void Kiwi::Engine::OpenglGraphicContext::bind(std::vector<Kiwi::Core::Initializable::IniterHandle> initers) {
-}
 
 void Kiwi::Engine::OpenglGraphicContext::PreInit() {
     if (_windowHints.size() == 0)
         throw std::runtime_error("You must set window hints or use default constructor");
+    if (!glfwInit())
+        throw std::runtime_error("Unable to launch glfw3");
     for (auto const it : _windowHints)
         glfwWindowHint(it.first, it.second);
 }
@@ -70,4 +74,8 @@ void Kiwi::Engine::OpenglGraphicContext::Init() {
 void Kiwi::Engine::OpenglGraphicContext::PostInit() {
     glfwGetFramebufferSize(_window, &_framebuffer.first, &_framebuffer.second);
     glfwMakeContextCurrent(_window);
+}
+
+Kiwi::Engine::OpenglGraphicContext::~OpenglGraphicContext() {
+
 }

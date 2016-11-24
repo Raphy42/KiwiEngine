@@ -10,7 +10,7 @@
 namespace Kiwi { namespace Engine {
         class GraphicContextInterface : public Core::Initializable {
         public:
-            virtual ~GraphicContextInterface() = 0;
+            virtual ~GraphicContextInterface() {};
 
             enum class Type {
                 OPENGL,

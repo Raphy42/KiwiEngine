@@ -7,17 +7,33 @@
 
 #include <memory>
 #include <fstream>
+#include <boost/filesystem.hpp>
 
-namespace Core { namespace Filesystem {
-        class VirtualFilesystem {
-        public:
-            VirtualFilesystem(const char *properties);
+namespace Kiwi {
+    namespace Core {
+        namespace Filesystem {
+            class VirtualFilesystem {
+            public:
+                VirtualFilesystem();
 
-        private:
+                bool bind(const char *wd);
 
-        };
+                std::string load(const char *filename) const;
+
+                std::vector<std::string>
+                loadMultiplesFromDirectory(const char *directory, std::vector<std::string> filenames) const;
+
+                std::vector<std::string> loadAllFromCurrentDirectory(void) const;
+
+                std::vector<std::string> loadAllFromDirectory(const char *directory) const;
+
+            private:
+                std::string fileRead(const char *filename) const;
+
+                boost::filesystem::path _root;
+            };
+        }
     }
 }
-
 
 #endif //KIWIENGINE_VIRTUALFILESYSTEM_H

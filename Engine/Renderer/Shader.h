@@ -13,6 +13,8 @@ class Shader
 public:
     Shader(Bind bind) : _bind(bind) {}
 
+    Bind &getBind() { return _bind; }
+
 private:
     Shader &operator = (const Shader &rhs)
     {

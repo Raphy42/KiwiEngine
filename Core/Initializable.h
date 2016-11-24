@@ -8,20 +8,15 @@
 namespace Kiwi { namespace Core {
 class Initializable {
 public:
-    virtual ~Initializable() = 0;
+    virtual ~Initializable() {};
 
-    typedef bool            *(Initializable::*IniterHandle)(void) const;
-    virtual void            bind(std::vector<IniterHandle> initers) = 0;
-
-protected:
     virtual void            PreInit() = 0;
     virtual void            Init() = 0;
     virtual void            PostInit() = 0;
 
+protected:
+
 private:
-    IniterHandle            _pre_initer;
-    IniterHandle            _initer;
-    IniterHandle            _post_initer;
 
 };
     }

@@ -19,14 +19,13 @@ namespace Kiwi { namespace Engine {
             OpenglGraphicContext(std::pair<int, int> size, const char *title, std::pair<int, int> version);
             OpenglGraphicContext(std::pair<int, int> size, const char *title, std::pair<int, int> version, std::vector<std::pair<int, int>> windowhints);
 
-            virtual void bind(std::vector<IniterHandle> initers) override;
+            ~OpenglGraphicContext();
 
-        protected:
-            virtual void PreInit() override;
+            void PreInit() override;
 
-            virtual void Init() override;
+            void Init() override;
 
-            virtual void PostInit() override;
+            void PostInit() override;
 
         private:
             std::pair<int, int>                 _size;

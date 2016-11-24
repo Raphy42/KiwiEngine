@@ -5,7 +5,10 @@
 #ifndef KIWIENGINE_SHADERBUILDER_H
 #define KIWIENGINE_SHADERBUILDER_H
 
+#include <vector>
 #include "Shader.h"
+#include "Program.h"
+#include "../../Core/CoreGraphics.h"
 
 class ShaderBuilder
 {
@@ -15,9 +18,10 @@ public:
 
     static ShaderBuilder    instance;
 
-    Shader          *create(std::string &source) const;
-private:
+    Shader<GLuint> *createFromFile(GLenum type, const std::string source);
 
+private:
+    GLint _status;
 };
 
 
