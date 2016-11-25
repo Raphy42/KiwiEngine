@@ -12,7 +12,7 @@ ProgramBuilder::~ProgramBuilder() {
 
 }
 
-Program<GLuint> *ProgramBuilder::createProgramFromShaders(Shader<GLuint> vs, Shader<GLuint> fs) {
+GLProgram_t *ProgramBuilder::createProgramFromShaders(GLShader_t vs, GLShader_t fs) {
     GLuint program;
 
     program = glCreateProgram();
@@ -26,5 +26,5 @@ Program<GLuint> *ProgramBuilder::createProgramFromShaders(Shader<GLuint> vs, Sha
         glGetProgramInfoLog(program, 512, nullptr, log);
         //todo do something with log
     }
-    return new Program<GLuint>(program);
+    return new GLProgram_t(program);
 }

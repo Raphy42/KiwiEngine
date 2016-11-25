@@ -6,6 +6,7 @@
 #define KIWIENGINE_SHADER_H
 
 #include <algorithm>
+#include "../../Core/CoreGraphics.h"
 
 template <typename Bind>
 class Shader
@@ -25,5 +26,7 @@ private:
 
     Bind            _bind;
 };
+
+typedef Shader<GLuint> GLShader_t;
 
 #endif //KIWIENGINE_SHADER_H

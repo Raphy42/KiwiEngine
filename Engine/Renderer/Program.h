@@ -20,4 +20,6 @@ private:
     Bind _bind;
 };
 
+typedef Program<GLuint> GLProgram_t;
+
 #endif //KIWIENGINE_PROGRAM_H

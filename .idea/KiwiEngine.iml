@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/cocoa_time.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/glfw_config.h.in" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/cocoa_joystick.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/src/internal.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/glfw3.pc.in" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/glfw3Config.cmake.in" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/monitor.c" isTestSource="false" />
@@ -12,12 +13,11 @@
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/posix_tls.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/nsgl_context.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/glfw/src/posix_tls.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/cocoa_monitor.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/init.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/context.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/window.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/glfw/src/internal.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/src/posix_tls.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/input.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/vulkan.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/cocoa_init.m" isTestSource="false" />
@@ -36,18 +36,17 @@
       <sourceFolder url="file://$MODULE_DIR$/Engine/OpenglGraphicContext.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/App.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Notifier.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Notification.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Listener.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Manager.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Manager.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Pool.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Pool.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/System.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/GLFWNotifier.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/System.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/GLFWNotifier.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Channel.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/App.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/CameraInterface.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/GraphicContextInterface.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/Material.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/ShaderBuilder.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/Texture.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/Material.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/ProgramBuilder.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/ShaderBuilder.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/Shader.h" isTestSource="false" />

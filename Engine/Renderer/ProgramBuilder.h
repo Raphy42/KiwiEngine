@@ -16,7 +16,7 @@ public:
 
     ~ProgramBuilder();
 
-    Program<GLuint> *createProgramFromShaders(Shader<GLuint> vs, Shader<GLuint> fs);
+    GLProgram_t *createProgramFromShaders(GLShader_t vs, GLShader_t fs);
 
 private:
     GLint _status;
