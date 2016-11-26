@@ -2,6 +2,12 @@
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/glfw/deps/glad/glad.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/deps/tinycthread.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/deps/getopt.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/deps/getopt.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/deps/glad.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/deps/tinycthread.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/cocoa_time.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/glfw_config.h.in" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/cocoa_joystick.m" isTestSource="false" />
@@ -12,22 +18,52 @@
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/nsgl_context.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/posix_tls.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/glfw/src/context.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/cocoa_monitor.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/init.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/glfw/src/posix_tls.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/src/context.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/window.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/src/vulkan.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/internal.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/input.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/glfw/src/vulkan.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/src/posix_tls.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/cocoa_init.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/cocoa_window.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/cocoa_platform.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/cocoa_joystick.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/cmake_uninstall.cmake.in" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/glfw/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/glfwinfo.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/title.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/empty.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/tearing.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/reopen.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/monitors.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/clipboard.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/events.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/cursor.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/iconify.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/threads.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/windows.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/icon.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/joysticks.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/timeout.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/msaa.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/gamma.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/sharing.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/include/GLFW/glfw3native.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/include/GLFW/glfw3.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/examples/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/examples/simple.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/examples/glfw.icns" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/examples/offscreen.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/examples/heightmap.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/examples/particles.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/examples/wave.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/examples/gears.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/examples/splitview.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/examples/boing.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/CMake/MacOSXBundleInfo.plist.in" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/CMake/modules/FindVulkan.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Core/Initializable.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Core/Filesystem/VirtualFilesystem.cpp" isTestSource="false" />
@@ -35,35 +71,39 @@
       <sourceFolder url="file://$MODULE_DIR$/Core/CoreGraphics.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/OpenglGraphicContext.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/FPSCamera.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/Camera.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/FPSCamera.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/Entity.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/Mesh.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/App.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Notifier.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/GLFWNotifier.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Event/GLFWNotifier.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/GLFWNotifier.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Dispatcher.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Channel.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Listener.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Type.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/OpenglGraphicContext.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Scene/Level.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Scene/Level.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Scene/Node.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/App.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/CameraInterface.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/GraphicContextInterface.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/Material.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/ShaderBuilder.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/Texture.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/Material.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/ProgramBuilder.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/ProgramBuilder.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/ShaderBuilder.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/Shader.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/ProgramBuilder.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/Renderer.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/Program.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/OpenglGraphicContext.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/OpenglGraphicContext.h" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library name="Header Search Paths">
         <CLASSES>
-          <root url="file://$USER_HOME$/.brew/include" />
-          <root url="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include" />
-          <root url="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.0.0/include" />
           <root url="file:///System/Library/Frameworks/AudioToolbox.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Carbon.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Carbon.framework/Frameworks/HIToolbox.framework/Headers" />
@@ -234,18 +274,18 @@
           <root url="file:///System/Library/Frameworks/Accelerate.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Accelerate.framework/Frameworks/vImage.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/Headers" />
-          <root url="file:///Volumes/Storage/cache/rdantzer/Library/Caches/CLion2016.2/cmake/generated/KiwiEngine-27b9ac6f/27b9ac6f/Release/glfw/src" />
-          <root url="file:///Volumes/Storage/cache/rdantzer/Library/Caches/CLion2016.2/cmake/generated/KiwiEngine-27b9ac6f/27b9ac6f/Debug/glfw/src" />
-          <root url="file:///Volumes/Storage/cache/rdantzer/Library/Caches/CLion2016.2/cmake/generated/KiwiEngine-27b9ac6f/27b9ac6f/MinSizeRel/glfw/src" />
-          <root url="file:///Volumes/Storage/cache/rdantzer/Library/Caches/CLion2016.2/cmake/generated/KiwiEngine-27b9ac6f/27b9ac6f/RelWithDebInfo/glfw/src" />
           <root url="file:///usr/include" />
           <root url="file:///usr/local/include" />
+          <root url="file://$USER_HOME$/Library/Caches/CLion2016.2/cmake/generated/Kiwi_engine-1fe3f2f4/1fe3f2f4/MinSizeRel/glfw/src" />
+          <root url="file://$USER_HOME$/Library/Caches/CLion2016.2/cmake/generated/Kiwi_engine-1fe3f2f4/1fe3f2f4/Debug/glfw/src" />
+          <root url="file://$USER_HOME$/Library/Caches/CLion2016.2/cmake/generated/Kiwi_engine-1fe3f2f4/1fe3f2f4/Release/glfw/src" />
+          <root url="file://$USER_HOME$/Library/Caches/CLion2016.2/cmake/generated/Kiwi_engine-1fe3f2f4/1fe3f2f4/RelWithDebInfo/glfw/src" />
+          <root url="file:///Library/Frameworks/CUDA.framework/Headers" />
           <root url="file:///Library/Frameworks/iTunesLibrary.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.3.0/include" />
         </CLASSES>
         <SOURCES>
-          <root url="file://$USER_HOME$/.brew/include" />
-          <root url="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include" />
-          <root url="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.0.0/include" />
           <root url="file:///System/Library/Frameworks/AudioToolbox.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Carbon.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Carbon.framework/Frameworks/HIToolbox.framework/Headers" />
@@ -416,13 +456,16 @@
           <root url="file:///System/Library/Frameworks/Accelerate.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Accelerate.framework/Frameworks/vImage.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/Headers" />
-          <root url="file:///Volumes/Storage/cache/rdantzer/Library/Caches/CLion2016.2/cmake/generated/KiwiEngine-27b9ac6f/27b9ac6f/Release/glfw/src" />
-          <root url="file:///Volumes/Storage/cache/rdantzer/Library/Caches/CLion2016.2/cmake/generated/KiwiEngine-27b9ac6f/27b9ac6f/Debug/glfw/src" />
-          <root url="file:///Volumes/Storage/cache/rdantzer/Library/Caches/CLion2016.2/cmake/generated/KiwiEngine-27b9ac6f/27b9ac6f/MinSizeRel/glfw/src" />
-          <root url="file:///Volumes/Storage/cache/rdantzer/Library/Caches/CLion2016.2/cmake/generated/KiwiEngine-27b9ac6f/27b9ac6f/RelWithDebInfo/glfw/src" />
           <root url="file:///usr/include" />
           <root url="file:///usr/local/include" />
+          <root url="file://$USER_HOME$/Library/Caches/CLion2016.2/cmake/generated/Kiwi_engine-1fe3f2f4/1fe3f2f4/MinSizeRel/glfw/src" />
+          <root url="file://$USER_HOME$/Library/Caches/CLion2016.2/cmake/generated/Kiwi_engine-1fe3f2f4/1fe3f2f4/Debug/glfw/src" />
+          <root url="file://$USER_HOME$/Library/Caches/CLion2016.2/cmake/generated/Kiwi_engine-1fe3f2f4/1fe3f2f4/Release/glfw/src" />
+          <root url="file://$USER_HOME$/Library/Caches/CLion2016.2/cmake/generated/Kiwi_engine-1fe3f2f4/1fe3f2f4/RelWithDebInfo/glfw/src" />
+          <root url="file:///Library/Frameworks/CUDA.framework/Headers" />
           <root url="file:///Library/Frameworks/iTunesLibrary.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.3.0/include" />
         </SOURCES>
       </library>
     </orderEntry>
