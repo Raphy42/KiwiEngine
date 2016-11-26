@@ -30,7 +30,7 @@ endif (NOT OPENGL_FOUND)
 add_subdirectory(glfw)
 include_directories(glfw/include)
 
-set(SOURCE_FILES main.cpp Engine/GraphicContextInterface.h Core/Initializable.h Engine/OpenglGraphicContext.cpp Engine/OpenglGraphicContext.h Core/CoreGraphics.h Engine/Renderer/Material.h Core/Filesystem/VirtualFilesystem.cpp Core/Filesystem/VirtualFilesystem.h Engine/Renderer/Texture.h Engine/Renderer/Shader.h Engine/Renderer/ShaderBuilder.h Engine/CameraInterface.h Engine/Renderer/ShaderBuilder.cpp Engine/Renderer/Program.h Engine/Renderer/ProgramBuilder.cpp Engine/Renderer/ProgramBuilder.h Engine/App.cpp Engine/App.h Engine/Event/Dispatcher.h Engine/Event/Channel.h Engine/Event/Notifier.h Engine/Event/GLFWNotifier.cpp Engine/Event/GLFWNotifier.h Engine/Event/Type.h Engine/Event/Listener.h)
+set(SOURCE_FILES main.cpp Engine/GraphicContextInterface.h Core/Initializable.h Engine/OpenglGraphicContext.cpp Engine/OpenglGraphicContext.h Core/CoreGraphics.h Engine/Renderer/Material.h Core/Filesystem/VirtualFilesystem.cpp Core/Filesystem/VirtualFilesystem.h Engine/Renderer/Texture.h Engine/Renderer/Shader.h Engine/Renderer/ShaderBuilder.h Engine/Renderer/ShaderBuilder.cpp Engine/Renderer/Program.h Engine/Renderer/ProgramBuilder.cpp Engine/Renderer/ProgramBuilder.h Engine/App.cpp Engine/App.h Engine/Event/Dispatcher.h Engine/Event/Notifier.h Engine/Event/GLFWNotifier.cpp Engine/Event/GLFWNotifier.h Engine/Event/Type.h Engine/Event/Listener.h Engine/Primitives/Mesh.h Engine/Primitives/Camera.h Engine/Primitives/FPSCamera.cpp Engine/Primitives/FPSCamera.h Engine/Primitives/Entity.h Engine/Renderer/Renderer.h Engine/Scene/Level.cpp Engine/Scene/Level.h Engine/Scene/Node.h)
 set(EXECUTABLE_OUTPUT_PATH ${SOURCE_FILES})
 
 add_executable(KiwiEngine ${SOURCE_FILES})

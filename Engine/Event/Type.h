@@ -6,6 +6,7 @@
 #define KIWIENGINE_TYPE_H
 
 #include "../../Core/CoreGraphics.h"
+#include <string>
 
 namespace Kiwi {
     namespace Engine {

@@ -1,7 +1,6 @@
 #include <iostream>
 #include <array>
 #include "Engine/App.h"
-#include "Engine/Event/Channel.h"
 #include "Engine/Event/Type.h"
 #include "Engine/Event/Listener.h"
 #include "Engine/Event/Dispatcher.h"
@@ -34,7 +33,7 @@ std::array<const char *, 20> type_str = {
 
 class UserInputListener : public kE::Event::Listener<kE::Event::Type::GLFWEvent> {
 public:
-    virtual void update(Kiwi::Engine::Event::Type::GLFWEvent &notification) override {
+    void update(Kiwi::Engine::Event::Type::GLFWEvent &notification) override {
         switch (notification.type) {
             case kE::Event::Type::HumanInteraction::KEY_PRESSED:
                 switch (notification.key.key) {
@@ -50,18 +49,36 @@ public:
     }
 };
 
-int main(void)
-{
-    kE::App app;
-
-    app.start();
-
-    UserInputListener dummyListener;
-    app._hid->bind(&dummyListener);
-
-    while (1) {
-        app.run();
+class DebugInputListener : public kE::Event::Listener<kE::Event::Type::GLFWEvent> {
+    void update(Kiwi::Engine::Event::Type::GLFWEvent &notification) override {
+        std::cout << type_str[static_cast<int>(notification.type)] << std::endl;
     }
+};
 
+
+class Game : public kE::App
+{
+public:
+    Game() {}
+
+    void loop(void) {
+        start();
+
+        UserInputListener dummyListener;
+        DebugInputListener debugListener;
+
+        _hid->bind(&debugListener);
+        _hid->bind(&dummyListener);
+
+        while (1) {
+            run();
+        }
+    }
+};
+
+int main(void) {
+    Game game;
+
+    game.loop();
     return 0;
 }

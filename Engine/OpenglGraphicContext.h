@@ -8,7 +8,7 @@
 
 #include <utility>
 #include <vector>
-#include "../Core/CoreGraphics.h"
+#include "../../Core/CoreGraphics.h"
 #include "GraphicContextInterface.h"
 #include "Event/GLFWNotifier.h"
 
