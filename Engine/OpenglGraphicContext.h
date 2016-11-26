@@ -10,6 +10,7 @@
 #include <vector>
 #include "../Core/CoreGraphics.h"
 #include "GraphicContextInterface.h"
+#include "Event/GLFWNotifier.h"
 
 namespace Kiwi { namespace Engine {
         class OpenglGraphicContext : public GraphicContextInterface {
@@ -27,6 +28,14 @@ namespace Kiwi { namespace Engine {
 
             void PostInit() override;
 
+            void Update() override;
+
+            void Render() override { glfwSwapBuffers(_window); }
+
+            void Clear() override { glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT); }
+
+            virtual Event::Notifier<Event::Type::GLFWEvent> *getNotifier() override { return _notifier; };
+
         private:
             std::pair<int, int>                 _size;
             std::pair<int, int>                 _framebuffer;
@@ -36,6 +45,8 @@ namespace Kiwi { namespace Engine {
             const char              *_title;
 
             GLFWwindow              *_window;
+
+            Event::GLFWNotifier *_notifier;
         };
     }
 }

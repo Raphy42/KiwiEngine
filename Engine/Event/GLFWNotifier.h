@@ -5,74 +5,35 @@
 #ifndef KIWIENGINE_GLFWEVENTNOTIFIER_H
 #define KIWIENGINE_GLFWEVENTNOTIFIER_H
 
-#include <vector>
 #include "../../Core/CoreGraphics.h"
 #include "Notifier.h"
+#include "Type.h"
 
 /**
- * Original derived from gleq/gleq.h by elmindreda @ glfw dot org
+ * Concept (enum and union) taken from gleq/gleq.h by elmindreda @ glfw dot org
  */
 namespace Kiwi {
     namespace Engine {
         namespace Event {
-            class GLFWNotifier : public Notifier<int> {
+            class GLFWNotifier : public Notifier<Type::GLFWEvent> {
             public:
+                GLFWNotifier() {};
                 GLFWNotifier(GLFWwindow *window);
-
                 virtual ~GLFWNotifier();
 
-                void notify(void *data, unsigned long size) override;
+                virtual void notify(Type::GLFWEvent &notification) override;
 
-                enum class Type : int {
-                    NONE = 0x0,
-                    WINDOW_MOVED,
-                    WINDOW_RESIZED,
-                    WINDOW_CLOSED,
-                    WINDOW_FOCUSED,
-                    WINDOW_DEFOCUSED,
-                    WINDOW_ICONIFIED,
-                    WINDOW_RESTORED,
-                    FRAMEBUFFER_RESIZED,
-                    BUTTON_PRESSED,
-                    BUTTON_RELEASED,
-                    CURSOR_MOVED,
-                    CURSOR_ENTERED,
-                    CURSOR_LEFT,
-                    SCROLLED,
-                    KEY_PRESSED,
-                    KEY_REPEATED,
-                    KEY_RELEASED,
-                    CHARACTER_INPUT,
-                    FILE_DROPPED
-                };
+                virtual void bind(Dispatcher<Type::GLFWEvent> *dispatcher) override;
 
-                typedef union Event {
-                    Type type;
-                    GLFWwindow *handle;
-                    struct {
-                        double x;
-                        double y;
-                    } pos;
-                    struct {
-                        int width;
-                        int height;
-                    } size;
-                    struct {
-                        int key;
-                        int scancode;
-                        int mods;
-                    } key;
-                    struct {
-                        unsigned int codepoint;
-                        int mods;
-                    } character;
-                    struct {
-                        std::vector<const char *> paths;
-                    } file;
-                } Event_t;
+                virtual void unbind(void) override;
 
+
+                void start(void);
             private:
+
                 GLFWwindow *_handle;
+                Dispatcher<Type::GLFWEvent> *_dispatcher;
+
             };
         }
     }

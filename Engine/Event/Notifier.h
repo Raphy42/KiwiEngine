@@ -5,20 +5,29 @@
 #ifndef KIWIENGINE_NOTIFIER_H
 #define KIWIENGINE_NOTIFIER_H
 
-#include "Channel.h"
+#include <memory>
+#include "Dispatcher.h"
 
 namespace Kiwi {
     namespace Engine {
         namespace Event {
-            template<class T>
+            template<class Notification>
             class Notifier {
             public:
-                virtual ~Notifier() = 0;
+                Notifier() {};
 
-                virtual void notify(void *data, unsigned long size) = 0;
+                virtual ~Notifier() {};
+
+                virtual void notify(Notification &notification) = 0;
+
+                virtual void bind(Dispatcher<Notification> *dispatcher) = 0;
+
+                virtual void unbind(void) = 0;
+
             private:
-                Channel<T> _channel;
+                std::weak_ptr<Dispatcher<Notification>> _dispatcher;
             };
+
         }
     }
 }

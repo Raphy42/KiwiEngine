@@ -6,6 +6,8 @@
 #define KIWIENGINE_GRAPHICCONTEXTINTERFACE_H
 
 #include "../Core/Initializable.h"
+#include "Event/Type.h"
+#include "Event/Notifier.h"
 
 namespace Kiwi { namespace Engine {
         class GraphicContextInterface : public Core::Initializable {
@@ -18,8 +20,13 @@ namespace Kiwi { namespace Engine {
                 VULKAN
             };
 
-        private:
+            virtual void Render() = 0;
 
+            virtual void Clear() = 0;
+
+            virtual Event::Notifier<Event::Type::GLFWEvent> *getNotifier() = 0;
+
+        private:
         };
     }
 }

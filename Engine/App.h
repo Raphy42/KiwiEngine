@@ -8,20 +8,33 @@
 #include <memory>
 #include "../Core/Initializable.h"
 #include "../Core/Filesystem/VirtualFilesystem.h"
+#include "GraphicContextInterface.h"
+#include "Event/Dispatcher.h"
 
 namespace Kiwi {
     namespace Engine {
         class App {
         public:
             App();
-
             virtual ~App();
 
-            void start() const;
+            void start();
+
+            void run() const;
+
+            bool ok() const;
+
+            typedef Event::Dispatcher<Event::Type::GLFWEvent> GLFWDispatcher;
+            typedef Event::Dispatcher<Event::Type::CoreEvent> CoreDispatcher;
+            typedef Core::Filesystem::VirtualFilesystem VFS;
+
+            std::unique_ptr<GLFWDispatcher> _hid;
+            std::unique_ptr<CoreDispatcher> _core;
 
         private:
-            std::unique_ptr<Core::Initializable> _graphics;
-            std::unique_ptr<Core::Filesystem::VirtualFilesystem> _vfs;
+            std::unique_ptr<GraphicContextInterface> _graphics;
+            std::unique_ptr<VFS> _vfs;
+            bool _keepOpen;
         };
 
     }
