@@ -81,7 +81,7 @@ void Kiwi::Engine::OpenglGraphicContext::PostInit() {
 
 Kiwi::Engine::OpenglGraphicContext::~OpenglGraphicContext() {
     glfwDestroyWindow(_window);
-    glfwTerminate();
+glfwTerminate();
 }
 
 void Kiwi::Engine::OpenglGraphicContext::Update() {

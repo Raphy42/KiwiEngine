@@ -15,6 +15,7 @@
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/glfw3Config.cmake.in" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/monitor.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/nsgl_context.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/src/posix_tls.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/nsgl_context.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/posix_tls.h" isTestSource="false" />
@@ -22,10 +23,9 @@
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/init.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/context.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/window.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/glfw/src/vulkan.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/internal.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/input.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/glfw/src/posix_tls.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/src/vulkan.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/cocoa_init.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/cocoa_window.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/cocoa_platform.h" isTestSource="false" />
@@ -69,29 +69,30 @@
       <sourceFolder url="file://$MODULE_DIR$/Core/Filesystem/VirtualFilesystem.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Core/Filesystem/VirtualFilesystem.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Core/CoreGraphics.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/FPSCamera.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/Camera.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/FPSCamera.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/App.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/Entity.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/Mesh.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/FPSCamera.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/FPSCamera.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/Mesh.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/Camera.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/App.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Scene/Node.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Scene/Level.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Scene/Manager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Scene/Creator.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Scene/Creator.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/OpenglGraphicContext.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/GraphicContextInterface.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Notifier.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Event/GLFWNotifier.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Event/GLFWNotifier.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Dispatcher.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Listener.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Type.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/OpenglGraphicContext.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Scene/Level.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Scene/Level.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Scene/Node.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/App.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/GraphicContextInterface.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/Material.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/ShaderBuilder.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/Texture.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/Material.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/ProgramBuilder.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/ProgramBuilder.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/ShaderBuilder.h" isTestSource="false" />
@@ -99,11 +100,18 @@
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/Renderer.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/Program.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/OpenglGraphicContext.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Assets/Loader.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Assets/Loader.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library name="Header Search Paths">
         <CLASSES>
+          <root url="file://$USER_HOME$/.brew/include" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.0.0/include" />
           <root url="file:///System/Library/Frameworks/AudioToolbox.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Carbon.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Carbon.framework/Frameworks/HIToolbox.framework/Headers" />
@@ -123,7 +131,6 @@
           <root url="file:///System/Library/Frameworks/DirectoryService.framework/Headers" />
           <root url="file:///System/Library/Frameworks/InstallerPlugins.framework/Headers" />
           <root url="file:///System/Library/Frameworks/ForceFeedback.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/CoreMediaIO.framework/Headers" />
           <root url="file:///System/Library/Frameworks/CoreWLAN.framework/Headers" />
           <root url="file:///System/Library/Frameworks/JavaVM.framework/Headers" />
           <root url="file:///System/Library/Frameworks/JavaVM.framework/Frameworks/JavaRuntimeSupport.framework/Headers" />
@@ -172,6 +179,7 @@
           <root url="file:///System/Library/Frameworks/FinderSync.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Contacts.framework/Headers" />
           <root url="file:///System/Library/Frameworks/WebKit.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/CoreData.framework/Headers" />
           <root url="file:///System/Library/Frameworks/QuickTime.framework/Headers" />
           <root url="file:///System/Library/Frameworks/VideoToolbox.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Accounts.framework/Headers" />
@@ -180,17 +188,8 @@
           <root url="file:///System/Library/Frameworks/Kernel.framework/Headers" />
           <root url="file:///System/Library/Frameworks/AppKit.framework/Headers" />
           <root url="file:///System/Library/Frameworks/InputMethodKit.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/SecurityInterface.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/CoreServices.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/DictionaryServices.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/SharedFileList.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/SearchKit.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/FSEvents.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/AE.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/OSServices.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/CoreMediaIO.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/LatentSemanticMapping.framework/Headers" />
           <root url="file:///System/Library/Frameworks/DVComponentGlue.framework/Headers" />
           <root url="file:///System/Library/Frameworks/OpenDirectory.framework/Headers" />
           <root url="file:///System/Library/Frameworks/OpenDirectory.framework/Frameworks/CFOpenDirectory.framework/Headers" />
@@ -211,7 +210,6 @@
           <root url="file:///System/Library/Frameworks/OSAKit.framework/Headers" />
           <root url="file:///System/Library/Frameworks/ExceptionHandling.framework/Headers" />
           <root url="file:///System/Library/Frameworks/IOBluetoothUI.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/Ruby.framework/Headers" />
           <root url="file:///System/Library/Frameworks/CoreMIDI.framework/Headers" />
           <root url="file:///System/Library/Frameworks/LocalAuthentication.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Foundation.framework/Headers" />
@@ -221,11 +219,12 @@
           <root url="file:///System/Library/Frameworks/ImageCaptureCore.framework/Headers" />
           <root url="file:///System/Library/Frameworks/SpriteKit.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Automator.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/CoreData.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/SecurityInterface.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Social.framework/Headers" />
           <root url="file:///System/Library/Frameworks/CoreText.framework/Headers" />
           <root url="file:///System/Library/Frameworks/NetworkExtension.framework/Headers" />
           <root url="file:///System/Library/Frameworks/SceneKit.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/SecurityFoundation.framework/Headers" />
           <root url="file:///System/Library/Frameworks/PhotosUI.framework/Headers" />
           <root url="file:///System/Library/Frameworks/QuickLook.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Tk.framework/PrivateHeaders" />
@@ -249,7 +248,7 @@
           <root url="file:///System/Library/Frameworks/AppleScriptObjC.framework/Headers" />
           <root url="file:///System/Library/Frameworks/CFNetwork.framework/Headers" />
           <root url="file:///System/Library/Frameworks/CryptoTokenKit.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/SecurityFoundation.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/Ruby.framework/Headers" />
           <root url="file:///System/Library/Frameworks/DiscRecordingUI.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Collaboration.framework/Headers" />
           <root url="file:///System/Library/Frameworks/MediaToolbox.framework/Headers" />
@@ -263,29 +262,38 @@
           <root url="file:///System/Library/Frameworks/DiscRecording.framework/Headers" />
           <root url="file:///System/Library/Frameworks/PCSC.framework/Headers" />
           <root url="file:///System/Library/Frameworks/CloudKit.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/LatentSemanticMapping.framework/Headers" />
           <root url="file:///System/Library/Frameworks/AppleScriptKit.framework/Headers" />
           <root url="file:///System/Library/Frameworks/MultipeerConnectivity.framework/Headers" />
           <root url="file:///System/Library/Frameworks/LDAP.framework/Headers" />
           <root url="file:///System/Library/Frameworks/JavaFrameEmbedding.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/CoreServices.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/DictionaryServices.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/SharedFileList.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/SearchKit.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/FSEvents.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/AE.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/OSServices.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Headers" />
           <root url="file:///System/Library/Frameworks/ServiceManagement.framework/Headers" />
           <root url="file:///System/Library/Frameworks/ICADevices.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Scripting.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Accelerate.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Accelerate.framework/Frameworks/vImage.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/Headers" />
+          <root url="file:///Volumes/Storage/cache/rdantzer/Library/Caches/CLion2016.2/cmake/generated/KiwiEngine-27b9ac6f/27b9ac6f/Release/glfw/src" />
+          <root url="file:///Volumes/Storage/cache/rdantzer/Library/Caches/CLion2016.2/cmake/generated/KiwiEngine-27b9ac6f/27b9ac6f/Debug/glfw/src" />
+          <root url="file:///Volumes/Storage/cache/rdantzer/Library/Caches/CLion2016.2/cmake/generated/KiwiEngine-27b9ac6f/27b9ac6f/MinSizeRel/glfw/src" />
+          <root url="file:///Volumes/Storage/cache/rdantzer/Library/Caches/CLion2016.2/cmake/generated/KiwiEngine-27b9ac6f/27b9ac6f/RelWithDebInfo/glfw/src" />
           <root url="file:///usr/include" />
           <root url="file:///usr/local/include" />
-          <root url="file://$USER_HOME$/Library/Caches/CLion2016.2/cmake/generated/Kiwi_engine-1fe3f2f4/1fe3f2f4/MinSizeRel/glfw/src" />
-          <root url="file://$USER_HOME$/Library/Caches/CLion2016.2/cmake/generated/Kiwi_engine-1fe3f2f4/1fe3f2f4/Debug/glfw/src" />
-          <root url="file://$USER_HOME$/Library/Caches/CLion2016.2/cmake/generated/Kiwi_engine-1fe3f2f4/1fe3f2f4/Release/glfw/src" />
-          <root url="file://$USER_HOME$/Library/Caches/CLion2016.2/cmake/generated/Kiwi_engine-1fe3f2f4/1fe3f2f4/RelWithDebInfo/glfw/src" />
-          <root url="file:///Library/Frameworks/CUDA.framework/Headers" />
           <root url="file:///Library/Frameworks/iTunesLibrary.framework/Headers" />
-          <root url="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include" />
-          <root url="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.3.0/include" />
         </CLASSES>
         <SOURCES>
+          <root url="file://$USER_HOME$/.brew/include" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.0.0/include" />
           <root url="file:///System/Library/Frameworks/AudioToolbox.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Carbon.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Carbon.framework/Frameworks/HIToolbox.framework/Headers" />
@@ -305,7 +313,6 @@
           <root url="file:///System/Library/Frameworks/DirectoryService.framework/Headers" />
           <root url="file:///System/Library/Frameworks/InstallerPlugins.framework/Headers" />
           <root url="file:///System/Library/Frameworks/ForceFeedback.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/CoreMediaIO.framework/Headers" />
           <root url="file:///System/Library/Frameworks/CoreWLAN.framework/Headers" />
           <root url="file:///System/Library/Frameworks/JavaVM.framework/Headers" />
           <root url="file:///System/Library/Frameworks/JavaVM.framework/Frameworks/JavaRuntimeSupport.framework/Headers" />
@@ -354,6 +361,7 @@
           <root url="file:///System/Library/Frameworks/FinderSync.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Contacts.framework/Headers" />
           <root url="file:///System/Library/Frameworks/WebKit.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/CoreData.framework/Headers" />
           <root url="file:///System/Library/Frameworks/QuickTime.framework/Headers" />
           <root url="file:///System/Library/Frameworks/VideoToolbox.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Accounts.framework/Headers" />
@@ -362,17 +370,8 @@
           <root url="file:///System/Library/Frameworks/Kernel.framework/Headers" />
           <root url="file:///System/Library/Frameworks/AppKit.framework/Headers" />
           <root url="file:///System/Library/Frameworks/InputMethodKit.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/SecurityInterface.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/CoreServices.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/DictionaryServices.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/SharedFileList.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/SearchKit.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/FSEvents.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/AE.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/OSServices.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/CoreMediaIO.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/LatentSemanticMapping.framework/Headers" />
           <root url="file:///System/Library/Frameworks/DVComponentGlue.framework/Headers" />
           <root url="file:///System/Library/Frameworks/OpenDirectory.framework/Headers" />
           <root url="file:///System/Library/Frameworks/OpenDirectory.framework/Frameworks/CFOpenDirectory.framework/Headers" />
@@ -393,7 +392,6 @@
           <root url="file:///System/Library/Frameworks/OSAKit.framework/Headers" />
           <root url="file:///System/Library/Frameworks/ExceptionHandling.framework/Headers" />
           <root url="file:///System/Library/Frameworks/IOBluetoothUI.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/Ruby.framework/Headers" />
           <root url="file:///System/Library/Frameworks/CoreMIDI.framework/Headers" />
           <root url="file:///System/Library/Frameworks/LocalAuthentication.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Foundation.framework/Headers" />
@@ -403,11 +401,12 @@
           <root url="file:///System/Library/Frameworks/ImageCaptureCore.framework/Headers" />
           <root url="file:///System/Library/Frameworks/SpriteKit.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Automator.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/CoreData.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/SecurityInterface.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Social.framework/Headers" />
           <root url="file:///System/Library/Frameworks/CoreText.framework/Headers" />
           <root url="file:///System/Library/Frameworks/NetworkExtension.framework/Headers" />
           <root url="file:///System/Library/Frameworks/SceneKit.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/SecurityFoundation.framework/Headers" />
           <root url="file:///System/Library/Frameworks/PhotosUI.framework/Headers" />
           <root url="file:///System/Library/Frameworks/QuickLook.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Tk.framework/PrivateHeaders" />
@@ -431,7 +430,7 @@
           <root url="file:///System/Library/Frameworks/AppleScriptObjC.framework/Headers" />
           <root url="file:///System/Library/Frameworks/CFNetwork.framework/Headers" />
           <root url="file:///System/Library/Frameworks/CryptoTokenKit.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/SecurityFoundation.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/Ruby.framework/Headers" />
           <root url="file:///System/Library/Frameworks/DiscRecordingUI.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Collaboration.framework/Headers" />
           <root url="file:///System/Library/Frameworks/MediaToolbox.framework/Headers" />
@@ -445,27 +444,33 @@
           <root url="file:///System/Library/Frameworks/DiscRecording.framework/Headers" />
           <root url="file:///System/Library/Frameworks/PCSC.framework/Headers" />
           <root url="file:///System/Library/Frameworks/CloudKit.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/LatentSemanticMapping.framework/Headers" />
           <root url="file:///System/Library/Frameworks/AppleScriptKit.framework/Headers" />
           <root url="file:///System/Library/Frameworks/MultipeerConnectivity.framework/Headers" />
           <root url="file:///System/Library/Frameworks/LDAP.framework/Headers" />
           <root url="file:///System/Library/Frameworks/JavaFrameEmbedding.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/CoreServices.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/DictionaryServices.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/SharedFileList.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/SearchKit.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/FSEvents.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/AE.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/OSServices.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Headers" />
           <root url="file:///System/Library/Frameworks/ServiceManagement.framework/Headers" />
           <root url="file:///System/Library/Frameworks/ICADevices.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Scripting.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Accelerate.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Accelerate.framework/Frameworks/vImage.framework/Headers" />
           <root url="file:///System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/Headers" />
+          <root url="file:///Volumes/Storage/cache/rdantzer/Library/Caches/CLion2016.2/cmake/generated/KiwiEngine-27b9ac6f/27b9ac6f/Release/glfw/src" />
+          <root url="file:///Volumes/Storage/cache/rdantzer/Library/Caches/CLion2016.2/cmake/generated/KiwiEngine-27b9ac6f/27b9ac6f/Debug/glfw/src" />
+          <root url="file:///Volumes/Storage/cache/rdantzer/Library/Caches/CLion2016.2/cmake/generated/KiwiEngine-27b9ac6f/27b9ac6f/MinSizeRel/glfw/src" />
+          <root url="file:///Volumes/Storage/cache/rdantzer/Library/Caches/CLion2016.2/cmake/generated/KiwiEngine-27b9ac6f/27b9ac6f/RelWithDebInfo/glfw/src" />
           <root url="file:///usr/include" />
           <root url="file:///usr/local/include" />
-          <root url="file://$USER_HOME$/Library/Caches/CLion2016.2/cmake/generated/Kiwi_engine-1fe3f2f4/1fe3f2f4/MinSizeRel/glfw/src" />
-          <root url="file://$USER_HOME$/Library/Caches/CLion2016.2/cmake/generated/Kiwi_engine-1fe3f2f4/1fe3f2f4/Debug/glfw/src" />
-          <root url="file://$USER_HOME$/Library/Caches/CLion2016.2/cmake/generated/Kiwi_engine-1fe3f2f4/1fe3f2f4/Release/glfw/src" />
-          <root url="file://$USER_HOME$/Library/Caches/CLion2016.2/cmake/generated/Kiwi_engine-1fe3f2f4/1fe3f2f4/RelWithDebInfo/glfw/src" />
-          <root url="file:///Library/Frameworks/CUDA.framework/Headers" />
           <root url="file:///Library/Frameworks/iTunesLibrary.framework/Headers" />
-          <root url="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include" />
-          <root url="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.3.0/include" />
         </SOURCES>
       </library>
     </orderEntry>

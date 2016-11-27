@@ -45,11 +45,11 @@ void Kiwi::Engine::Primitive::FPSCamera::move(Kiwi::Engine::Primitive::Camera::A
             _position += _front * vel;
             break;
         case Action::BACKWARD:
-            break;
             _position -= _front * vel;
-        case Action::STRAFE_LEFT:
             break;
+        case Action::STRAFE_LEFT:
             _position -= _right * vel;
+            break;
         case Action::STRAFE_RIGHT:
             _position += _right * vel;
             break;
