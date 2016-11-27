@@ -27,11 +27,21 @@ if (NOT OPENGL_FOUND)
     message(ERROR " OPENGL not found!")
 endif (NOT OPENGL_FOUND)
 
+set(GLFW_BUILD_EXAMPLES     OFF)
+set(GLFW_BUILD_TESTS        OFF)
 add_subdirectory(glfw)
 include_directories(glfw/include)
 
-set(SOURCE_FILES main.cpp Engine/GraphicContextInterface.h Core/Initializable.h Engine/OpenglGraphicContext.cpp Engine/OpenglGraphicContext.h Core/CoreGraphics.h Engine/Renderer/Material.h Core/Filesystem/VirtualFilesystem.cpp Core/Filesystem/VirtualFilesystem.h Engine/Renderer/Texture.h Engine/Renderer/Shader.h Engine/Renderer/ShaderBuilder.h Engine/Renderer/ShaderBuilder.cpp Engine/Renderer/Program.h Engine/Renderer/ProgramBuilder.cpp Engine/Renderer/ProgramBuilder.h Engine/App.cpp Engine/App.h Engine/Event/Dispatcher.h Engine/Event/Notifier.h Engine/Event/GLFWNotifier.cpp Engine/Event/GLFWNotifier.h Engine/Event/Type.h Engine/Event/Listener.h Engine/Primitives/Mesh.h Engine/Primitives/Camera.h Engine/Primitives/FPSCamera.cpp Engine/Primitives/FPSCamera.h Engine/Primitives/Entity.h Engine/Renderer/Renderer.h Engine/Scene/Level.h Engine/Scene/Node.h Engine/Scene/Manager.h Engine/Scene/Creator.h Engine/Scene/Creator.cpp Engine/Assets/Loader.h Engine/Primitives/Mesh.cpp Engine/Assets/Loader.cpp)
+add_subdirectory(assimp)
+include_directories(assimp/include)
+
+set(SOURCE_FILES main.cpp Engine/GraphicContextInterface.h Core/Initializable.h Engine/OpenglGraphicContext.cpp Engine/OpenglGraphicContext.h Core/CoreGraphics.h Engine/Renderer/Material.h Core/Filesystem/VirtualFilesystem.cpp Core/Filesystem/VirtualFilesystem.h Engine/Renderer/Texture.h Engine/Renderer/Shader.h Engine/Renderer/ShaderBuilder.h Engine/Renderer/ShaderBuilder.cpp Engine/Renderer/Program.h Engine/Renderer/ProgramBuilder.cpp Engine/Renderer/ProgramBuilder.h Engine/App.cpp Engine/App.h Engine/Event/Dispatcher.h Engine/Event/Notifier.h Engine/Event/GLFWNotifier.cpp Engine/Event/GLFWNotifier.h Engine/Event/Type.h Engine/Event/Listener.h Engine/Primitives/Mesh.h Engine/Primitives/Camera.h Engine/Primitives/FPSCamera.cpp Engine/Primitives/FPSCamera.h Engine/Primitives/Entity.h Engine/Renderer/Renderer.h Engine/Scene/Level.h Engine/Scene/Node.h Engine/Scene/Manager.h Engine/Scene/Creator.h Engine/Scene/Creator.cpp Engine/Assets/Loader.h Engine/Primitives/Mesh.cpp Engine/Assets/Loader.cpp Engine/Primitives/Model.h Core/Config.h)
 set(EXECUTABLE_OUTPUT_PATH ${SOURCE_FILES})
 
 add_executable(KiwiEngine ${SOURCE_FILES})
-target_link_libraries(KiwiEngine glfw ${GLFW_LIBRAIRIES} ${Boost_LIBRARIES} ${OPENGL_LIBRARIES})
+target_link_libraries(KiwiEngine
+        glfw        ${GLFW_LIBRAIRIES}
+        assimp      ${ASSIMP_LIBRAIRIES}
+        ${Boost_LIBRARIES}
+        ${OPENGL_LIBRARIES}
+        )

@@ -24,9 +24,9 @@ namespace Kiwi {
                 Mesh() {};
                 Mesh(GLuint _vao, GLuint _vbo, GLuint _ebo) : _vao(_vao), _vbo(_vbo), _ebo(_ebo) {}
 
-                ~Mesh() {};
+                virtual ~Mesh() {};
 
-            private:
+            protected:
                 GLuint _vao;
                 GLuint _vbo;
                 GLuint _ebo;
