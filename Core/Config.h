@@ -5,12 +5,33 @@
 #ifndef KIWIENGINE_CONFIG_H
 #define KIWIENGINE_CONFIG_H
 
-namespace Kiwi { namespace Core { namespace Config {
-            template <typename T>
-            constexpr T     diffuseTextureId = "texture_diffuse";
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/ini_parser.hpp>
+#include <string>
+#include <iostream>
+
+namespace Kiwi {
+    namespace Core {
+        class Config {
+        public:
+            Config(std::string source) {
+                boost::property_tree::ini_parser::read_ini(source, _ptree);
+            }
 
             template <typename T>
-            constexpr T     specularTextureId = "texture_specular";
+            T get(const char *key) const {
+                try {
+                    T value = _ptree.get<T>(key);
+                    return (value);
+                } catch (const std::exception &e) {
+                    std::cerr << e.what() << std::endl;
+                }
+                return T();
+            }
+
+        private:
+            boost::property_tree::ptree _ptree;
+        };
     }
 }
 

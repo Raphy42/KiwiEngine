@@ -8,7 +8,7 @@
 #include <glm/vec3.hpp>
 #include <glm/vec2.hpp>
 #include <vector>
-#include "../../Core/CoreGraphics.h"
+#include "../../Core/Graphics.h"
 #include "../Renderer/Texture.h"
 
 namespace Kiwi {
@@ -21,8 +21,31 @@ namespace Kiwi {
             };
             class Mesh {
             public:
+                enum class Topology : GLenum {
+                    POINTS = GL_POINTS,
+                    LINES = GL_LINES,
+                    LINE_STRIP = GL_LINE_STRIP,
+                    TRIANGLES = GL_TRIANGLES,
+                    TRIANGLE_STRIP = GL_TRIANGLE_STRIP,
+                    TRIANGLE_FAN = GL_TRIANGLE_FAN
+                };
+
                 Mesh() {};
-                Mesh(GLuint _vao, GLuint _vbo, GLuint _ebo) : _vao(_vao), _vbo(_vbo), _ebo(_ebo) {}
+
+                Mesh(GLuint vao, GLuint vbo, GLuint ebo, unsigned long size) :
+                        _vao(vao),
+                        _vbo(vbo),
+                        _ebo(ebo),
+                        _topology(Topology::TRIANGLES),
+                        _size(size) {}
+
+                void bind(void) const {
+                    glBindVertexArray(_vao);
+                }
+
+                void draw(void) const {
+                    glDrawArrays((GLenum) _topology, 0, (GLsizei) _size);
+                }
 
                 virtual ~Mesh() {};
 
@@ -30,6 +53,10 @@ namespace Kiwi {
                 GLuint _vao;
                 GLuint _vbo;
                 GLuint _ebo;
+                unsigned long _size;
+
+            private:
+                Topology _topology;
             };
         }
     }

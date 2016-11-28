@@ -25,7 +25,6 @@ namespace Kiwi {
                 virtual void unbind(void) = 0;
 
             private:
-                std::weak_ptr<Dispatcher<Notification>> _dispatcher;
             };
 
         }

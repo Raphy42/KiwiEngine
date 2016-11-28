@@ -13,9 +13,12 @@
 namespace Kiwi { namespace Engine { namespace Asset {
             namespace kE = Kiwi::Engine;
 
-            class Loader : public kE::Primitive::Model, public kE::Primitive::Mesh
+            class Loader
             {
             public:
+                friend  Primitive::Mesh;
+                friend  Primitive::Model;
+
                 Loader() {};
                 ~Loader() {};
 
@@ -24,13 +27,15 @@ namespace Kiwi { namespace Engine { namespace Asset {
                 typedef std::vector<Renderer::Texture>              Textures;
 
                 kE::Primitive::Mesh                     createMeshFromAttributes(Vertices v, Indices i, Textures t);
+
+                kE::Primitive::Mesh createMeshFromVertices(std::vector<float> v);
                 kE::Primitive::Model                    createModel(std::string source);
 
             private:
-                void                            processNode(kE::Primitive::Model *model, aiNode *node, const aiScene *scene);
-                kE::Primitive::Mesh             processMesh(aiMesh *mesh, const aiScene *scene);
-                kE::Renderer::Texture           processTexture(aiMaterial *material, aiTextureType type, std::string name);
-                Textures                        processTextures(aiMaterial *material, aiTextureType type, std::string name);
+//                void                            processNode(kE::Primitive::Model *model, aiNode *node, const aiScene *scene);
+//                kE::Primitive::Mesh             processMesh(aiMesh *mesh, const aiScene *scene);
+//                kE::Renderer::Texture           processTexture(aiMaterial *material, aiTextureType type, std::string name);
+//                Textures                        processTextures(aiMaterial *material, aiTextureType type, std::string name);
 
                 Assimp::Importer                _importer;
 

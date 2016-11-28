@@ -8,21 +8,27 @@
 #include <vector>
 #include "Shader.h"
 #include "Program.h"
-#include "../../Core/CoreGraphics.h"
+#include "../../Core/Graphics.h"
 
-class ShaderBuilder
-{
-public:
-    ShaderBuilder();
-    ~ShaderBuilder();
+namespace Kiwi {
+    namespace Engine {
+        namespace Renderer {
+            class ShaderBuilder {
+            public:
+                ShaderBuilder();
 
-    static ShaderBuilder    instance;
+                ~ShaderBuilder();
 
-    Shader<GLuint> *createFromFile(GLenum type, const std::string source);
+                Shader<GLuint> createFromFile(GLenum type, const std::string source);
 
-private:
-    GLint _status;
-};
+            private:
+                GLint _status;
+
+            };
+
+        }
+    }
+}
 
 
 #endif //KIWIENGINE_SHADERBUILDER_H

@@ -5,6 +5,12 @@
 #include "Engine/Event/Listener.h"
 #include "Engine/Event/Dispatcher.h"
 #include "Engine/Event/GLFWNotifier.h"
+#include "Engine/Event/CoreNotifier.h"
+#include "Engine/Primitives/Mesh.h"
+#include "Engine/Assets/Loader.h"
+#include "Engine/Scene/Level.h"
+#include "Engine/Assets/Storage.h"
+
 
 namespace kE = Kiwi::Engine;
 
@@ -50,25 +56,81 @@ public:
 };
 
 class DebugInputListener : public kE::Event::Listener<kE::Event::Type::GLFWEvent> {
+public:
     void update(Kiwi::Engine::Event::Type::GLFWEvent &notification) override {
         std::cout << type_str[static_cast<int>(notification.type)] << std::endl;
     }
 };
 
-
 class Game : public kE::App
 {
 public:
-    Game() {}
+    Game() : kE::App() {}
 
     void loop(void) {
         start();
 
         UserInputListener dummyListener;
         DebugInputListener debugListener;
+        kE::Asset::Loader loader;
 
         _hid->bind(&debugListener);
         _hid->bind(&dummyListener);
+
+        std::vector<float> vertices = {
+                -0.5f, -0.5f, -0.5f,
+                0.5f, -0.5f, -0.5f,
+                0.5f, 0.5f, -0.5f,
+                0.5f, 0.5f, -0.5f,
+                -0.5f, 0.5f, -0.5f,
+                -0.5f, -0.5f, -0.5f,
+
+                -0.5f, -0.5f, 0.5f,
+                0.5f, -0.5f, 0.5f,
+                0.5f, 0.5f, 0.5f,
+                0.5f, 0.5f, 0.5f,
+                -0.5f, 0.5f, 0.5f,
+                -0.5f, -0.5f, 0.5f,
+
+                -0.5f, 0.5f, 0.5f,
+                -0.5f, 0.5f, -0.5f,
+                -0.5f, -0.5f, -0.5f,
+                -0.5f, -0.5f, -0.5f,
+                -0.5f, -0.5f, 0.5f,
+                -0.5f, 0.5f, 0.5f,
+
+                0.5f, 0.5f, 0.5f,
+                0.5f, 0.5f, -0.5f,
+                0.5f, -0.5f, -0.5f,
+                0.5f, -0.5f, -0.5f,
+                0.5f, -0.5f, 0.5f,
+                0.5f, 0.5f, 0.5f,
+
+                -0.5f, -0.5f, -0.5f,
+                0.5f, -0.5f, -0.5f,
+                0.5f, -0.5f, 0.5f,
+                0.5f, -0.5f, 0.5f,
+                -0.5f, -0.5f, 0.5f,
+                -0.5f, -0.5f, -0.5f,
+
+                -0.5f, 0.5f, -0.5f,
+                0.5f, 0.5f, -0.5f,
+                0.5f, 0.5f, 0.5f,
+                0.5f, 0.5f, 0.5f,
+                -0.5f, 0.5f, 0.5f,
+                -0.5f, 0.5f, -0.5f,
+        };
+
+        kE::Asset::Storage storage;
+
+        kE::Scene::Level level(new kE::Scene::Node);
+        kE::Primitive::FPSCamera camera;
+
+        kE::Primitive::Mesh cube = loader.createMeshFromVertices(vertices);
+        level.getScene()->addChildMesh(cube);
+
+        _renderer.bindLevel(level);
+        _renderer.bindCamera(camera);
 
         while (1) {
             run();
@@ -77,8 +139,8 @@ public:
 };
 
 int main(void) {
-    Game game;
+    Game *game = new Game();
 
-    game.loop();
+    game->loop();
     return 0;
 }

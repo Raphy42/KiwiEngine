@@ -6,21 +6,28 @@
 #define KIWIENGINE_PROGRAMBUILDER_H
 
 
-#include "../../Core/CoreGraphics.h"
+#include "../../Core/Graphics.h"
 #include "Program.h"
 #include "Shader.h"
 
-class ProgramBuilder {
-public:
-    ProgramBuilder();
+namespace Kiwi {
+    namespace Engine {
+        namespace Renderer {
+            class ProgramBuilder {
+            public:
+                ProgramBuilder();
 
-    ~ProgramBuilder();
+                ~ProgramBuilder();
 
-    GLProgram_t *createProgramFromShaders(GLShader_t vs, GLShader_t fs);
+                GLProgram createProgramFromShaders(GLShader vs, GLShader fs);
 
-private:
-    GLint _status;
-};
+            private:
+                GLint _status;
+            };
+        }
+    }
+}
+
 
 
 #endif //KIWIENGINE_PROGRAMBUILDER_H

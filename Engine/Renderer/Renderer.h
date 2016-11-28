@@ -5,19 +5,31 @@
 #ifndef KIWIENGINE_RENDERER_H
 #define KIWIENGINE_RENDERER_H
 
-#include "../Primitives/Camera.h"
+#include "../../Core/Graphics.h"
+#include "../Scene/Level.h"
+#include "../Primitives/FPSCamera.h"
+#include "Program.h"
 
 namespace Kiwi {
     namespace Engine {
         namespace Renderer {
             class Renderer {
             public:
-                Renderer() {};
+                Renderer();
+
+                void bindShaders(std::vector<GLProgram> shaders) { _shaders = shaders; };
+
+                void bindLevel(Scene::Level level) { _level = level; };
+
+                void bindCamera(Primitive::FPSCamera camera) { _camera = camera; };
 
                 void render();
 
             private:
-                Primitive::Camera _camera;
+                Primitive::FPSCamera _camera;
+                Scene::Level _level;
+                std::vector<GLProgram> _shaders;
+
             };
         }
     }

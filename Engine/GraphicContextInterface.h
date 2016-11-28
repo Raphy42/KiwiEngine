@@ -20,11 +20,10 @@ namespace Kiwi { namespace Engine {
                 VULKAN
             };
 
-            virtual void Render() = 0;
+            virtual Event::Notifier<Event::Type::GLFWEvent> *getNotifier() = 0; //todo: what is that ??
 
-            virtual void Clear() = 0;
+            virtual void swapBuffers(void) const = 0;
 
-            virtual Event::Notifier<Event::Type::GLFWEvent> *getNotifier() = 0;
 
         private:
         };

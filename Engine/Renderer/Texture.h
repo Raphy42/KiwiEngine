@@ -6,12 +6,15 @@
 #define KIWIENGINE_TEXTURE_H
 
 #include <vector>
-#include "../../Core/CoreGraphics.h"
+#include "../../Core/Graphics.h"
 
 namespace Kiwi { namespace Engine { namespace Renderer {
             class Texture
             {
-
+            public:
+                Texture() {};
+            private:
+                int dummy;
             };
         }
     }

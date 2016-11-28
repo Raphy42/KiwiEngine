@@ -6,7 +6,7 @@
 #define KIWIENGINE_SHADER_H
 
 #include <algorithm>
-#include "../../Core/CoreGraphics.h"
+#include "../../Core/Graphics.h"
 
 template <typename Bind>
 class Shader
@@ -14,19 +14,12 @@ class Shader
 public:
     Shader(Bind bind) : _bind(bind) {}
 
-    Bind &getBind() { return _bind; }
+    Bind getBind() { return _bind; }
 
 private:
-    Shader &operator = (const Shader &rhs)
-    {
-        static_assert(this != &rhs, "cant self assign");
-        *this->_bind = rhs._bind;
-        return *this;
-    }
-
     Bind            _bind;
 };
 
-typedef Shader<GLuint> GLShader_t;
+typedef Shader<GLuint> GLShader;
 
 #endif //KIWIENGINE_SHADER_H

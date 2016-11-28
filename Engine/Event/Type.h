@@ -5,13 +5,13 @@
 #ifndef KIWIENGINE_TYPE_H
 #define KIWIENGINE_TYPE_H
 
-#include "../../Core/CoreGraphics.h"
+#include "../../Core/Graphics.h"
 #include <string>
 
 namespace Kiwi {
     namespace Engine {
         namespace Event {
-            struct Type {
+            namespace Type {
                 enum class HumanInteraction : int {
                     NONE = 0x0,
                     WINDOW_MOVED,
@@ -39,7 +39,11 @@ namespace Kiwi {
                     NONE = 0x0,
                     CRITICAL,
                     WARNING,
-                    INFO
+                    INFO,
+                    SHADER_BUILD_ERROR,
+                    SHADER_LINK_ERROR,
+                    MALFORMED_CONFIG,
+                    RESOURCE_NOT_FOUND
                 };
 
                 typedef struct CoreEvent_ {

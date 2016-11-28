@@ -14,19 +14,24 @@ namespace Kiwi { namespace Engine { namespace Renderer {
             class Material
             {
             public:
-                enum class TextureType : int {
-                    DIFFUSE = 0x0,
+                enum class Type : int {
+                    TEST = 0x0,
+                    DIFFUSE,
                     SPECULAR,
                     NORMAL
                 };
 
-                Texture     &getTexture(TextureType type) const {
-                    return _texture[static_cast<int>(type)];
+
+                Material(Type type) : _type(type) {};
+
+                Type getType(void) const {
+                    return _type;
                 }
 
+                ~Material() {};
+
             private:
-                std::shared_ptr<Shader>     _shader;
-                std::vector<Texture>        _texture;
+                Type _type;
             };
         }
     }

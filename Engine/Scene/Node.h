@@ -7,13 +7,17 @@
 
 #include <vector>
 #include <glm/detail/type_mat4x4.hpp>
+#include "../Primitives/Mesh.h"
+#include "../Renderer/Material.h"
 
 namespace Kiwi {
     namespace Engine {
         namespace Scene {
             class Node {
             public:
-                Node() {};
+                Node() : _material(Renderer::Material::Type::TEST) {};
+
+                Node(Primitive::Mesh mesh, Renderer::Material material) : _mesh(mesh), _material(material) {};
                 ~Node() {};
 
                 unsigned int getId(void) const {
@@ -28,35 +32,49 @@ namespace Kiwi {
                     _parent = parent;
                 }
 
-                const std::vector<Node *> &getChildren() const {
+                const std::vector<Node> getChildren() const {
                     return _children;
                 }
 
-                void setChildren(const std::vector<Node *> &children) {
+                void setChildren(const std::vector<Node> &children) {
                     _children = children;
                 }
 
-                void addChild(Node *child) {
+                void addChild(Node child) {
                     _children.push_back(child);
                 }
 
+                void addChildMesh(Primitive::Mesh mesh) {
+                    Node node = Node(mesh, Renderer::Material(Renderer::Material::Type::TEST));
+                    _children.push_back(node);
+                }
+
+                Primitive::Mesh getMesh() const {
+                    return _mesh;
+                }
+
+                Renderer::Material getMaterial() const {
+                    return _material;
+                }
+
                 void removeChildrenById(unsigned int id) {
-                    std::for_each(_children.begin(), std::vector<Node *>::iterator(), [&](Node *node){
+                    std::for_each(_children.begin(), std::vector<Node>::iterator(), [&](Node node) {
                         unsigned int i = 0;
 
-                        if (node->getId() == id)
+                        if (node.getId() == id)
                             _children.erase(_children.begin() + i);
                             ++i;
                     });
                 }
 
             private:
+                Primitive::Mesh _mesh;
+                Renderer::Material _material;
+
                 unsigned int            _nodeId;
-                unsigned int            _meshId;
-                unsigned int            _materialId;
 
                 Node                    *_parent;
-                std::vector<Node *>     _children;
+                std::vector<Node> _children;
 
                 glm::mat4               _transform;
             };

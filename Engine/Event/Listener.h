@@ -20,9 +20,9 @@ namespace Kiwi {
 
                 virtual void update(Notification &notification) = 0;
 
-                void start(void) { _state = true; };
+                void startListening(void) { _state = true; };
 
-                void stop(void) { _state = false; };
+                void stopListening(void) { _state = false; };
 
             private:
                 bool _state;

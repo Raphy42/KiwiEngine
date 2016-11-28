@@ -3,28 +3,41 @@
 //
 
 #include "ProgramBuilder.h"
+#include "../Event/CoreNotifier.h"
 
-ProgramBuilder::ProgramBuilder() {
+namespace Kiwi {
+    namespace Engine {
+        namespace Renderer {
+            ProgramBuilder::ProgramBuilder() {
 
-}
+            }
 
-ProgramBuilder::~ProgramBuilder() {
+            ProgramBuilder::~ProgramBuilder() {
 
-}
+            }
 
-GLProgram_t *ProgramBuilder::createProgramFromShaders(GLShader_t vs, GLShader_t fs) {
-    GLuint program;
+            GLProgram ProgramBuilder::createProgramFromShaders(GLShader vs, GLShader fs) {
+                GLuint program;
 
-    program = glCreateProgram();
-    glAttachShader(program, vs.getBind());
-    glAttachShader(program, fs.getBind());
-    glLinkProgram(program);
-    glGetProgramiv(program, GL_LINK_STATUS, &_status);
-    if (!_status) {
-        char log[512];
+                program = glCreateProgram();
+                glAttachShader(program, vs.getBind());
+                glAttachShader(program, fs.getBind());
+                glLinkProgram(program);
+                glGetProgramiv(program, GL_LINK_STATUS, &_status);
+                if (!_status) {
+                    char log[512];
 
-        glGetProgramInfoLog(program, 512, nullptr, log);
-        //todo do something with log
+                    glGetProgramInfoLog(program, 512, nullptr, log);
+
+                    Event::Type::CoreEvent event;
+                    event.type = Event::Type::CoreInteraction::SHADER_LINK_ERROR;
+                    event.message = std::string(log);
+                    Event::CoreNotifier::getInstance()->notify(event);
+                }
+                GLProgram p = GLProgram(program);
+                return p;
+            }
+
+        }
     }
-    return new GLProgram_t(program);
 }

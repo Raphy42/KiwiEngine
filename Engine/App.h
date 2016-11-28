@@ -10,9 +10,27 @@
 #include "../Core/Filesystem/VirtualFilesystem.h"
 #include "GraphicContextInterface.h"
 #include "Event/Dispatcher.h"
+#include "../Core/Config.h"
+#include "Renderer/Renderer.h"
 
 namespace Kiwi {
     namespace Engine {
+        class CoreListener : public Event::Listener<Event::Type::CoreEvent> {
+        public:
+            void update(Event::Type::CoreEvent &notification) override {
+                switch (notification.type) {
+                    case Event::Type::CoreInteraction::SHADER_LINK_ERROR:
+                        std::cerr << "Linker: " << notification.message << std::endl;
+                        break;
+                    case Event::Type::CoreInteraction::SHADER_BUILD_ERROR:
+                        std::cerr << "Shader: " << notification.message << std::endl;
+                        break;
+                    default:
+                        std::cerr << "ERROR: " << notification.message << std::endl;
+                }
+            }
+        };
+
         class App {
         public:
             App();
@@ -20,7 +38,7 @@ namespace Kiwi {
 
             void start();
 
-            void run() const;
+            void run();
 
             bool ok() const;
 
@@ -28,12 +46,17 @@ namespace Kiwi {
             typedef Event::Dispatcher<Event::Type::CoreEvent> CoreDispatcher;
             typedef Core::Filesystem::VirtualFilesystem VFS;
 
-            std::unique_ptr<GLFWDispatcher> _hid;
-            std::unique_ptr<CoreDispatcher> _core;
-
         private:
             std::unique_ptr<GraphicContextInterface> _graphics;
             std::unique_ptr<VFS> _vfs;
+            Core::Config _config;
+
+        protected:
+            std::unique_ptr<GLFWDispatcher> _hid;
+            std::unique_ptr<CoreDispatcher> _core;
+            CoreListener _coreListener;
+            Renderer::Renderer _renderer;
+
             bool _keepOpen;
         };
 

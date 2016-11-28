@@ -14,7 +14,7 @@ namespace Kiwi { namespace Engine { namespace Scene {
                 Level(Node *root) : _root(root) {}
                 ~Level() {};
 
-                Node *getScene() const {
+                Node *getScene() {
                     return _root;
                 }
 

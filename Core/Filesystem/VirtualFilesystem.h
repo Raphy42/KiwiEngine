@@ -8,6 +8,7 @@
 #include <memory>
 #include <fstream>
 #include <boost/filesystem.hpp>
+#include <unordered_map>
 
 namespace Kiwi {
     namespace Core {
@@ -16,11 +17,11 @@ namespace Kiwi {
             public:
                 VirtualFilesystem();
 
-                bool bind(const char *wd);
+                bool bind(std::string wd);
 
                 std::string load(const char *filename) const;
 
-                std::vector<std::string>
+                std::unordered_map<std::string, std::string>
                 loadMultiplesFromDirectory(const char *directory, std::vector<std::string> filenames) const;
 
                 std::vector<std::string> loadAllFromCurrentDirectory(void) const;
@@ -31,6 +32,7 @@ namespace Kiwi {
                 std::string fileRead(const char *filename) const;
 
                 boost::filesystem::path _root;
+                boost::filesystem::path _projectRoot;
             };
         }
     }

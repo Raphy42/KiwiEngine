@@ -5,22 +5,28 @@
 #include "VirtualFilesystem.h"
 #include <boost/range/iterator_range.hpp>
 #include <iostream>
+#include <unordered_map>
 
 namespace fs = boost::filesystem;
 
 Kiwi::Core::Filesystem::VirtualFilesystem::VirtualFilesystem() {
-
+    _root = fs::current_path();
+    _projectRoot = fs::current_path();
 }
 
 bool
-Kiwi::Core::Filesystem::VirtualFilesystem::bind(const char *wd) {
-    const auto path = fs::path(wd);
+Kiwi::Core::Filesystem::VirtualFilesystem::bind(std::string wd) {
+    auto path = fs::path(wd);
+    auto root = _root.append(wd);
 
-    if (fs::exists(path)) {
-        if (fs::is_directory(path))
-            _root = path;
+    std::cout << root.c_str() << std::endl;
+    if (fs::exists(root)) {
+        if (fs::is_directory(root))
+            _root = root;
         else
             return false;
+    } else {
+        return false;
     }
     return true;
 }
@@ -30,16 +36,17 @@ Kiwi::Core::Filesystem::VirtualFilesystem::load(const char *filename) const {
     return fileRead(filename);
 }
 
-std::vector<std::string>
+std::unordered_map<std::string, std::string>
 Kiwi::Core::Filesystem::VirtualFilesystem::loadMultiplesFromDirectory(const char *directory,
                                                                       std::vector<std::string> filenames) const {
-    std::vector<std::string> sources;
+    std::unordered_map<std::string, std::string> sources;
     fs::path cwd = _root;
+    cwd.append(directory);
 
     for (fs::directory_iterator it(cwd); it != fs::directory_iterator(); ++it) {
         fs::path path = it->path();
         if (fs::is_regular_file(path)) //double check because IO may fail anyway
-            sources.push_back(fileRead(path.c_str()));
+            sources.emplace(std::pair<std::string, std::string>(path.filename().string(), fileRead(path.c_str())));
         else
             std::cerr << "Unable to open file: " << path.c_str() << std::endl; //todo remove
     }

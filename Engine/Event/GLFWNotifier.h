@@ -5,7 +5,7 @@
 #ifndef KIWIENGINE_GLFWEVENTNOTIFIER_H
 #define KIWIENGINE_GLFWEVENTNOTIFIER_H
 
-#include "../../Core/CoreGraphics.h"
+#include "../../Core/Graphics.h"
 #include "Notifier.h"
 #include "Type.h"
 

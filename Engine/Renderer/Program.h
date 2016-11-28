@@ -10,16 +10,14 @@ class Program {
 public:
     Program(Bind bind) : _bind(bind) {}
 
-private:
-    Program &operator=(const Program &rhs) {
-        static_assert(this != &rhs, "cant self assign");
-        *this->_bind = rhs._bind;
-        return *this;
+    Bind get(void) const {
+        return _bind;
     }
 
+private:
     Bind _bind;
 };
 
-typedef Program<GLuint> GLProgram_t;
+typedef Program<GLuint> GLProgram;
 
 #endif //KIWIENGINE_PROGRAM_H

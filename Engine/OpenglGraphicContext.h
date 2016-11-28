@@ -8,7 +8,7 @@
 
 #include <utility>
 #include <vector>
-#include "../../Core/CoreGraphics.h"
+#include "../Core/Graphics.h"
 #include "GraphicContextInterface.h"
 #include "Event/GLFWNotifier.h"
 
@@ -30,9 +30,7 @@ namespace Kiwi { namespace Engine {
 
             void Update() override;
 
-            void Render() override { glfwSwapBuffers(_window); }
-
-            void Clear() override { glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT); }
+            virtual void swapBuffers(void) const override;
 
             virtual Event::Notifier<Event::Type::GLFWEvent> *getNotifier() override { return _notifier; };
 
