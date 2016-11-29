@@ -44,7 +44,7 @@ namespace Kiwi { namespace Engine {
 
             GLFWwindow              *_window;
 
-            Event::GLFWNotifier *_notifier;
+            Event::GLFWNotifier     *_notifier;
         };
     }
 }

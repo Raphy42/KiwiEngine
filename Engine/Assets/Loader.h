@@ -28,7 +28,7 @@ namespace Kiwi { namespace Engine { namespace Asset {
 
                 kE::Primitive::Mesh                     createMeshFromAttributes(Vertices v, Indices i, Textures t);
 
-                kE::Primitive::Mesh createMeshFromVertices(std::vector<float> v);
+                kE::Primitive::Mesh                     createMeshFromVertices(std::vector<float> v);
                 kE::Primitive::Model                    createModel(std::string source);
 
             private:

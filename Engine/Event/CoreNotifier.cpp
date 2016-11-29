@@ -21,7 +21,7 @@ void Kiwi::Engine::Event::CoreNotifier::unbind(void) {
 
 Kiwi::Engine::Event::CoreNotifier *Kiwi::Engine::Event::CoreNotifier::getInstance(void) {
     if (!_instance)
-        _instance = new CoreNotifier();
-    return _instance;
+        _instance = std::unique_ptr<CoreNotifier>(new CoreNotifier());
+    return _instance.get();
 }
 

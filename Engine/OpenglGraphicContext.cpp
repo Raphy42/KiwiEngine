@@ -3,6 +3,7 @@
 //
 
 #include "OpenglGraphicContext.h"
+#include "../Core/Opengl.h"
 
 Kiwi::Engine::OpenglGraphicContext::OpenglGraphicContext() :
     _size(std::pair<int, int>(1280, 800)),
@@ -78,6 +79,13 @@ void Kiwi::Engine::OpenglGraphicContext::PostInit() {
     //bind event notifier
     _notifier = new Event::GLFWNotifier(_window);
     _notifier->start();
+
+#if defined(APPLE_FINALLY_OPENGL_4_3)
+    glEnable(GL_DEBUG_OUTPUT);
+    glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+    glDebugMessageCallback(Core::glDebugOutput, nullptr);
+    glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
+#endif
 }
 
 Kiwi::Engine::OpenglGraphicContext::~OpenglGraphicContext() {

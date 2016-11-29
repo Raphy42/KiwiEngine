@@ -8,7 +8,7 @@
 namespace Kiwi {
     namespace Engine {
         namespace Renderer {
-            ProgramBuilder::ProgramBuilder() {
+            ProgramBuilder::ProgramBuilder() : _status(0){
 
             }
 

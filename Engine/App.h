@@ -52,8 +52,8 @@ namespace Kiwi {
             Core::Config _config;
 
         protected:
-            std::unique_ptr<GLFWDispatcher> _hid;
-            std::unique_ptr<CoreDispatcher> _core;
+            std::unique_ptr<GLFWDispatcher>     _hid;
+            std::unique_ptr<CoreDispatcher>     _core;
             CoreListener _coreListener;
             Renderer::Renderer _renderer;
 

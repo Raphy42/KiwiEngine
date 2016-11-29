@@ -9,7 +9,8 @@
 #include "Renderer/ShaderBuilder.h"
 #include "Renderer/ProgramBuilder.h"
 
-Kiwi::Engine::Event::CoreNotifier *Kiwi::Engine::Event::CoreNotifier::_instance = nullptr;
+std::unique_ptr<Kiwi::Engine::Event::CoreNotifier>
+        Kiwi::Engine::Event::CoreNotifier::_instance;
 
 Kiwi::Engine::App::App() :
         _graphics(new OpenglGraphicContext()),

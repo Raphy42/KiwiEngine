@@ -23,7 +23,7 @@ namespace Kiwi {
                 static CoreNotifier *getInstance(void);
 
             private:
-                static CoreNotifier *_instance;
+                static std::unique_ptr<CoreNotifier> _instance;
                 Dispatcher<Type::CoreEvent> *_dispatcher;
             };
         }

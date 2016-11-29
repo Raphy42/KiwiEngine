@@ -27,7 +27,7 @@ kE::Asset::Loader::createMeshFromAttributes(kE::Asset::Loader::Vertices v,
     glBufferData(GL_ARRAY_BUFFER, sizeof(kE::Primitive::Vertex) * v.size() , &v[0], GL_STATIC_DRAW);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint) * v.size(), &i[0], GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint) * i.size(), &i[0], GL_STATIC_DRAW);
 
 
     glEnableVertexAttribArray(0);
@@ -59,7 +59,7 @@ Kiwi::Engine::Asset::Loader::createMeshFromVertices(std::vector<float> v) {
     glBufferData(GL_ARRAY_BUFFER, sizeof(float) * v.size(), &v[0], GL_STATIC_DRAW);
 
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float), nullptr);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, nullptr);
 
     glBindVertexArray(0);
 
@@ -141,9 +141,9 @@ Kiwi::Engine::Asset::Loader::createMeshFromVertices(std::vector<float> v) {
 //        aiString str;
 //        material->GetTexture(type, i, &str);
 //        kE::Renderer::Texture texture;
-////        texture.id = TextureFromFile(str.C_Str(), this->directory);
-////        texture.type = name;
-////        texture.path = str;
+//        texture.id = TextureFromFile(str.C_Str(), this->directory);
+//        texture.type = name;
+//        texture.path = str;
 //        textures.push_back(texture);
 //    }
 //    return textures;

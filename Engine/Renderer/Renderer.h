@@ -21,14 +21,14 @@ namespace Kiwi {
 
                 void bindLevel(Scene::Level level) { _level = level; };
 
-                void bindCamera(Primitive::FPSCamera camera) { _camera = camera; };
+                void bindCamera(Primitive::FPSCamera *camera) { _camera = camera; };
 
                 void render();
 
             private:
-                Primitive::FPSCamera _camera;
-                Scene::Level _level;
-                std::vector<GLProgram> _shaders;
+                Primitive::FPSCamera        *_camera;
+                Scene::Level                _level;
+                std::vector<GLProgram>      _shaders;
 
             };
         }

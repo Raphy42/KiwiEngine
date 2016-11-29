@@ -11,7 +11,7 @@ Kiwi::Engine::Primitive::FPSCamera::FPSCamera() :
         _right(glm::vec3(1.f, 0.f, 0.f)),
         _yaw(-90.f),
         _pitch(0.f),
-        _speed(3.0f),
+        _speed(1.0f),
         _sensitivity(0.25f) {}
 
 Kiwi::Engine::Primitive::FPSCamera::FPSCamera(glm::vec3 position, glm::vec3 up) :
@@ -21,7 +21,7 @@ Kiwi::Engine::Primitive::FPSCamera::FPSCamera(glm::vec3 position, glm::vec3 up) 
         _right(glm::vec3(1.f, 0.f, 0.f)),
         _yaw(-90.f),
         _pitch(0.f),
-        _speed(3.0f),
+        _speed(1.0f),
         _sensitivity(0.25f) {}
 
 Kiwi::Engine::Primitive::FPSCamera::FPSCamera(glm::vec3 position, glm::vec3 up, float yaw, float pitch) :
@@ -31,11 +31,11 @@ Kiwi::Engine::Primitive::FPSCamera::FPSCamera(glm::vec3 position, glm::vec3 up, 
         _right(glm::vec3(1.f, 0.f, 0.f)),
         _yaw(yaw),
         _pitch(pitch),
-        _speed(3.0f),
+        _speed(1.0f),
         _sensitivity(0.25f) {}
 
 glm::mat4 Kiwi::Engine::Primitive::FPSCamera::getViewMat4() const {
-    glm::lookAt(_position, _position + _front, _up);
+    return glm::lookAt(_position, _position + _front, _up);
 }
 
 void Kiwi::Engine::Primitive::FPSCamera::move(Kiwi::Engine::Primitive::Camera::Action action, float delta) {
@@ -57,11 +57,13 @@ void Kiwi::Engine::Primitive::FPSCamera::move(Kiwi::Engine::Primitive::Camera::A
 }
 
 void Kiwi::Engine::Primitive::FPSCamera::center(float xoffset, float yoffset) {
+    std::cout << std::to_string(xoffset) << " " << std::to_string(yoffset) << std::endl;
     xoffset *= _sensitivity;
     yoffset *= _sensitivity;
 
     _yaw += xoffset;
     _pitch += yoffset;
+    glm::clamp(_pitch, -89.f, 89.f);
     updateVectors();
 }
 
@@ -82,4 +84,3 @@ void Kiwi::Engine::Primitive::FPSCamera::updateVectors() {
     _right = glm::normalize(glm::cross(_front, _worldUp));
     _up = glm::normalize(glm::cross(_right, _front));
 }
-

@@ -27,11 +27,10 @@ namespace Kiwi {
 
                 virtual void unbind(void) override;
 
-
                 void start(void);
-            private:
 
-                GLFWwindow *_handle;
+            private:
+                GLFWwindow                  *_handle;
                 Dispatcher<Type::GLFWEvent> *_dispatcher;
 
             };

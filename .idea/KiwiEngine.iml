@@ -30,7 +30,7 @@
       <sourceFolder url="file://$MODULE_DIR$/glfw/include/GLFW/glfw3native.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/include/GLFW/glfw3.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/CMake/modules/FindVulkan.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/GraphicContextInterface.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/OpenglGraphicContext.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/Entity.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/Mesh.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/FPSCamera.cpp" isTestSource="false" />
@@ -39,36 +39,43 @@
       <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/Mesh.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/Camera.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/App.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Notifier.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/CoreNotifier.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/GLFWNotifier.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/CoreNotifier.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/GLFWNotifier.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Manager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Dispatcher.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Listener.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Type.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Scene/Node.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Scene/Level.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Scene/Manager.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Scene/Creator.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Scene/Creator.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/OpenglGraphicContext.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/App.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Notifier.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/GLFWNotifier.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/GLFWNotifier.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Dispatcher.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Listener.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Type.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/GraphicContextInterface.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/Renderer.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/ShaderBuilder.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/Texture.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/Renderer.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/Material.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/ProgramBuilder.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/ProgramBuilder.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/ShaderBuilder.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/Shader.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/Renderer.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/ProgramBuilder.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/Program.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/OpenglGraphicContext.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/OpenglGraphicContext.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Assets/Loader.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Assets/Storage.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Assets/Loader.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Core/Graphics.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Core/Initializable.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Core/Filesystem/VirtualFilesystem.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Core/Filesystem/VirtualFilesystem.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Core/Utility.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Core/Opengl.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Core/Config.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Core/CoreGraphics.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/cmake-modules/FindPkgMacros.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/cmake-modules/FindDirectX.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/cmake-modules/FindRT.cmake" isTestSource="false" />
@@ -84,7 +91,6 @@
       <sourceFolder url="file://$MODULE_DIR$/assimp/tools/assimp_cmd/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/tools/assimp_cmd/Main.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/tools/assimp_cmd/ImageExtractor.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/assimp/code/AssimpCExport.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/GenVertexNormalsProcess.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/FBXUtil.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/IFCMaterial.cpp" isTestSource="false" />
@@ -93,6 +99,7 @@
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/RemoveRedundantMaterials.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/IFCReaderGen.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/ASEParser.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/assimp/code/SIBImporter.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/IFCUtil.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/STEPFileReader.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/OgreImporter.h" isTestSource="false" />
@@ -127,7 +134,8 @@
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/BlenderLoader.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/ProcessHelper.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/COBScene.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/assimp/code/D3MFImporter.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/assimp/code/SkeletonMeshBuilder.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/assimp/code/AssimpCExport.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/MD5Parser.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/B3DImporter.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/glTFAsset.h" isTestSource="false" />
@@ -308,7 +316,7 @@
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/OgreImporter.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/FBXMaterial.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/ObjExporter.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/assimp/code/JoinVerticesProcess.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/assimp/code/MemoryIOWrapper.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/FindInstancesProcess.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/AMFImporter.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/X3DImporter_Metadata.cpp" isTestSource="false" />
@@ -329,9 +337,10 @@
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/TriangulateProcess.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/TextureTransform.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/ObjFileParser.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/assimp/code/D3MFImporter.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/BlenderDNA.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/NDOLoader.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/assimp/code/SIBImporter.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/assimp/code/JoinVerticesProcess.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/TerragenLoader.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/NFFLoader.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/X3DImporter_Texturing.cpp" isTestSource="false" />
@@ -376,7 +385,6 @@
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/XFileParser.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/HMPLoader.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/AssxmlExporter.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/assimp/code/CInterfaceIOWrapper.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/FileLogStream.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/X3DImporter_Geometry2D.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/glTFAssetWriter.h" isTestSource="false" />
@@ -386,7 +394,7 @@
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/SplitByBoneCountProcess.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/IFCReaderGen1.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/AssbinLoader.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/assimp/code/SkeletonMeshBuilder.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/assimp/code/CInterfaceIOWrapper.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/ImproveCacheLocality.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/D3MFOpcPackage.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/FBXProperties.cpp" isTestSource="false" />
@@ -436,7 +444,6 @@
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/OgreStructs.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/Assimp.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/ColladaHelper.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/assimp/code/MemoryIOWrapper.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/ProcessHelper.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/PlyExporter.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assimp/code/OgreMaterial.cpp" isTestSource="false" />
@@ -635,13 +642,13 @@
           <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Headers" />
           <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Frameworks/PrintCore.framework/Headers" />
           <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Frameworks/LangAnalysis.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Frameworks/HIServices.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Frameworks/SpeechSynthesis.framework/Headers" />
           <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Frameworks/QD.framework/Headers" />
           <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Frameworks/CoreText.framework/Headers" />
           <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Frameworks/CoreGraphics.framework/Headers" />
           <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Frameworks/ImageIO.framework/Headers" />
           <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Frameworks/ColorSync.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Frameworks/SpeechSynthesis.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Frameworks/HIServices.framework/Headers" />
           <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Frameworks/ATS.framework/Headers" />
           <root url="file:///System/Library/Frameworks/vmnet.framework/Headers" />
           <root url="file:///System/Library/Frameworks/CoreMedia.framework/Headers" />
@@ -778,6 +785,8 @@
           <root url="file:///usr/include" />
           <root url="file:///usr/local/include" />
           <root url="file:///Library/Frameworks/iTunesLibrary.framework/Headers" />
+          <root url="file:///Library/Frameworks/SDL.framework/Headers" />
+          <root url="file:///Library/Frameworks/SDL2.framework/Headers" />
         </CLASSES>
         <SOURCES>
           <root url="file://$USER_HOME$/.brew/include" />
@@ -821,13 +830,13 @@
           <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Headers" />
           <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Frameworks/PrintCore.framework/Headers" />
           <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Frameworks/LangAnalysis.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Frameworks/HIServices.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Frameworks/SpeechSynthesis.framework/Headers" />
           <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Frameworks/QD.framework/Headers" />
           <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Frameworks/CoreText.framework/Headers" />
           <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Frameworks/CoreGraphics.framework/Headers" />
           <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Frameworks/ImageIO.framework/Headers" />
           <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Frameworks/ColorSync.framework/Headers" />
-          <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Frameworks/SpeechSynthesis.framework/Headers" />
+          <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Frameworks/HIServices.framework/Headers" />
           <root url="file:///System/Library/Frameworks/ApplicationServices.framework/Frameworks/ATS.framework/Headers" />
           <root url="file:///System/Library/Frameworks/vmnet.framework/Headers" />
           <root url="file:///System/Library/Frameworks/CoreMedia.framework/Headers" />
@@ -964,6 +973,8 @@
           <root url="file:///usr/include" />
           <root url="file:///usr/local/include" />
           <root url="file:///Library/Frameworks/iTunesLibrary.framework/Headers" />
+          <root url="file:///Library/Frameworks/SDL.framework/Headers" />
+          <root url="file:///Library/Frameworks/SDL2.framework/Headers" />
         </SOURCES>
       </library>
     </orderEntry>
