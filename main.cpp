@@ -86,21 +86,32 @@ public:
 
         _hid->bind(&cameraListener);
 
-        kE::Renderer::Material crate(loader.createTexture(
+        kE::Renderer::Material chien_de_prairie(loader.createTexture(
                 kE::Asset::Loader::Target::FLAT,
-                "./Assets/textures/ponpon.png"),
+                "./Assets/textures/prairie-dog.jpg"),
                                      kE::Renderer::Material::Type::TEST);
 
+        kE::Renderer::Material ponpon(loader.createTexture(
+                kE::Asset::Loader::Target::FLAT,
+                "./Assets/textures/ponpon.png"),
+                                      kE::Renderer::Material::Type::TEST);
+
         kE::Primitive::Mesh cube = loader.createDefaultMesh(kE::Asset::Loader::Type::CUBE);
+        kE::Primitive::Mesh plane = loader.createDefaultMesh(kE::Asset::Loader::Type::PLANE);
+        kE::Primitive::Mesh rabbit = loader.createMeshFromSimpleModel("./Assets/models/stanford_bunny.obj");
 //        level.getScene()->addChildMesh(cube);
-        level.getScene()->addChild(kE::Scene::Node(cube, crate, glm::vec3(1.f, 1.f, 1.f)));
-        level.getScene()->addChild(kE::Scene::Node(cube, crate, glm::vec3(-1.f, 1.f, 1.f)));
-        level.getScene()->addChild(kE::Scene::Node(cube, crate, glm::vec3(1.f, -1.f, 1.f)));
-        level.getScene()->addChild(kE::Scene::Node(cube, crate, glm::vec3(-1.f, -1.f, 1.f)));
-        level.getScene()->addChild(kE::Scene::Node(cube, crate, glm::vec3(1.f, 1.f, -1.f)));
-        level.getScene()->addChild(kE::Scene::Node(cube, crate, glm::vec3(-1.f, 1.f, -1.f)));
-        level.getScene()->addChild(kE::Scene::Node(cube, crate, glm::vec3(1.f, -1.f, -1.f)));
-        level.getScene()->addChild(kE::Scene::Node(cube, crate, glm::vec3(-1.f, -1.f, -1.f)));
+        level.getScene()->addChild(kE::Scene::Node(cube, chien_de_prairie, glm::vec3(1.f, 1.f, 1.f)));
+        level.getScene()->addChild(kE::Scene::Node(cube, ponpon, glm::vec3(-1.f, 1.f, 1.f)));
+        level.getScene()->addChild(kE::Scene::Node(cube, ponpon, glm::vec3(1.f, -1.f, 1.f)));
+        level.getScene()->addChild(kE::Scene::Node(cube, chien_de_prairie, glm::vec3(-1.f, -1.f, 1.f)));
+        level.getScene()->addChild(kE::Scene::Node(cube, chien_de_prairie, glm::vec3(1.f, 1.f, -1.f)));
+        level.getScene()->addChild(kE::Scene::Node(cube, ponpon, glm::vec3(-1.f, 1.f, -1.f)));
+        level.getScene()->addChild(kE::Scene::Node(cube, chien_de_prairie, glm::vec3(1.f, -1.f, -1.f)));
+        level.getScene()->addChild(kE::Scene::Node(cube, ponpon, glm::vec3(-1.f, -1.f, -1.f)));
+
+        level.getScene()->addChild(kE::Scene::Node(plane, ponpon, glm::vec3(-1.f, 0.f, -1.f)));
+
+        level.getScene()->addChild(kE::Scene::Node(rabbit, chien_de_prairie, glm::vec3(0.f, 0.f, 0.f)));
 
         _renderer.bindLevel(level);
         _renderer.bindCamera(&camera);

@@ -9,6 +9,7 @@
 #include <assimp/Importer.hpp>
 #include "../Primitives/Mesh.h"
 #include "../Primitives/Model.h"
+#include "../Scene/Node.h"
 
 namespace Kiwi { namespace Engine { namespace Asset {
             namespace kE = Kiwi::Engine;
@@ -36,24 +37,28 @@ namespace Kiwi { namespace Engine { namespace Asset {
                 typedef std::vector<unsigned int>                   Indices;
                 typedef std::vector<Renderer::Texture>              Textures;
 
-                kE::Primitive::Mesh                     createDefaultMesh(Type type);
-                kE::Primitive::Mesh                     createMeshFromAttributes(Vertices v, Indices i, Textures t);
-                kE::Primitive::Mesh                     createMeshVUVNStride(std::vector<glm::vec3> v,
-                                                                             std::vector<glm::vec2> uv,
-                                                                             std::vector<glm::vec3> n);
+                Primitive::Mesh                     createDefaultMesh(Type type);
+                Primitive::Mesh                     createMeshFromAttributes(Vertices v, Indices i, Textures t);
+                Renderer::Texture                   createTexture(Target, std::string source);
 
-                kE::Renderer::Texture                   createTexture(Target, std::string source);
+                Primitive::Mesh                     createMeshFromVertices(std::vector<float> v);
+                Primitive::Mesh                     createMeshFromSimpleModel(const char *filename);
 
-                kE::Primitive::Mesh                     createMeshFromVertices(std::vector<float> v);
-                kE::Primitive::Model                    createModel(std::string source);
+//                Scene::Node                         *createModelNodeFromFile(const char *filename);
 
             private:
-//                void                            processNode(kE::Primitive::Model *model, aiNode *node, const aiScene *scene);
-//                kE::Primitive::Mesh             processMesh(aiMesh *mesh, const aiScene *scene);
-//                kE::Renderer::Texture           processTexture(aiMaterial *material, aiTextureType type, std::string name);
-//                Textures                        processTextures(aiMaterial *material, aiTextureType type, std::string name);
+                Primitive::Mesh                     createMeshVUVNStride(std::vector<glm::vec3> v,
+                                                                         std::vector<glm::vec2> uv,
+                                                                         std::vector<glm::vec3> n);
+                Primitive::Mesh                     createMeshVUVNStrideIndexed(std::vector<glm::vec3> v,
+                                                                                std::vector<glm::vec2> uv,
+                                                                                std::vector<glm::vec3> n,
+                                                                                std::vector<unsigned int> i);
 
-                Assimp::Importer                _importer;
+                Primitive::Mesh                     createPlane(unsigned int x, unsigned int columns);
+
+//                Scene::Node                        *processNode(aiNode *aNode, const aiScene *aScene);
+
 
             };
 

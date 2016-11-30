@@ -44,8 +44,16 @@ namespace Kiwi {
                     glBindVertexArray(_vao);
                 }
 
+                void setTopology(Topology topology) {
+                    _topology = topology;
+                }
+
                 void draw(void) const {
-                    glDrawArrays((GLenum) _topology, 0, (GLsizei) _size);
+                    if (_ebo)
+                        glDrawElements((GLenum) _topology, _size, GL_UNSIGNED_INT, 0);
+                    else
+                        glDrawArrays((GLenum) _topology, 0, (GLsizei) _size);
+
                 }
 
 

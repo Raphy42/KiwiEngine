@@ -39,15 +39,16 @@
       <sourceFolder url="file://$MODULE_DIR$/Engine/GraphicContextInterface.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/App.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/OpenglGraphicContext.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Assets/ugly.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Assets/Loader.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Assets/Storage.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Assets/Tools.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Assets/Loader.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Core/Graphics.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Core/Utility.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Core/CoreGraphics.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Core/Initializable.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Core/Filesystem/VirtualFilesystem.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Core/Filesystem/VirtualFilesystem.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Core/Initializable.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Core/Utility.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Core/Opengl.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Core/Config.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
