@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <glm/detail/type_mat4x4.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #include "../Primitives/Mesh.h"
 #include "../Renderer/Material.h"
 
@@ -17,7 +18,18 @@ namespace Kiwi {
             public:
                 Node() : _material(Renderer::Material::Type::TEST) {};
 
-                Node(Primitive::Mesh mesh, Renderer::Material material) : _mesh(mesh), _material(material) {};
+                Node(Primitive::Mesh mesh, Renderer::Material material) :
+                        _mesh(mesh),
+                        _material(material),
+                        _transform(glm::mat4())
+                {};
+
+                Node(Primitive::Mesh mesh, Renderer::Material material, glm::vec3 position) :
+                    _mesh(mesh),
+                    _material(material),
+                    _transform(glm::translate(glm::mat4(), position))
+                {};
+
                 ~Node() {};
 
                 unsigned int getId(void) const {
@@ -57,6 +69,10 @@ namespace Kiwi {
                     return _material;
                 }
 
+                glm::mat4 getWorldPos() const {
+                    return _transform;
+                }
+
                 void removeChildrenById(unsigned int id) {
                     std::for_each(_children.begin(), std::vector<Node>::iterator(), [&](Node node) {
                         unsigned int i = 0;
@@ -68,13 +84,13 @@ namespace Kiwi {
                 }
 
             private:
-                Primitive::Mesh _mesh;
-                Renderer::Material _material;
+                Primitive::Mesh         _mesh;
+                Renderer::Material      _material;
 
                 unsigned int            _nodeId;
 
                 Node                    *_parent;
-                std::vector<Node> _children;
+                std::vector<Node>       _children;
 
                 glm::mat4               _transform;
             };

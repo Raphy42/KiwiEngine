@@ -19,6 +19,16 @@ namespace Kiwi { namespace Engine { namespace Asset {
                 friend  Primitive::Mesh;
                 friend  Primitive::Model;
 
+                enum class Type : int {
+                    PLANE = 0x0,
+                    CUBE
+                };
+
+                enum class Target : GLenum {
+                    FLAT = GL_TEXTURE_2D,
+                    BOX = GL_SAMPLER_CUBE,
+                };
+
                 Loader() {};
                 ~Loader() {};
 
@@ -26,7 +36,13 @@ namespace Kiwi { namespace Engine { namespace Asset {
                 typedef std::vector<unsigned int>                   Indices;
                 typedef std::vector<Renderer::Texture>              Textures;
 
+                kE::Primitive::Mesh                     createDefaultMesh(Type type);
                 kE::Primitive::Mesh                     createMeshFromAttributes(Vertices v, Indices i, Textures t);
+                kE::Primitive::Mesh                     createMeshVUVNStride(std::vector<float> v,
+                                                                             std::vector<float> uv,
+                                                                             std::vector<float> n);
+
+                kE::Renderer::Texture                   createTexture(Target, std::string source);
 
                 kE::Primitive::Mesh                     createMeshFromVertices(std::vector<float> v);
                 kE::Primitive::Model                    createModel(std::string source);

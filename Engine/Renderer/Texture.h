@@ -13,8 +13,19 @@ namespace Kiwi { namespace Engine { namespace Renderer {
             {
             public:
                 Texture() {};
+                Texture(GLenum target, GLuint id) :
+                        _target(target),
+                        _id(id)
+                {
+                };
+
+                void        bind() const {
+                    glBindTexture(GL_TEXTURE_2D, _id);
+                }
+
             private:
-                int dummy;
+                GLenum      _target;
+                GLuint      _id;
             };
         }
     }

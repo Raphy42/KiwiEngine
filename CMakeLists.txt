@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
 project(KiwiEngine)
-
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pedantic")
 
 set(Boost_USE_STATIC_LIBS        OFF)
@@ -32,13 +31,13 @@ set(GLFW_BUILD_TESTS        OFF)
 add_subdirectory(glfw)
 include_directories(glfw/include)
 
-set(ASSIMP_BUILD_STATIC_LIB     ON)
+#set(ASSIMP_BUILD_STATIC_LIB     ON)
 add_subdirectory(assimp)
 include_directories(assimp/include)
 
+include_directories(stb)
 
 set(SOURCE_FILES main.cpp Engine/GraphicContextInterface.h Core/Initializable.h Engine/OpenglGraphicContext.cpp Engine/OpenglGraphicContext.h Core/Graphics.h Engine/Renderer/Material.h Core/Filesystem/VirtualFilesystem.cpp Core/Filesystem/VirtualFilesystem.h Engine/Renderer/Texture.h Engine/Renderer/Shader.h Engine/Renderer/ShaderBuilder.h Engine/Renderer/ShaderBuilder.cpp Engine/Renderer/Program.h Engine/Renderer/ProgramBuilder.cpp Engine/Renderer/ProgramBuilder.h Engine/App.cpp Engine/App.h Engine/Event/Dispatcher.h Engine/Event/Notifier.h Engine/Event/GLFWNotifier.cpp Engine/Event/GLFWNotifier.h Engine/Event/Type.h Engine/Event/Listener.h Engine/Primitives/Mesh.h Engine/Primitives/Camera.h Engine/Primitives/FPSCamera.cpp Engine/Primitives/FPSCamera.h Engine/Primitives/Entity.h Engine/Renderer/Renderer.h Engine/Scene/Level.h Engine/Scene/Node.h Engine/Scene/Manager.h Engine/Scene/Creator.h Engine/Scene/Creator.cpp Engine/Assets/Loader.h Engine/Primitives/Mesh.cpp Engine/Assets/Loader.cpp Engine/Primitives/Model.h Core/Config.h Core/Utility.h Engine/Event/CoreNotifier.cpp Engine/Event/CoreNotifier.h Engine/Renderer/Renderer.cpp Engine/Assets/Storage.h Core/Opengl.h Engine/Event/Manager.h)
-set(EXECUTABLE_OUTPUT_PATH ${SOURCE_FILES})
 
 add_executable(KiwiEngine ${SOURCE_FILES})
 target_link_libraries(KiwiEngine

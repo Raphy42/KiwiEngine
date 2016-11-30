@@ -23,6 +23,8 @@ namespace Kiwi {
 
                 virtual glm::mat4 getViewMat4() const override;
 
+                virtual glm::mat4 getProjectionMat4() const override;
+
                 virtual void move(Action action, float delta) override;
 
                 virtual void center(float xoffset, float yoffset) override;
@@ -79,6 +81,9 @@ namespace Kiwi {
 //                            lastX = static_cast<float>(notification.pos.x);
 //                            lastY = static_cast<float>(notification.pos.y);
                             break ;
+                        case Event::Type::HumanInteraction::SCROLLED :
+                            _camera->zoom(static_cast<float>(notification.pos.y));
+                            break;
                         case Event::Type::HumanInteraction::KEY_PRESSED :
                         case Event::Type::HumanInteraction::KEY_REPEATED :
                             switch (notification.key.key) {

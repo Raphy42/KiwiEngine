@@ -12,7 +12,9 @@ Kiwi::Engine::Primitive::FPSCamera::FPSCamera() :
         _yaw(-90.f),
         _pitch(0.f),
         _speed(1.0f),
-        _sensitivity(0.25f) {}
+        _sensitivity(0.25f),
+        _zoom(68.f)
+{}
 
 Kiwi::Engine::Primitive::FPSCamera::FPSCamera(glm::vec3 position, glm::vec3 up) :
         _position(position),
@@ -22,7 +24,9 @@ Kiwi::Engine::Primitive::FPSCamera::FPSCamera(glm::vec3 position, glm::vec3 up) 
         _yaw(-90.f),
         _pitch(0.f),
         _speed(1.0f),
-        _sensitivity(0.25f) {}
+        _sensitivity(0.25f),
+        _zoom(68.f)
+{}
 
 Kiwi::Engine::Primitive::FPSCamera::FPSCamera(glm::vec3 position, glm::vec3 up, float yaw, float pitch) :
         _position(position),
@@ -32,7 +36,9 @@ Kiwi::Engine::Primitive::FPSCamera::FPSCamera(glm::vec3 position, glm::vec3 up, 
         _yaw(yaw),
         _pitch(pitch),
         _speed(1.0f),
-        _sensitivity(0.25f) {}
+        _sensitivity(0.25f),
+        _zoom(68.f)
+{}
 
 glm::mat4 Kiwi::Engine::Primitive::FPSCamera::getViewMat4() const {
     return glm::lookAt(_position, _position + _front, _up);
@@ -68,19 +74,23 @@ void Kiwi::Engine::Primitive::FPSCamera::center(float xoffset, float yoffset) {
 }
 
 void Kiwi::Engine::Primitive::FPSCamera::zoom(float y) {
-    if (_zoom >= 1.f && _zoom <= 45.f)
-        _zoom -= y;
-    _zoom = glm::clamp(_zoom, 1.f, 45.f);
+    _zoom -= y;
+    _zoom = glm::clamp(_zoom, 20.f, 120.f);
+    std::cout << _zoom<< std::endl;
 }
 
 void Kiwi::Engine::Primitive::FPSCamera::updateVectors() {
     glm::vec3 front(
-            cosf(glm::radians(_yaw)) * cosf(glm::radians(_pitch)),
-            sinf(glm::radians(_pitch)),
-            sinf(glm::radians(_yaw) * cosf(glm::radians(_pitch)))
+            cos(glm::radians(_yaw)) * cos(glm::radians(_pitch)),
+            sin(glm::radians(_pitch)),
+            sin(glm::radians(_yaw) * cos(glm::radians(_pitch)))
     );
 
     _front = glm::normalize(front);
     _right = glm::normalize(glm::cross(_front, _worldUp));
     _up = glm::normalize(glm::cross(_right, _front));
+}
+
+glm::mat4 Kiwi::Engine::Primitive::FPSCamera::getProjectionMat4() const {
+    return glm::perspective(glm::radians(_zoom), 1280.f / 800.f, 0.1f, 1000.f);
 }

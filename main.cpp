@@ -81,52 +81,26 @@ public:
         kE::Asset::Storage storage;
 
         kE::Scene::Level level(new kE::Scene::Node);
-        kE::Primitive::FPSCamera camera(glm::vec3(1.f, 1.f, 1.f), glm::vec3(0.f, -1.f, 0.f));
+        kE::Primitive::FPSCamera camera(glm::vec3(1.f, 1.f, 1.f), glm::vec3(0.f, 1.f, 0.f));
         kE::Primitive::FPSCameraEventListener cameraListener(&camera);
 
         _hid->bind(&cameraListener);
 
-        std::vector<float> vertices = {
-                -0.5f, -0.5f, -0.5f,
-                 0.5f, -0.5f, -0.5f,
-                 0.5f,  0.5f, -0.5f,
-                 0.5f,  0.5f, -0.5f,
-                -0.5f,  0.5f, -0.5f,
-                -0.5f, -0.5f, -0.5f,
-                -0.5f, -0.5f,  0.5f,
-                 0.5f, -0.5f,  0.5f,
-                 0.5f,  0.5f,  0.5f,
-                 0.5f,  0.5f,  0.5f,
-                -0.5f,  0.5f,  0.5f,
-                -0.5f, -0.5f,  0.5f,
-                -0.5f,  0.5f,  0.5f,
-                -0.5f,  0.5f, -0.5f,
-                -0.5f, -0.5f, -0.5f,
-                -0.5f, -0.5f, -0.5f,
-                -0.5f, -0.5f,  0.5f,
-                -0.5f,  0.5f,  0.5f,
-                 0.5f,  0.5f,  0.5f,
-                 0.5f,  0.5f, -0.5f,
-                 0.5f, -0.5f, -0.5f,
-                 0.5f, -0.5f, -0.5f,
-                 0.5f, -0.5f,  0.5f,
-                 0.5f,  0.5f,  0.5f,
-                -0.5f, -0.5f, -0.5f,
-                 0.5f, -0.5f, -0.5f,
-                 0.5f, -0.5f,  0.5f,
-                 0.5f, -0.5f,  0.5f,
-                -0.5f, -0.5f,  0.5f,
-                -0.5f, -0.5f, -0.5f,
-                -0.5f,  0.5f, -0.5f,
-                 0.5f,  0.5f, -0.5f,
-                 0.5f,  0.5f,  0.5f,
-                 0.5f,  0.5f,  0.5f,
-                -0.5f,  0.5f,  0.5f,
-                -0.5f,  0.5f, -0.5f
-        };
+        kE::Renderer::Material crate(loader.createTexture(
+                kE::Asset::Loader::Target::FLAT,
+                "./Assets/textures/container.jpg"),
+                                     kE::Renderer::Material::Type::TEST);
 
-        kE::Primitive::Mesh cube = loader.createMeshFromVertices(vertices);
-        level.getScene()->addChildMesh(cube);
+        kE::Primitive::Mesh cube = loader.createDefaultMesh(kE::Asset::Loader::Type::CUBE);
+//        level.getScene()->addChildMesh(cube);
+        level.getScene()->addChild(kE::Scene::Node(cube, crate, glm::vec3(1.f, 1.f, 1.f)));
+        level.getScene()->addChild(kE::Scene::Node(cube, crate, glm::vec3(-1.f, 1.f, 1.f)));
+        level.getScene()->addChild(kE::Scene::Node(cube, crate, glm::vec3(1.f, -1.f, 1.f)));
+        level.getScene()->addChild(kE::Scene::Node(cube, crate, glm::vec3(-1.f, -1.f, 1.f)));
+        level.getScene()->addChild(kE::Scene::Node(cube, crate, glm::vec3(1.f, 1.f, -1.f)));
+        level.getScene()->addChild(kE::Scene::Node(cube, crate, glm::vec3(-1.f, 1.f, -1.f)));
+        level.getScene()->addChild(kE::Scene::Node(cube, crate, glm::vec3(1.f, -1.f, -1.f)));
+        level.getScene()->addChild(kE::Scene::Node(cube, crate, glm::vec3(-1.f, -1.f, -1.f)));
 
         _renderer.bindLevel(level);
         _renderer.bindCamera(&camera);
@@ -135,6 +109,9 @@ public:
             run();
         }
     }
+
+private:
+    std::unique_ptr<VFS>     _vfs;
 };
 
 int main(void) {

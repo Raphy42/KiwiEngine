@@ -7,3 +7,6 @@
 [submodule "assimp"]
 	path = assimp
 	url = https://github.com/assimp/assimp
+[submodule "stb"]
+	path = stb
+	url = https://github.com/Raphy42/stb.git

@@ -8,6 +8,7 @@
 #include <glm/vec3.hpp>
 #include <glm/vec2.hpp>
 #include <vector>
+#include <glm/detail/type_mat.hpp>
 #include "../../Core/Graphics.h"
 #include "../Renderer/Texture.h"
 
@@ -47,13 +48,15 @@ namespace Kiwi {
                     glDrawArrays((GLenum) _topology, 0, (GLsizei) _size);
                 }
 
+
+
                 virtual ~Mesh() {};
 
             protected:
-                GLuint _vao;
-                GLuint _vbo;
-                GLuint _ebo;
-                unsigned long _size;
+                GLuint          _vao;
+                GLuint          _vbo;
+                GLuint          _ebo;
+                unsigned long   _size;
 
             private:
                 Topology _topology;

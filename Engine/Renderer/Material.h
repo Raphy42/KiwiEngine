@@ -16,22 +16,26 @@ namespace Kiwi { namespace Engine { namespace Renderer {
             public:
                 enum class Type : int {
                     TEST = 0x0,
-                    DIFFUSE,
-                    SPECULAR,
-                    NORMAL
+                    LOULE
                 };
 
-
                 Material(Type type) : _type(type) {};
+                Material(Texture texture) : _diffuse(texture) {};
+                Material(Texture texture, Type type) : _diffuse(texture), _type(type) {};
 
-                Type getType(void) const {
-                    return _type;
+                void bind() const {
+                    _diffuse.bind();
                 }
 
                 ~Material() {};
 
+                Type getType() {
+                    return _type;
+                }
+
             private:
-                Type _type;
+                Texture         _diffuse;
+                Type            _type;
             };
         }
     }
