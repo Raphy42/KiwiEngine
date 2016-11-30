@@ -94,3 +94,7 @@ void Kiwi::Engine::Primitive::FPSCamera::updateVectors() {
 glm::mat4 Kiwi::Engine::Primitive::FPSCamera::getProjectionMat4() const {
     return glm::perspective(glm::radians(_zoom), 1280.f / 800.f, 0.1f, 1000.f);
 }
+
+glm::vec3 Kiwi::Engine::Primitive::FPSCamera::getPosition(void) const {
+    return _position;
+}

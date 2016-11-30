@@ -31,6 +31,8 @@ namespace Kiwi {
 
                 virtual void zoom(float y) override;
 
+                glm::vec3 getPosition(void) const;
+
             private:
                 glm::vec3 _position;
                 glm::vec3 _front;

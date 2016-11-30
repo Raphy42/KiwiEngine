@@ -41,14 +41,21 @@ void Kiwi::Engine::App::start() {
 
     std::unordered_map<std::string, std::string> sources = _vfs->loadMultiplesFromDirectory(
             _config.get<std::string>("Filesystem.shaders").c_str(),
-            {"default_vert.glsl", "default_frag.glsl"}
+            {"default_vert.glsl", "default_frag.glsl", "light_basic_vert.glsl", "light_basic_frag.glsl"}
     );
 
+
+    //TODO need refactor omg
     GLProgram program = p_builder.createProgramFromShaders(
             s_builder.createFromFile(GL_VERTEX_SHADER, sources["default_vert.glsl"]),
             s_builder.createFromFile(GL_FRAGMENT_SHADER, sources["default_frag.glsl"]));
 
-    _renderer.bindShaders({program});
+
+    GLProgram program2 = p_builder.createProgramFromShaders(
+            s_builder.createFromFile(GL_VERTEX_SHADER, sources["light_basic_vert.glsl"]),
+            s_builder.createFromFile(GL_FRAGMENT_SHADER, sources["light_basic_frag.glsl"]));
+
+    _renderer.bindShaders({program, program2});
 }
 
 void Kiwi::Engine::App::run() {
