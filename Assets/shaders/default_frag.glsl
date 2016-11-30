@@ -6,9 +6,8 @@ in vec3     n;
 
 out vec4    colour;
 
-uniform sampler2D sampler;
+uniform sampler2D tex;
 
 void main() {
-
-    colour =  texture(sampler, texCoord);
+    colour = texture(tex, texCoord); //opengl texture fix
 }

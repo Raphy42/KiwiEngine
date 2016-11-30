@@ -38,9 +38,9 @@ namespace Kiwi { namespace Engine { namespace Asset {
 
                 kE::Primitive::Mesh                     createDefaultMesh(Type type);
                 kE::Primitive::Mesh                     createMeshFromAttributes(Vertices v, Indices i, Textures t);
-                kE::Primitive::Mesh                     createMeshVUVNStride(std::vector<float> v,
-                                                                             std::vector<float> uv,
-                                                                             std::vector<float> n);
+                kE::Primitive::Mesh                     createMeshVUVNStride(std::vector<glm::vec3> v,
+                                                                             std::vector<glm::vec2> uv,
+                                                                             std::vector<glm::vec3> n);
 
                 kE::Renderer::Texture                   createTexture(Target, std::string source);
 

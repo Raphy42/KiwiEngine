@@ -88,7 +88,7 @@ public:
 
         kE::Renderer::Material crate(loader.createTexture(
                 kE::Asset::Loader::Target::FLAT,
-                "./Assets/textures/container.jpg"),
+                "./Assets/textures/ponpon.png"),
                                      kE::Renderer::Material::Type::TEST);
 
         kE::Primitive::Mesh cube = loader.createDefaultMesh(kE::Asset::Loader::Type::CUBE);

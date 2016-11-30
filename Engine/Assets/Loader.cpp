@@ -9,6 +9,7 @@
 #include "../../Core/Config.h"
 
 #define STB_IMAGE_IMPLEMENTATION
+
 #include "stb_image.h"
 
 namespace kE = Kiwi::Engine;
@@ -16,9 +17,8 @@ namespace kE = Kiwi::Engine;
 kE::Primitive::Mesh
 kE::Asset::Loader::createMeshFromAttributes(kE::Asset::Loader::Vertices v,
                                             kE::Asset::Loader::Indices i,
-                                            kE::Asset::Loader::Textures t)
-{
-    GLuint      vao, vbo, ebo;
+                                            kE::Asset::Loader::Textures t) {
+    GLuint vao, vbo, ebo;
 
     glGenVertexArrays(1, &vao);
     glGenBuffers(1, &vbo);
@@ -27,7 +27,7 @@ kE::Asset::Loader::createMeshFromAttributes(kE::Asset::Loader::Vertices v,
     glBindVertexArray(vao);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-    glBufferData(GL_ARRAY_BUFFER, sizeof(kE::Primitive::Vertex) * v.size() , &v[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(kE::Primitive::Vertex) * v.size(), &v[0], GL_STATIC_DRAW);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint) * i.size(), &i[0], GL_STATIC_DRAW);
@@ -37,10 +37,12 @@ kE::Asset::Loader::createMeshFromAttributes(kE::Asset::Loader::Vertices v,
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(kE::Primitive::Vertex), nullptr);
 
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(kE::Primitive::Vertex), (GLvoid *)offsetof(kE::Primitive::Vertex, normal));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(kE::Primitive::Vertex),
+                          (GLvoid *) offsetof(kE::Primitive::Vertex, normal));
 
     glEnableVertexAttribArray(2);
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(kE::Primitive::Vertex), (GLvoid *)offsetof(kE::Primitive::Vertex, texture));
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(kE::Primitive::Vertex),
+                          (GLvoid *) offsetof(kE::Primitive::Vertex, texture));
 
     glBindVertexArray(0);
 
@@ -70,126 +72,121 @@ Kiwi::Engine::Asset::Loader::createMeshFromVertices(std::vector<float> v) {
 }
 
 kE::Primitive::Mesh Kiwi::Engine::Asset::Loader::createDefaultMesh(Kiwi::Engine::Asset::Loader::Type type) {
-    std::vector<float> vertices = {
-            -0.5f, -0.5f, -0.5f,
-            0.5f, -0.5f, -0.5f,
-            0.5f,  0.5f, -0.5f,
-            0.5f,  0.5f, -0.5f,
-            -0.5f,  0.5f, -0.5f,
-            -0.5f, -0.5f, -0.5f,
-            -0.5f, -0.5f,  0.5f,
-            0.5f, -0.5f,  0.5f,
-            0.5f,  0.5f,  0.5f,
-            0.5f,  0.5f,  0.5f,
-            -0.5f,  0.5f,  0.5f,
-            -0.5f, -0.5f,  0.5f,
-            -0.5f,  0.5f,  0.5f,
-            -0.5f,  0.5f, -0.5f,
-            -0.5f, -0.5f, -0.5f,
-            -0.5f, -0.5f, -0.5f,
-            -0.5f, -0.5f,  0.5f,
-            -0.5f,  0.5f,  0.5f,
-            0.5f,  0.5f,  0.5f,
-            0.5f,  0.5f, -0.5f,
-            0.5f, -0.5f, -0.5f,
-            0.5f, -0.5f, -0.5f,
-            0.5f, -0.5f,  0.5f,
-            0.5f,  0.5f,  0.5f,
-            -0.5f, -0.5f, -0.5f,
-            0.5f, -0.5f, -0.5f,
-            0.5f, -0.5f,  0.5f,
-            0.5f, -0.5f,  0.5f,
-            -0.5f, -0.5f,  0.5f,
-            -0.5f, -0.5f, -0.5f,
-            -0.5f,  0.5f, -0.5f,
-            0.5f,  0.5f, -0.5f,
-            0.5f,  0.5f,  0.5f,
-            0.5f,  0.5f,  0.5f,
-            -0.5f,  0.5f,  0.5f,
-            -0.5f,  0.5f, -0.5f
+    std::vector<glm::vec3> vertices = {
+            glm::vec3(-0.5f, -0.5f, -0.5f),
+            glm::vec3(0.5f, -0.5f, -0.5f),
+            glm::vec3(0.5f, 0.5f, -0.5f),
+            glm::vec3(0.5f, 0.5f, -0.5f),
+            glm::vec3(-0.5f, 0.5f, -0.5f),
+            glm::vec3(-0.5f, -0.5f, -0.5f),
+            glm::vec3(-0.5f, -0.5f, 0.5f),
+            glm::vec3(0.5f, -0.5f, 0.5f),
+            glm::vec3(0.5f, 0.5f, 0.5f),
+            glm::vec3(0.5f, 0.5f, 0.5f),
+            glm::vec3(-0.5f, 0.5f, 0.5f),
+            glm::vec3(-0.5f, -0.5f, 0.5f),
+            glm::vec3(-0.5f, 0.5f, 0.5f),
+            glm::vec3(-0.5f, 0.5f, -0.5f),
+            glm::vec3(-0.5f, -0.5f, -0.5f),
+            glm::vec3(-0.5f, -0.5f, -0.5f),
+            glm::vec3(-0.5f, -0.5f, 0.5f),
+            glm::vec3(-0.5f, 0.5f, 0.5f),
+            glm::vec3(0.5f, 0.5f, 0.5f),
+            glm::vec3(0.5f, 0.5f, -0.5f),
+            glm::vec3(0.5f, -0.5f, -0.5f),
+            glm::vec3(0.5f, -0.5f, -0.5f),
+            glm::vec3(0.5f, -0.5f, 0.5f),
+            glm::vec3(0.5f, 0.5f, 0.5f),
+            glm::vec3(-0.5f, -0.5f, -0.5f),
+            glm::vec3(0.5f, -0.5f, -0.5f),
+            glm::vec3(0.5f, -0.5f, 0.5f),
+            glm::vec3(0.5f, -0.5f, 0.5f),
+            glm::vec3(-0.5f, -0.5f, 0.5f),
+            glm::vec3(-0.5f, -0.5f, -0.5f),
+            glm::vec3(-0.5f, 0.5f, -0.5f),
+            glm::vec3(0.5f, 0.5f, -0.5f),
+            glm::vec3(0.5f, 0.5f, 0.5f),
+            glm::vec3(0.5f, 0.5f, 0.5f),
+            glm::vec3(-0.5f, 0.5f, 0.5f),
+            glm::vec3(-0.5f, 0.5f, -0.5f)
     };
 
-    std::vector<float> uv = {
-            0.0f, 0.0f,
-            1.0f, 0.0f,
-            1.0f, 1.0f,
-            1.0f, 1.0f,
-            0.0f, 1.0f,
-            0.0f, 0.0f,
-            0.0f, 0.0f,
-            1.0f, 0.0f,
-            1.0f, 1.0f,
-            1.0f, 1.0f,
-            0.0f, 1.0f,
-            0.0f, 0.0f,
-            1.0f, 0.0f,
-            1.0f, 1.0f,
-            0.0f, 1.0f,
-            0.0f, 1.0f,
-            0.0f, 0.0f,
-            1.0f, 0.0f,
-            1.0f, 0.0f,
-            1.0f, 1.0f,
-            0.0f, 1.0f,
-            0.0f, 1.0f,
-            0.0f, 0.0f,
-            1.0f, 0.0f,
-            0.0f, 1.0f,
-            1.0f, 1.0f,
-            1.0f, 0.0f,
-            1.0f, 0.0f,
-            0.0f, 0.0f,
-            0.0f, 1.0f,
-            0.0f, 1.0f,
-            1.0f, 1.0f,
-            1.0f, 0.0f,
-            1.0f, 0.0f,
-            0.0f, 0.0f,
-            0.0f, 1.0f,
+    std::vector<glm::vec2> uv = {
+            glm::vec2(0.0f, 0.0f),
+            glm::vec2(1.0f, 0.0f),
+            glm::vec2(1.0f, 1.0f),
+            glm::vec2(1.0f, 1.0f),
+            glm::vec2(0.0f, 1.0f),
+            glm::vec2(0.0f, 0.0f),
+            glm::vec2(0.0f, 0.0f),
+            glm::vec2(1.0f, 0.0f),
+            glm::vec2(1.0f, 1.0f),
+            glm::vec2(1.0f, 1.0f),
+            glm::vec2(0.0f, 1.0f),
+            glm::vec2(0.0f, 0.0f),
+            glm::vec2(1.0f, 0.0f),
+            glm::vec2(1.0f, 1.0f),
+            glm::vec2(0.0f, 1.0f),
+            glm::vec2(0.0f, 1.0f),
+            glm::vec2(0.0f, 0.0f),
+            glm::vec2(1.0f, 0.0f),
+            glm::vec2(1.0f, 0.0f),
+            glm::vec2(1.0f, 1.0f),
+            glm::vec2(0.0f, 1.0f),
+            glm::vec2(0.0f, 1.0f),
+            glm::vec2(0.0f, 0.0f),
+            glm::vec2(1.0f, 0.0f),
+            glm::vec2(0.0f, 1.0f),
+            glm::vec2(1.0f, 1.0f),
+            glm::vec2(1.0f, 0.0f),
+            glm::vec2(1.0f, 0.0f),
+            glm::vec2(0.0f, 0.0f),
+            glm::vec2(0.0f, 1.0f),
+            glm::vec2(0.0f, 1.0f),
+            glm::vec2(1.0f, 1.0f),
+            glm::vec2(1.0f, 0.0f),
+            glm::vec2(1.0f, 0.0f),
+            glm::vec2(0.0f, 0.0f),
+            glm::vec2(0.0f, 1.0f),
     };
 
-    std::vector<float> normals = {
-            0.0f,  0.0f, -1.0f,
-            0.0f,  0.0f, -1.0f,
-            0.0f,  0.0f, -1.0f,
-            0.0f,  0.0f, -1.0f,
-            0.0f,  0.0f, -1.0f,
-            0.0f,  0.0f, -1.0f,
-
-            0.0f,  0.0f,  1.0f,
-            0.0f,  0.0f,  1.0f,
-            0.0f,  0.0f,  1.0f,
-            0.0f,  0.0f,  1.0f,
-            0.0f,  0.0f,  1.0f,
-            0.0f,  0.0f,  1.0f,
-
-            1.0f,  0.0f,  0.0f,
-            1.0f,  0.0f,  0.0f,
-            1.0f,  0.0f,  0.0f,
-            1.0f,  0.0f,  0.0f,
-            1.0f,  0.0f,  0.0f,
-            1.0f,  0.0f,  0.0f,
-
-            1.0f,  0.0f,  0.0f,
-            1.0f,  0.0f,  0.0f,
-            1.0f,  0.0f,  0.0f,
-            1.0f,  0.0f,  0.0f,
-            1.0f,  0.0f,  0.0f,
-            1.0f,  0.0f,  0.0f,
-
-            0.0f, -1.0f,  0.0f,
-            0.0f, -1.0f,  0.0f,
-            0.0f, -1.0f,  0.0f,
-            0.0f, -1.0f,  0.0f,
-            0.0f, -1.0f,  0.0f,
-            0.0f, -1.0f,  0.0f,
-
-            0.0f,  1.0f,  0.0f,
-            0.0f,  1.0f,  0.0f,
-            0.0f,  1.0f,  0.0f,
-            0.0f,  1.0f,  0.0f,
-            0.0f,  1.0f,  0.0f,
-            0.0f,  1.0f,  0.0f,
+    std::vector<glm::vec3> normals = {
+            glm::vec3(0.0f, 0.0f, -1.0f),
+            glm::vec3(0.0f, 0.0f, -1.0f),
+            glm::vec3(0.0f, 0.0f, -1.0f),
+            glm::vec3(0.0f, 0.0f, -1.0f),
+            glm::vec3(0.0f, 0.0f, -1.0f),
+            glm::vec3(0.0f, 0.0f, -1.0f),
+            glm::vec3(0.0f, 0.0f, 1.0f),
+            glm::vec3(0.0f, 0.0f, 1.0f),
+            glm::vec3(0.0f, 0.0f, 1.0f),
+            glm::vec3(0.0f, 0.0f, 1.0f),
+            glm::vec3(0.0f, 0.0f, 1.0f),
+            glm::vec3(0.0f, 0.0f, 1.0f),
+            glm::vec3(1.0f, 0.0f, 0.0f),
+            glm::vec3(1.0f, 0.0f, 0.0f),
+            glm::vec3(1.0f, 0.0f, 0.0f),
+            glm::vec3(1.0f, 0.0f, 0.0f),
+            glm::vec3(1.0f, 0.0f, 0.0f),
+            glm::vec3(1.0f, 0.0f, 0.0f),
+            glm::vec3(1.0f, 0.0f, 0.0f),
+            glm::vec3(1.0f, 0.0f, 0.0f),
+            glm::vec3(1.0f, 0.0f, 0.0f),
+            glm::vec3(1.0f, 0.0f, 0.0f),
+            glm::vec3(1.0f, 0.0f, 0.0f),
+            glm::vec3(1.0f, 0.0f, 0.0f),
+            glm::vec3(0.0f, -1.0f, 0.0f),
+            glm::vec3(0.0f, -1.0f, 0.0f),
+            glm::vec3(0.0f, -1.0f, 0.0f),
+            glm::vec3(0.0f, -1.0f, 0.0f),
+            glm::vec3(0.0f, -1.0f, 0.0f),
+            glm::vec3(0.0f, -1.0f, 0.0f),
+            glm::vec3(0.0f, 1.0f, 0.0f),
+            glm::vec3(0.0f, 1.0f, 0.0f),
+            glm::vec3(0.0f, 1.0f, 0.0f),
+            glm::vec3(0.0f, 1.0f, 0.0f),
+            glm::vec3(0.0f, 1.0f, 0.0f),
+            glm::vec3(0.0f, 1.0f, 0.0f),
     };
     switch (type) {
         case Type::CUBE :
@@ -206,42 +203,35 @@ kE::Primitive::Mesh Kiwi::Engine::Asset::Loader::createDefaultMesh(Kiwi::Engine:
  */
 
 kE::Primitive::Mesh
-Kiwi::Engine::Asset::Loader::createMeshVUVNStride(std::vector<float> v, std::vector<float> uv, std::vector<float> n) {
-    GLuint      vao, vbo, ebo;
+Kiwi::Engine::Asset::Loader::createMeshVUVNStride(std::vector<glm::vec3> v, std::vector<glm::vec2> uv,
+                                                  std::vector<glm::vec3> n) {
+    GLuint vao, vbo, ebo;
 
     glGenVertexArrays(1, &vao);
     glGenBuffers(1, &vbo);
 //    glGenBuffers(1, &ebo);
 
-    std::vector<float>      interleaved_data;
+    std::vector<float> interleaved_data;
 
-    for (int i = 0; i < v.size();) {
-        interleaved_data.push_back(v[i]);
-        interleaved_data.push_back(v[i + 1]);
-        interleaved_data.push_back(v[i + 2]);
-
-        if (uv.size())
-        {
-            interleaved_data.push_back(n[i]);
-            interleaved_data.push_back(n[i + 1]);
+    for (int i = 0; i < v.size(); ++i) {
+        interleaved_data.push_back(v[i].x);
+        interleaved_data.push_back(v[i].y);
+        interleaved_data.push_back(v[i].z);
+        if (uv.size()) {
+            interleaved_data.push_back(uv[i].x);
+            interleaved_data.push_back(uv[i].y);
         }
-        if (n.size())
-        {
-            interleaved_data.push_back(n[i]);
-            interleaved_data.push_back(n[i + 1]);
-            interleaved_data.push_back(n[i + 2]);
+        if (n.size()) {
+            interleaved_data.push_back(n[i].x);
+            interleaved_data.push_back(n[i].y);
+            interleaved_data.push_back(n[i].z);
         }
-        i += 3;
     }
-
-    interleaved_data.insert(interleaved_data.end(), uv.begin(), uv.end());
-    interleaved_data.insert(interleaved_data.end(), n.begin(), n.end());
-
 
     glBindVertexArray(vao);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-    glBufferData(GL_ARRAY_BUFFER, interleaved_data.size() * sizeof(float) , &interleaved_data[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, interleaved_data.size() * sizeof(float), &interleaved_data[0], GL_STATIC_DRAW);
 
 
     std::size_t stride = 3 * sizeof(float);
@@ -253,24 +243,24 @@ Kiwi::Engine::Asset::Loader::createMeshVUVNStride(std::vector<float> v, std::vec
     std::size_t offset = 0;
 
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, stride, (GLvoid *)offset);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, stride, (GLvoid *) offset);
 
     offset += 3 * sizeof(float);
 
     if (uv.size() > 0) {
         glEnableVertexAttribArray(1);
-        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (GLvoid *)offset);
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (GLvoid *) offset);
         offset += 2 * sizeof(float);
     }
     if (n.size() > 0) {
         glEnableVertexAttribArray(2);
-        glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, stride, (GLvoid *)offset);
+        glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, stride, (GLvoid *) offset);
         offset += 3 * sizeof(float);
     }
 
     glBindVertexArray(0);
 
-    kE::Primitive::Mesh mesh(vao, vbo, 0U, v.size() / 3);
+    kE::Primitive::Mesh mesh(vao, vbo, 0U, v.size());
     return mesh;
 }
 
@@ -285,6 +275,7 @@ Kiwi::Engine::Asset::Loader::createTexture(Kiwi::Engine::Asset::Loader::Target t
 
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
+
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);

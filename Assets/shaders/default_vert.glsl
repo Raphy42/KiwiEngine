@@ -12,11 +12,9 @@ out vec4     frag;
 out vec2     texCoord;
 out vec3     n;
 
-uniform sampler2D sampler;
-
 void main() {
     frag = vec4(pos, 1.f);
-    texCoord = uv;
+    texCoord = vec2(uv.x, 1.f - uv.y);
     n = normal;
     gl_Position = projection * view * model * vec4(pos, 1.f);
 }

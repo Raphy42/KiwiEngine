@@ -35,7 +35,7 @@ namespace Kiwi {
 
                     glActiveTexture(GL_TEXTURE0);
                     it.getMaterial().bind();
-                    glUniform1i(glGetUniformLocation(program.get(), "sampler"), 0);
+                    glUniform1i(glGetUniformLocation(program.get(), "tex"), 0);
                     it.getMesh().bind();
                     it.getMesh().draw();
                 }
