@@ -1,12 +1,12 @@
-[submodule "glfw"]
-	path = glfw
-	url = https://github.com/glfw/glfw
-[submodule "glad"]
-	path = glad
-	url = https://github.com/Dav1dde/glad
-[submodule "assimp"]
-	path = assimp
-	url = https://github.com/assimp/assimp
-[submodule "stb"]
-	path = stb
-	url = https://github.com/Raphy42/stb.git
+[submodule "vendor/glfw"]
+	path = vendor/glfw
+	url = https://github.com/glfw/glfw.git
+[submodule "vendor/glad"]
+	path = vendor/glad
+	url = https://github.com/Dav1dde/glad.git
+[submodule "vendor/assimp"]
+	path = vendor/assimp
+	url = https://github.com/assimp/assimp.git
+[submodule "vendor/stb"]
+	path = vendor/stb
+	url = https://github.com/nothings/stb.git
