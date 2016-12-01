@@ -11,7 +11,6 @@ gen### C++ template
 *.slo
 *.lo
 *.o
-*.obj
 
 # Precompiled Headers
 *.gch
