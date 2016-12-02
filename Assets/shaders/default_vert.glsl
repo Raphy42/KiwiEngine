@@ -8,9 +8,7 @@ uniform mat4    projection;
 uniform mat4    view;
 uniform mat4    model;
 
-out vec4     frag;
-out vec2     texCoord;
-out vec3     n;
+
 
 void main() {
     frag = vec4(pos, 1.f);

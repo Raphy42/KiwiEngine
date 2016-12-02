@@ -9,5 +9,6 @@ out vec4    colour;
 uniform sampler2D tex;
 
 void main() {
-    colour = vec4(n, 1.f); //opengl texture fix
+    colour = vec4(n, 1.f);
+//    colour = texture(texe, texCoord);
 }

@@ -12,6 +12,7 @@
 #include "Event/Dispatcher.h"
 #include "../Core/Config.h"
 #include "Renderer/Renderer.h"
+#include "Assets/Storage.h"
 
 namespace Kiwi {
     namespace Engine {
@@ -56,6 +57,7 @@ namespace Kiwi {
             std::unique_ptr<CoreDispatcher>     _core;
             CoreListener _coreListener;
             Renderer::Renderer _renderer;
+            Asset::Storage _storage;
 
             bool _keepOpen;
         };

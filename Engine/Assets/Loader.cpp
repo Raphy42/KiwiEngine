@@ -117,9 +117,8 @@ Kiwi::Engine::Asset::Loader::createMeshVUVNStride(std::vector<glm::vec3> v, std:
 kE::Renderer::Texture
 Kiwi::Engine::Asset::Loader::createTexture(Kiwi::Engine::Asset::Loader::Target target, std::string source) {
     int w, h, comp;
-    const unsigned char *image = stbi_load(source.c_str(), &w, &h, &comp, STBI_rgb);
-
     std::cout << source << std::endl;
+    const unsigned char *image = stbi_load(source.c_str(), &w, &h, &comp, STBI_rgb);
 
     if (!image)
         throw std::runtime_error(stbi_failure_reason());

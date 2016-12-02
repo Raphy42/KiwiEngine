@@ -10,7 +10,6 @@
 #include <vector>
 #include <glm/detail/type_mat.hpp>
 #include "../../Core/Graphics.h"
-#include "../Renderer/Texture.h"
 
 namespace Kiwi {
     namespace Engine {

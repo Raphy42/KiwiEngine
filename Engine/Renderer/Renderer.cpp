@@ -6,17 +6,24 @@
 #include "Renderer.h"
 #include "ShaderBuilder.h"
 #include "../../Core/Config.h"
+#include "../Assets/Loader.h"
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/glm.hpp>
 
 namespace Kiwi {
     namespace Engine {
         namespace Renderer {
-            Renderer::Renderer() {}
+            Renderer::Renderer() {
+            }
 
             void Renderer::render() {
                 //TODO dont leave this here !
 
+                if (_materials.size() == 0) {
+                    Asset::Loader loader;
+                    _materials.push_back(
+                            Material(loader.createTexture(Asset::Loader::Target::FLAT, "./Assets/textures/debug.png")));
+                }
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
                 glEnable(GL_DEPTH_TEST);
                 for (auto node : _level.getScene()->getChildren()) {
@@ -69,7 +76,8 @@ namespace Kiwi {
                 }
 
                 glActiveTexture(GL_TEXTURE0);
-                node.getMaterial().bind();
+//                node.getMaterial().bind();
+                _materials[0].bind();
                 glUniform1i(glGetUniformLocation(program.get(), "tex"), 0);
                 node.getMesh().bind();
                 node.getMesh().draw();
