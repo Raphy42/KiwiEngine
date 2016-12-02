@@ -6,6 +6,8 @@
 #define KIWIENGINE_LOADER_H
 
 #include <string>
+#include <assimp/postprocess.h>
+#include <assimp/scene.h>
 #include <assimp/Importer.hpp>
 #include "../Primitives/Mesh.h"
 #include "../Primitives/Model.h"
@@ -43,8 +45,7 @@ namespace Kiwi { namespace Engine { namespace Asset {
 
                 Primitive::Mesh                     createMeshFromVertices(std::vector<float> v);
                 Primitive::Mesh                     createMeshFromSimpleModel(const char *filename);
-
-//                Scene::Node                         *createModelNodeFromFile(const char *filename);
+                Scene::Node                         createNodeFromModel(const char *filename);
 
             private:
                 Primitive::Mesh                     createMeshVUVNStride(std::vector<glm::vec3> v,
@@ -56,10 +57,12 @@ namespace Kiwi { namespace Engine { namespace Asset {
                                                                                 std::vector<unsigned int> i);
 
                 Primitive::Mesh                     createPlane(unsigned int x, unsigned int columns);
+                Primitive::Mesh                     processAiMesh(aiMesh *mesh, const aiScene *aScene);
 
-//                Scene::Node                        *processNode(aiNode *aNode, const aiScene *aScene);
+                std::vector<kE::Renderer::Texture>  loadMaterialTextures(aiMaterial *material, aiTextureType type, std::string uniform);
 
 
+                std::string                         _path;
             };
 
 

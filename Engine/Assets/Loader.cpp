@@ -3,9 +3,6 @@
 //
 
 #include <string>
-#include <assimp/postprocess.h>
-#include <assimp/scene.h>
-#include <assimp/Importer.hpp>
 #include "Loader.h"
 #include "../../Core/Config.h"
 
@@ -14,6 +11,7 @@
 #include "stb_image.h"
 #include "Tools.h"
 #include "ugly.h"
+
 
 extern struct _cube cube;
 
@@ -76,7 +74,8 @@ Kiwi::Engine::Asset::Loader::createMeshFromVertices(std::vector<float> v) {
     return kE::Primitive::Mesh(vao, vbo, ebo, v.size() / 3);
 }
 
-kE::Primitive::Mesh Kiwi::Engine::Asset::Loader::createDefaultMesh(Kiwi::Engine::Asset::Loader::Type type) {
+kE::Primitive::Mesh
+Kiwi::Engine::Asset::Loader::createDefaultMesh(Kiwi::Engine::Asset::Loader::Type type) {
     switch (type) {
         case Type::CUBE :
             return createMeshVUVNStride(cube.v, cube.uv, cube.n);
@@ -120,8 +119,10 @@ Kiwi::Engine::Asset::Loader::createTexture(Kiwi::Engine::Asset::Loader::Target t
     int w, h, comp;
     const unsigned char *image = stbi_load(source.c_str(), &w, &h, &comp, STBI_rgb);
 
+    std::cout << source << std::endl;
+
     if (!image)
-        throw std::runtime_error("TG");
+        throw std::runtime_error(stbi_failure_reason());
     GLuint texture;
 
     glGenTextures(1, &texture);
@@ -142,7 +143,8 @@ Kiwi::Engine::Asset::Loader::createTexture(Kiwi::Engine::Asset::Loader::Target t
     return kE::Renderer::Texture(GL_TEXTURE_2D, texture);
 }
 
-Kiwi::Engine::Primitive::Mesh Kiwi::Engine::Asset::Loader::createPlane(unsigned int rows, unsigned int columns) {
+Kiwi::Engine::Primitive::Mesh
+Kiwi::Engine::Asset::Loader::createPlane(unsigned int rows, unsigned int columns) {
     bool oddRow = false;
 
     float dX = 1.0f / rows;
@@ -207,56 +209,106 @@ Kiwi::Engine::Asset::Loader::createMeshVUVNStrideIndexed(std::vector<glm::vec3> 
     return mesh;
 }
 
-Kiwi::Engine::Primitive::Mesh Kiwi::Engine::Asset::Loader::createMeshFromSimpleModel(const char *filename) {
+Kiwi::Engine::Primitive::Mesh
+Kiwi::Engine::Asset::Loader::createMeshFromSimpleModel(const char *filename) {
     Assimp::Importer importer;
     const aiScene *scene = importer.ReadFile(filename, aiProcess_Triangulate |
                                                      aiProcess_GenNormals |
-                                                     aiProcess_GenUVCoords | aiProcess_OptimizeMeshes );
+            aiProcess_JoinIdenticalVertices | aiProcess_GenUVCoords | aiProcess_TransformUVCoords);
 
     if (!scene || scene->mFlags == AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
         throw std::runtime_error(importer.GetErrorString());
     aiMesh *mesh = scene->mMeshes[0];
 
-    {
-        std::vector<glm::vec3> v, n;
-        std::vector<glm::vec2> uvs;
-        std::vector<unsigned int> idx;
-
-        for (GLuint i = 0; i < mesh->mNumVertices; i++) {
-            glm::vec3 vertex; // We declare a placeholder vector since assimp uses its own vector class that doesn't directly convert to glm's vec3 class so we transfer the data to this placeholder glm::vec3 first.
-            // Positions
-            vertex.x = mesh->mVertices[i].x;
-            vertex.y = mesh->mVertices[i].y;
-            vertex.z = mesh->mVertices[i].z;
-            // Normals
-            glm::vec3 normal;
-            normal.x = mesh->mNormals[i].x;
-            normal.y = mesh->mNormals[i].y;
-            normal.z = mesh->mNormals[i].z;
-            // Texture Coordinates
-            glm::vec2 uv;
-            if (mesh->mTextureCoords[0]) // Does the mesh contain texture coordinates?
-            {
-                // A vertex can contain up to 8 different texture coordinates. We thus make the assumption that we won't
-                // use models where a vertex can have multiple texture coordinates so we always take the first set (0).
-                uv.x = mesh->mTextureCoords[0][i].x;
-                uv.y = mesh->mTextureCoords[0][i].y;
-            } else
-                uv = glm::vec2(0.0f, 0.0f);
-            //todo stream interleave
-            v.push_back(vertex);
-            n.push_back(normal);
-            uvs.push_back(uv);
-
-        }
-        // Now wak through each of the mesh's faces (a face is a mesh its triangle) and retrieve the corresponding vertex indices.
-        for (GLuint i = 0; i < mesh->mNumFaces; i++) {
-            aiFace face = mesh->mFaces[i];
-            // Retrieve all indices of the face and store them in the indices vector
-            for (GLuint j = 0; j < face.mNumIndices; j++)
-                idx.push_back(face.mIndices[j]);
-        }
-        // Return a mesh object created from the extracted mesh data
-        return createMeshVUVNStrideIndexed(v, uvs, n, idx);
-    }
+    return processAiMesh(mesh, scene);
 }
+
+Kiwi::Engine::Primitive::Mesh
+Kiwi::Engine::Asset::Loader::processAiMesh(aiMesh *mesh, const aiScene *aScene) {
+    std::vector<glm::vec3> v, n;
+    std::vector<glm::vec2> uvs;
+    std::vector<unsigned int> idx;
+    for (GLuint i = 0; i < mesh->mNumVertices; i++) {
+        glm::vec3 vertex; // We declare a placeholder vector since assimp uses its own vector class that doesn't directly convert to glm's vec3 class so we transfer the data to this placeholder glm::vec3 first.
+        // Positions
+        vertex.x = mesh->mVertices[i].x;
+        vertex.y = mesh->mVertices[i].y;
+        vertex.z = mesh->mVertices[i].z;
+        // Normals
+        glm::vec3 normal;
+        normal.x = mesh->mNormals[i].x;
+        normal.y = mesh->mNormals[i].y;
+        normal.z = mesh->mNormals[i].z;
+        // Texture Coordinates
+        glm::vec2 uv;
+        if (mesh->HasTextureCoords(0)) // Does the mesh contain texture coordinates?
+        {
+            // A vertex can contain up to 8 different texture coordinates. We thus make the assumption that we won't
+            // use models where a vertex can have multiple texture coordinates so we always take the first set (0).
+            uv.x = mesh->mTextureCoords[0][i].x;
+            uv.y = mesh->mTextureCoords[0][i].y;
+        } else {
+            uv = glm::vec2(0.0f, 0.0f);
+        }
+        //todo stream interleave
+        v.push_back(vertex);
+        n.push_back(normal);
+        uvs.push_back(uv);
+    }
+    // Now wak through each of the mesh's faces (a face is a mesh its triangle) and retrieve the corresponding vertex indices.
+    for (GLuint i = 0; i < mesh->mNumFaces; i++) {
+        aiFace face = mesh->mFaces[i];
+        // Retrieve all indices of the face and store them in the indices vector
+        for (GLuint j = 0; j < face.mNumIndices; j++)
+            idx.push_back(face.mIndices[j]);
+    }
+    return createMeshVUVNStrideIndexed(v, uvs, n, idx);
+}
+
+Kiwi::Engine::Scene::Node
+Kiwi::Engine::Asset::Loader::createNodeFromModel(const char *filename) {
+    std::string file  = filename;
+    _path = file.substr(0, file.find_last_of('/'));
+    kE::Scene::Node     node;
+    Assimp::Importer    importer;
+    const aiScene   *scene = importer.ReadFile(filename, aiProcess_Triangulate |
+                                                         aiProcess_GenNormals |
+                                                         aiProcess_JoinIdenticalVertices |
+            aiProcess_GenUVCoords | aiProcess_TransformUVCoords);
+
+    if (!scene || scene->mFlags == AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
+        throw std::runtime_error(importer.GetErrorString());
+    for (int i = 0; i < scene->mNumMeshes; ++i)
+    {
+        kE::Primitive::Mesh mesh = processAiMesh(scene->mMeshes[i], scene);
+        if (scene->mMeshes[i]->mMaterialIndex > 0)
+        {
+            std::vector<kE::Renderer::Texture>      textures;
+            aiMaterial *material = scene->mMaterials[scene->mMeshes[i]->mMaterialIndex];
+            std::vector<kE::Renderer::Texture>      diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
+            textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
+
+            std::vector<kE::Renderer::Texture>      specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
+            textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
+        }
+        node.addChildMesh(mesh);
+
+    }
+    return node;
+}
+
+std::vector<kE::Renderer::Texture>
+Kiwi::Engine::Asset::Loader::loadMaterialTextures(aiMaterial *material, aiTextureType type, std::string uniform) {
+    bool skip;
+    std::vector<kE::Renderer::Texture>      textures;
+
+    for (unsigned int i = 0; i < material->GetTextureCount(type); ++i) {
+        aiString str;
+        material->GetTexture(type, i, &str);
+
+        kE::Renderer::Texture texture = createTexture(Target::FLAT, _path + '/' + str.C_Str());
+        textures.push_back(texture);
+    }
+    return textures;
+}
+

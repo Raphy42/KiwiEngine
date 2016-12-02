@@ -13,7 +13,8 @@ Kiwi::Engine::Primitive::FPSCamera::FPSCamera() :
         _pitch(0.f),
         _speed(1.0f),
         _sensitivity(0.25f),
-        _zoom(68.f)
+        _zoom(68.f),
+        _worldUp(0.f, 1.f, 0.f)
 {}
 
 Kiwi::Engine::Primitive::FPSCamera::FPSCamera(glm::vec3 position, glm::vec3 up) :
@@ -25,7 +26,8 @@ Kiwi::Engine::Primitive::FPSCamera::FPSCamera(glm::vec3 position, glm::vec3 up) 
         _pitch(0.f),
         _speed(1.0f),
         _sensitivity(0.25f),
-        _zoom(68.f)
+        _zoom(68.f),
+        _worldUp(0.f, 1.f, 0.f)
 {}
 
 Kiwi::Engine::Primitive::FPSCamera::FPSCamera(glm::vec3 position, glm::vec3 up, float yaw, float pitch) :
@@ -37,7 +39,8 @@ Kiwi::Engine::Primitive::FPSCamera::FPSCamera(glm::vec3 position, glm::vec3 up, 
         _pitch(pitch),
         _speed(1.0f),
         _sensitivity(0.25f),
-        _zoom(68.f)
+        _zoom(68.f),
+        _worldUp(0.f, 1.f, 0.f)
 {}
 
 glm::mat4 Kiwi::Engine::Primitive::FPSCamera::getViewMat4() const {

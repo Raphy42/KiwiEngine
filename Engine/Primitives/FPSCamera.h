@@ -72,16 +72,20 @@ namespace Kiwi {
                             _in = false;
                             break;
                         case Event::Type::HumanInteraction::CURSOR_MOVED :
-//                            if (_first)
-//                            {
-//                                lastX = static_cast<float>(notification.pos.x);
-//                                lastY = static_cast<float>(notification.pos.y);
-//                                _first = false;
-//                            }
-//                            if (_in)
-//                                _camera->center(static_cast<float>(notification.pos.x) - lastX, lastY - static_cast<float>(notification.pos.y));
-//                            lastX = static_cast<float>(notification.pos.x);
-//                            lastY = static_cast<float>(notification.pos.y);
+                            xpos = static_cast<float>(notification.pos.x);
+                            ypos = static_cast<float>(notification.pos.y);
+
+                            if (_first)
+
+                            {
+                                lastX = xpos;
+                                lastY = ypos;
+                                _first = false;
+                            }
+                            if (_in)
+                                _camera->center(xpos - lastX, lastY - ypos);
+                            lastX = xpos;
+                            lastY = ypos;
                             break ;
                         case Event::Type::HumanInteraction::SCROLLED :
                             _camera->zoom(static_cast<float>(notification.pos.y));

@@ -26,6 +26,8 @@ namespace Kiwi {
                 void render();
 
             private:
+                void renderNode(Scene::Node node);
+
                 Primitive::FPSCamera        *_camera;
                 Scene::Level                _level;
                 std::vector<GLProgram>      _shaders;

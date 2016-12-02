@@ -96,24 +96,21 @@ public:
                 "./Assets/textures/ponpon.png"),
                                       kE::Renderer::Material::Type::TEST);
 
+        kE::Renderer::Material crate(loader.createTexture(
+                kE::Asset::Loader::Target::FLAT,
+                "./Assets/textures/container.jpg"),
+                                      kE::Renderer::Material::Type::TEST);
+
         kE::Renderer::Material basic_light(kE::Renderer::Material::Type::BASIC_LIGHTING);
 
         kE::Primitive::Mesh cube = loader.createDefaultMesh(kE::Asset::Loader::Type::CUBE);
         kE::Primitive::Mesh plane = loader.createDefaultMesh(kE::Asset::Loader::Type::PLANE);
         kE::Primitive::Mesh rabbit = loader.createMeshFromSimpleModel("./Assets/models/stanford_bunny.obj");
+        kE::Scene::Node     sponza = loader.createNodeFromModel("./Assets/models/dabrovic-sponza/sponza.obj");
+
 //        level.getScene()->addChildMesh(cube);
-        level.getScene()->addChild(kE::Scene::Node(cube, basic_light, glm::vec3(1.f, 1.f, 1.f)));
-        level.getScene()->addChild(kE::Scene::Node(cube, ponpon, glm::vec3(-1.f, 1.f, 1.f)));
-        level.getScene()->addChild(kE::Scene::Node(cube, ponpon, glm::vec3(1.f, -1.f, 1.f)));
-        level.getScene()->addChild(kE::Scene::Node(cube, chien_de_prairie, glm::vec3(-1.f, -1.f, 1.f)));
-        level.getScene()->addChild(kE::Scene::Node(cube, chien_de_prairie, glm::vec3(1.f, 1.f, -1.f)));
-        level.getScene()->addChild(kE::Scene::Node(cube, ponpon, glm::vec3(-1.f, 1.f, -1.f)));
-        level.getScene()->addChild(kE::Scene::Node(cube, chien_de_prairie, glm::vec3(1.f, -1.f, -1.f)));
-        level.getScene()->addChild(kE::Scene::Node(cube, ponpon, glm::vec3(-1.f, -1.f, -1.f)));
-
-        level.getScene()->addChild(kE::Scene::Node(plane, basic_light, glm::vec3(0.f, 3.f, 0.f)));
-
-        level.getScene()->addChild(kE::Scene::Node(rabbit, basic_light, glm::vec3(0.f, 0.f, 0.f)));
+        level.getScene()->addChild(kE::Scene::Node(rabbit, crate, glm::vec3(0.f, 1.3f, 0.f)));
+        level.getScene()->addChild(sponza);
 
         _renderer.bindLevel(level);
         _renderer.bindCamera(&camera);
