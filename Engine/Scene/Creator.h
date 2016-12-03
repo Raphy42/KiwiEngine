@@ -6,6 +6,7 @@
 #define KIWIENGINE_CREATOR_H
 
 #include "Level.h"
+#include "../../Core/Config.h"
 
 namespace Kiwi { namespace Engine { namespace Scene {
             class Creator
@@ -14,8 +15,7 @@ namespace Kiwi { namespace Engine { namespace Scene {
                 Creator() {};
                 ~Creator() {};
 
-                virtual Level       *createLevelFromConfig(void) = 0;
-
+                Level               *createLevelFromConfig(Core::JSONConfig config);
                 Level               *createLevelFromScene(Node *root) const;
 
             private:

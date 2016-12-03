@@ -13,6 +13,7 @@
 #include "../Core/Config.h"
 #include "Renderer/Renderer.h"
 #include "Assets/Storage.h"
+#include "Scene/Creator.h"
 
 namespace Kiwi {
     namespace Engine {
@@ -55,6 +56,9 @@ namespace Kiwi {
         protected:
             std::unique_ptr<GLFWDispatcher>     _hid;
             std::unique_ptr<CoreDispatcher>     _core;
+
+            Scene::Creator                      _creator;
+
             CoreListener _coreListener;
             Renderer::Renderer _renderer;
             Asset::Storage _storage;

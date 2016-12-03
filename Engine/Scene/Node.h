@@ -32,18 +32,6 @@ namespace Kiwi {
 
                 ~Node() {};
 
-                unsigned int getId(void) const {
-                    return _nodeId;
-                }
-
-                Node *getParent() const {
-                    return _parent;
-                }
-
-                void setParent(Node *parent) {
-                    _parent = parent;
-                }
-
                 const std::vector<Node> getChildren() const {
                     return _children;
                 }
@@ -56,8 +44,8 @@ namespace Kiwi {
                     _children.push_back(child);
                 }
 
-                void addChildMesh(Primitive::Mesh mesh) {
-                    Node node = Node(mesh, Renderer::Material(Renderer::Material::Type::TEST));
+                void addChildMesh(Primitive::Mesh mesh, Renderer::Material material = Renderer::Material(Renderer::Material::Type::TEST)) {
+                    Node node = Node(mesh, material);
                     _children.push_back(node);
                 }
 
@@ -69,29 +57,18 @@ namespace Kiwi {
                     return _material;
                 }
 
-                glm::mat4 getWorldPos() const {
-                    return _transform;
+                void setMaterial(const Renderer::Material &material) {
+                    _material = material;
                 }
 
-                void removeChildrenById(unsigned int id) {
-                    std::for_each(_children.begin(), std::vector<Node>::iterator(), [&](Node node) {
-                        unsigned int i = 0;
-
-                        if (node.getId() == id)
-                            _children.erase(_children.begin() + i);
-                            ++i;
-                    });
+                glm::mat4 getWorldPos() const {
+                    return _transform;
                 }
 
             private:
                 Primitive::Mesh         _mesh;
                 Renderer::Material      _material;
-
-                unsigned int            _nodeId;
-
-                Node                    *_parent;
                 std::vector<Node>       _children;
-
                 glm::mat4               _transform;
             };
         }

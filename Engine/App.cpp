@@ -22,6 +22,16 @@ Kiwi::Engine::App::App() :
     _core->bind(&_coreListener);
     if (!_vfs->bind(_config.get<std::string>("Filesystem.root")))
         exit(EXIT_FAILURE);
+
+    /**
+     * Set directory aliases
+     */
+    _vfs->setDirectories(std::unordered_map<std::string, std::string>{
+            {"shaders", _config.get<std::string>("Filesystem.shaders")},
+            {"models", _config.get<std::string>("Filesystem.models")},
+            {"textures", _config.get<std::string>("Filesystem.textures")},
+            {"levels", _config.get<std::string>("Filesystem.levels")}
+    });
     //TODO configure each module accordingly
 }
 
@@ -39,11 +49,7 @@ void Kiwi::Engine::App::start() {
     Renderer::ProgramBuilder p_builder;
     Renderer::ShaderBuilder s_builder;
 
-    std::unordered_map<std::string, std::string> sources = _vfs->loadMultiplesFromDirectory(
-            _config.get<std::string>("Filesystem.shaders").c_str(),
-            {"default_vert.glsl", "default_frag.glsl", "light_basic_vert.glsl", "light_basic_frag.glsl"}
-    );
-
+    std::unordered_map<std::string, std::string> sources = _vfs->from("shaders").loadAllFromCurrentDirectory();
 
     //TODO need refactor omg
     GLProgram program = p_builder.createProgramFromShaders(

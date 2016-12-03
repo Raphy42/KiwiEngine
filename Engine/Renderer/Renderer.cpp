@@ -22,9 +22,11 @@ namespace Kiwi {
                 if (_materials.size() == 0) {
                     Asset::Loader loader;
                     _materials.push_back(
-                            Material(loader.createTexture(Asset::Loader::Target::FLAT, "./Assets/textures/debug.png")));
+                            Material(loader.createTexture(Asset::Loader::Target::FLAT, "./Assets/textures/uv-debug.jpg")));
                 }
+                glClearColor(0.1f, 0.1f, 0.1f, 1.f);
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//                glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
                 glEnable(GL_DEPTH_TEST);
                 for (auto node : _level.getScene()->getChildren()) {
                     renderNode(node);
@@ -35,7 +37,7 @@ namespace Kiwi {
             }
 
             void Renderer::renderNode(Scene::Node node) {
-                glm::vec3 lightPos(0.f, 3.f, 0.f);
+                glm::vec3 lightPos = glm::vec3(0.f, 4.f, 0.f);
                 glm::vec3 camera = _camera->getPosition();
                 GLProgram program = _shaders[static_cast<int>(node.getMaterial().getType())];
 
@@ -52,33 +54,32 @@ namespace Kiwi {
                 glUniformMatrix4fv(glGetUniformLocation(program.get(), "projection"),
                                    1, GL_FALSE, glm::value_ptr(_camera->getProjectionMat4()));
 
-                if (node.getMaterial().getType() == Material::Type::BASIC_LIGHTING)
-                {
-                    GLint lightPosLoc    = glGetUniformLocation(program.get(), "light.position");
+//                if (node.getMaterial().getType() == Material::Type::BASIC_LIGHTING)
+//                {
+                    GLint lightPosLoc    = glGetUniformLocation(program.get(), "lightPos");
                     GLint viewPosLoc     = glGetUniformLocation(program.get(), "viewPos");
                     glUniform3f(lightPosLoc,    lightPos.x, lightPos.y, lightPos.z);
                     glUniform3f(viewPosLoc,     camera.x, camera.y, camera.z);
-                    // Set lights properties
-                    glm::vec3 lightColor;
-                    lightColor.x = sin(glfwGetTime() * 2.0f);
-                    lightColor.y = sin(glfwGetTime() * 0.7f);
-                    lightColor.z = sin(glfwGetTime() * 1.3f);
-                    glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f); // Decrease the influence
-                    glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f); // Low influence
-                    glUniform3f(glGetUniformLocation(program.get(), "light.ambient"),  ambientColor.x, ambientColor.y, ambientColor.z);
-                    glUniform3f(glGetUniformLocation(program.get(), "light.diffuse"),  diffuseColor.x, diffuseColor.y, diffuseColor.z);
-                    glUniform3f(glGetUniformLocation(program.get(), "light.specular"), 1.0f, 1.0f, 1.0f);
-                    // Set material properties
-                    glUniform3f(glGetUniformLocation(program.get(), "material.ambient"),   1.0f, 0.5f, 0.31f);
-                    glUniform3f(glGetUniformLocation(program.get(), "material.diffuse"),   1.0f, 0.5f, 0.31f);
-                    glUniform3f(glGetUniformLocation(program.get(), "material.specular"),  0.5f, 0.5f, 0.5f); // Specular doesn't have full effect on this object's material
-                    glUniform1f(glGetUniformLocation(program.get(), "material.shininess"), 32.0f);
-                }
+//                    // Set lights properties
+//                    glm::vec3 lightColor;
+//                    lightColor.x = sin(glfwGetTime() * 2.0f);
+//                    lightColor.y = sin(glfwGetTime() * 0.7f);
+//                    lightColor.z = sin(glfwGetTime() * 1.3f);
+//                    glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f); // Decrease the influence
+//                    glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f); // Low influence
+//                    glUniform3f(glGetUniformLocation(program.get(), "light.ambient"),  ambientColor.x, ambientColor.y, ambientColor.z);
+//                    glUniform3f(glGetUniformLocation(program.get(), "light.diffuse"),  diffuseColor.x, diffuseColor.y, diffuseColor.z);
+//                    glUniform3f(glGetUniformLocation(program.get(), "light.specular"), 1.0f, 1.0f, 1.0f);
+//                    // Set material properties
+//                    glUniform3f(glGetUniformLocation(program.get(), "material.ambient"),   1.0f, 0.5f, 0.31f);
+//                    glUniform3f(glGetUniformLocation(program.get(), "material.diffuse"),   1.0f, 0.5f, 0.31f);
+//                    glUniform3f(glGetUniformLocation(program.get(), "material.specular"),  0.5f, 0.5f, 0.5f); // Specular doesn't have full effect on this object's material
+//                    glUniform1f(glGetUniformLocation(program.get(), "material.shininess"), 32.0f);
+//                }
 
-                glActiveTexture(GL_TEXTURE0);
-//                node.getMaterial().bind();
-                _materials[0].bind();
-                glUniform1i(glGetUniformLocation(program.get(), "tex"), 0);
+                node.getMaterial().bind(0);
+                glUniform1i(glGetUniformLocation(program.get(), "diffuseMap"), 0);
+                glUniform1i(glGetUniformLocation(program.get(), "normalMap"), 1);
                 node.getMesh().bind();
                 node.getMesh().draw();
             }

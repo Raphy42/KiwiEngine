@@ -56,10 +56,16 @@ namespace Kiwi { namespace Engine { namespace Asset {
                                                                                 std::vector<glm::vec3> n,
                                                                                 std::vector<unsigned int> i);
 
+                Primitive::Mesh                     createMeshVUVNTBStrideIndexed(std::vector<glm::vec3> v,
+                                                                                  std::vector<glm::vec2> uv,
+                                                                                  std::vector<glm::vec3> n,
+                                                                                  std::vector<unsigned int> i,
+                std::vector<glm::vec3> t, std::vector<glm::vec3> b);
+
                 Primitive::Mesh                     createPlane(unsigned int x, unsigned int columns);
                 Primitive::Mesh                     processAiMesh(aiMesh *mesh, const aiScene *aScene);
 
-                std::vector<kE::Renderer::Texture>  loadMaterialTextures(aiMaterial *material, aiTextureType type, std::string uniform);
+                std::vector<kE::Renderer::Texture>  loadMaterialTextures(aiMaterial *material, aiTextureType type);
 
 
                 std::string                         _path;

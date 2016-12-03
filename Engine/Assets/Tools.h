@@ -158,7 +158,7 @@ namespace Kiwi {
                 if (t.size() > 0) {
                     glEnableVertexAttribArray(4);
                     glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, stride, (GLvoid *) offset);
-                    offset += sizeof(T);
+//                    offset += sizeof(T);
                 }
             }
 

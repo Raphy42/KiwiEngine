@@ -46,10 +46,8 @@ namespace Kiwi {
 //                }
 
             private:
-                std::unique_ptr<Storage> _instance;
-
-                std::unordered_map<std::string, Primitive::Mesh> _meshes;
-                std::unordered_map<std::string, Renderer::Texture> _textures;
+                std::unordered_map<std::string, Primitive::Mesh>        _meshes;
+                std::unordered_map<std::string, Renderer::Texture>      _textures;
 //                std::unordered_map<std::string, GLProgram>            _shaders;
             };
         }

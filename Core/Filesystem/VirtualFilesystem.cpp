@@ -54,15 +54,15 @@ Kiwi::Core::Filesystem::VirtualFilesystem::loadMultiplesFromDirectory(const char
 }
 
 
-std::vector<std::string>
+std::unordered_map<std::string, std::string>
 Kiwi::Core::Filesystem::VirtualFilesystem::loadAllFromCurrentDirectory(void) const {
-    std::vector<std::string> sources;
-    fs::path cwd = _root;
+    std::unordered_map<std::string, std::string> sources;
+    fs::path cwd = _current;
 
     for (fs::directory_iterator it(cwd); it != fs::directory_iterator(); ++it) {
         fs::path path = it->path();
         if (fs::is_regular_file(path)) //double check because IO may fail anyway
-            sources.push_back(fileRead(path.c_str()));
+            sources[path.filename().string()] = fileRead(path.c_str());
         else
             std::cerr << "Unable to open file: " << path.c_str() << std::endl; //todo remove
     }
@@ -97,6 +97,25 @@ Kiwi::Core::Filesystem::VirtualFilesystem::fileRead(const char *filename) const 
     str.assign(std::istreambuf_iterator<char>(f), std::istreambuf_iterator<char>());
     f.close();
     return str;
+}
+
+void Kiwi::Core::Filesystem::VirtualFilesystem::setDirectories(
+        const std::unordered_map<std::string, std::string> &directories) {
+    _directories = directories;
+    for (const auto &it : _directories) {
+        fs::path tmp = _root;
+        tmp.append(it.second);
+        if (fs::exists(tmp) && fs::is_directory(tmp))
+            continue;
+        else
+            throw std::runtime_error("Unable to bind default resources");
+    }
+}
+
+Kiwi::Core::Filesystem::VirtualFilesystem Kiwi::Core::Filesystem::VirtualFilesystem::from(std::string resource) {
+    _current = _root.append(_directories[resource]);
+    std::cout << _root;
+    return *this;
 }
 
 
