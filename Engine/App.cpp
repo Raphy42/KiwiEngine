@@ -72,6 +72,11 @@ void Kiwi::Engine::App::start() {
             s_builder.createFromFile(GL_FRAGMENT_SHADER, sources["phong_frag.glsl"])
     ));
 
+    _renderer.bindShader(Renderer::Shading::Type::PHONG_TEXTURED, p_builder.createProgramFromShaders(
+            s_builder.createFromFile(GL_VERTEX_SHADER, sources["phong_map_vert.glsl"]),
+            s_builder.createFromFile(GL_FRAGMENT_SHADER, sources["phong_map_frag.glsl"])
+    ));
+
 
 }
 

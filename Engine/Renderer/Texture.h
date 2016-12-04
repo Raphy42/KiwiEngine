@@ -15,6 +15,7 @@ namespace Kiwi { namespace Engine { namespace Renderer {
                 enum class Type : int {
                     ALBEDO,
                     NORMAL,
+                    SPECULAR,
                     ROUGHNESS,
                     METALLIC,
                     HEIGHT

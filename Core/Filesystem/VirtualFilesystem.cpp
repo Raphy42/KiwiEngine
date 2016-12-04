@@ -108,7 +108,7 @@ void Kiwi::Core::Filesystem::VirtualFilesystem::setDirectories(
         if (fs::exists(tmp) && fs::is_directory(tmp))
             continue;
         else
-            throw std::runtime_error("Unable to bindTextures default resources");
+            throw std::runtime_error("Unable to bind default resources");
     }
 }
 

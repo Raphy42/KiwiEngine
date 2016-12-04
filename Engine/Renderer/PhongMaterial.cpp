@@ -7,6 +7,8 @@
 Kiwi::Engine::Renderer::PhongMaterial::PhongMaterial() :
         _dirty(true),
         _color(glm::vec3(1.f, 1.f, 1.f)),
+        _diffuse(glm::vec3(1.f, 1.f, 1.f)),
+        _ambient(glm::vec3(1.f, 1.f, 1.f)),
         _shader(0) {}
 
 
@@ -22,12 +24,12 @@ void Kiwi::Engine::Renderer::PhongMaterial::bindShader(GLProgram shader) {
     _locationMap.emplace("object_color", glGetUniformLocation(bind, "objectColor"));
     _locationMap.emplace("light_color", glGetUniformLocation(bind, "lightColor"));
     _locationMap.emplace("light_pos", glGetUniformLocation(bind, "lightPos"));
-    _locationMap.emplace("view_pos", glGetUniformLocation(bind, "viewPos"));
 }
 
-void Kiwi::Engine::Renderer::PhongMaterial::bindTextures(unsigned int slot) {
+void Kiwi::Engine::Renderer::PhongMaterial::bind(unsigned int slot) {
     if (_dirty)
         update();
+    //no texture binding for basic phong shader
 }
 
 void Kiwi::Engine::Renderer::PhongMaterial::setParameter(std::string name, glm::vec3 value) {

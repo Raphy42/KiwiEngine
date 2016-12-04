@@ -115,6 +115,7 @@ public:
 
         kE::Renderer::PhongMaterial red_phong;
         red_phong.setColor(glm::vec3(1.0f, 0.f, 0.f));
+        red_phong.setParameter("shininess", glm::vec3(1.0f, 0.f, 0.f));
 
         kE::Renderer::PhongMaterial green_phong;
         green_phong.setColor(glm::vec3(0.0f, 1.f, 0.f));

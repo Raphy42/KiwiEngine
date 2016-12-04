@@ -2,25 +2,19 @@
 // Created by Raphaël Dantzer on 04/12/16.
 //
 
-#ifndef KIWIENGINE_PHONGMATERIAL_H
-#define KIWIENGINE_PHONGMATERIAL_H
+#ifndef KIWIENGINE_PHONGTEXTUREDMATERIAL_H
+#define KIWIENGINE_PHONGTEXTUREDMATERIAL_H
 
-#include <glm/vec3.hpp>
-#include <unordered_map>
-#include <string>
 #include "Material.h"
-#include "Program.h"
 
 namespace Kiwi {
     namespace Engine {
         namespace Renderer {
-            class PhongMaterial : public Material {
+            class PhongTexturedMaterial : public Material {
             public:
-                PhongMaterial();
+                PhongTexturedMaterial();
 
-                virtual ~PhongMaterial() = default;
-
-                void setColor(glm::vec3 color);
+                virtual ~PhongTexturedMaterial() override = default;
 
                 virtual void bind(unsigned int slot) override;
 
@@ -33,20 +27,13 @@ namespace Kiwi {
                 virtual void addMap(Texture texture) override;
 
             private:
-                void update();
-
                 GLProgram _shader;
                 std::unordered_map<std::string, GLint> _locationMap;
-                glm::vec3 _color;
-                glm::vec3 _diffuse;
-                glm::vec3 _ambient;
-                glm::vec3 _specular;
-                float _shininess;
-                bool _dirty;
             };
 
         }
     }
 }
 
-#endif //KIWIENGINE_PHONGMATERIAL_H
+
+#endif //KIWIENGINE_PHONGTEXTUREDMATERIAL_H

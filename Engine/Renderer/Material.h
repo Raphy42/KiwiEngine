@@ -22,7 +22,7 @@ namespace Kiwi { namespace Engine { namespace Renderer {
 
                 virtual ~Material() = default;
 
-                virtual void bindTextures(unsigned int slot) = 0;
+                virtual void bind(unsigned int slot) = 0;
 
                 virtual Shading::Type getType() const = 0;
 

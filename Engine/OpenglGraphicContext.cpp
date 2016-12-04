@@ -76,7 +76,7 @@ void Kiwi::Engine::OpenglGraphicContext::PostInit() {
     glfwGetFramebufferSize(_window, &_framebuffer.first, &_framebuffer.second);
     glfwMakeContextCurrent(_window);
     glViewport(0, 0, _framebuffer.first, _framebuffer.second);
-    //bindTextures event notifier
+    //bind event notifier
     _notifier = new Event::GLFWNotifier(_window);
     _notifier->start();
 

@@ -59,7 +59,7 @@ namespace Kiwi {
                 node.getMaterial()->setParameter("view_pos", camera);
                 node.getMaterial()->setParameter("light_color", glm::vec3(1.0f, 1.0f, 1.0f));
 
-                node.getMaterial()->bindTextures(0);
+                node.getMaterial()->bind(0);
                 node.getMesh().bind();
                 node.getMesh().draw();
                 glBindTexture(GL_TEXTURE_2D, 0);
