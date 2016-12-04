@@ -35,7 +35,7 @@ namespace Kiwi {
                 };
 
                 Loader() {
-                    _textureCache.emplace("diffuse", createMap("./Assets/textures/uv-debug.jpg",
+                    _textureCache.emplace("diffuse", createMap("./Assets/textures/ponpon.png",
                                                                Renderer::Texture::Type::DIFFUSE));
                     _textureCache.emplace("normal",
                                           createMap("./Assets/textures/norm.png", Renderer::Texture::Type::NORMAL));

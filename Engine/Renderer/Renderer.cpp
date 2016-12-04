@@ -65,7 +65,7 @@ namespace Kiwi {
                     node.getMaterial()->setVec3Parameter("light_position", glm::vec3(0.f, 2.f, 0.f));
                     node.getMaterial()->setVec3Parameter("light_color", glm::vec3(1.f, 1.f, 1.f));
                     node.getMaterial()->setVec3Parameter("light_ambient", glm::vec3(0.8f, 0.8f, 0.69f));
-                    node.getMaterial()->setParameter("light_falloff", .7f);
+                    node.getMaterial()->setParameter("light_falloff", 2.f);
                     node.getMaterial()->setParameter("light_radius", 1.f);
                 }
 
