@@ -12,7 +12,7 @@ namespace Kiwi { namespace Engine { namespace Renderer {
             class Texture
             {
             public:
-                Texture() {};
+                Texture() : _target(GL_TEXTURE_2D), _id(0) {};
                 Texture(GLenum target, GLuint id) :
                         _target(target),
                         _id(id)

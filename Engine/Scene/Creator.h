@@ -16,7 +16,7 @@ namespace Kiwi { namespace Engine { namespace Scene {
                 ~Creator() {};
 
                 Level               *createLevelFromConfig(Core::JSONConfig config);
-                Level               *createLevelFromScene(Node *root) const;
+                Level               *createLevelFromScene(Entity *root) const;
 
             private:
             };

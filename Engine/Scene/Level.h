@@ -5,25 +5,25 @@
 #ifndef KIWIENGINE_LEVEL_H
 #define KIWIENGINE_LEVEL_H
 
-#include "Node.h"
+#include "Entity.h"
 #include <string>
 
 namespace Kiwi { namespace Engine { namespace Scene {
             class Level {
             public:
                 Level() {};
-                Level(Node *root) : _root(root) {}
+                Level(Entity *root) : _root(root) {}
                 ~Level() {};
 
-                Node *getScene() {
+                Entity *getScene() {
                     return _root;
                 }
 
-                Node *get_root() const {
+                Entity *get_root() const {
                     return _root;
                 }
 
-                void set_root(Node *_root) {
+                void set_root(Entity *_root) {
                     Level::_root = _root;
                 }
 
@@ -44,7 +44,7 @@ namespace Kiwi { namespace Engine { namespace Scene {
                 }
 
             private:
-                Node                                *_root;
+                Entity                                *_root;
                 std::string                         _name;
                 glm::mat4                           _transform;
             };

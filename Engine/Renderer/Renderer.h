@@ -9,6 +9,7 @@
 #include "../Scene/Level.h"
 #include "../Primitives/FPSCamera.h"
 #include "Program.h"
+#include "Target.h"
 
 namespace Kiwi {
     namespace Engine {
@@ -16,6 +17,8 @@ namespace Kiwi {
             class Renderer {
             public:
                 Renderer();
+
+                void bindTarget(Target target);
 
                 void bindShaders(std::vector<GLProgram> shaders) { _shaders = shaders; };
 
@@ -26,12 +29,13 @@ namespace Kiwi {
                 void render();
 
             private:
-                void renderNode(Scene::Node node);
+                void renderNode(Scene::Entity node);
 
-                std::vector<Material> _materials;
+                std::vector<Material>       _materials;
                 Primitive::FPSCamera        *_camera;
                 Scene::Level                _level;
                 std::vector<GLProgram>      _shaders;
+                Target                      _target;
 
             };
         }

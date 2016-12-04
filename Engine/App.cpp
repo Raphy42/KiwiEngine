@@ -27,10 +27,10 @@ Kiwi::Engine::App::App() :
      * Set directory aliases
      */
     _vfs->setDirectories(std::unordered_map<std::string, std::string>{
-            {"shaders", _config.get<std::string>("Filesystem.shaders")},
-            {"models", _config.get<std::string>("Filesystem.models")},
+            {"shaders",  _config.get<std::string>("Filesystem.shaders")},
+            {"models",   _config.get<std::string>("Filesystem.models")},
             {"textures", _config.get<std::string>("Filesystem.textures")},
-            {"levels", _config.get<std::string>("Filesystem.levels")}
+            {"levels",   _config.get<std::string>("Filesystem.levels")}
     });
     //TODO configure each module accordingly
 }
@@ -51,17 +51,18 @@ void Kiwi::Engine::App::start() {
 
     std::unordered_map<std::string, std::string> sources = _vfs->from("shaders").loadAllFromCurrentDirectory();
 
-    //TODO need refactor omg
-    GLProgram program = p_builder.createProgramFromShaders(
-            s_builder.createFromFile(GL_VERTEX_SHADER, sources["default_vert.glsl"]),
-            s_builder.createFromFile(GL_FRAGMENT_SHADER, sources["default_frag.glsl"]));
-
-
-    GLProgram program2 = p_builder.createProgramFromShaders(
-            s_builder.createFromFile(GL_VERTEX_SHADER, sources["light_basic_vert.glsl"]),
-            s_builder.createFromFile(GL_FRAGMENT_SHADER, sources["light_basic_frag.glsl"]));
-
-    _renderer.bindShaders({program, program2});
+    _renderer.bindShaders({
+                                  p_builder.createProgramFromShaders(
+                                          s_builder.createFromFile(GL_VERTEX_SHADER, sources["default_vert.glsl"]),
+                                          s_builder.createFromFile(GL_FRAGMENT_SHADER, sources["default_frag.glsl"])),
+                                  p_builder.createProgramFromShaders(
+                                          s_builder.createFromFile(GL_VERTEX_SHADER, sources["light_basic_vert.glsl"]),
+                                          s_builder.createFromFile(GL_FRAGMENT_SHADER,
+                                                                   sources["light_basic_frag.glsl"])),
+                                  p_builder.createProgramFromShaders(
+                                          s_builder.createFromFile(GL_VERTEX_SHADER, sources["screen_vert.glsl"]),
+                                          s_builder.createFromFile(GL_FRAGMENT_SHADER, sources["screen_frag.glsl"]))
+                          });
 }
 
 void Kiwi::Engine::App::run() {

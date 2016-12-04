@@ -11,7 +11,7 @@
 #include <assimp/Importer.hpp>
 #include "../Primitives/Mesh.h"
 #include "../Primitives/Model.h"
-#include "../Scene/Node.h"
+#include "../Scene/Entity.h"
 
 namespace Kiwi { namespace Engine { namespace Asset {
             namespace kE = Kiwi::Engine;
@@ -24,7 +24,8 @@ namespace Kiwi { namespace Engine { namespace Asset {
 
                 enum class Type : int {
                     PLANE = 0x0,
-                    CUBE
+                    CUBE,
+                    SCREEN
                 };
 
                 enum class Target : GLenum {
@@ -45,7 +46,7 @@ namespace Kiwi { namespace Engine { namespace Asset {
 
                 Primitive::Mesh                     createMeshFromVertices(std::vector<float> v);
                 Primitive::Mesh                     createMeshFromSimpleModel(const char *filename);
-                Scene::Node                         createNodeFromModel(const char *filename);
+                Scene::Entity                         createNodeFromModel(const char *filename);
 
             private:
                 Primitive::Mesh                     createMeshVUVNStride(std::vector<glm::vec3> v,

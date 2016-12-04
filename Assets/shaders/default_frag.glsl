@@ -29,5 +29,5 @@ void main() {
     float spec = pow(max(dot(normal, halfwayDir), 0.f), 32.f);
     vec3 specular = vec3(0.2f) * spec;
 
-    fragColor = vec4(ambient + diffuse + specular, 1.0f);
+    fragColor = vec4(diffuse + ambient + specular, 1.0f);
 }

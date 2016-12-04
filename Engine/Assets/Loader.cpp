@@ -79,9 +79,9 @@ Kiwi::Engine::Asset::Loader::createDefaultMesh(Kiwi::Engine::Asset::Loader::Type
     switch (type) {
         case Type::CUBE :
             return createMeshVUVNStride(cube.v, cube.uv, cube.n);
-            break;
         case Type::PLANE :
             return createPlane(10, 10);
+        default:
             break;
     }
 }
@@ -133,6 +133,7 @@ Kiwi::Engine::Asset::Loader::createTexture(Kiwi::Engine::Asset::Loader::Target t
         format = GL_RGBA;
     else
         throw std::invalid_argument("Texture has invalid format: " + source);
+    std::cout << "Loading source " + source << std::endl;
     
     GLuint texture;
 
@@ -285,11 +286,11 @@ Kiwi::Engine::Asset::Loader::processAiMesh(aiMesh *mesh, const aiScene *aScene) 
         return createMeshVUVNStrideIndexed(v, uvs, n, idx);
 }
 
-Kiwi::Engine::Scene::Node
+Kiwi::Engine::Scene::Entity
 Kiwi::Engine::Asset::Loader::createNodeFromModel(const char *filename) {
     std::string file  = filename;
     _path = file.substr(0, file.find_last_of('/')); //todo potential fatal failure to fix
-    kE::Scene::Node     node;
+    kE::Scene::Entity     node;
     Assimp::Importer    importer;
     const aiScene   *scene = importer.ReadFile(filename, aiProcess_Triangulate |
                                                          aiProcess_GenNormals |
@@ -307,7 +308,7 @@ Kiwi::Engine::Asset::Loader::createNodeFromModel(const char *filename) {
             std::vector<kE::Renderer::Texture>      diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE);
             textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
 
-            std::vector<kE::Renderer::Texture>      specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR);
+            std::vector<kE::Renderer::Texture>      specularMaps = loadMaterialTextures(material, aiTextureType_NORMALS);
             textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
         }
         kE::Primitive::Mesh mesh = processAiMesh(scene->mMeshes[i], scene);

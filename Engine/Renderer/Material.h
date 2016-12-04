@@ -17,6 +17,9 @@ namespace Kiwi { namespace Engine { namespace Renderer {
                 enum class Type : int {
                     TEST = 0x0,
                     BASIC_LIGHTING,
+                    PBR,
+                    PHONG,
+                    CUSTOM,
                 };
 
                 Material(Type type) : _type(type) {};

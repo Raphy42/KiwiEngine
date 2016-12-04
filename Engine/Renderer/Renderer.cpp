@@ -18,26 +18,30 @@ namespace Kiwi {
 
             void Renderer::render() {
                 //TODO dont leave this here !
-
                 if (_materials.size() == 0) {
                     Asset::Loader loader;
                     _materials.push_back(
                             Material(loader.createTexture(Asset::Loader::Target::FLAT, "./Assets/textures/uv-debug.jpg")));
                 }
+
+//                _target.bindFrame();
+
                 glClearColor(0.1f, 0.1f, 0.1f, 1.f);
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//                glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
                 glEnable(GL_DEPTH_TEST);
                 for (auto node : _level.getScene()->getChildren()) {
-                    renderNode(node);
+//                    renderNode(node);
                     for (auto it : node.getChildren()) {
                         renderNode(it);
                     }
                 }
+
+//                glUseProgram(0);
+//                _target.renderFrame(_shaders[2]);
             }
 
-            void Renderer::renderNode(Scene::Node node) {
-                glm::vec3 lightPos = glm::vec3(0.f, 4.f, 0.f);
+            void Renderer::renderNode(Scene::Entity node) {
+                glm::vec3 lightPos = glm::vec3(1.f, 1.f, 1.f);
                 glm::vec3 camera = _camera->getPosition();
                 GLProgram program = _shaders[static_cast<int>(node.getMaterial().getType())];
 
@@ -78,10 +82,16 @@ namespace Kiwi {
 //                }
 
                 node.getMaterial().bind(0);
-                glUniform1i(glGetUniformLocation(program.get(), "diffuseMap"), 0);
-                glUniform1i(glGetUniformLocation(program.get(), "normalMap"), 1);
+//                glUniform1i(glGetUniformLocation(program.get(), "diffuseMap"), 0);
+//                glUniform1i(glGetUniformLocation(program.get(), "normalMap"), 1);
                 node.getMesh().bind();
                 node.getMesh().draw();
+
+                glBindTexture(GL_TEXTURE_2D, 0);
+            }
+
+            void Renderer::bindTarget(Target target) {
+                _target = target;
             }
         }
     }
