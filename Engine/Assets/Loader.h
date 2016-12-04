@@ -46,7 +46,7 @@ namespace Kiwi { namespace Engine { namespace Asset {
 
                 Primitive::Mesh                     createMeshFromVertices(std::vector<float> v);
                 Primitive::Mesh                     createMeshFromSimpleModel(const char *filename);
-                Scene::Entity                         createNodeFromModel(const char *filename);
+                Scene::Entity                         createEntityFromModel(const char *filename);
 
             private:
                 Primitive::Mesh                     createMeshVUVNStride(std::vector<glm::vec3> v,
@@ -66,7 +66,7 @@ namespace Kiwi { namespace Engine { namespace Asset {
                 Primitive::Mesh                     createPlane(unsigned int x, unsigned int columns);
                 Primitive::Mesh                     processAiMesh(aiMesh *mesh, const aiScene *aScene);
 
-                std::vector<kE::Renderer::Texture>  loadMaterialTextures(aiMaterial *material, aiTextureType type);
+                Renderer::Texture                   loadMaterialTexture(aiMaterial *material, aiTextureType type);
 
 
                 std::string                         _path;

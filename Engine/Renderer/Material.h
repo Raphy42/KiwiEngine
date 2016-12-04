@@ -22,37 +22,24 @@ namespace Kiwi { namespace Engine { namespace Renderer {
                     CUSTOM,
                 };
 
+                Material()  : _type(Type::TEST) {};
+
                 Material(Type type) : _type(type) {};
                 Material(Texture texture) : _diffuse(texture) {};
                 Material(Texture texture, Type type) : _diffuse(texture), _type(type) {};
-                Material(std::pair<Texture, Texture> textures, Type type) :
-                        _diffuse(textures.first),
-                        _normal(textures.second),
-                        _type(type),
-                        _hasNormals(true)
-                {};
-
-                void bind(unsigned int slot) const {
-                    glActiveTexture(GL_TEXTURE0 + slot);
-                    _diffuse.bind();
-                    if (_hasNormals)
-                    {
-                        glActiveTexture(GL_TEXTURE0 + slot + 1);
-                        _normal.bind();
-                    }
-                }
-
                 ~Material() {};
 
-                Type getType() {
-                    return _type;
-                }
+                void bind(unsigned int slot) const;
+
+                void addMap(Texture texture);
+
+                Type getType() const;
 
             private:
-                bool            _hasNormals = false;
-                Texture         _diffuse;
-                Texture         _normal;
-                Type            _type;
+                std::vector<Texture>        _textures;
+                Texture                     _diffuse;
+                Texture                     _normal;
+                Type                        _type;
             };
         }
     }

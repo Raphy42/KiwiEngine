@@ -85,9 +85,8 @@ public:
 
         _hid->bind(&cameraListener);
 
-        kE::Renderer::Material chien_de_prairie(
-                loader.createTexture(kE::Asset::Loader::Target::FLAT, "./Assets/textures/prairie-dog.jpg"),
-                                                kE::Renderer::Material::Type::TEST);
+//        kE::Renderer::Material chien_de_prairie(
+//                loader.createTexture(kE::Asset::Loader::Target::FLAT, "./Assets/textures/prairie-dog.jpg"));
 //
 //        kE::Renderer::Material ponpon(loader.createTexture(
 //                kE::Asset::Loader::Target::FLAT,
@@ -105,10 +104,13 @@ public:
 //
 //        kE::Primitive::Mesh cube = loader.createDefaultMesh(kE::Asset::Loader::Type::CUBE);
 //        kE::Primitive::Mesh plane = loader.createDefaultMesh(kE::Asset::Loader::Type::PLANE);
-        kE::Scene::Entity mitsuba = loader.createNodeFromModel("./Assets/models/mitsuba/mitsuba.obj");
-//                kE::Scene::Entity sponza = loader.createNodeFromModel("./Assets/models/crytek-sponza/sponza-fix.obj");
+//        kE::Scene::Entity mitsuba = loader.createEntityFromModel("./Assets/models/mitsuba/mitsuba.obj");
+                kE::Scene::Entity sponza = loader.createEntityFromModel("./Assets/models/crytek-sponza/sponza-fix.obj");
+//        kE::Scene::Entity sibenik = loader.createEntityFromModel("./Assets/models/sibenik/sibenik.obj");
 //
-        level.getScene()->addChild(mitsuba);
+//        level.getScene()->addChild(mitsuba);
+            level.getScene()->addChild(sponza);
+//        level.getScene()->addChild(sibenik);
 //        level.getScene()->addChild(kE::Scene::Entity(cube, chien_de_prairie, glm::vec3(0.f, 1.3f, 0.f)));
 
         _renderer.bindLevel(level);

@@ -12,13 +12,16 @@ in VS_OUT {
 
 uniform sampler2D diffuseMap;
 uniform sampler2D normalMap;
+uniform sampler2D alphaMap;
 
 void main() {
     vec3 normal = texture(normalMap, fs_in.texCoords).rgb;
     normal = normalize(normal * 2.f - 1.f);
 
+    vec3 visibility = texture(alphaMap, fs_in.texCoords).rgb;
+
     vec3 color = texture(diffuseMap, fs_in.texCoords).rgb;
-    vec3 ambient = 0.1f * color;
+    vec3 ambient = 0.2f * color;
 
     vec3 lightDir = normalize(fs_in.tangentLightPos - fs_in.tangentFragPos);
     float diff = max(dot(lightDir, normal), 0.f);
@@ -28,6 +31,5 @@ void main() {
     vec3 halfwayDir = normalize(lightDir + viewDir);
     float spec = pow(max(dot(normal, halfwayDir), 0.f), 32.f);
     vec3 specular = vec3(0.2f) * spec;
-
-    fragColor = vec4(diffuse + ambient + specular, 1.0f);
+    fragColor = vec4(diffuse + ambient + specular, 1.f);
 }

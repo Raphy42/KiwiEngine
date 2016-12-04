@@ -129,7 +129,7 @@ Kiwi::Engine::Asset::Loader::createTexture(Kiwi::Engine::Asset::Loader::Target t
         format = GL_RED;
     else if (comp == 3)
         format = GL_RGB;
-    else if (comp == 4)
+    else if (comp == 4 || comp == 2)
         format = GL_RGBA;
     else
         throw std::invalid_argument("Texture has invalid format: " + source);
@@ -287,7 +287,7 @@ Kiwi::Engine::Asset::Loader::processAiMesh(aiMesh *mesh, const aiScene *aScene) 
 }
 
 Kiwi::Engine::Scene::Entity
-Kiwi::Engine::Asset::Loader::createNodeFromModel(const char *filename) {
+Kiwi::Engine::Asset::Loader::createEntityFromModel(const char *filename) {
     std::string file  = filename;
     _path = file.substr(0, file.find_last_of('/')); //todo potential fatal failure to fix
     kE::Scene::Entity     node;
@@ -301,46 +301,39 @@ Kiwi::Engine::Asset::Loader::createNodeFromModel(const char *filename) {
         throw std::runtime_error(importer.GetErrorString());
     for (int i = 0; i < scene->mNumMeshes; ++i)
     {
-        std::vector<kE::Renderer::Texture>      textures;
+        kE::Renderer::Material material;
         if (scene->mMeshes[i]->mMaterialIndex > 0)
         {
-            aiMaterial *material = scene->mMaterials[scene->mMeshes[i]->mMaterialIndex];
-            std::vector<kE::Renderer::Texture>      diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE);
-            textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
+            aiMaterial *obj_material = scene->mMaterials[scene->mMeshes[i]->mMaterialIndex];
 
-            std::vector<kE::Renderer::Texture>      specularMaps = loadMaterialTextures(material, aiTextureType_NORMALS);
-            textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
+            material.addMap(loadMaterialTexture(obj_material, aiTextureType_DIFFUSE));
+            material.addMap(loadMaterialTexture(obj_material, aiTextureType_NORMALS));
+            material.addMap(loadMaterialTexture(obj_material, aiTextureType_OPACITY));
         }
         kE::Primitive::Mesh mesh = processAiMesh(scene->mMeshes[i], scene);
-        if (textures.size())
-            node.addChildMesh(mesh, kE::Renderer::Material(std::pair<kE::Renderer::Texture, kE::Renderer::Texture>(textures[0], textures[1]), kE::Renderer::Material::Type::TEST));
-        else
-            node.addChildMesh(mesh);
-
+        node.addChildMesh(mesh, material);
     }
     return node;
 }
 
-std::vector<kE::Renderer::Texture>
-Kiwi::Engine::Asset::Loader::loadMaterialTextures(aiMaterial *material, aiTextureType type) {
-    std::vector<kE::Renderer::Texture>      textures;
+kE::Renderer::Texture
+Kiwi::Engine::Asset::Loader::loadMaterialTexture(aiMaterial *material, aiTextureType type) {
     static std::unordered_map<std::string, kE::Renderer::Texture> textureCache;
 
-    for (unsigned int i = 0; i < material->GetTextureCount(type); ++i) {
+    if (material->GetTextureCount(type)) {
         aiString str;
-        material->GetTexture(type, i, &str);
+        material->GetTexture(type, 0, &str);
 
         auto r = textureCache.find(str.C_Str());
         if (r != textureCache.end())
-            textures.push_back(textureCache[str.C_Str()]);
+            return (textureCache[str.C_Str()]);
         else
         {
             kE::Renderer::Texture texture = createTexture(Target::FLAT, _path + '/' + str.C_Str());
             textureCache[str.C_Str()] = texture;
-            textures.push_back(texture);
+            return (texture);
         }
     }
-    return textures;
 }
 
 Kiwi::Engine::Primitive::Mesh
