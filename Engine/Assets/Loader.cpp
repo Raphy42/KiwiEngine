@@ -364,3 +364,45 @@ Kiwi::Engine::Asset::Loader::createMeshVUVNTBStrideIndexed(std::vector<glm::vec3
     return mesh;
 }
 
+Kiwi::Engine::Renderer::Texture
+Kiwi::Engine::Asset::Loader::createMap(std::string source, Kiwi::Engine::Renderer::Texture::Type type) {
+    int w, h, comp;
+    stbi_set_flip_vertically_on_load(true);
+
+    unsigned char *image = stbi_load(source.c_str(), &w, &h, &comp, STBI_default);
+
+    if (image == nullptr)
+        throw std::runtime_error(std::string(stbi_failure_reason()) + " : " + source);
+
+    GLenum format;
+    if (comp == 1)
+        format = GL_RED;
+    else if (comp == 3)
+        format = GL_RGB;
+    else if (comp == 4 || comp == 2)
+        format = GL_RGBA;
+    else
+        throw std::invalid_argument("Texture has invalid format: " + source);
+    std::cout << "Loading source " + source << std::endl;
+
+    GLuint texture;
+
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, format, w, h, 0, format, GL_UNSIGNED_BYTE, image);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+    glGenerateMipmap(GL_TEXTURE_2D);
+
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    stbi_image_free(image);
+    return kE::Renderer::Texture(GL_TEXTURE_2D, texture, type);
+}
+
+

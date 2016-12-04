@@ -26,7 +26,9 @@ namespace Kiwi { namespace Engine { namespace Renderer {
 
                 virtual Shading::Type getType() const = 0;
 
-                virtual void setParameter(std::string name, glm::vec3 value) = 0;
+                virtual void setVec3Parameter(std::string name, glm::vec3 value) = 0;
+
+                virtual void setParameter(std::string name, float value) = 0;
 
                 virtual void bindShader(GLProgram shader) = 0;
 

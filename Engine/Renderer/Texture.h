@@ -14,11 +14,12 @@ namespace Kiwi { namespace Engine { namespace Renderer {
             public:
                 enum class Type : int {
                     ALBEDO,
+                    DIFFUSE,
                     NORMAL,
                     SPECULAR,
                     ROUGHNESS,
                     METALLIC,
-                    HEIGHT
+                    HEIGHT,
                 };
 
 

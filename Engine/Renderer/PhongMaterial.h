@@ -26,7 +26,9 @@ namespace Kiwi {
 
                 virtual Shading::Type getType() const override;
 
-                virtual void setParameter(std::string name, glm::vec3 value) override;
+                virtual void setVec3Parameter(std::string name, glm::vec3 value) override;
+
+                virtual void setParameter(std::string name, float value) override;
 
                 virtual void bindShader(GLProgram shader) override;
 

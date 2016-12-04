@@ -15,7 +15,7 @@ in vec2 v_uv;
 in vec3 v_viewPos;
 in vec3 v_normal;
 
-const vec2 UV_SCALE = vec2(8.0, 1.0);
+const vec2 UV_SCALE = vec2(1.0, 1.0);
 const float specularScale = 0.65;
 const float shininess = 20.0;
 const float roughness = 1.0;
@@ -31,24 +31,26 @@ uniform mat4 view;
 
 uniform Light light;
 
+out vec4 color;
+
 // by Tom Madams
 // Simple:
 // https://imdoingitwrong.wordpress.com/2011/01/31/light-attenuation/
 //
 // Improved
 // https://imdoingitwrong.wordpress.com/2011/02/10/improved-light-attenuation/
-//float attenuation(float r, float f, float d) {
-//  float denom = d / r + 1.0;
-//  float attenuation = 1.0 / (denom*denom);
-//  float t = (attenuation - f) / (1.0 - f);
-//  return max(t, 0.0);
-//}
+float attenuation(float r, float f, float d) {
+  float denom = d / r + 1.0;
+  float attenuation = 1.0 / (denom*denom);
+  float t = (attenuation - f) / (1.0 - f);
+  return max(t, 0.0);
+}
 
 // by David Reid - Source:
 // https://kookaburragamer.wordpress.com/2013/03/24/user-friendly-exponential-light-attenuation/
-float attenuation(float r, float f, float d) {
-  return pow(max(0.0, 1.0 - (d / r)), f + 1.0);
-}
+//float attenuation(float r, float f, float d) {
+//  return pow(max(0.0, 1.0 - (d / r)), f + 1.0);
+//}
 
 //http://www.thetenthplanet.de/archives/1180
 mat3 cotangent(vec3 N, vec3 p, vec2 uv) {
@@ -110,12 +112,10 @@ float phongSpecular(
   return pow(max(0.0, dot(viewDirection, R)), shininess);
 }
 
-
 void main() {
     vec3 normal = v_normal;
     vec4 lightPosition = view * vec4(light.position, 1.0);
     vec3 lightVector = lightPosition.xyz - v_viewPos;
-    vec3 color = vec3(0.0);
 
     float lightDistance = length(lightVector);
     float falloff = attenuation(light.radius, light.falloff, lightDistance);
@@ -133,5 +133,6 @@ void main() {
     vec3 diffuse = light.color * orenNayarDiffuse(L, V, N, roughness, albedo) * falloff;
     vec3 ambient = light.ambient;
 
-    color += diffuseColor * (diffuse + ambient) + specular;
+    color.rgb = diffuseColor * (diffuse + ambient) + specular;
+    color.a = 1.f;
 }

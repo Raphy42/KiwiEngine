@@ -11,6 +11,7 @@
 #include "Engine/Scene/Level.h"
 #include "Engine/Assets/Storage.h"
 #include "Engine/Renderer/PhongMaterial.h"
+#include "Engine/Renderer/PhongTexturedMaterial.h"
 
 
 namespace kE = Kiwi::Engine;
@@ -86,36 +87,10 @@ public:
 
         _hid->bind(&cameraListener);
 
-//        kE::Renderer::Material chien_de_prairie(
-//                loader.createTexture(kE::Asset::Loader::Target::FLAT, "./Assets/textures/prairie-dog.jpg"));
-//
-//        kE::Renderer::Material ponpon(loader.createTexture(
-//                kE::Asset::Loader::Target::FLAT,
-//                "./Assets/textures/ponpon.png"),
-//                                      kE::Renderer::Material::Type::TEST);
-//
-//        kE::Renderer::Material crate(loader.createTexture(
-//                kE::Asset::Loader::Target::FLAT,
-//                "./Assets/textures/container.jpg"),
-//                                      kE::Renderer::Material::Type::TEST);
-//
-//        _creator.createLevelFromConfig(Kiwi::Core::JSONConfig("./Assets/levels/test.json"));
-//
-//        kE::Renderer::Material basic_light(kE::Renderer::Material::Type::BASIC_LIGHTING);
-//
         kE::Primitive::Mesh cube = loader.createDefaultMesh(kE::Asset::Loader::Type::CUBE);
-//        kE::Primitive::Mesh plane = loader.createDefaultMesh(kE::Asset::Loader::Type::PLANE);
-//        kE::Scene::Entity mitsuba = loader.createEntityFromModel("./Assets/models/mitsuba/mitsuba.obj");
-//                kE::Scene::Entity sponza = loader.createEntityFromModel("./Assets/models/crytek-sponza/sponza-fix.obj");
-//        kE::Scene::Entity sibenik = loader.createEntityFromModel("./Assets/models/sibenik/sibenik.obj");
-//
-//        level.getScene()->addChild(mitsuba);
-//            level.getScene()->addChild(sponza);
-//        level.getScene()->addChild(sibenik);
 
         kE::Renderer::PhongMaterial red_phong;
         red_phong.setColor(glm::vec3(1.0f, 0.f, 0.f));
-        red_phong.setParameter("shininess", glm::vec3(1.0f, 0.f, 0.f));
 
         kE::Renderer::PhongMaterial green_phong;
         green_phong.setColor(glm::vec3(0.0f, 1.f, 0.f));
@@ -123,12 +98,24 @@ public:
         kE::Renderer::PhongMaterial blue_phong;
         blue_phong.setColor(glm::vec3(0.0f, 0.f, 1.f));
 
-        kE::Renderer::PhongMaterial phong;
+        kE::Renderer::PhongTexturedMaterial brick;
+
+        brick.addMap(loader.createMap("./Assets/textures/brick-diffuse.jpg", kE::Renderer::Texture::Type::DIFFUSE));
+        brick.addMap(loader.createMap("./Assets/textures/brick-normal.jpg", kE::Renderer::Texture::Type::NORMAL));
+        brick.addMap(loader.createMap("./Assets/textures/brick-specular.jpg", kE::Renderer::Texture::Type::SPECULAR));
+
+        kE::Renderer::PhongTexturedMaterial crate;
+
+        crate.addMap(loader.createMap("./Assets/textures/container-diffuse.jpg", kE::Renderer::Texture::Type::DIFFUSE));
+        brick.addMap(loader.createMap("./Assets/textures/container-normal.jpg", kE::Renderer::Texture::Type::NORMAL));
+        brick.addMap(
+                loader.createMap("./Assets/textures/container-specular.jpg", kE::Renderer::Texture::Type::SPECULAR));
 
         level.getScene()->addChild(kE::Scene::Entity(cube, &red_phong, glm::vec3(-1.f, 0.f, 1.f)));
         level.getScene()->addChild(kE::Scene::Entity(cube, &green_phong, glm::vec3(1.f, 0.f, -1.f)));
         level.getScene()->addChild(kE::Scene::Entity(cube, &blue_phong, glm::vec3(1.f, 0.f, 1.f)));
-        level.getScene()->addChild(kE::Scene::Entity(cube, &phong, glm::vec3(-1.f, 0.f, -1.f)));
+        level.getScene()->addChild(kE::Scene::Entity(cube, &crate, glm::vec3(-1.f, 0.f, -1.f)));
+        level.getScene()->addChild(kE::Scene::Entity(cube, &brick, glm::vec3(0.f, 0.f, 0.f)));
 
         _renderer.bindLevel(level);
         _renderer.bindCamera(&camera);

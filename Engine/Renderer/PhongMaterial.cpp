@@ -32,7 +32,7 @@ void Kiwi::Engine::Renderer::PhongMaterial::bind(unsigned int slot) {
     //no texture binding for basic phong shader
 }
 
-void Kiwi::Engine::Renderer::PhongMaterial::setParameter(std::string name, glm::vec3 value) {
+void Kiwi::Engine::Renderer::PhongMaterial::setVec3Parameter(std::string name, glm::vec3 value) {
     glUseProgram(_shader.get());
     glUniform3f(_locationMap[name], value.x, value.y, value.z);
 }
@@ -42,10 +42,14 @@ Kiwi::Engine::Renderer::Shading::Type Kiwi::Engine::Renderer::PhongMaterial::get
 }
 
 void Kiwi::Engine::Renderer::PhongMaterial::addMap(Kiwi::Engine::Renderer::Texture texture) {
-    throw std::runtime_error("You need phong_material_texture (not implemented)");
+    throw std::runtime_error("You need a PhongMaterialTextured to do that!");
 }
 
 void Kiwi::Engine::Renderer::PhongMaterial::update() {
     GLuint bind = _shader.get();
     glUniform3f(_locationMap["object_color"], _color.x, _color.y, _color.z);
+}
+
+void Kiwi::Engine::Renderer::PhongMaterial::setParameter(std::string name, float value) {
+    throw std::runtime_error("Unused");
 }

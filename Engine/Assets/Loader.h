@@ -44,6 +44,8 @@ namespace Kiwi { namespace Engine { namespace Asset {
                 Primitive::Mesh                     createMeshFromAttributes(Vertices v, Indices i, Textures t);
                 Renderer::Texture                   createTexture(Target, std::string source);
 
+                Renderer::Texture createMap(std::string source, Renderer::Texture::Type type);
+
                 Primitive::Mesh                     createMeshFromVertices(std::vector<float> v);
                 Primitive::Mesh                     createMeshFromSimpleModel(const char *filename);
                 Scene::Entity                         createEntityFromModel(const char *filename);

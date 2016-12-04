@@ -48,6 +48,8 @@ namespace Kiwi {
                 //todo refactor perspective
                 //todo refactor uniforms
 
+                glUseProgram(program.get());
+
                 glUniformMatrix4fv(glGetUniformLocation(program.get(), "view"),
                                    1, GL_FALSE, glm::value_ptr(_camera->getViewMat4()));
                 glUniformMatrix4fv(glGetUniformLocation(program.get(), "model"),
@@ -55,9 +57,17 @@ namespace Kiwi {
                 glUniformMatrix4fv(glGetUniformLocation(program.get(), "projection"),
                                    1, GL_FALSE, glm::value_ptr(_camera->getProjectionMat4()));
 
-                node.getMaterial()->setParameter("light_pos", glm::vec3(0.f, 1.f, 0.f));
-                node.getMaterial()->setParameter("view_pos", camera);
-                node.getMaterial()->setParameter("light_color", glm::vec3(1.0f, 1.0f, 1.0f));
+                if (node.getMaterial()->getType() == Shading::Type::PHONG) {
+                    node.getMaterial()->setVec3Parameter("light_pos", glm::vec3(0.f, 1.f, 0.f));
+                    node.getMaterial()->setVec3Parameter("view_pos", camera);
+                    node.getMaterial()->setVec3Parameter("light_color", glm::vec3(1.0f, 1.0f, 1.0f));
+                } else if (node.getMaterial()->getType() == Shading::Type::PHONG_TEXTURED) {
+                    node.getMaterial()->setVec3Parameter("light_position", glm::vec3(0.f, 2.f, 0.f));
+                    node.getMaterial()->setVec3Parameter("light_color", glm::vec3(1.f, 1.f, 1.f));
+                    node.getMaterial()->setVec3Parameter("light_ambient", glm::vec3(0.8f, 0.8f, 0.69f));
+                    node.getMaterial()->setParameter("light_falloff", 0.15f);
+                    node.getMaterial()->setParameter("light_radius", 5.f);
+                }
 
                 node.getMaterial()->bind(0);
                 node.getMesh().bind();

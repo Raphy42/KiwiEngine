@@ -13,10 +13,16 @@ out vec2 v_uv;
 out vec3 v_viewPos;
 
 void main() {
-     gl_Position = projection * view * model * vec4(pos, 1.f);
-     v_uv = uv;
-     mat4 modelViewMatrix = view * model;
-     vec4 viewModelPosition = modelViewMatrix * vec4(pos, 1.f);
-     v_viewPos = viewModelPosition.xyz;
-     v_normal = normalize(transpose(inverse(mat3(view * model))) * normal);
+      mat4 modelViewMatrix = view * model;
+       vec4 viewModelPosition = modelViewMatrix * vec4(pos, 1.f);
+
+       // Pass varyings to fragment shader
+       v_viewPos = viewModelPosition.xyz;
+       v_uv = uv;
+       gl_Position = projection * viewModelPosition;
+
+       // Rotate the object normals by a 3x3 normal matrix.
+       // We could also do this CPU-side to avoid doing it per-vertex
+       mat3 normalMatrix = transpose(inverse(mat3(modelViewMatrix)));
+       v_normal = normalize(normalMatrix * normal);
 }

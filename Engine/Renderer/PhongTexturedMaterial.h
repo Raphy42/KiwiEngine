@@ -20,7 +20,9 @@ namespace Kiwi {
 
                 virtual Shading::Type getType() const override;
 
-                virtual void setParameter(std::string name, glm::vec3 value) override;
+                virtual void setVec3Parameter(std::string name, glm::vec3 value) override;
+
+                virtual void setParameter(std::string name, float value) override;
 
                 virtual void bindShader(GLProgram shader) override;
 
@@ -29,6 +31,9 @@ namespace Kiwi {
             private:
                 GLProgram _shader;
                 std::unordered_map<std::string, GLint> _locationMap;
+                Texture _diffuse;
+                Texture _normal;
+                Texture _specular;
             };
 
         }
