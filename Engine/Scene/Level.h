@@ -12,18 +12,19 @@ namespace Kiwi { namespace Engine { namespace Scene {
             class Level {
             public:
                 Level() {};
-                Level(Entity *root) : _root(root) {}
+
+                Level(Entity &root) : _root(root) {}
                 ~Level() {};
 
-                Entity *getScene() {
+                Entity getScene() {
                     return _root;
                 }
 
-                Entity *get_root() const {
+                Entity get_root() const {
                     return _root;
                 }
 
-                void set_root(Entity *_root) {
+                void set_root(Entity _root) {
                     Level::_root = _root;
                 }
 
@@ -31,8 +32,8 @@ namespace Kiwi { namespace Engine { namespace Scene {
                     return _name;
                 }
 
-                void set_name(const std::string &_name) {
-                    Level::_name = _name;
+                void set_name(const std::string &name) {
+                    _name = name;
                 }
 
                 const glm::mat4 &get_transform() const {
@@ -44,7 +45,7 @@ namespace Kiwi { namespace Engine { namespace Scene {
                 }
 
             private:
-                Entity                                *_root;
+                Entity _root;
                 std::string                         _name;
                 glm::mat4                           _transform;
             };

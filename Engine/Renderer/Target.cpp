@@ -28,7 +28,8 @@ static GLuint generateAttachmentTexture(int width, int height, GLboolean depth, 
                      nullptr);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glBindTexture(GL_TEXTURE_2D, 0);
+
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureID, 0);
 
     return textureID;
 }
@@ -43,7 +44,7 @@ Kiwi::Engine::Renderer::Target::Target(int width, int height) {
     glGenRenderbuffers(1, &_rbo);
     glBindRenderbuffer(GL_RENDERBUFFER, _rbo);
     glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height); // Use a single renderbuffer object for both a depth AND stencil buffer.
-    glBindRenderbuffer(GL_RENDERBUFFER, 0);
+//    glBindRenderbuffer(GL_RENDERBUFFER, 0);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, _rbo); // Now actually attach it
     // Now that we actually created the framebuffer and added all attachments we want to check if it is actually complete now
     if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
@@ -77,10 +78,10 @@ Kiwi::Engine::Renderer::Target::Target(int width, int height) {
 
 
 Kiwi::Engine::Renderer::Target::~Target() {
-//    if (_fbo)
-//        glDeleteFramebuffers(1, &_fbo);
-//    if (_rbo)
-//        glDeleteRenderbuffers(1, &_rbo);
+    if (_fbo)
+        glDeleteFramebuffers(1, &_fbo);
+    if (_rbo)
+        glDeleteRenderbuffers(1, &_rbo);
 }
 
 void Kiwi::Engine::Renderer::Target::bindFrame() const {
@@ -92,11 +93,12 @@ void Kiwi::Engine::Renderer::Target::renderFrame(GLProgram shader) const {
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glDisable(GL_DEPTH_TEST);
 
-//    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-//    glClear(GL_COLOR_BUFFER_BIT);
+    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
 
     glUseProgram(shader.get());
     _mesh.bind();
+    glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, _texture);
 
     glDrawArrays(GL_TRIANGLES, 0, 6);

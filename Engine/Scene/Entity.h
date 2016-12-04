@@ -16,11 +16,11 @@ namespace Kiwi {
         namespace Scene {
             class Entity {
             public:
-                Entity() {};
+                Entity() : _material(nullptr) {};
 
-                Entity(Primitive::Mesh mesh, Renderer::Material material) :
+                Entity(Primitive::Mesh mesh, Renderer::Material *material) :
                         _mesh(mesh),
-                        _material(&material),
+                        _material(material),
                         _transform(glm::mat4())
                 {};
 
@@ -42,11 +42,6 @@ namespace Kiwi {
 
                 void addChild(Entity child) {
                     _children.push_back(child);
-                }
-
-                void addChildMesh(Primitive::Mesh mesh, Renderer::Material material) {
-                    Entity node = Entity(mesh, material);
-                    _children.push_back(node);
                 }
 
                 Primitive::Mesh getMesh() const {

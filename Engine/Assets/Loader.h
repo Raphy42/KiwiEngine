@@ -13,11 +13,12 @@
 #include "../Primitives/Model.h"
 #include "../Scene/Entity.h"
 
-namespace Kiwi { namespace Engine { namespace Asset {
+namespace Kiwi {
+    namespace Engine {
+        namespace Asset {
             namespace kE = Kiwi::Engine;
 
-            class Loader
-            {
+            class Loader {
             public:
                 friend  Primitive::Mesh;
                 friend  Primitive::Model;
@@ -33,45 +34,61 @@ namespace Kiwi { namespace Engine { namespace Asset {
                     BOX = GL_SAMPLER_CUBE,
                 };
 
-                Loader() {};
+                Loader() {
+                    _textureCache.emplace("diffuse", createMap("./Assets/textures/uv-debug.jpg",
+                                                               Renderer::Texture::Type::DIFFUSE));
+                    _textureCache.emplace("normal",
+                                          createMap("./Assets/textures/norm.png", Renderer::Texture::Type::NORMAL));
+                    _textureCache.emplace("specular",
+                                          createMap("./Assets/textures/black.png", Renderer::Texture::Type::SPECULAR));
+                };
+
                 ~Loader() {};
 
-                typedef std::vector<Primitive::Vertex>              Vertices;
-                typedef std::vector<unsigned int>                   Indices;
-                typedef std::vector<Renderer::Texture>              Textures;
+                typedef std::vector<Primitive::Vertex> Vertices;
+                typedef std::vector<unsigned int> Indices;
+                typedef std::vector<Renderer::Texture> Textures;
 
-                Primitive::Mesh                     createDefaultMesh(Type type);
-                Primitive::Mesh                     createMeshFromAttributes(Vertices v, Indices i, Textures t);
-                Renderer::Texture                   createTexture(Target, std::string source);
+                Primitive::Mesh createDefaultMesh(Type type);
+
+                Primitive::Mesh createMeshFromAttributes(Vertices v, Indices i, Textures t);
+
+                Renderer::Texture createTexture(Target, std::string source);
 
                 Renderer::Texture createMap(std::string source, Renderer::Texture::Type type);
 
-                Primitive::Mesh                     createMeshFromVertices(std::vector<float> v);
-                Primitive::Mesh                     createMeshFromSimpleModel(const char *filename);
-                Scene::Entity                         createEntityFromModel(const char *filename);
+                Primitive::Mesh createMeshFromVertices(std::vector<float> v);
+
+                Primitive::Mesh createMeshFromSimpleModel(const char *filename);
+
+                Scene::Entity createEntityFromModel(const char *filename);
 
             private:
-                Primitive::Mesh                     createMeshVUVNStride(std::vector<glm::vec3> v,
-                                                                         std::vector<glm::vec2> uv,
-                                                                         std::vector<glm::vec3> n);
-                Primitive::Mesh                     createMeshVUVNStrideIndexed(std::vector<glm::vec3> v,
-                                                                                std::vector<glm::vec2> uv,
-                                                                                std::vector<glm::vec3> n,
-                                                                                std::vector<unsigned int> i);
+                Primitive::Mesh createMeshVUVNStride(std::vector<glm::vec3> v,
+                                                     std::vector<glm::vec2> uv,
+                                                     std::vector<glm::vec3> n);
 
-                Primitive::Mesh                     createMeshVUVNTBStrideIndexed(std::vector<glm::vec3> v,
-                                                                                  std::vector<glm::vec2> uv,
-                                                                                  std::vector<glm::vec3> n,
-                                                                                  std::vector<unsigned int> i,
-                std::vector<glm::vec3> t, std::vector<glm::vec3> b);
+                Primitive::Mesh createMeshVUVNStrideIndexed(std::vector<glm::vec3> v,
+                                                            std::vector<glm::vec2> uv,
+                                                            std::vector<glm::vec3> n,
+                                                            std::vector<unsigned int> i);
 
-                Primitive::Mesh                     createPlane(unsigned int x, unsigned int columns);
-                Primitive::Mesh                     processAiMesh(aiMesh *mesh, const aiScene *aScene);
+                Primitive::Mesh createMeshVUVNTBStrideIndexed(std::vector<glm::vec3> v,
+                                                              std::vector<glm::vec2> uv,
+                                                              std::vector<glm::vec3> n,
+                                                              std::vector<unsigned int> i,
+                                                              std::vector<glm::vec3> t, std::vector<glm::vec3> b);
 
-                Renderer::Texture                   loadMaterialTexture(aiMaterial *material, aiTextureType type);
+                Primitive::Mesh createPlane(unsigned int x, unsigned int columns);
+
+                Primitive::Mesh processAiMesh(aiMesh *mesh, const aiScene *aScene);
+
+                Renderer::Texture
+                loadMaterialTexture(aiMaterial *material, aiTextureType type, Renderer::Texture::Type map);
 
 
-                std::string                         _path;
+                std::string _path;
+                std::unordered_map<std::string, kE::Renderer::Texture> _textureCache;
             };
 
 

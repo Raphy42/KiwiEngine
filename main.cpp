@@ -81,13 +81,14 @@ public:
 
         kE::Asset::Storage storage;
 
-        kE::Scene::Level level(new kE::Scene::Entity);
+        kE::Scene::Entity root;
         kE::Primitive::FPSCamera camera(glm::vec3(1.f, 1.f, 1.f), glm::vec3(0.f, 1.f, 0.f));
         kE::Primitive::FPSCameraEventListener cameraListener(&camera);
 
         _hid->bind(&cameraListener);
 
         kE::Primitive::Mesh cube = loader.createDefaultMesh(kE::Asset::Loader::Type::CUBE);
+        kE::Scene::Entity sponza = loader.createEntityFromModel("./Assets/models/crytek-sponza/sponza-fix.obj");
 
         kE::Renderer::PhongMaterial red_phong;
         red_phong.setColor(glm::vec3(1.0f, 0.f, 0.f));
@@ -111,13 +112,13 @@ public:
         brick.addMap(
                 loader.createMap("./Assets/textures/container-specular.jpg", kE::Renderer::Texture::Type::SPECULAR));
 
-        level.getScene()->addChild(kE::Scene::Entity(cube, &red_phong, glm::vec3(-1.f, 0.f, 1.f)));
-        level.getScene()->addChild(kE::Scene::Entity(cube, &green_phong, glm::vec3(1.f, 0.f, -1.f)));
-        level.getScene()->addChild(kE::Scene::Entity(cube, &blue_phong, glm::vec3(1.f, 0.f, 1.f)));
-        level.getScene()->addChild(kE::Scene::Entity(cube, &crate, glm::vec3(-1.f, 0.f, -1.f)));
-        level.getScene()->addChild(kE::Scene::Entity(cube, &brick, glm::vec3(0.f, 0.f, 0.f)));
+//        sponza.addChild(kE::Scene::Entity(cube, &red_phong, glm::vec3(-1.f, 0.f, 1.f)));
+//        sponza.addChild(kE::Scene::Entity(cube, &green_phong, glm::vec3(1.f, 0.f, -1.f)));
+//        sponza.addChild(kE::Scene::Entity(cube, &blue_phong, glm::vec3(1.f, 0.f, 1.f)));
+//        sponza.addChild(kE::Scene::Entity(cube, &crate, glm::vec3(-1.f, 0.f, -1.f)));
+//        sponza.addChild(kE::Scene::Entity(cube, &brick, glm::vec3(0.f, 0.f, 0.f)));
 
-        _renderer.bindLevel(level);
+        _renderer.bindLevel(kE::Scene::Level(sponza));
         _renderer.bindCamera(&camera);
         _renderer.bindTarget(kE::Renderer::Target(1280, 800));
 

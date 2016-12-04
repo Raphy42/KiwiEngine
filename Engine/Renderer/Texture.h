@@ -23,11 +23,11 @@ namespace Kiwi { namespace Engine { namespace Renderer {
                 };
 
 
-                Texture() : _target(GL_TEXTURE_2D), _id(0) {};
+                Texture() : _target(GL_TEXTURE_2D), _id(0), _type(Type::DIFFUSE) {};
                 Texture(GLenum target, GLuint id) :
                         _target(target),
                         _id(id),
-                        _type(Type::ALBEDO)
+                        _type(Type::DIFFUSE)
                 {};
 
                 Texture(GLenum target, GLuint id, Type type) :

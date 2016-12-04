@@ -11,6 +11,8 @@
 #include "stb_image.h"
 #include "Tools.h"
 #include "ugly.h"
+#include "../Renderer/PhongTexturedMaterial.h"
+#include "../Renderer/PhongMaterial.h"
 
 
 extern struct _cube cube;
@@ -118,12 +120,12 @@ kE::Renderer::Texture
 Kiwi::Engine::Asset::Loader::createTexture(Kiwi::Engine::Asset::Loader::Target target, std::string source) {
     int w, h, comp;
     stbi_set_flip_vertically_on_load(true);
-    
+
     unsigned char *image = stbi_load(source.c_str(), &w, &h, &comp, STBI_default);
 
     if (image == nullptr)
         throw std::runtime_error(std::string(stbi_failure_reason()) + " : " + source);
-    
+
     GLenum format;
     if (comp == 1)
         format = GL_RED;
@@ -134,7 +136,7 @@ Kiwi::Engine::Asset::Loader::createTexture(Kiwi::Engine::Asset::Loader::Target t
     else
         throw std::invalid_argument("Texture has invalid format: " + source);
     std::cout << "Loading source " + source << std::endl;
-    
+
     GLuint texture;
 
     glGenTextures(1, &texture);
@@ -225,8 +227,8 @@ Kiwi::Engine::Primitive::Mesh
 Kiwi::Engine::Asset::Loader::createMeshFromSimpleModel(const char *filename) {
     Assimp::Importer importer;
     const aiScene *scene = importer.ReadFile(filename, aiProcess_Triangulate |
-                                                     aiProcess_GenNormals | aiProcess_FlipUVs |
-            aiProcess_JoinIdenticalVertices | aiProcess_GenUVCoords);
+                                                       aiProcess_GenNormals | aiProcess_FlipUVs |
+                                                       aiProcess_JoinIdenticalVertices | aiProcess_GenUVCoords);
 
     if (!scene || scene->mFlags == AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
         throw std::runtime_error(importer.GetErrorString());
@@ -261,8 +263,7 @@ Kiwi::Engine::Asset::Loader::processAiMesh(aiMesh *mesh, const aiScene *aScene) 
         } else {
             uv = glm::vec2(0.0f, 0.0f);
         }
-        if (mesh->HasTangentsAndBitangents())
-        {
+        if (mesh->HasTangentsAndBitangents()) {
             glm::vec3 tangent(mesh->mTangents[i].x, mesh->mTangents[i].y, mesh->mTangents[i].z);
             glm::vec3 bitangent(mesh->mBitangents[i].x, mesh->mBitangents[i].y, mesh->mBitangents[i].z);
             t.push_back(tangent);
@@ -288,51 +289,62 @@ Kiwi::Engine::Asset::Loader::processAiMesh(aiMesh *mesh, const aiScene *aScene) 
 
 Kiwi::Engine::Scene::Entity
 Kiwi::Engine::Asset::Loader::createEntityFromModel(const char *filename) {
-    std::string file  = filename;
+    std::string file = filename;
     _path = file.substr(0, file.find_last_of('/')); //todo potential fatal failure to fix
-    kE::Scene::Entity     node;
-    Assimp::Importer    importer;
-    const aiScene   *scene = importer.ReadFile(filename, aiProcess_Triangulate |
-                                                         aiProcess_GenNormals |
-                                                         aiProcess_JoinIdenticalVertices |
-            aiProcess_GenUVCoords | aiProcess_CalcTangentSpace);
+    kE::Scene::Entity node;
+    Assimp::Importer importer;
+    const aiScene *scene = importer.ReadFile(filename, aiProcess_Triangulate |
+                                                       aiProcess_GenNormals |
+                                                       aiProcess_JoinIdenticalVertices |
+                                                       aiProcess_GenUVCoords | aiProcess_CalcTangentSpace);
 
     if (!scene || scene->mFlags == AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
         throw std::runtime_error(importer.GetErrorString());
-    for (int i = 0; i < scene->mNumMeshes; ++i)
-    {
-//        kE::Renderer::Material material;
-//        if (scene->mMeshes[i]->mMaterialIndex > 0)
-//        {
-//            aiMaterial *obj_material = scene->mMaterials[scene->mMeshes[i]->mMaterialIndex];
-//
-//            material.addMap(loadMaterialTexture(obj_material, aiTextureType_DIFFUSE));
-//            material.addMap(loadMaterialTexture(obj_material, aiTextureType_NORMALS));
-//            material.addMap(loadMaterialTexture(obj_material, aiTextureType_OPACITY));
-//        }
-//        kE::Primitive::Mesh mesh = processAiMesh(scene->mMeshes[i], scene);
-//        node.addChildMesh(mesh, material);
+    for (int i = 0; i < scene->mNumMeshes; ++i) {
+        if (scene->mMeshes[i]->mMaterialIndex > 0) {
+            kE::Renderer::PhongTexturedMaterial *material = new kE::Renderer::PhongTexturedMaterial();
+            aiMaterial *obj_material = scene->mMaterials[scene->mMeshes[i]->mMaterialIndex];
+
+            material->addMap(
+                    loadMaterialTexture(obj_material, aiTextureType_DIFFUSE, kE::Renderer::Texture::Type::DIFFUSE));
+            material->addMap(
+                    loadMaterialTexture(obj_material, aiTextureType_NORMALS, kE::Renderer::Texture::Type::NORMAL));
+            material->addMap(
+                    loadMaterialTexture(obj_material, aiTextureType_SPECULAR, kE::Renderer::Texture::Type::SPECULAR));
+            kE::Primitive::Mesh mesh = processAiMesh(scene->mMeshes[i], scene);
+            node.addChild(kE::Scene::Entity(mesh, material));
+        } else { //no textures found, phongmaterial with white default color TODO: replace by debug
+            kE::Renderer::PhongMaterial *material = new kE::Renderer::PhongMaterial();
+
+            material->setColor(glm::vec3(1.0f, 1.0f, 1.0f));
+            kE::Primitive::Mesh mesh = processAiMesh(scene->mMeshes[i], scene);
+            node.addChild(kE::Scene::Entity(mesh, material));
+        }
     }
     return node;
 }
 
 kE::Renderer::Texture
-Kiwi::Engine::Asset::Loader::loadMaterialTexture(aiMaterial *material, aiTextureType type) {
-    static std::unordered_map<std::string, kE::Renderer::Texture> textureCache;
-
-    if (material->GetTextureCount(type)) {
-        aiString str;
+Kiwi::Engine::Asset::Loader::loadMaterialTexture(aiMaterial *material, aiTextureType type,
+                                                 kE::Renderer::Texture::Type map) {
+    aiString str;
+    if (!material->GetTextureCount(type)) {
+        if (map == kE::Renderer::Texture::Type::DIFFUSE)
+            return _textureCache["diffuse"];
+        else if (map == kE::Renderer::Texture::Type::NORMAL)
+            return _textureCache["normal"];
+        else if (map == kE::Renderer::Texture::Type::SPECULAR)
+            return _textureCache["specular"];
+    } else
         material->GetTexture(type, 0, &str);
-
-        auto r = textureCache.find(str.C_Str());
-        if (r != textureCache.end())
-            return (textureCache[str.C_Str()]);
-        else
-        {
-            kE::Renderer::Texture texture = createTexture(Target::FLAT, _path + '/' + str.C_Str());
-            textureCache[str.C_Str()] = texture;
-            return (texture);
-        }
+    std::cout << str.C_Str() << std::endl;
+    auto r = _textureCache.find(str.C_Str());
+    if (r != _textureCache.end())
+        return (_textureCache[str.C_Str()]);
+    else {
+        kE::Renderer::Texture texture = createMap(_path + '/' + str.C_Str(), map);
+        _textureCache[str.C_Str()] = texture;
+        return (texture);
     }
 }
 

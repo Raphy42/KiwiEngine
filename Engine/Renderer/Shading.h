@@ -14,7 +14,7 @@ namespace Kiwi {
                     PHONG = 0x1,
                     PHONG_TEXTURED = 0x2,
                     PBR = 0x3,
-
+                    POST_PROCESS = 0x4,
 
                     DEBUG = 0xf         //last enum so we can _shaders.reserve(DEBUG)
                 };

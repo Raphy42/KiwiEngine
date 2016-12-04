@@ -28,18 +28,18 @@ namespace Kiwi {
                 glClearColor(0.1f, 0.1f, 0.1f, 1.f);
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
                 glEnable(GL_DEPTH_TEST);
-                for (auto node : _level.getScene()->getChildren()) {
-                    renderNode(node);
-                    for (auto it : node.getChildren()) {
-                        renderNode(it);
-                    }
-                }
+                for (auto &entity : _level.getScene().getChildren())
+                    renderNode(entity);
 
-//                glUseProgram(0);
-//                _target.renderFrame(_shaders[2]);
+//                _target.renderFrame(static_cast<int>(Shading::Type::POST_PROCESS));
             }
 
             void Renderer::renderNode(Scene::Entity node) {
+                if (!node.getMaterial()) {
+                    for (auto &entity : node.getChildren())
+                        renderNode(entity);
+                    return;
+                }
                 glm::vec3 lightPos = glm::vec3(1.f, 1.f, 1.f);
                 glm::vec3 camera = _camera->getPosition();
                 GLProgram program = _shaders[static_cast<int>(node.getMaterial()->getType())];
@@ -65,8 +65,8 @@ namespace Kiwi {
                     node.getMaterial()->setVec3Parameter("light_position", glm::vec3(0.f, 2.f, 0.f));
                     node.getMaterial()->setVec3Parameter("light_color", glm::vec3(1.f, 1.f, 1.f));
                     node.getMaterial()->setVec3Parameter("light_ambient", glm::vec3(0.8f, 0.8f, 0.69f));
-                    node.getMaterial()->setParameter("light_falloff", 0.15f);
-                    node.getMaterial()->setParameter("light_radius", 5.f);
+                    node.getMaterial()->setParameter("light_falloff", .7f);
+                    node.getMaterial()->setParameter("light_radius", 1.f);
                 }
 
                 node.getMaterial()->bind(0);
@@ -85,8 +85,10 @@ namespace Kiwi {
 
             void Renderer::bindLevel(Scene::Level level) {
                 _level = level;
-                for (auto entity : _level.get_root()->getChildren())
-                    entity.getMaterial()->bindShader(_shaders[static_cast<int>(entity.getMaterial()->getType())]);
+                for (auto entity : _level.get_root().getChildren()) {
+                    if (entity.getMaterial())
+                        entity.getMaterial()->bindShader(_shaders[static_cast<int>(entity.getMaterial()->getType())]);
+                }
             }
         }
     }
