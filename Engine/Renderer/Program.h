@@ -8,6 +8,7 @@
 template<typename Bind>
 class Program {
 public:
+    Program() {}
     Program(Bind bind) : _bind(bind) {}
 
     Bind get(void) const {

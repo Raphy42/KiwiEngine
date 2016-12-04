@@ -301,17 +301,17 @@ Kiwi::Engine::Asset::Loader::createEntityFromModel(const char *filename) {
         throw std::runtime_error(importer.GetErrorString());
     for (int i = 0; i < scene->mNumMeshes; ++i)
     {
-        kE::Renderer::Material material;
-        if (scene->mMeshes[i]->mMaterialIndex > 0)
-        {
-            aiMaterial *obj_material = scene->mMaterials[scene->mMeshes[i]->mMaterialIndex];
-
-            material.addMap(loadMaterialTexture(obj_material, aiTextureType_DIFFUSE));
-            material.addMap(loadMaterialTexture(obj_material, aiTextureType_NORMALS));
-            material.addMap(loadMaterialTexture(obj_material, aiTextureType_OPACITY));
-        }
-        kE::Primitive::Mesh mesh = processAiMesh(scene->mMeshes[i], scene);
-        node.addChildMesh(mesh, material);
+//        kE::Renderer::Material material;
+//        if (scene->mMeshes[i]->mMaterialIndex > 0)
+//        {
+//            aiMaterial *obj_material = scene->mMaterials[scene->mMeshes[i]->mMaterialIndex];
+//
+//            material.addMap(loadMaterialTexture(obj_material, aiTextureType_DIFFUSE));
+//            material.addMap(loadMaterialTexture(obj_material, aiTextureType_NORMALS));
+//            material.addMap(loadMaterialTexture(obj_material, aiTextureType_OPACITY));
+//        }
+//        kE::Primitive::Mesh mesh = processAiMesh(scene->mMeshes[i], scene);
+//        node.addChildMesh(mesh, material);
     }
     return node;
 }

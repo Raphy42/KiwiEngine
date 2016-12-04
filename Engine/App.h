@@ -22,10 +22,12 @@ namespace Kiwi {
             void update(Event::Type::CoreEvent &notification) override {
                 switch (notification.type) {
                     case Event::Type::CoreInteraction::SHADER_LINK_ERROR:
-                        std::cerr << "Linker: " << notification.message << std::endl;
+                        std::cerr << "Linker: " << std::endl << notification.message << std::endl;
+                        exit(EXIT_FAILURE);
                         break;
                     case Event::Type::CoreInteraction::SHADER_BUILD_ERROR:
-                        std::cerr << "Shader: " << notification.message << std::endl;
+                        std::cerr << "Shader: " << std::endl << notification.message << std::endl;
+                        exit(EXIT_FAILURE);
                         break;
                     default:
                         std::cerr << "ERROR: " << notification.message << std::endl;

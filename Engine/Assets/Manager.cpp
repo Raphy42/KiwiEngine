@@ -5,5 +5,5 @@
 #include "Manager.h"
 
 Kiwi::Engine::Asset::Manager::Manager() : _config("config/config.ini") {
-//    _vfs.bind(_config.get("Filesystem.root"));
+//    _vfs.bindTextures(_config.get("Filesystem.root"));
 }

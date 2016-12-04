@@ -8,7 +8,7 @@
 
 Kiwi::Engine::Event::GLFWNotifier::GLFWNotifier(GLFWwindow *window) :
         _handle(window) {
-    //bind Notifier to window
+    //bindTextures Notifier to window
     glfwSetWindowUserPointer(_handle, this);
 }
 

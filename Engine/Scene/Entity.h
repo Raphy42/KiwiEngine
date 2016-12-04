@@ -16,15 +16,15 @@ namespace Kiwi {
         namespace Scene {
             class Entity {
             public:
-                Entity() : _material(Renderer::Material::Type::TEST) {};
+                Entity() {};
 
                 Entity(Primitive::Mesh mesh, Renderer::Material material) :
                         _mesh(mesh),
-                        _material(material),
+                        _material(&material),
                         _transform(glm::mat4())
                 {};
 
-                Entity(Primitive::Mesh mesh, Renderer::Material material, glm::vec3 position) :
+                Entity(Primitive::Mesh mesh, Renderer::Material *material, glm::vec3 position) :
                     _mesh(mesh),
                     _material(material),
                     _transform(glm::translate(glm::mat4(), position))
@@ -44,7 +44,7 @@ namespace Kiwi {
                     _children.push_back(child);
                 }
 
-                void addChildMesh(Primitive::Mesh mesh, Renderer::Material material = Renderer::Material(Renderer::Material::Type::TEST)) {
+                void addChildMesh(Primitive::Mesh mesh, Renderer::Material material) {
                     Entity node = Entity(mesh, material);
                     _children.push_back(node);
                 }
@@ -53,11 +53,11 @@ namespace Kiwi {
                     return _mesh;
                 }
 
-                Renderer::Material getMaterial() const {
+                Renderer::Material *getMaterial() const {
                     return _material;
                 }
 
-                void setMaterial(const Renderer::Material &material) {
+                void setMaterial(Renderer::Material *material) {
                     _material = material;
                 }
 
@@ -67,8 +67,8 @@ namespace Kiwi {
 
             private:
                 Primitive::Mesh         _mesh;
-                Renderer::Material      _material;
-                std::vector<Entity>       _children;
+                Renderer::Material *_material;
+                std::vector<Entity> _children;
                 glm::mat4               _transform;
             };
         }

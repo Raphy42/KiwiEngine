@@ -6,40 +6,32 @@
 #define KIWIENGINE_MATERIAL_H
 
 #include <memory>
+#include <string>
 #include <unordered_map>
+#include <glm/vec3.hpp>
 #include "Shader.h"
 #include "Texture.h"
+#include "Shading.h"
+#include "Program.h"
 
 namespace Kiwi { namespace Engine { namespace Renderer {
             class Material
             {
             public:
-                enum class Type : int {
-                    TEST = 0x0,
-                    BASIC_LIGHTING,
-                    PBR,
-                    PHONG,
-                    CUSTOM,
-                };
+                Material() {};
 
-                Material()  : _type(Type::TEST) {};
+                virtual ~Material() = default;
 
-                Material(Type type) : _type(type) {};
-                Material(Texture texture) : _diffuse(texture) {};
-                Material(Texture texture, Type type) : _diffuse(texture), _type(type) {};
-                ~Material() {};
+                virtual void bindTextures(unsigned int slot) = 0;
 
-                void bind(unsigned int slot) const;
+                virtual Shading::Type getType() const = 0;
 
-                void addMap(Texture texture);
+                virtual void setParameter(std::string name, glm::vec3 value) = 0;
 
-                Type getType() const;
+                virtual void bindShader(GLProgram shader) = 0;
 
-            private:
-                std::vector<Texture>        _textures;
-                Texture                     _diffuse;
-                Texture                     _normal;
-                Type                        _type;
+                virtual void addMap(Texture texture) = 0;
+
             };
         }
     }

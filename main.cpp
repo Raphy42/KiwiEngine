@@ -10,6 +10,7 @@
 #include "Engine/Assets/Loader.h"
 #include "Engine/Scene/Level.h"
 #include "Engine/Assets/Storage.h"
+#include "Engine/Renderer/PhongMaterial.h"
 
 
 namespace kE = Kiwi::Engine;
@@ -102,16 +103,31 @@ public:
 //
 //        kE::Renderer::Material basic_light(kE::Renderer::Material::Type::BASIC_LIGHTING);
 //
-//        kE::Primitive::Mesh cube = loader.createDefaultMesh(kE::Asset::Loader::Type::CUBE);
+        kE::Primitive::Mesh cube = loader.createDefaultMesh(kE::Asset::Loader::Type::CUBE);
 //        kE::Primitive::Mesh plane = loader.createDefaultMesh(kE::Asset::Loader::Type::PLANE);
 //        kE::Scene::Entity mitsuba = loader.createEntityFromModel("./Assets/models/mitsuba/mitsuba.obj");
-                kE::Scene::Entity sponza = loader.createEntityFromModel("./Assets/models/crytek-sponza/sponza-fix.obj");
+//                kE::Scene::Entity sponza = loader.createEntityFromModel("./Assets/models/crytek-sponza/sponza-fix.obj");
 //        kE::Scene::Entity sibenik = loader.createEntityFromModel("./Assets/models/sibenik/sibenik.obj");
 //
 //        level.getScene()->addChild(mitsuba);
-            level.getScene()->addChild(sponza);
+//            level.getScene()->addChild(sponza);
 //        level.getScene()->addChild(sibenik);
-//        level.getScene()->addChild(kE::Scene::Entity(cube, chien_de_prairie, glm::vec3(0.f, 1.3f, 0.f)));
+
+        kE::Renderer::PhongMaterial red_phong;
+        red_phong.setColor(glm::vec3(1.0f, 0.f, 0.f));
+
+        kE::Renderer::PhongMaterial green_phong;
+        green_phong.setColor(glm::vec3(0.0f, 1.f, 0.f));
+
+        kE::Renderer::PhongMaterial blue_phong;
+        blue_phong.setColor(glm::vec3(0.0f, 0.f, 1.f));
+
+        kE::Renderer::PhongMaterial phong;
+
+        level.getScene()->addChild(kE::Scene::Entity(cube, &red_phong, glm::vec3(-1.f, 0.f, 1.f)));
+        level.getScene()->addChild(kE::Scene::Entity(cube, &green_phong, glm::vec3(1.f, 0.f, -1.f)));
+        level.getScene()->addChild(kE::Scene::Entity(cube, &blue_phong, glm::vec3(1.f, 0.f, 1.f)));
+        level.getScene()->addChild(kE::Scene::Entity(cube, &phong, glm::vec3(-1.f, 0.f, -1.f)));
 
         _renderer.bindLevel(level);
         _renderer.bindCamera(&camera);

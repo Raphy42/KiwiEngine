@@ -63,6 +63,7 @@ namespace Kiwi {
                     static float lastX, lastY;
                     float xpos;
                     float ypos;
+                    static bool updateMouse = true;
 
                     switch (notification.type) {
                         case Event::Type::HumanInteraction::CURSOR_ENTERED:
@@ -82,7 +83,7 @@ namespace Kiwi {
                                 lastY = ypos;
                                 _first = false;
                             }
-                            if (_in)
+                            if (_in && updateMouse)
                                 _camera->center(xpos - lastX, lastY - ypos);
                             lastX = xpos;
                             lastY = ypos;
@@ -104,6 +105,9 @@ namespace Kiwi {
                                     break;
                                 case GLFW_KEY_D:
                                     _camera->move(Camera::Action::STRAFE_RIGHT, 0.05f);
+                                    break;
+                                case GLFW_KEY_SPACE:
+                                    updateMouse = !updateMouse;
                                     break;
                                 default:
                                     break;

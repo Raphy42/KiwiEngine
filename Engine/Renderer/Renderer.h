@@ -10,6 +10,7 @@
 #include "../Primitives/FPSCamera.h"
 #include "Program.h"
 #include "Target.h"
+#include "Shading.h"
 
 namespace Kiwi {
     namespace Engine {
@@ -22,7 +23,9 @@ namespace Kiwi {
 
                 void bindShaders(std::vector<GLProgram> shaders) { _shaders = shaders; };
 
-                void bindLevel(Scene::Level level) { _level = level; };
+                void bindShader(Shading::Type type, GLProgram shader);
+
+                void bindLevel(Scene::Level level);
 
                 void bindCamera(Primitive::FPSCamera *camera) { _camera = camera; };
 
