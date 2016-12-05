@@ -40,6 +40,7 @@ namespace Kiwi {
                 std::vector<GLProgram>      _shaders;
                 Target                      _target;
 
+                void updateNode(Scene::Entity node);
             };
         }
     }

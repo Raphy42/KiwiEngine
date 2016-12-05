@@ -44,8 +44,17 @@ namespace Kiwi { namespace Engine { namespace Scene {
                     Level::_transform = _transform;
                 }
 
+                void setSkybox(Entity texture) {
+                    _skybox = texture;
+                }
+
+                Entity getSkybox(void) {
+                    return _skybox;
+                }
+
             private:
                 Entity _root;
+                Entity _skybox;
                 std::string                         _name;
                 glm::mat4                           _transform;
             };

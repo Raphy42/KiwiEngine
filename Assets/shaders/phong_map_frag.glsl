@@ -39,18 +39,18 @@ out vec4 color;
 //
 // Improved
 // https://imdoingitwrong.wordpress.com/2011/02/10/improved-light-attenuation/
-float attenuation(float r, float f, float d) {
-  float denom = d / r + 1.0;
-  float attenuation = 1.0 / (denom*denom);
-  float t = (attenuation - f) / (1.0 - f);
-  return max(t, 0.0);
-}
+//float attenuation(float r, float f, float d) {
+//  float denom = d / r + 1.0;
+//  float attenuation = 1.0 / (denom*denom);
+//  float t = (attenuation - f) / (1.0 - f);
+//  return max(t, 0.0);
+//}
 
 // by David Reid - Source:
 // https://kookaburragamer.wordpress.com/2013/03/24/user-friendly-exponential-light-attenuation/
-//float attenuation(float r, float f, float d) {
-//  return pow(max(0.0, 1.0 - (d / r)), f + 1.0);
-//}
+float attenuation(float r, float f, float d) {
+  return pow(max(0.0, 1.0 - (d / r)), f + 1.0);
+}
 
 //http://www.thetenthplanet.de/archives/1180
 mat3 cotangent(vec3 N, vec3 p, vec2 uv) {

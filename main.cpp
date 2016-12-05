@@ -12,6 +12,7 @@
 #include "Engine/Assets/Storage.h"
 #include "Engine/Renderer/PhongMaterial.h"
 #include "Engine/Renderer/PhongTexturedMaterial.h"
+#include "Engine/Renderer/CubeMaterial.h"
 
 
 namespace kE = Kiwi::Engine;
@@ -89,8 +90,9 @@ public:
 
         kE::Primitive::Mesh cube = loader.createDefaultMesh(kE::Asset::Loader::Type::CUBE);
         kE::Scene::Entity sponza = loader.createEntityFromModel("./Assets/models/crytek-sponza/sponza-fix.obj");
-        kE::Scene::Entity bunny = loader.createEntityFromModel("./Assets/models/stanford_bunny.obj");
-
+//        kE::Scene::Entity sibenik = loader.createEntityFromModel("./Assets/models/sibenik/sibenik.obj");
+//        kE::Scene::Entity bunny = loader.createEntityFromModel("./Assets/models/stanford_bunny.obj");
+//
         kE::Renderer::PhongMaterial red_phong;
         red_phong.setColor(glm::vec3(1.0f, 0.f, 0.f));
 
@@ -114,13 +116,68 @@ public:
                 loader.createMap("./Assets/textures/container-specular.jpg", kE::Renderer::Texture::Type::SPECULAR));
 
 //        sponza.addChild(bunny);
-//        sponza.addChild(kE::Scene::Entity(cube, &red_phong, glm::vec3(-1.f, 0.f, 1.f)));
-//        sponza.addChild(kE::Scene::Entity(cube, &green_phong, glm::vec3(1.f, 0.f, -1.f)));
-//        sponza.addChild(kE::Scene::Entity(cube, &blue_phong, glm::vec3(1.f, 0.f, 1.f)));
-//        sponza.addChild(kE::Scene::Entity(cube, &crate, glm::vec3(-1.f, 0.f, -1.f)));
-//        sponza.addChild(kE::Scene::Entity(cube, &brick, glm::vec3(0.f, 0.f, 0.f)));
+        sponza.addChild(kE::Scene::Entity(cube, &red_phong, glm::vec3(-1.f, 0.f, 1.f)));
+        sponza.addChild(kE::Scene::Entity(cube, &green_phong, glm::vec3(1.f, 0.f, -1.f)));
+        sponza.addChild(kE::Scene::Entity(cube, &blue_phong, glm::vec3(1.f, 0.f, 1.f)));
+        sponza.addChild(kE::Scene::Entity(cube, &crate, glm::vec3(-1.f, 0.f, -1.f)));
+        sponza.addChild(kE::Scene::Entity(cube, &brick, glm::vec3(0.f, 0.f, 0.f)));
 
-        _renderer.bindLevel(kE::Scene::Level(sponza));
+        kE::Scene::Entity skybox = kE::Scene::Entity(loader.createMeshFromVertices({-10.0f, 10.0f, -10.0f,
+                                                                                    -10.0f, -10.0f, -10.0f,
+                                                                                    10.0f, -10.0f, -10.0f,
+                                                                                    10.0f, -10.0f, -10.0f,
+                                                                                    10.0f, 10.0f, -10.0f,
+                                                                                    -10.0f, 10.0f, -10.0f,
+
+                                                                                    -10.0f, -10.0f, 10.0f,
+                                                                                    -10.0f, -10.0f, -10.0f,
+                                                                                    -10.0f, 10.0f, -10.0f,
+                                                                                    -10.0f, 10.0f, -10.0f,
+                                                                                    -10.0f, 10.0f, 10.0f,
+                                                                                    -10.0f, -10.0f, 10.0f,
+
+                                                                                    10.0f, -10.0f, -10.0f,
+                                                                                    10.0f, -10.0f, 10.0f,
+                                                                                    10.0f, 10.0f, 10.0f,
+                                                                                    10.0f, 10.0f, 10.0f,
+                                                                                    10.0f, 10.0f, -10.0f,
+                                                                                    10.0f, -10.0f, -10.0f,
+
+                                                                                    -10.0f, -10.0f, 10.0f,
+                                                                                    -10.0f, 10.0f, 10.0f,
+                                                                                    10.0f, 10.0f, 10.0f,
+                                                                                    10.0f, 10.0f, 10.0f,
+                                                                                    10.0f, -10.0f, 10.0f,
+                                                                                    -10.0f, -10.0f, 10.0f,
+
+                                                                                    -10.0f, 10.0f, -10.0f,
+                                                                                    10.0f, 10.0f, -10.0f,
+                                                                                    10.0f, 10.0f, 10.0f,
+                                                                                    10.0f, 10.0f, 10.0f,
+                                                                                    -10.0f, 10.0f, 10.0f,
+                                                                                    -10.0f, 10.0f, -10.0f,
+
+                                                                                    -10.0f, -10.0f, -10.0f,
+                                                                                    -10.0f, -10.0f, 10.0f,
+                                                                                    10.0f, -10.0f, -10.0f,
+                                                                                    10.0f, -10.0f, -10.0f,
+                                                                                    -10.0f, -10.0f, 10.0f,
+                                                                                    10.0f, -10.0f, 10.0f}),
+                                                     new kE::Renderer::CubeMaterial(loader.createCubeMap({
+                                                                                                                 "./Assets/textures/skybox/right.jpg",
+                                                                                                                 "./Assets/textures/skybox/left.jpg",
+                                                                                                                 "./Assets/textures/skybox/top.jpg",
+                                                                                                                 "./Assets/textures/skybox/bottom.jpg",
+                                                                                                                 "./Assets/textures/skybox/back.jpg",
+                                                                                                                 "./Assets/textures/skybox/front.jpg",
+
+                                                                                                         })));
+
+        kE::Scene::Level l(sponza);
+
+        l.setSkybox(skybox);
+
+        _renderer.bindLevel(l);
         _renderer.bindCamera(&camera);
         _renderer.bindTarget(kE::Renderer::Target(1280, 800));
 

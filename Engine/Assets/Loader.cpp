@@ -13,47 +13,12 @@
 #include "ugly.h"
 #include "../Renderer/PhongTexturedMaterial.h"
 #include "../Renderer/PhongMaterial.h"
+#include "../Renderer/Target.h"
 
 
 extern struct _cube cube;
 
 namespace kE = Kiwi::Engine;
-
-kE::Primitive::Mesh
-kE::Asset::Loader::createMeshFromAttributes(kE::Asset::Loader::Vertices v,
-                                            kE::Asset::Loader::Indices i,
-                                            kE::Asset::Loader::Textures t) {
-    GLuint vao, vbo, ebo;
-
-    glGenVertexArrays(1, &vao);
-    glGenBuffers(1, &vbo);
-    glGenBuffers(1, &ebo);
-
-    glBindVertexArray(vao);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-
-    glBufferData(GL_ARRAY_BUFFER, sizeof(kE::Primitive::Vertex) * v.size(), &v[0], GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint) * i.size(), &i[0], GL_STATIC_DRAW);
-
-
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(kE::Primitive::Vertex), nullptr);
-
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(kE::Primitive::Vertex),
-                          (GLvoid *) offsetof(kE::Primitive::Vertex, normal));
-
-    glEnableVertexAttribArray(2);
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(kE::Primitive::Vertex),
-                          (GLvoid *) offsetof(kE::Primitive::Vertex, texture));
-
-    glBindVertexArray(0);
-
-    kE::Primitive::Mesh mesh(vao, vbo, ebo, i.size());
-    return mesh;
-}
 
 kE::Primitive::Mesh
 Kiwi::Engine::Asset::Loader::createMeshFromVertices(std::vector<float> v) {
@@ -415,6 +380,43 @@ Kiwi::Engine::Asset::Loader::createMap(std::string source, Kiwi::Engine::Rendere
 
     stbi_image_free(image);
     return kE::Renderer::Texture(GL_TEXTURE_2D, texture, type);
+}
+
+Kiwi::Engine::Renderer::Texture Kiwi::Engine::Asset::Loader::createCubeMap(std::vector<const char *> sources) {
+    GLuint textureID;
+    glGenTextures(1, &textureID);
+
+    stbi_set_flip_vertically_on_load(false);
+
+    int width, height, comp;
+    unsigned char *image;
+
+    glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
+    for (GLuint i = 0; i < sources.size(); i++) {
+        image = stbi_load(sources[i], &width, &height, &comp, STBI_default);
+
+        if (image == nullptr)
+            throw std::runtime_error(std::string(stbi_failure_reason()));
+
+        GLenum format;
+        if (comp == 3)
+            format = GL_RGB;
+        else
+            format = GL_RGBA;
+        glTexImage2D(
+                GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0,
+                format, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image
+        );
+        stbi_image_free(image);
+    }
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+    glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
+
+    return kE::Renderer::Texture(GL_TEXTURE_CUBE_MAP, textureID, kE::Renderer::Texture::Type::CUBE_MAP);
 }
 
 

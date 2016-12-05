@@ -51,22 +51,6 @@ void Kiwi::Engine::App::start() {
 
     std::unordered_map<std::string, std::string> sources = _vfs->from("shaders").loadAllFromCurrentDirectory();
 
-//    _renderer.bindShaders({
-//                                  p_builder.createProgramFromShaders(
-//                                          s_builder.createFromFile(GL_VERTEX_SHADER, sources["default_vert.glsl"]),
-//                                          s_builder.createFromFile(GL_FRAGMENT_SHADER, sources["default_frag.glsl"])),
-//                                  p_builder.createProgramFromShaders(
-//                                          s_builder.createFromFile(GL_VERTEX_SHADER, sources["light_basic_vert.glsl"]),
-//                                          s_builder.createFromFile(GL_FRAGMENT_SHADER,
-//                                                                   sources["light_basic_frag.glsl"])),
-//                                  p_builder.createProgramFromShaders(
-//                                          s_builder.createFromFile(GL_VERTEX_SHADER, sources["screen_vert.glsl"]),
-//                                          s_builder.createFromFile(GL_FRAGMENT_SHADER, sources["screen_frag.glsl"])),
-//                                  p_builder.createProgramFromShaders(
-//                                          s_builder.createFromFile(GL_VERTEX_SHADER, sources["phong_vert.glsl"]),
-//                                          s_builder.createFromFile(GL_FRAGMENT_SHADER, sources["phong_frag.glsl"])
-//                                  )
-//                          });
     _renderer.bindShader(Renderer::Shading::Type::PHONG, p_builder.createProgramFromShaders(
             s_builder.createFromFile(GL_VERTEX_SHADER, sources["phong_vert.glsl"]),
             s_builder.createFromFile(GL_FRAGMENT_SHADER, sources["phong_frag.glsl"])
@@ -80,6 +64,11 @@ void Kiwi::Engine::App::start() {
     _renderer.bindShader(Renderer::Shading::Type::PHONG_TEXTURED, p_builder.createProgramFromShaders(
             s_builder.createFromFile(GL_VERTEX_SHADER, sources["phong_map_vert.glsl"]),
             s_builder.createFromFile(GL_FRAGMENT_SHADER, sources["phong_map_frag.glsl"])
+    ));
+
+    _renderer.bindShader(Renderer::Shading::Type::SKYBOX, p_builder.createProgramFromShaders(
+            s_builder.createFromFile(GL_VERTEX_SHADER, sources["skybox_vert.glsl"]),
+            s_builder.createFromFile(GL_FRAGMENT_SHADER, sources["skybox_frag.glsl"])
     ));
 
 

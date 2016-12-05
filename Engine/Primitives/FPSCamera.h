@@ -65,6 +65,11 @@ namespace Kiwi {
                     float ypos;
                     static bool updateMouse = true;
 
+                    static float lastFrame;
+                    GLfloat currentFrame = glfwGetTime();
+                    static float deltaTime = currentFrame - lastFrame;
+                    lastFrame = currentFrame;
+
                     switch (notification.type) {
                         case Event::Type::HumanInteraction::CURSOR_ENTERED:
                             _in = true;
@@ -95,16 +100,16 @@ namespace Kiwi {
                         case Event::Type::HumanInteraction::KEY_REPEATED :
                             switch (notification.key.key) {
                                 case GLFW_KEY_W:
-                                    _camera->move(Camera::Action::FORWARD, 0.05f);
+                                    _camera->move(Camera::Action::FORWARD, deltaTime);
                                     break;
                                 case GLFW_KEY_S:
-                                    _camera->move(Camera::Action::BACKWARD, 0.05f);
+                                    _camera->move(Camera::Action::BACKWARD, deltaTime);
                                     break;
                                 case GLFW_KEY_A:
-                                    _camera->move(Camera::Action::STRAFE_LEFT, 0.05f);
+                                    _camera->move(Camera::Action::STRAFE_LEFT, deltaTime);
                                     break;
                                 case GLFW_KEY_D:
-                                    _camera->move(Camera::Action::STRAFE_RIGHT, 0.05f);
+                                    _camera->move(Camera::Action::STRAFE_RIGHT, deltaTime);
                                     break;
                                 case GLFW_KEY_SPACE:
                                     updateMouse = !updateMouse;

@@ -45,17 +45,16 @@ namespace Kiwi {
 
                 ~Loader() {};
 
-                typedef std::vector<Primitive::Vertex> Vertices;
                 typedef std::vector<unsigned int> Indices;
                 typedef std::vector<Renderer::Texture> Textures;
 
                 Primitive::Mesh createDefaultMesh(Type type);
 
-                Primitive::Mesh createMeshFromAttributes(Vertices v, Indices i, Textures t);
-
                 Renderer::Texture createTexture(Target, std::string source);
 
                 Renderer::Texture createMap(std::string source, Renderer::Texture::Type type);
+
+                Renderer::Texture createCubeMap(std::vector<const char *> sources);
 
                 Primitive::Mesh createMeshFromVertices(std::vector<float> v);
 

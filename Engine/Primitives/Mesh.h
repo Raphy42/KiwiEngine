@@ -14,11 +14,6 @@
 namespace Kiwi {
     namespace Engine {
         namespace Primitive {
-            struct Vertex {
-                glm::vec3       position;
-                glm::vec3       normal;
-                glm::vec2       texture;
-            };
             class Mesh {
             public:
                 enum class Topology : GLenum {
@@ -52,6 +47,7 @@ namespace Kiwi {
                         glDrawElements((GLenum) _topology, _size, GL_UNSIGNED_INT, 0);
                     else
                         glDrawArrays((GLenum) _topology, 0, (GLsizei) _size);
+                    glBindVertexArray(0);
 
                 }
 

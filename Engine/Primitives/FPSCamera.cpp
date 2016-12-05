@@ -11,7 +11,7 @@ Kiwi::Engine::Primitive::FPSCamera::FPSCamera() :
         _right(glm::vec3(1.f, 0.f, 0.f)),
         _yaw(-90.f),
         _pitch(0.f),
-        _speed(1.0f),
+        _speed(.01f),
         _sensitivity(0.25f),
         _zoom(68.f),
         _worldUp(0.f, 1.f, 0.f)
@@ -24,7 +24,7 @@ Kiwi::Engine::Primitive::FPSCamera::FPSCamera(glm::vec3 position, glm::vec3 up) 
         _right(glm::vec3(1.f, 0.f, 0.f)),
         _yaw(-90.f),
         _pitch(0.f),
-        _speed(1.0f),
+        _speed(.01f),
         _sensitivity(0.25f),
         _zoom(68.f),
         _worldUp(0.f, 1.f, 0.f)
@@ -37,7 +37,7 @@ Kiwi::Engine::Primitive::FPSCamera::FPSCamera(glm::vec3 position, glm::vec3 up, 
         _right(glm::vec3(1.f, 0.f, 0.f)),
         _yaw(yaw),
         _pitch(pitch),
-        _speed(1.0f),
+        _speed(.01f),
         _sensitivity(0.25f),
         _zoom(68.f),
         _worldUp(0.f, 1.f, 0.f)

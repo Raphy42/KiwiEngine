@@ -20,6 +20,7 @@ namespace Kiwi { namespace Engine { namespace Renderer {
                     ROUGHNESS,
                     METALLIC,
                     HEIGHT,
+                    CUBE_MAP,
                 };
 
 
