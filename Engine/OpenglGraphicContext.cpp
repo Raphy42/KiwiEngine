@@ -13,7 +13,8 @@ Kiwi::Engine::OpenglGraphicContext::OpenglGraphicContext() :
                                                           {GLFW_CONTEXT_VERSION_MAJOR, _version.first},
                                                           {GLFW_CONTEXT_VERSION_MINOR, _version.second},
                                                           {GLFW_OPENGL_FORWARD_COMPAT, true},
-                                                          {GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE}
+                                                          {GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE},
+                                                          {GLFW_SAMPLES, 2}
                                                   }))
 {
 
@@ -27,7 +28,8 @@ Kiwi::Engine::OpenglGraphicContext::OpenglGraphicContext(std::pair<int, int> siz
                                                               {GLFW_CONTEXT_VERSION_MAJOR, _version.first},
                                                               {GLFW_CONTEXT_VERSION_MINOR, _version.second},
                                                               {GLFW_OPENGL_FORWARD_COMPAT, true},
-                                                              {GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE}
+                                                              {GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE},
+                                                              {GLFW_SAMPLES, 2}
                                                       }))
 {
 }
@@ -41,7 +43,8 @@ Kiwi::Engine::OpenglGraphicContext::OpenglGraphicContext(std::pair<int, int> siz
                                                               {GLFW_CONTEXT_VERSION_MAJOR, _version.first},
                                                               {GLFW_CONTEXT_VERSION_MINOR, _version.second},
                                                               {GLFW_OPENGL_FORWARD_COMPAT, true},
-                                                              {GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE}
+                                                              {GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE},
+                                                              {GLFW_SAMPLES, 2}
                                                       }))
 {
 }

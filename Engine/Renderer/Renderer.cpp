@@ -29,6 +29,7 @@ namespace Kiwi {
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
                 glEnable(GL_DEPTH_TEST);
+                glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
                 glDepthFunc(GL_LESS);
                 for (auto &entity : _level.getScene().getChildren())
                     renderNode(entity);
@@ -78,11 +79,11 @@ namespace Kiwi {
                                    1, GL_FALSE, glm::value_ptr(_camera->getProjectionMat4()));
 
                 if (node.getMaterial()->getType() == Shading::Type::PHONG) {
-                    node.getMaterial()->setVec3Parameter("light_pos", glm::vec3(0.f, 1.f, 0.f));
+                    node.getMaterial()->setVec3Parameter("light_pos", glm::vec3(0.f, 3.f, 0.f));
                     node.getMaterial()->setVec3Parameter("view_pos", camera);
                     node.getMaterial()->setVec3Parameter("light_color", glm::vec3(1.0f, 1.0f, 1.0f));
                 } else if (node.getMaterial()->getType() == Shading::Type::PHONG_TEXTURED) {
-                    node.getMaterial()->setVec3Parameter("light_position", glm::vec3(0.f, 3.f, 0.f));
+                    node.getMaterial()->setVec3Parameter("light_position", glm::vec3(0.f, 5.f, 0.f));
                     node.getMaterial()->setVec3Parameter("light_color", glm::vec3(1.f, 1.f, 1.f));
                     node.getMaterial()->setVec3Parameter("light_ambient", glm::vec3(0.8f, 0.7f, 0.69f));
                     node.getMaterial()->setParameter("light_falloff", .12f);

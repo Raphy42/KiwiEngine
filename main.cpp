@@ -52,6 +52,8 @@ public:
                         break;
                 }
                 break;
+            case kE::Event::Type::HumanInteraction::FRAMEBUFFER_RESIZED:
+                glViewport(0, 0, notification.size.width, notification.size.height);
             default:
                 break;
         }
@@ -89,10 +91,14 @@ public:
         _hid->bind(&cameraListener);
 
         kE::Primitive::Mesh cube = loader.createDefaultMesh(kE::Asset::Loader::Type::CUBE);
-        kE::Scene::Entity sponza = loader.createEntityFromModel("./Assets/models/crytek-sponza/sponza-fix.obj");
+        kE::Scene::Entity coin = loader.createEntityFromModel("./Assets/models/coin/Coin.obj");
+        kE::Scene::Entity test_area = loader.createEntityFromModel("./Assets/models/scene.obj");
+//        kE::Scene::Entity sponza = loader.createEntityFromModel("./Assets/models/crytek-sponza/sponza-fix.obj");
 //        kE::Scene::Entity sibenik = loader.createEntityFromModel("./Assets/models/sibenik/sibenik.obj");
 //        kE::Scene::Entity bunny = loader.createEntityFromModel("./Assets/models/stanford_bunny.obj");
 //
+        kE::Scene::Entity scene;
+
         kE::Renderer::PhongMaterial red_phong;
         red_phong.setColor(glm::vec3(1.0f, 0.f, 0.f));
 
@@ -116,11 +122,13 @@ public:
                 loader.createMap("./Assets/textures/container-specular.jpg", kE::Renderer::Texture::Type::SPECULAR));
 
 //        sponza.addChild(bunny);
-        sponza.addChild(kE::Scene::Entity(cube, &red_phong, glm::vec3(-1.f, 0.f, 1.f)));
-        sponza.addChild(kE::Scene::Entity(cube, &green_phong, glm::vec3(1.f, 0.f, -1.f)));
-        sponza.addChild(kE::Scene::Entity(cube, &blue_phong, glm::vec3(1.f, 0.f, 1.f)));
-        sponza.addChild(kE::Scene::Entity(cube, &crate, glm::vec3(-1.f, 0.f, -1.f)));
-        sponza.addChild(kE::Scene::Entity(cube, &brick, glm::vec3(0.f, 0.f, 0.f)));
+        scene.addChild(test_area.getChildren()[0]);
+        scene.addChild(coin.getChildren()[0]);
+        scene.addChild(kE::Scene::Entity(cube, &red_phong, glm::vec3(-1.f, 0.f, 1.f)));
+        scene.addChild(kE::Scene::Entity(cube, &green_phong, glm::vec3(1.f, 0.f, -1.f)));
+        scene.addChild(kE::Scene::Entity(cube, &blue_phong, glm::vec3(1.f, 0.f, 1.f)));
+        scene.addChild(kE::Scene::Entity(cube, &crate, glm::vec3(-1.f, 0.f, -1.f)));
+        scene.addChild(kE::Scene::Entity(cube, &brick, glm::vec3(0.f, 0.f, 0.f)));
 
         kE::Scene::Entity skybox = kE::Scene::Entity(loader.createMeshFromVertices({-10.0f, 10.0f, -10.0f,
                                                                                     -10.0f, -10.0f, -10.0f,
@@ -173,13 +181,15 @@ public:
 
                                                                                                          })));
 
-        kE::Scene::Level l(sponza);
+        kE::Scene::Level l(scene);
 
         l.setSkybox(skybox);
 
         _renderer.bindLevel(l);
         _renderer.bindCamera(&camera);
         _renderer.bindTarget(kE::Renderer::Target(1280, 800));
+
+        glEnable(GL_MULTISAMPLE);
 
         while (1) {
             run();

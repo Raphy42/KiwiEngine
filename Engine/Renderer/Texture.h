@@ -21,6 +21,7 @@ namespace Kiwi { namespace Engine { namespace Renderer {
                     METALLIC,
                     HEIGHT,
                     CUBE_MAP,
+                    ALPHA
                 };
 
 

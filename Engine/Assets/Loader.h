@@ -35,12 +35,13 @@ namespace Kiwi {
                 };
 
                 Loader() {
-                    _textureCache.emplace("diffuse", createMap("./Assets/textures/ponpon.png",
+                    _textureCache.emplace("diffuse", createMap("./Assets/textures/uv-debug.jpg",
                                                                Renderer::Texture::Type::DIFFUSE));
                     _textureCache.emplace("normal",
                                           createMap("./Assets/textures/norm.png", Renderer::Texture::Type::NORMAL));
                     _textureCache.emplace("specular",
                                           createMap("./Assets/textures/black.png", Renderer::Texture::Type::SPECULAR));
+                    _textureCache.emplace("alpha", createMap("./Assets/textures/white.png", Renderer::Texture::Type::ALPHA));
                 };
 
                 ~Loader() {};
@@ -52,7 +53,7 @@ namespace Kiwi {
 
                 Renderer::Texture createTexture(Target, std::string source);
 
-                Renderer::Texture createMap(std::string source, Renderer::Texture::Type type);
+                Renderer::Texture createMap(std::string source, Renderer::Texture::Type type, bool alpha = false);
 
                 Renderer::Texture createCubeMap(std::vector<const char *> sources);
 

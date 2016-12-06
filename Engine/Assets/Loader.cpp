@@ -267,19 +267,29 @@ Kiwi::Engine::Asset::Loader::createEntityFromModel(const char *filename) {
         throw std::runtime_error(importer.GetErrorString());
     for (int i = 0; i < scene->mNumMeshes; ++i) {
         if (scene->mMeshes[i]->mMaterialIndex > 0) {
+            aiString matName;
+            scene->mMaterials[scene->mMeshes[i]->mMaterialIndex]->Get(AI_MATKEY_NAME, matName);
+
+            std::cout << std::endl;
+            std::cout << "Creating new PhongTexturedMaterial: " << matName.C_Str() << std::endl;
+
             kE::Renderer::PhongTexturedMaterial *material = new kE::Renderer::PhongTexturedMaterial();
             aiMaterial *obj_material = scene->mMaterials[scene->mMeshes[i]->mMaterialIndex];
 
             material->addMap(
                     loadMaterialTexture(obj_material, aiTextureType_DIFFUSE, kE::Renderer::Texture::Type::DIFFUSE));
             material->addMap(
-                    loadMaterialTexture(obj_material, aiTextureType_NORMALS, kE::Renderer::Texture::Type::NORMAL));
+                    loadMaterialTexture(obj_material, aiTextureType_HEIGHT, kE::Renderer::Texture::Type::NORMAL));
             material->addMap(
                     loadMaterialTexture(obj_material, aiTextureType_SPECULAR, kE::Renderer::Texture::Type::SPECULAR));
+            material->addMap(
+                    loadMaterialTexture(obj_material, aiTextureType_OPACITY, kE::Renderer::Texture::Type::ALPHA));
             kE::Primitive::Mesh mesh = processAiMesh(scene->mMeshes[i], scene);
             node.addChild(kE::Scene::Entity(mesh, material));
         } else { //no textures found, phongmaterial with white default color TODO: replace by debug
             kE::Renderer::PhongMaterial *material = new kE::Renderer::PhongMaterial();
+
+            std::cout << "Phong material creation" << std::endl;
 
             material->setColor(glm::vec3(1.0f, 1.0f, 1.0f));
             kE::Primitive::Mesh mesh = processAiMesh(scene->mMeshes[i], scene);
@@ -294,12 +304,22 @@ Kiwi::Engine::Asset::Loader::loadMaterialTexture(aiMaterial *material, aiTexture
                                                  kE::Renderer::Texture::Type map) {
     aiString str;
     if (!material->GetTextureCount(type)) {
-        if (map == kE::Renderer::Texture::Type::DIFFUSE)
+        if (map == kE::Renderer::Texture::Type::DIFFUSE) {
+            std::cout << "default diffuse" << std::endl;
             return _textureCache["diffuse"];
-        else if (map == kE::Renderer::Texture::Type::NORMAL)
+        }
+        else if (map == kE::Renderer::Texture::Type::NORMAL) {
+            std::cout << "default normal" << std::endl;
             return _textureCache["normal"];
-        else if (map == kE::Renderer::Texture::Type::SPECULAR)
+        }
+        else if (map == kE::Renderer::Texture::Type::SPECULAR) {
+            std::cout << "default specular" << std::endl;
             return _textureCache["specular"];
+        }
+        else if (map == kE::Renderer::Texture::Type::ALPHA) {
+            std::cout << "default alpha" << std::endl;
+            return _textureCache["alpha"];
+        }
     } else
         material->GetTexture(type, 0, &str);
     std::cout << str.C_Str() << std::endl;
@@ -307,7 +327,7 @@ Kiwi::Engine::Asset::Loader::loadMaterialTexture(aiMaterial *material, aiTexture
     if (r != _textureCache.end())
         return (_textureCache[str.C_Str()]);
     else {
-        kE::Renderer::Texture texture = createMap(_path + '/' + str.C_Str(), map);
+        kE::Renderer::Texture texture = createMap(_path + '/' + str.C_Str(), map, map == kE::Renderer::Texture::Type::ALPHA);
         _textureCache[str.C_Str()] = texture;
         return (texture);
     }
@@ -342,25 +362,33 @@ Kiwi::Engine::Asset::Loader::createMeshVUVNTBStrideIndexed(std::vector<glm::vec3
 }
 
 Kiwi::Engine::Renderer::Texture
-Kiwi::Engine::Asset::Loader::createMap(std::string source, Kiwi::Engine::Renderer::Texture::Type type) {
+Kiwi::Engine::Asset::Loader::createMap(std::string source, Kiwi::Engine::Renderer::Texture::Type type, bool alpha) {
     int w, h, comp;
     stbi_set_flip_vertically_on_load(true);
 
-    unsigned char *image = stbi_load(source.c_str(), &w, &h, &comp, STBI_default);
 
-    if (image == nullptr)
+    unsigned char *image = nullptr;
+    if (alpha)
+        image = stbi_load(source.c_str(), &w, &h, &comp, STBI_rgb_alpha);
+    else
+        image = stbi_load(source.c_str(), &w, &h, &comp, STBI_default);
+
+    if (!image)
         throw std::runtime_error(std::string(stbi_failure_reason()) + " : " + source);
 
     GLenum format;
     if (comp == 1)
         format = GL_RED;
+    else if (comp == 2)
+        format = GL_RG;
     else if (comp == 3)
         format = GL_RGB;
-    else if (comp == 4 || comp == 2)
+    else if (comp == 4) {
         format = GL_RGBA;
+        std::cout << "Found alpha!" << std::endl;
+    }
     else
         throw std::invalid_argument("Texture has invalid format: " + source);
-    std::cout << "Loading source " + source << std::endl;
 
     GLuint texture;
 

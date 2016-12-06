@@ -24,6 +24,7 @@ const float albedo = 0.95;
 uniform sampler2D texDiffuse;
 uniform sampler2D texNormal;
 uniform sampler2D texSpecular;
+uniform sampler2D texAlpha;
 
 //uniform int flatShading;
 uniform mat4 model;
@@ -113,6 +114,8 @@ float phongSpecular(
 }
 
 void main() {
+//    if (texture(texAlpha, v_uv).a < 1.f) //replace alpha by diffuse if alpha undefined
+//        discard;
     vec3 normal = v_normal;
     vec4 lightPosition = view * vec4(light.position, 1.0);
     vec3 lightVector = lightPosition.xyz - v_viewPos;
@@ -134,5 +137,4 @@ void main() {
     vec3 ambient = light.ambient;
 
     color.rgb = diffuseColor * (diffuse + ambient) + specular;
-    color.a = 1.f;
 }

@@ -34,6 +34,7 @@ namespace Kiwi {
                 Texture _diffuse;
                 Texture _normal;
                 Texture _specular;
+                Texture _alpha;
             };
 
         }
