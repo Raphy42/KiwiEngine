@@ -102,7 +102,7 @@ public:
 
         kE::Primitive::Mesh cube = loader.createDefaultMesh(kE::Asset::Loader::Type::CUBE);
         kE::Scene::Entity coin = loader.createEntityFromModel("./Assets/models/coin/Coin.obj");
-        kE::Scene::Entity test_area = loader.createEntityFromModel("./Assets/models/scene.obj");
+        kE::Scene::Entity test_area = loader.createEntityFromModel("./Assets/models/hyrule_castle/hyrulecastle.obj");
 //        kE::Scene::Entity sponza = loader.createEntityFromModel("./Assets/models/crytek-sponza/sponza-fix.obj");
 //        kE::Scene::Entity sibenik = loader.createEntityFromModel("./Assets/models/sibenik/sibenik.obj");
 //        kE::Scene::Entity zelda = loader.createEntityFromModel("./Assets/models/twin_house/Inside.obj");
@@ -134,14 +134,15 @@ public:
 
 //        sponza.addChild(bunny);
 
-        test_area.addChild(scene);
-
         kE::Scene::Entity brick_cube = kE::Scene::Entity(cube, &brick);
-        kE::Scene::Actuator brick_actuator, coin_actuator;
+        kE::Scene::Actuator brick_actuator, coin_actuator, scene_actor;
 
         brick_cube.bindActuator(&brick_actuator);
         coin.bindActuator(&coin_actuator);
 
+        test_area.bindActuator(&scene_actor);
+
+        scene.setChildren(test_area.getChildren());
         scene.addChild(brick_cube);
         scene.addChild(coin.getChildren()[0]);
 
@@ -213,8 +214,12 @@ public:
                     ->update();
             coin_actuator
                     .position(glm::vec3(0.f, 2.f, 0.f))
-                    ->setScale(glm::vec3(2.f))
-                    ->rotate(glm::vec3(0.f, 1.f, 0.f), glfwGetTime())
+                    ->setScale(glm::vec3(sin(glfwGetTime()) * 2.f))
+                    ->rotate(glm::vec3(0.f, -1.f, 0.f), glfwGetTime())
+                    ->update();
+
+            scene_actor.position(glm::vec3(0.f, 3.f, 0.f))
+//                    ->rotate(glm::vec3(0.f, 1.f, 0.f), glfwGetTime())
                     ->update();
 
             run();

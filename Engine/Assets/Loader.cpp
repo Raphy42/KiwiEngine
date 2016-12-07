@@ -215,9 +215,16 @@ Kiwi::Engine::Asset::Loader::processAiMesh(aiMesh *mesh, const aiScene *aScene) 
         vertex.z = mesh->mVertices[i].z;
         // Normals
         glm::vec3 normal;
-        normal.x = mesh->mNormals[i].x;
-        normal.y = mesh->mNormals[i].y;
-        normal.z = mesh->mNormals[i].z;
+        if (!mesh->HasNormals())
+        {
+            normal = glm::vec3(1.f);
+        }
+        else
+        {
+            normal.x = mesh->mNormals[i].x;
+            normal.y = mesh->mNormals[i].y;
+            normal.z = mesh->mNormals[i].z;
+        }
         glm::vec2 uv;
         if (mesh->HasTextureCoords(0)) // Does the mesh contain texture coordinates?
         {

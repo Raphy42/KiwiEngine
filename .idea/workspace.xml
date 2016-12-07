@@ -32,8 +32,8 @@
       <config projectName="KiwiEngine" targetName="sharing" />
       <config projectName="KiwiEngine" targetName="unit" />
       <config projectName="KiwiEngine" targetName="timeout" />
-      <config projectName="KiwiEngine" targetName="empty" />
       <config projectName="KiwiEngine" targetName="monitors" />
+      <config projectName="KiwiEngine" targetName="empty" />
       <config projectName="KiwiEngine" targetName="gamma" />
       <config projectName="KiwiEngine" targetName="foo" />
       <config projectName="KiwiEngine" targetName="reopen" />
@@ -46,23 +46,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e830278-0766-4089-9906-f86e00908806" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Engine/GUI/Freetype.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Engine/GUI/Freetype.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Engine/Primitives/AABB.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Engine/Primitives/AABB.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Engine/Scene/Actuator.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Engine/Scene/Actuator.h" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Engine/Primitives/Entity.h" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/assimp" afterPath="$PROJECT_DIR$/vendor/assimp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/KiwiEngine.iml" afterPath="$PROJECT_DIR$/.idea/KiwiEngine.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/shaders/phong_map_frag.glsl" afterPath="$PROJECT_DIR$/Assets/shaders/phong_map_frag.glsl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Engine/Primitives/FPSCamera.cpp" afterPath="$PROJECT_DIR$/Engine/Primitives/FPSCamera.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Engine/Renderer/Renderer.cpp" afterPath="$PROJECT_DIR$/Engine/Renderer/Renderer.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Engine/Renderer/Renderer.h" afterPath="$PROJECT_DIR$/Engine/Renderer/Renderer.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Engine/Scene/Entity.h" afterPath="$PROJECT_DIR$/Engine/Scene/Entity.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Engine/Assets/Loader.cpp" afterPath="$PROJECT_DIR$/Engine/Assets/Loader.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/assimp/AssimpConfig.cmake.in" afterPath="$PROJECT_DIR$/vendor/assimp/AssimpConfig.cmake.in" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/assimp/contrib/gtest/Makefile.am" afterPath="$PROJECT_DIR$/vendor/assimp/contrib/gtest/Makefile.am" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/assimp/contrib/gtest/README.md" afterPath="$PROJECT_DIR$/vendor/assimp/contrib/gtest/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/assimp/contrib/gtest/codegear/gtest.cbproj" afterPath="$PROJECT_DIR$/vendor/assimp/contrib/gtest/codegear/gtest.cbproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/assimp/contrib/gtest/codegear/gtest_main.cbproj" afterPath="$PROJECT_DIR$/vendor/assimp/contrib/gtest/codegear/gtest_main.cbproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/assimp/contrib/gtest/codegear/gtest_unittest.cbproj" afterPath="$PROJECT_DIR$/vendor/assimp/contrib/gtest/codegear/gtest_unittest.cbproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/assimp/contrib/gtest/xcode/gtest.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/vendor/assimp/contrib/gtest/xcode/gtest.xcodeproj/project.pbxproj" />
     </list>
     <ignored path="KiwiEngine.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -82,11 +77,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="163" column="59" selection-start-line="163" selection-start-column="59" selection-end-line="163" selection-end-column="59" />
+            <state relative-caret-position="990">
+              <caret line="66" column="20" selection-start-line="66" selection-start-column="20" selection-end-line="66" selection-end-column="20" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -94,34 +89,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Renderer.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Engine/Renderer/Renderer.cpp">
+      <file leaf-file-name="FPSCamera.h" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Engine/Primitives/FPSCamera.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="95" column="50" selection-start-line="95" selection-start-column="50" selection-end-line="95" selection-end-column="50" />
-              <folding>
-                <marker date="1481088078000" expanded="true" signature="272:5394" ph="{...}" />
-                <marker date="1481088078000" expanded="true" signature="295:5392" ph="{...}" />
-                <marker date="1481088078000" expanded="true" signature="324:5386" ph="{...}" />
-                <marker date="1481088078000" expanded="true" signature="360:603" ph="{...}" />
-                <marker date="1481088078000" expanded="true" signature="641:1887" ph="{...}" />
-                <marker date="1481088078000" expanded="true" signature="1947:3965" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Renderer.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Engine/Renderer/Renderer.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="34" column="54" selection-start-line="34" selection-start-column="54" selection-end-line="34" selection-end-column="54" />
-              <folding>
-                <marker date="1481087117000" expanded="true" signature="287:1290" ph="{...}" />
-                <marker date="1481087117000" expanded="true" signature="310:1288" ph="{...}" />
-                <marker date="1481087117000" expanded="true" signature="339:1282" ph="{...}" />
-                <marker date="1481087117000" expanded="true" signature="368:1271" ph="{...}" />
-              </folding>
+            <state relative-caret-position="714">
+              <caret line="99" column="74" selection-start-line="99" selection-start-column="74" selection-end-line="99" selection-end-column="74" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -141,8 +114,8 @@
       <file leaf-file-name="Actuator.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Engine/Scene/Actuator.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="50" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
+            <state relative-caret-position="300">
+              <caret line="20" column="0" selection-start-line="17" selection-start-column="14" selection-end-line="20" selection-end-column="0" />
               <folding>
                 <element signature="e#110#133#0" expanded="true" />
               </folding>
@@ -150,22 +123,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Entity.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Engine/Scene/Entity.h">
+      <file leaf-file-name="Loader.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Engine/Assets/Loader.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-              <folding>
-                <element signature="e#103#120#0" expanded="true" />
-                <marker date="1481088056000" expanded="true" signature="1149:1206" ph="{...}" />
-                <marker date="1481088056000" expanded="true" signature="1278:1339" ph="{...}" />
-                <marker date="1481088056000" expanded="true" signature="1385:1452" ph="{...}" />
-                <marker date="1481088056000" expanded="true" signature="1502:1555" ph="{...}" />
-                <marker date="1481088056000" expanded="true" signature="1613:1670" ph="{...}" />
-                <marker date="1481088056000" expanded="true" signature="1735:1796" ph="{...}" />
-                <marker date="1481088056000" expanded="true" signature="1844:2029" ph="{...}" />
-                <marker date="1481088056000" expanded="true" signature="2205:2370" ph="{...}" />
-              </folding>
+            <state relative-caret-position="310">
+              <caret line="224" column="9" selection-start-line="224" selection-start-column="9" selection-end-line="224" selection-end-column="9" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -225,7 +188,6 @@
         <option value="$PROJECT_DIR$/Engine/Renderer/Texture.h" />
         <option value="$PROJECT_DIR$/Engine/Renderer/PhongTexturedMaterial.h" />
         <option value="$PROJECT_DIR$/Engine/Renderer/PhongTexturedMaterial.cpp" />
-        <option value="$PROJECT_DIR$/Engine/Assets/Loader.cpp" />
         <option value="$PROJECT_DIR$/Engine/OpenglGraphicContext.cpp" />
         <option value="$PROJECT_DIR$/Assets/models/coin/Coin.mtl" />
         <option value="$PROJECT_DIR$/Engine/Assets/Loader.h" />
@@ -239,8 +201,9 @@
         <option value="$PROJECT_DIR$/Engine/Renderer/Renderer.h" />
         <option value="$PROJECT_DIR$/Engine/Scene/Entity.h" />
         <option value="$PROJECT_DIR$/Engine/Renderer/Renderer.cpp" />
-        <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/Engine/GUI/Freetype.h" />
+        <option value="$PROJECT_DIR$/Engine/Assets/Loader.cpp" />
+        <option value="$PROJECT_DIR$/main.cpp" />
       </list>
     </option>
   </component>
@@ -252,11 +215,10 @@
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="905" />
-    <option name="width" value="1655" />
+    <option name="width" value="2560" />
     <option name="height" value="1440" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -296,6 +258,88 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="KiwiEngine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KiwiEngine" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KiwiEngine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Engine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KiwiEngine" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KiwiEngine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Engine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Scene" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KiwiEngine" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KiwiEngine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Engine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Primitives" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KiwiEngine" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KiwiEngine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KiwiEngine" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KiwiEngine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -692,7 +736,8 @@
       <workItem from="1480969040756" duration="2797000" />
       <workItem from="1480982821449" duration="4251000" />
       <workItem from="1480996299107" duration="2759000" />
-      <workItem from="1481058735994" duration="13758000" />
+      <workItem from="1481058735994" duration="14082000" />
+      <workItem from="1481136881139" duration="1678000" />
     </task>
     <task id="LOCAL-00001" summary="Massive changes">
       <created>1479965082715</created>
@@ -761,7 +806,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="168600000" />
+    <option name="totallyTimeSpent" value="170602000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -773,20 +818,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="905" y="0" width="1655" height="1440" extended-state="0" />
+    <frame x="0" y="0" width="2560" height="1440" extended-state="0" />
     <editor active="true" />
     <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2700556" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32944608" sideWeight="0.49682286" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23542275" sideWeight="0.3776807" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31632653" sideWeight="0.451946" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32944608" sideWeight="0.5079428" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32944608" sideWeight="0.49046862" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18367347" sideWeight="0.5059571" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23542275" sideWeight="0.6223193" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26782393" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31632653" sideWeight="0.46942016" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32944608" sideWeight="0.48543087" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31632653" sideWeight="0.5305798" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32944608" sideWeight="0.49046862" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18367347" sideWeight="0.44637322" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18367347" sideWeight="0.5536268" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39941692" sideWeight="0.67077047" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -794,6 +838,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32944608" sideWeight="0.48543087" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -992,15 +1037,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="894">
           <caret line="116" column="0" selection-start-line="116" selection-start-column="0" selection-end-line="117" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Engine/Primitives/FPSCamera.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="92" column="41" selection-start-line="92" selection-start-column="41" selection-end-line="92" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1008,14 +1044,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="552">
           <caret line="74" column="52" selection-start-line="74" selection-start-column="52" selection-end-line="74" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Engine/Assets/Loader.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="376" column="0" selection-start-line="376" selection-start-column="0" selection-end-line="376" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1059,7 +1087,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1097,7 +1124,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1105,7 +1131,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1124,9 +1149,6 @@
         <state relative-caret-position="402">
           <caret line="39" column="59" selection-start-line="39" selection-start-column="59" selection-end-line="39" selection-end-column="59" />
           <caret line="40" column="59" selection-start-line="40" selection-start-column="59" selection-end-line="40" selection-end-column="59" />
-          <folding>
-            <element signature="e#49#74#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1134,35 +1156,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
           <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Engine/Primitives/Entity.h">
+    <entry file="file://$PROJECT_DIR$/Engine/Primitives/Entity.h" />
+    <entry file="file://$PROJECT_DIR$/Engine/GUI/Freetype.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/GUI/Freetype.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/Renderer/Renderer.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="95" column="50" selection-start-line="95" selection-start-column="50" selection-end-line="95" selection-end-column="50" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Engine/Scene/Actuator.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="11" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
-          <folding>
-            <element signature="e#49#88#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Engine/Scene/Actuator.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="50" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
-          <folding>
-            <element signature="e#110#133#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1170,12 +1186,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
           <caret line="34" column="54" selection-start-line="34" selection-start-column="54" selection-end-line="34" selection-end-column="54" />
-          <folding>
-            <marker date="1481087117000" expanded="true" signature="287:1290" ph="{...}" />
-            <marker date="1481087117000" expanded="true" signature="310:1288" ph="{...}" />
-            <marker date="1481087117000" expanded="true" signature="339:1282" ph="{...}" />
-            <marker date="1481087117000" expanded="true" signature="368:1271" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1197,44 +1207,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Engine/Renderer/Renderer.cpp">
+    <entry file="file://$PROJECT_DIR$/Engine/Scene/Actuator.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="95" column="50" selection-start-line="95" selection-start-column="50" selection-end-line="95" selection-end-column="50" />
+        <state relative-caret-position="480">
+          <caret line="32" column="11" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
           <folding>
-            <marker date="1481088078000" expanded="true" signature="272:5394" ph="{...}" />
-            <marker date="1481088078000" expanded="true" signature="295:5392" ph="{...}" />
-            <marker date="1481088078000" expanded="true" signature="324:5386" ph="{...}" />
-            <marker date="1481088078000" expanded="true" signature="360:603" ph="{...}" />
-            <marker date="1481088078000" expanded="true" signature="641:1887" ph="{...}" />
-            <marker date="1481088078000" expanded="true" signature="1947:3965" ph="{...}" />
+            <element signature="e#49#88#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Engine/GUI/Freetype.h">
+    <entry file="file://$PROJECT_DIR$/Engine/Scene/Actuator.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
-          <folding />
+        <state relative-caret-position="300">
+          <caret line="20" column="0" selection-start-line="17" selection-start-column="14" selection-end-line="20" selection-end-column="0" />
+          <folding>
+            <element signature="e#110#133#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Engine/GUI/Freetype.cpp">
+    <entry file="file://$PROJECT_DIR$/Engine/Assets/Loader.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="310">
+          <caret line="224" column="9" selection-start-line="224" selection-start-column="9" selection-end-line="224" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="163" column="59" selection-start-line="163" selection-start-column="59" selection-end-line="163" selection-end-column="59" />
+        <state relative-caret-position="990">
+          <caret line="66" column="20" selection-start-line="66" selection-start-column="20" selection-end-line="66" selection-end-column="20" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/Primitives/FPSCamera.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="99" column="74" selection-start-line="99" selection-start-column="74" selection-end-line="99" selection-end-column="74" />
+          <folding />
         </state>
       </provider>
     </entry>
