@@ -32,6 +32,7 @@ namespace Kiwi {
                 void render();
 
             private:
+                void recursiveRender(Scene::Entity node);
                 void renderNode(Scene::Entity node);
 
                 std::vector<Material>       _materials;

@@ -31,9 +31,8 @@ namespace Kiwi {
                 glEnable(GL_DEPTH_TEST);
                 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
                 glDepthFunc(GL_LESS);
-                for (auto &entity : _level.getScene().getChildren())
-                    renderNode(entity);
 
+                recursiveRender(_level.get_root());
 
                 glUseProgram(0);
                 glBindVertexArray(0);
@@ -56,11 +55,6 @@ namespace Kiwi {
             }
 
             void Renderer::renderNode(Scene::Entity node) {
-                if (!node.getMaterial()) {
-                    for (auto &entity : node.getChildren())
-                        renderNode(entity);
-                    return;
-                }
                 glm::vec3 lightPos = glm::vec3(1.f, 1.f, 1.f);
                 glm::vec3 camera = _camera->getPosition();
                 GLProgram program = _shaders[static_cast<int>(node.getMaterial()->getType())];
@@ -94,6 +88,15 @@ namespace Kiwi {
                 node.getMesh().bind();
                 node.getMesh().draw();
                 glBindTexture(GL_TEXTURE_2D, 0);
+            }
+
+
+            void Renderer::recursiveRender(Scene::Entity node) {
+                if (node.getMaterial() == nullptr)
+                    for (auto &entity : node.getChildren())
+                        recursiveRender(entity);
+                else
+                    renderNode(node);
             }
 
             void Renderer::bindTarget(Target target) {

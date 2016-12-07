@@ -10,17 +10,20 @@
       <sourceFolder url="file://$MODULE_DIR$/Core/Opengl.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Core/Config.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/OpenglGraphicContext.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/Entity.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/AABB.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/Mesh.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/FPSCamera.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/Model.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/AABB.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/FPSCamera.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/Mesh.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Primitives/Camera.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/App.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Scene/Level.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Engine/Scene/Entity.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Scene/Creator.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Scene/Entity.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Scene/Actuator.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Scene/Actuator.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/Scene/Level.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Scene/Creator.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/ShaderBuilder.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Renderer/Uniform.h" isTestSource="false" />
@@ -56,6 +59,8 @@
       <sourceFolder url="file://$MODULE_DIR$/Engine/Event/Type.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/App.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/OpenglGraphicContext.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/GUI/Freetype.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Engine/GUI/Freetype.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Assets/Manager.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Assets/Loader.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Engine/Assets/Loader.cpp" isTestSource="false" />
@@ -255,7 +260,6 @@
           <root url="file:///usr/include" />
           <root url="file:///usr/local/include" />
           <root url="file:///Library/Frameworks/iTunesLibrary.framework/Headers" />
-          <root url="file:///Library/Frameworks/CUDA.framework/Headers" />
         </CLASSES>
         <SOURCES>
           <root url="file://$MODULE_DIR$/vendor" />
@@ -443,7 +447,6 @@
           <root url="file:///usr/include" />
           <root url="file:///usr/local/include" />
           <root url="file:///Library/Frameworks/iTunesLibrary.framework/Headers" />
-          <root url="file:///Library/Frameworks/CUDA.framework/Headers" />
         </SOURCES>
       </library>
     </orderEntry>

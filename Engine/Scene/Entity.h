@@ -10,12 +10,19 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "../Primitives/Mesh.h"
 #include "../Renderer/Material.h"
+#include "Actuator.h"
 
 namespace Kiwi {
     namespace Engine {
         namespace Scene {
             class Entity {
             public:
+                enum class Type : int {
+                    MODEL,
+                    MESH,
+
+                };
+
                 Entity() : _material(nullptr) {};
 
                 Entity(Primitive::Mesh mesh, Renderer::Material *material) :
@@ -57,14 +64,28 @@ namespace Kiwi {
                 }
 
                 glm::mat4 getWorldPos() const {
-                    return _transform;
+                    if (_actuator == nullptr)
+                        return _transform;
+                    else
+                        return _actuator->update();
+                }
+
+                void setTransform(glm::mat4 transform) {
+                    _transform = transform;
+                }
+
+                void bindActuator(Actuator *actuator) {
+                    _actuator = actuator;
+                    for (auto &child : _children)
+                        child.bindActuator(actuator);
                 }
 
             private:
                 Primitive::Mesh         _mesh;
-                Renderer::Material *_material;
-                std::vector<Entity> _children;
+                Renderer::Material      *_material;
+                std::vector<Entity>     _children;
                 glm::mat4               _transform;
+                Actuator                *_actuator = nullptr;
             };
         }
     }

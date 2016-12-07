@@ -114,8 +114,8 @@ float phongSpecular(
 }
 
 void main() {
-//    if (texture(texAlpha, v_uv).a < 1.f) //replace alpha by diffuse if alpha undefined
-//        discard;
+    if (texture(texAlpha, v_uv).a < 1.f) //replace alpha by diffuse if alpha undefined
+        discard;
     vec3 normal = v_normal;
     vec4 lightPosition = view * vec4(light.position, 1.0);
     vec3 lightVector = lightPosition.xyz - v_viewPos;

@@ -13,6 +13,7 @@
 #include "Engine/Renderer/PhongMaterial.h"
 #include "Engine/Renderer/PhongTexturedMaterial.h"
 #include "Engine/Renderer/CubeMaterial.h"
+#include "Engine/Scene/Actuator.h"
 
 
 namespace kE = Kiwi::Engine;
@@ -43,11 +44,20 @@ std::array<const char *, 20> type_str = {
 class UserInputListener : public kE::Event::Listener<kE::Event::Type::GLFWEvent> {
 public:
     void update(Kiwi::Engine::Event::Type::GLFWEvent &notification) override {
+        static bool wireframe = false;
+
         switch (notification.type) {
             case kE::Event::Type::HumanInteraction::KEY_PRESSED:
                 switch (notification.key.key) {
                     case GLFW_KEY_ESCAPE :
                         exit(EXIT_SUCCESS);
+                    case GLFW_KEY_1: {
+                        if (wireframe)
+                            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+                        else
+                            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+                        wireframe = !wireframe;
+                    }
                     default:
                         break;
                 }
@@ -95,6 +105,7 @@ public:
         kE::Scene::Entity test_area = loader.createEntityFromModel("./Assets/models/scene.obj");
 //        kE::Scene::Entity sponza = loader.createEntityFromModel("./Assets/models/crytek-sponza/sponza-fix.obj");
 //        kE::Scene::Entity sibenik = loader.createEntityFromModel("./Assets/models/sibenik/sibenik.obj");
+//        kE::Scene::Entity zelda = loader.createEntityFromModel("./Assets/models/twin_house/Inside.obj");
 //        kE::Scene::Entity bunny = loader.createEntityFromModel("./Assets/models/stanford_bunny.obj");
 //
         kE::Scene::Entity scene;
@@ -122,13 +133,17 @@ public:
                 loader.createMap("./Assets/textures/container-specular.jpg", kE::Renderer::Texture::Type::SPECULAR));
 
 //        sponza.addChild(bunny);
-        scene.addChild(test_area.getChildren()[0]);
+
+        test_area.addChild(scene);
+
+        kE::Scene::Entity brick_cube = kE::Scene::Entity(cube, &brick);
+        kE::Scene::Actuator brick_actuator, coin_actuator;
+
+        brick_cube.bindActuator(&brick_actuator);
+        coin.bindActuator(&coin_actuator);
+
+        scene.addChild(brick_cube);
         scene.addChild(coin.getChildren()[0]);
-        scene.addChild(kE::Scene::Entity(cube, &red_phong, glm::vec3(-1.f, 0.f, 1.f)));
-        scene.addChild(kE::Scene::Entity(cube, &green_phong, glm::vec3(1.f, 0.f, -1.f)));
-        scene.addChild(kE::Scene::Entity(cube, &blue_phong, glm::vec3(1.f, 0.f, 1.f)));
-        scene.addChild(kE::Scene::Entity(cube, &crate, glm::vec3(-1.f, 0.f, -1.f)));
-        scene.addChild(kE::Scene::Entity(cube, &brick, glm::vec3(0.f, 0.f, 0.f)));
 
         kE::Scene::Entity skybox = kE::Scene::Entity(loader.createMeshFromVertices({-10.0f, 10.0f, -10.0f,
                                                                                     -10.0f, -10.0f, -10.0f,
@@ -192,6 +207,16 @@ public:
         glEnable(GL_MULTISAMPLE);
 
         while (1) {
+            brick_actuator
+                    .position(glm::vec3(0.f, 1.f, 0.f))
+                    ->rotate(glm::vec3(0.f, 1.0f, 0.f), 45)
+                    ->update();
+            coin_actuator
+                    .position(glm::vec3(0.f, 2.f, 0.f))
+                    ->setScale(glm::vec3(2.f))
+                    ->rotate(glm::vec3(0.f, 1.f, 0.f), glfwGetTime())
+                    ->update();
+
             run();
         }
     }
