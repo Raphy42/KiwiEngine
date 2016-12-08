@@ -66,7 +66,6 @@ void Kiwi::Engine::Primitive::FPSCamera::move(Kiwi::Engine::Primitive::Camera::A
 }
 
 void Kiwi::Engine::Primitive::FPSCamera::center(float xoffset, float yoffset) {
-    std::cout << std::to_string(xoffset) << " " << std::to_string(yoffset) << std::endl;
     xoffset *= _sensitivity;
     yoffset *= _sensitivity;
 

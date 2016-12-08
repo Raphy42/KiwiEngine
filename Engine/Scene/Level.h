@@ -6,6 +6,7 @@
 #define KIWIENGINE_LEVEL_H
 
 #include "Entity.h"
+#include "Player.h"
 #include <string>
 
 namespace Kiwi { namespace Engine { namespace Scene {
@@ -52,9 +53,18 @@ namespace Kiwi { namespace Engine { namespace Scene {
                     return _skybox;
                 }
 
+                const Player &get_player() const {
+                    return _player;
+                }
+
+                void set_player(const Player &player) {
+                    _player = player;
+                }
+
             private:
-                Entity _root;
-                Entity _skybox;
+                Entity                              _root;
+                Entity                              _skybox;
+                Player                              _player;
                 std::string                         _name;
                 glm::mat4                           _transform;
             };

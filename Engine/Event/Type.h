@@ -7,6 +7,7 @@
 
 #include "../../Core/Graphics.h"
 #include <string>
+#include <glm/vec3.hpp>
 
 namespace Kiwi {
     namespace Engine {
@@ -46,6 +47,15 @@ namespace Kiwi {
                     RESOURCE_NOT_FOUND
                 };
 
+                enum class PlayerInteraction : int {
+                    NONE = 0x0,
+                    RESPAWN,
+                    DEATH,
+                    HIT,
+                    MOVE,
+                    MESSAGE,
+                };
+
                 typedef struct CoreEvent_ {
                     Type::CoreInteraction type;
                     std::string message;
@@ -80,6 +90,21 @@ namespace Kiwi {
                         const char **paths;
                     } file;
                 } GLFWEvent;
+
+                typedef struct PlayerEvent_ {
+                    Type::PlayerInteraction type;
+                    struct {
+                        glm::vec3 pos;
+
+                    } pos;
+                    struct {
+                        unsigned int damage; //todo more flexibility ?
+                    } health;
+                    struct {
+                        unsigned int playerId;
+                        std::string message;
+                    } message;
+                } PlayerEvent;
             };
         }
     }

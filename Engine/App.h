@@ -50,6 +50,8 @@ namespace Kiwi {
             typedef Event::Dispatcher<Event::Type::CoreEvent> CoreDispatcher;
             typedef Core::Filesystem::VirtualFilesystem VFS;
 
+            virtual void loop(void) = 0;
+
         private:
             std::unique_ptr<GraphicContextInterface> _graphics;
             std::unique_ptr<VFS> _vfs;

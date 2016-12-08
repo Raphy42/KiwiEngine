@@ -3,6 +3,8 @@
 //
 
 #include <glm/gtc/matrix_transform.hpp>
+#include <chrono>
+#include <stdexcept>
 #include "Actuator.h"
 
 Kiwi::Engine::Scene::Actuator::Actuator() :
@@ -40,6 +42,16 @@ glm::mat4 Kiwi::Engine::Scene::Actuator::update(void) {
 
     _transform = pos * scale * rotation;
     return _transform;
+}
+
+Kiwi::Engine::Scene::Actuator *Kiwi::Engine::Scene::Actuator::ease(Kiwi::Engine::GUI::Easing ease, float duration) {
+    throw std::runtime_error("Unimplemented");
+    if (_duration == 0)
+        _duration = duration;
+    if (_duration)
+    {
+        _duration--;
+    }
 }
 
 

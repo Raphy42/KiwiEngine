@@ -8,19 +8,18 @@
 #include "Mesh.h"
 
 namespace Kiwi {
-namespace Engine {
-namespace Primitive {
-    class Model
-    {
-    public:
-        Model() {};
-        ~Model() {};
+    namespace Engine {
+        namespace Primitive {
+            class Model {
+            public:
+                Model() {};
+                ~Model() {};
 
-    protected:
-        std::vector<Mesh>       _meshes;
-    };
-}
-}
+            protected:
+
+            };
+        }
+    }
 }
 
 #endif //KIWIENGINE_MODEL_H
