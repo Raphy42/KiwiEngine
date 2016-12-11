@@ -42,12 +42,12 @@ By the end I want it to be cross platform, so I try to be as platform agnostic a
 
 
 ##Usage:
-`git clone --recursive https://github.com/Raphy42/KiwiEngine.git`
+`git clone --recursive https://github.com/Raphy42/KiwiEngine.git`  
 `cmake . && make`
 
 ##Librairies:
-`boost` for the filesystem abstraction (added in c++17) and some other neat things (not included in vendor, need to install it with your favorite package manager)
-`assimp` for model loading (will be removed as soon as the engine has its own 3D file format)
-`glad`, currently unused as MacOS does its own things with OpenGL 3+ context creation
-`glfw` for OpenGL/Vulkan context creation and window management
-`stb/stb_image.h` for image loading
+`boost` for the filesystem abstraction (added in c++17) and some other neat things (not included in vendor, need to install it with your favorite package manager)  
+`assimp` for model loading (will be removed as soon as the engine has its own 3D file format)  
+`glad`, currently unused as MacOS does its own things with OpenGL 3+ context creation  
+`glfw` for OpenGL/Vulkan context creation and window management  
+`stb/stb_image.h` for image loading  
