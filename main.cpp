@@ -1,13 +1,18 @@
 #include <iostream>
 #include <array>
 #include "Engine/App.h"
+#include "Engine/Event/Type.h"
+#include "Engine/Event/Listener.h"
+#include "Engine/Event/Dispatcher.h"
 #include "Engine/Event/GLFWNotifier.h"
 #include "Engine/Event/CoreNotifier.h"
+#include "Engine/Primitives/Mesh.h"
 #include "Engine/Assets/Loader.h"
+#include "Engine/Scene/Level.h"
+#include "Engine/Assets/Storage.h"
 #include "Engine/Renderer/PhongMaterial.h"
 #include "Engine/Renderer/PhongTexturedMaterial.h"
 #include "Engine/Renderer/CubeMaterial.h"
-#include "Runner.h"
 
 
 namespace kE = Kiwi::Engine;
@@ -75,42 +80,38 @@ class Game : public kE::App {
 public:
     Game() : kE::App() {}
 
-    void loop(void) override {
+    void loop(void) {
         start();
 
         UserInputListener dummyListener;
         DebugInputListener debugListener;
         kE::Asset::Loader loader;
 
-        Runner runner;
-
         _hid->bind(&debugListener);
         _hid->bind(&dummyListener);
-//        _hid->bind(&runner);
 
 
         kE::Asset::Storage storage;
 
         kE::Scene::Entity root;
-
-        kE::Primitive::FPSCamera camera(glm::vec3(0.f, 1.f, 0.f), glm::vec3(0.f, 1.f, 0.f));
-        runner.setCamera(&camera);
-
+        kE::Primitive::FPSCamera camera(glm::vec3(1.f, 1.f, 1.f), glm::vec3(0.f, 1.f, 0.f));
         kE::Primitive::FPSCameraEventListener cameraListener(&camera);
+
         _hid->bind(&cameraListener);
 
         kE::Primitive::Mesh cube = loader.createDefaultMesh(kE::Asset::Loader::Type::CUBE);
-        kE::Scene::Entity coin = loader.createEntityFromModel("./Assets/models/coin/Coin.obj");
-//        kE::Scene::Entity test_area = loader.createEntityFromModel("./Assets/models/hyrule_castle/hyrulecastle.obj");
-
-
-        kE::Scene::Entity alley = loader.createEntityFromModel("./Assets/models/reference.obj");
-//        kE::Scene::Entity sponza = loader.createEntityFromModel("./Assets/models/crytek-sponza/sponza-fix.obj");
+        kE::Scene::Entity sponza = loader.createEntityFromModel("./Assets/models/crytek-sponza/sponza-fix.obj");
 //        kE::Scene::Entity sibenik = loader.createEntityFromModel("./Assets/models/sibenik/sibenik.obj");
-//        kE::Scene::Entity zelda = loader.createEntityFromModel("./Assets/models/twin_house/Inside.obj");
 //        kE::Scene::Entity bunny = loader.createEntityFromModel("./Assets/models/stanford_bunny.obj");
 //
-        kE::Scene::Entity scene;
+        kE::Renderer::PhongMaterial red_phong;
+        red_phong.setColor(glm::vec3(1.0f, 0.f, 0.f));
+
+        kE::Renderer::PhongMaterial green_phong;
+        green_phong.setColor(glm::vec3(0.0f, 1.f, 0.f));
+
+        kE::Renderer::PhongMaterial blue_phong;
+        blue_phong.setColor(glm::vec3(0.0f, 0.f, 1.f));
 
         kE::Renderer::PhongTexturedMaterial brick;
 
@@ -125,16 +126,12 @@ public:
         brick.addMap(
                 loader.createMap("./Assets/textures/container-specular.jpg", kE::Renderer::Texture::Type::SPECULAR));
 
-        kE::Scene::Entity brick_cube = kE::Scene::Entity(cube, &brick);
-        kE::Scene::Actuator brick_actuator, coin_actuator, scene_actor;
-
-        brick_cube.bindActuator(&brick_actuator);
-        coin.bindActuator(&coin_actuator);
-        alley.bindActuator(&scene_actor);
-
-        scene.setChildren(alley.getChildren());
-//        scene.addChild(brick_cube);
-        scene.addChild(coin.getChildren()[0]);
+//        sponza.addChild(bunny);
+//        sponza.addChild(kE::Scene::Entity(cube, &red_phong, glm::vec3(-1.f, 0.f, 1.f)));
+//        sponza.addChild(kE::Scene::Entity(cube, &green_phong, glm::vec3(1.f, 0.f, -1.f)));
+//        sponza.addChild(kE::Scene::Entity(cube, &blue_phong, glm::vec3(1.f, 0.f, 1.f)));
+//        sponza.addChild(kE::Scene::Entity(cube, &crate, glm::vec3(-1.f, 0.f, -1.f)));
+//        sponza.addChild(kE::Scene::Entity(cube, &brick, glm::vec3(0.f, 0.f, 0.f)));
 
         kE::Scene::Entity skybox = kE::Scene::Entity(loader.createMeshFromVertices({-10.0f, 10.0f, -10.0f,
                                                                                     -10.0f, -10.0f, -10.0f,
@@ -187,34 +184,15 @@ public:
 
                                                                                                          })));
 
-        kE::Scene::Level l(scene);
+        kE::Scene::Level l(sponza);
 
         l.setSkybox(skybox);
-        l.set_player(runner);
 
         _renderer.bindLevel(l);
         _renderer.bindCamera(&camera);
         _renderer.bindTarget(kE::Renderer::Target(1280, 800));
 
-        glEnable(GL_MULTISAMPLE);
-
         while (1) {
-            brick_actuator
-                    .position(glm::vec3(0.f, 1.f, 0.f))
-                    ->rotate(glm::vec3(0.f, 1.0f, 0.f), 45)
-                    ->update();
-            coin_actuator
-                    .position(glm::vec3(0.f, 1.f, 0.f))
-                    ->setScale(glm::vec3(2.f))
-                    ->rotate(glm::vec3(0.f, -1.f, 0.f), glfwGetTime())
-                    ->update();
-
-            scene_actor.position(glm::vec3(0.f, 0.f, 0.f))
-                    ->rotate(glm::vec3(0.f, 1.f, 0.f), 90)
-                    ->update();
-
-
-            runner.gameLoop();
             run();
         }
     }
