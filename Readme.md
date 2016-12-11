@@ -1,4 +1,6 @@
 #Kiwi::Engine
+<img width="1279" alt="Sponza scene" src="https://cloud.githubusercontent.com/assets/9398077/21079205/de8d433c-bf8a-11e6-97f1-b38b9d276915.png">
+_Sponza scene from Crytek_
 
 This project is currently a WIP.
 
