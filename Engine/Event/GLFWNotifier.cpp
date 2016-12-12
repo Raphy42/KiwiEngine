@@ -105,6 +105,17 @@ void Kiwi::Engine::Event::GLFWNotifier::start(void) {
         event.key.mods = mods;
         getNotifier(w)->notify(event);
     });
+
+    glfwSetCharModsCallback(_handle, [](GLFWwindow *w, unsigned int codepoint, int mods){
+        Type::GLFWEvent event;
+
+        event.handle = w;
+        event.type = Type::HumanInteraction::CHARACTER_INPUT;
+        event.character.codepoint = codepoint;
+        event.character.mods = mods;
+        std::cout << codepoint << std::endl;
+        getNotifier(w)->notify(event);
+    });
 }
 
 void Kiwi::Engine::Event::GLFWNotifier::notify(Kiwi::Engine::Event::Type::GLFWEvent &notification) {

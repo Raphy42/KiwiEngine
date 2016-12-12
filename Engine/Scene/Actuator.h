@@ -10,6 +10,9 @@
 #include "../GUI/Easing.h"
 #include <chrono>
 
+/**
+ * Constructs the transform matrix, which is then used by its bound entity
+ */
 
 namespace Kiwi { namespace Engine { namespace Scene {
             class Actuator {

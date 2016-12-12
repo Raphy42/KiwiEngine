@@ -1,5 +1,6 @@
 #include <iostream>
 #include <array>
+#include <glm/gtc/type_ptr.hpp>
 #include "Engine/App.h"
 #include "Engine/Event/Type.h"
 #include "Engine/Event/Listener.h"
@@ -13,6 +14,7 @@
 #include "Engine/Renderer/PhongMaterial.h"
 #include "Engine/Renderer/PhongTexturedMaterial.h"
 #include "Engine/Renderer/CubeMaterial.h"
+#include "Engine/GUI/ImGui.h"
 
 
 namespace kE = Kiwi::Engine;
@@ -85,10 +87,13 @@ public:
 
         UserInputListener dummyListener;
         DebugInputListener debugListener;
+        kE::GUI::ImGuiListener imguiListener;
+
         kE::Asset::Loader loader;
 
         _hid->bind(&debugListener);
         _hid->bind(&dummyListener);
+        _hid->bind(&imguiListener);
 
 
         kE::Asset::Storage storage;
@@ -101,6 +106,7 @@ public:
 
         kE::Primitive::Mesh cube = loader.createDefaultMesh(kE::Asset::Loader::Type::CUBE);
         kE::Scene::Entity sponza = loader.createEntityFromModel("./Assets/models/crytek-sponza/sponza-fix.obj");
+        kE::Scene::Entity coin = loader.createEntityFromModel("./Assets/models/coin/Coin.obj");
 //        kE::Scene::Entity sibenik = loader.createEntityFromModel("./Assets/models/sibenik/sibenik.obj");
 //        kE::Scene::Entity bunny = loader.createEntityFromModel("./Assets/models/stanford_bunny.obj");
 //
@@ -126,12 +132,18 @@ public:
         brick.addMap(
                 loader.createMap("./Assets/textures/container-specular.jpg", kE::Renderer::Texture::Type::SPECULAR));
 
-//        sponza.addChild(bunny);
+
+        kE::Scene::Actuator coin_actuator;
+        coin.bindActuator(&coin_actuator);
+
+        sponza.addChild(coin.getChildren()[0]);
 //        sponza.addChild(kE::Scene::Entity(cube, &red_phong, glm::vec3(-1.f, 0.f, 1.f)));
 //        sponza.addChild(kE::Scene::Entity(cube, &green_phong, glm::vec3(1.f, 0.f, -1.f)));
 //        sponza.addChild(kE::Scene::Entity(cube, &blue_phong, glm::vec3(1.f, 0.f, 1.f)));
 //        sponza.addChild(kE::Scene::Entity(cube, &crate, glm::vec3(-1.f, 0.f, -1.f)));
 //        sponza.addChild(kE::Scene::Entity(cube, &brick, glm::vec3(0.f, 0.f, 0.f)));
+
+
 
         kE::Scene::Entity skybox = kE::Scene::Entity(loader.createMeshFromVertices({-10.0f, 10.0f, -10.0f,
                                                                                     -10.0f, -10.0f, -10.0f,
@@ -193,6 +205,24 @@ public:
         _renderer.bindTarget(kE::Renderer::Target(1280, 800));
 
         while (1) {
+
+            ImGui_ImplGlfwGL3_NewFrame();
+
+            {
+                bool rotate;
+
+                glm::vec3 pos;
+
+                ImGui::InputFloat3("Position", glm::value_ptr(pos));
+                ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+                ImGui::Checkbox("Rotate", &rotate);
+
+                if (rotate)
+                    coin_actuator.rotate(glm::vec3(0.f, 1.f, 0.f), glfwGetTime());
+                coin_actuator.position(pos)->update();
+
+            }
+
             run();
         }
     }

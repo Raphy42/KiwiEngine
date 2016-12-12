@@ -4,6 +4,7 @@
 
 #include "OpenglGraphicContext.h"
 #include "../Core/Opengl.h"
+#include "GUI/ImGui.h"
 
 Kiwi::Engine::OpenglGraphicContext::OpenglGraphicContext() :
     _size(std::pair<int, int>(1280, 800)),
@@ -89,6 +90,7 @@ void Kiwi::Engine::OpenglGraphicContext::PostInit() {
     glDebugMessageCallback(Core::glDebugOutput, nullptr);
     glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
 #endif
+    ImGui_ImplGlfwGL3_Init(_window, false);
 }
 
 Kiwi::Engine::OpenglGraphicContext::~OpenglGraphicContext() {

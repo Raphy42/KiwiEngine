@@ -8,6 +8,7 @@
 #include "Event/CoreNotifier.h"
 #include "Renderer/ShaderBuilder.h"
 #include "Renderer/ProgramBuilder.h"
+#include "GUI/ImGui.h"
 
 std::unique_ptr<Kiwi::Engine::Event::CoreNotifier>
         Kiwi::Engine::Event::CoreNotifier::_instance;
@@ -84,6 +85,9 @@ void Kiwi::Engine::App::run() {
      * Render the current frame
      */
     _renderer.render();
+
+    ImGui::Render();
+
 
     /**
      * Render frame on screen
