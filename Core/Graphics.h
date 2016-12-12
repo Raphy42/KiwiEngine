@@ -21,8 +21,7 @@ extern "C" = void pre_gl_call(const char *name, void *f, int length, ...)
 
 #elif defined(__linux__)
 
-#error "Not implemented yet need to add glad.h"
-#include "glad.h"
+#warning "Not implemented yet need to add glad.h"
 
 #endif
 
