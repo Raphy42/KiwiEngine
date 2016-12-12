@@ -1,0 +1,1371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" assignedExecutableTargets="true" buildAllGenerated="true">
+    <generated>
+      <config projectName="KiwiEngine" targetName="boing" />
+      <config projectName="KiwiEngine" targetName="assimp" />
+      <config projectName="KiwiEngine" targetName="joysticks" />
+      <config projectName="KiwiEngine" targetName="glfwinfo" />
+      <config projectName="KiwiEngine" targetName="msaa" />
+      <config projectName="KiwiEngine" targetName="windows" />
+      <config projectName="KiwiEngine" targetName="heightmap" />
+      <config projectName="KiwiEngine" targetName="glad" />
+      <config projectName="KiwiEngine" targetName="uninstall" />
+      <config projectName="KiwiEngine" targetName="events" />
+      <config projectName="KiwiEngine" targetName="KiwiEngine" />
+      <config projectName="KiwiEngine" targetName="gears" />
+      <config projectName="KiwiEngine" targetName="title" />
+      <config projectName="KiwiEngine" targetName="offscreen" />
+      <config projectName="KiwiEngine" targetName="icon" />
+      <config projectName="KiwiEngine" targetName="threads" />
+      <config projectName="KiwiEngine" targetName="assimp_cmd" />
+      <config projectName="KiwiEngine" targetName="splitview" />
+      <config projectName="KiwiEngine" targetName="glfw" />
+      <config projectName="KiwiEngine" targetName="simple" />
+      <config projectName="KiwiEngine" targetName="clipboard" />
+      <config projectName="KiwiEngine" targetName="cursor" />
+      <config projectName="KiwiEngine" targetName="wave" />
+      <config projectName="KiwiEngine" targetName="particles" />
+      <config projectName="KiwiEngine" targetName="iconify" />
+      <config projectName="KiwiEngine" targetName="tearing" />
+      <config projectName="KiwiEngine" targetName="testas" />
+      <config projectName="KiwiEngine" targetName="sharing" />
+      <config projectName="KiwiEngine" targetName="unit" />
+      <config projectName="KiwiEngine" targetName="timeout" />
+      <config projectName="KiwiEngine" targetName="monitors" />
+      <config projectName="KiwiEngine" targetName="empty" />
+      <config projectName="KiwiEngine" targetName="gamma" />
+      <config projectName="KiwiEngine" targetName="foo" />
+      <config projectName="KiwiEngine" targetName="reopen" />
+    </generated>
+  </component>
+  <component name="CMakeSettings" AUTO_RELOAD="true" GENERATION_PASS_SYSTEM_ENVIRONMENT="true">
+    <ADDITIONAL_GENERATION_ENVIRONMENT>
+      <envs />
+    </ADDITIONAL_GENERATION_ENVIRONMENT>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5e830278-0766-4089-9906-f86e00908806" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/imgui" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/KiwiEngine.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/assimp" afterPath="$PROJECT_DIR$/vendor/assimp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/glfw" afterPath="$PROJECT_DIR$/vendor/glfw" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/stb" afterPath="$PROJECT_DIR$/vendor/stb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitmodules" afterPath="$PROJECT_DIR$/.gitmodules" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/assimp/AssimpConfig.cmake.in" afterPath="$PROJECT_DIR$/vendor/assimp/AssimpConfig.cmake.in" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/assimp/contrib/gtest/Makefile.am" afterPath="$PROJECT_DIR$/vendor/assimp/contrib/gtest/Makefile.am" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/assimp/contrib/gtest/README.md" afterPath="$PROJECT_DIR$/vendor/assimp/contrib/gtest/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/assimp/contrib/gtest/codegear/gtest.cbproj" afterPath="$PROJECT_DIR$/vendor/assimp/contrib/gtest/codegear/gtest.cbproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/assimp/contrib/gtest/codegear/gtest_main.cbproj" afterPath="$PROJECT_DIR$/vendor/assimp/contrib/gtest/codegear/gtest_main.cbproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/assimp/contrib/gtest/codegear/gtest_unittest.cbproj" afterPath="$PROJECT_DIR$/vendor/assimp/contrib/gtest/codegear/gtest_unittest.cbproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/assimp/contrib/gtest/xcode/gtest.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/vendor/assimp/contrib/gtest/xcode/gtest.xcodeproj/project.pbxproj" />
+    </list>
+    <ignored path="KiwiEngine.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="KiwiEngine" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1205">
+              <caret line="73" column="27" selection-start-line="73" selection-start-column="27" selection-end-line="73" selection-end-column="27" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="GLSL Shader" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="PUSH_TAGS">
+      <GitPushTagMode />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Engine/Renderer/Material.cpp" />
+        <option value="$PROJECT_DIR$/Assets/shaders/phong_vert.glsl" />
+        <option value="$PROJECT_DIR$/Assets/shaders/phong_frag.glsl" />
+        <option value="$PROJECT_DIR$/Engine/Renderer/Material.h" />
+        <option value="$PROJECT_DIR$/Engine/Renderer/PhongMaterial.h" />
+        <option value="$PROJECT_DIR$/Engine/Renderer/PhongMaterial.cpp" />
+        <option value="$PROJECT_DIR$/Assets/shaders/phong_map_vert.glsl" />
+        <option value="$PROJECT_DIR$/Engine/Assets/Tools.h" />
+        <option value="$PROJECT_DIR$/Engine/Assets/TextureLoader.h" />
+        <option value="$PROJECT_DIR$/Engine/Renderer/Skybox.cpp" />
+        <option value="$PROJECT_DIR$/Engine/Renderer/Skybox.h" />
+        <option value="$PROJECT_DIR$/Engine/Renderer/Shading.h" />
+        <option value="$PROJECT_DIR$/Engine/App.cpp" />
+        <option value="$PROJECT_DIR$/Engine/Renderer/CubeMaterial.h" />
+        <option value="$PROJECT_DIR$/Assets/shaders/skybox_frag.glsl" />
+        <option value="$PROJECT_DIR$/Engine/Primitives/Mesh.h" />
+        <option value="$PROJECT_DIR$/Assets/shaders/skybox_vert.glsl" />
+        <option value="$PROJECT_DIR$/Engine/Renderer/CubeMaterial.cpp" />
+        <option value="$PROJECT_DIR$/Engine/Renderer/Texture.h" />
+        <option value="$PROJECT_DIR$/Engine/Renderer/PhongTexturedMaterial.h" />
+        <option value="$PROJECT_DIR$/Engine/Renderer/PhongTexturedMaterial.cpp" />
+        <option value="$PROJECT_DIR$/Engine/OpenglGraphicContext.cpp" />
+        <option value="$PROJECT_DIR$/Assets/models/coin/Coin.mtl" />
+        <option value="$PROJECT_DIR$/Engine/Assets/Loader.h" />
+        <option value="$PROJECT_DIR$/Assets/shaders/phong_map_frag.glsl" />
+        <option value="$PROJECT_DIR$/Assets/models/twin_house/Inside.mtl" />
+        <option value="$PROJECT_DIR$/Engine/Primitives/AABB.h" />
+        <option value="$PROJECT_DIR$/Engine/Primitives/AABB.cpp" />
+        <option value="$PROJECT_DIR$/Engine/Renderer/Renderer.h" />
+        <option value="$PROJECT_DIR$/Engine/Scene/Entity.h" />
+        <option value="$PROJECT_DIR$/Engine/Renderer/Renderer.cpp" />
+        <option value="$PROJECT_DIR$/Engine/GUI/Freetype.h" />
+        <option value="$PROJECT_DIR$/Engine/Assets/Loader.cpp" />
+        <option value="$PROJECT_DIR$/Engine/Primitives/FPSCamera.h" />
+        <option value="$PROJECT_DIR$/Engine/Primitives/Model.h" />
+        <option value="$PROJECT_DIR$/Engine/Scene/Player.cpp" />
+        <option value="$PROJECT_DIR$/Engine/Event/Type.h" />
+        <option value="$PROJECT_DIR$/Engine/Primitives/FPSCamera.cpp" />
+        <option value="$PROJECT_DIR$/Engine/Scene/Player.h" />
+        <option value="$PROJECT_DIR$/Engine/Scene/Level.h" />
+        <option value="$PROJECT_DIR$/Engine/Scene/Actuator.h" />
+        <option value="$PROJECT_DIR$/Engine/Scene/Actuator.cpp" />
+        <option value="$PROJECT_DIR$/Runner.h" />
+        <option value="$PROJECT_DIR$/Runner.cpp" />
+        <option value="$PROJECT_DIR$/Engine/GUI/Easing.h" />
+        <option value="$PROJECT_DIR$/Engine/Primitives/QuaternionFPSCamera.h" />
+        <option value="$PROJECT_DIR$/Engine/Primitives/QuaternionFPSCamera.cpp" />
+        <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/Engine/App.h" />
+        <option value="$PROJECT_DIR$/Readme.md" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="905" />
+    <option name="width" value="1655" />
+    <option name="height" value="1440" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KiwiEngine" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KiwiEngine" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KiwiEngine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KiwiEngine" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KiwiEngine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KiwiEngine" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KiwiEngine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Engine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KiwiEngine" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KiwiEngine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Engine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Scene" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KiwiEngine" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KiwiEngine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Engine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Primitives" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KiwiEngine" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KiwiEngine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Engine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GUI" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="js-jscs-nodeInterpreter" value="$USER_HOME$/.brew/bin/node" />
+    <property name="settings.editor.selected.configurable" value="fileTemplates" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="FullScreen" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Assets/models" />
+      <recent name="$PROJECT_DIR$/Assets/textures/skybox" />
+      <recent name="$PROJECT_DIR$/Assets/textures" />
+      <recent name="$PROJECT_DIR$/vendor" />
+    </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/.github/CONTRIBUTING.md</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/CMakeLists.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/COPYING.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/README.md</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/deps/nuklear.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/deps/nuklear_glfw_gl2.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/deps/tinycthread.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/docs/Doxyfile.in</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/docs/build.dox</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/docs/compile.dox</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/docs/context.dox</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/docs/input.dox</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/docs/internal.dox</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/docs/monitor.dox</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/docs/moving.dox</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/docs/news.dox</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/docs/vulkan.dox</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/docs/window.dox</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/examples/CMakeLists.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/examples/gears.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/examples/offscreen.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/examples/particles.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/examples/simple.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/examples/wave.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/include/GLFW/glfw3.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/include/GLFW/glfw3native.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/cocoa_init.m</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/cocoa_joystick.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/cocoa_joystick.m</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/cocoa_monitor.m</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/cocoa_platform.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/cocoa_time.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/cocoa_window.m</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/context.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/egl_context.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/egl_context.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/glfw_config.h.in</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/glx_context.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/glx_context.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/init.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/input.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/internal.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/linux_joystick.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/mir_window.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/monitor.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/nsgl_context.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/nsgl_context.m</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/osmesa_context.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/osmesa_context.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/osmesa_init.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/osmesa_monitor.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/osmesa_platform.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/osmesa_window.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/posix_time.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/posix_time.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/posix_tls.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/posix_tls.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/vulkan.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/wgl_context.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/wgl_context.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/win32_init.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/win32_joystick.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/win32_joystick.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/win32_monitor.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/win32_platform.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/win32_time.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/win32_tls.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/win32_window.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/window.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/wl_window.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/x11_init.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/x11_monitor.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/x11_platform.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/x11_window.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/src/xkb_unicode.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/tests/CMakeLists.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/tests/clipboard.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/tests/cursor.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/tests/empty.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/tests/events.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/tests/gamma.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/tests/glfwinfo.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/tests/icon.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/tests/iconify.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/tests/joysticks.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/tests/monitors.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/tests/msaa.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/tests/reopen.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/tests/sharing.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/tests/tearing.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/tests/threads.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/tests/timeout.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/tests/title.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/tests/vulkan.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/tests/windows.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Readme.md</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/main.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/CMakeLists.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/Readme.md</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/3DSLoader.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/AMFImporter_Postprocess.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/AssxmlExporter.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/CMakeLists.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/ColladaExporter.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/ColladaParser.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/DefaultIOStream.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/Exporter.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/FBXBinaryTokenizer.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/FBXConverter.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/FBXDeformer.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/FBXDocument.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/FBXImporter.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/FBXTokenizer.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/LWOLoader.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/ObjFileMtlImporter.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/ObjFileParser.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/OgreBinarySerializer.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/OgreXmlSerializer.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/PlyParser.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/PlyParser.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/SplitByBoneCountProcess.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/Version.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/X3DImporter.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/X3DImporter_Geometry3D.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/X3DImporter_Postprocess.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/XFileExporter.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/glTFAsset.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/code/glTFImporter.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/contrib/openddlparser/include/openddlparser/OpenDDLParserUtils.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/include/assimp/Importer.hpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/test/CMakeLists.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/test/unit/SceneDiffer.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/test/unit/SceneDiffer.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/test/unit/TestIOSystem.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/test/unit/TestModelFactory.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/test/unit/utDefaultIOStream.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/test/unit/utObjImportExport.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/test/unit/utSIBImporter.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/stb/README.md</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/stb/stb.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/stb/stb_image.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/stb/tests/grid_reachability.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/stb/tests/stb.dsp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/stb/tests/test_c_compilation.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/stb/tests/test_cpp_compilation.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/stb/tests/test_vorbis.c</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/stb/tools/README.header.md</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/stb/tools/README.list</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/glfw/deps/vs2008/stdint.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/LICENSE</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/test/models/FBX/spider.fbx</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/test/unit/AbstractImportExportBase.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/test/unit/AbstractImportExportBase.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/test/unit/utDXFImporterExporter.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/test/unit/utFBXImporterExporter.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/assimp/test/unit/utXImporterExporter.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/stb/deprecated/rrsprintf.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/vendor/stb/stb_sprintf.h</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/KiwiEngine.iml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Runner.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Runner.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/config/assets.json</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
+  </component>
+  <component name="RunManager" selected="Application.KiwiEngine">
+    <configuration default="true" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" PASS_PARENT_ENVS_2="true" TEST_MODE="SUITE_TEST">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="KiwiEngine" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="KiwiEngine" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="KiwiEngine" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Attests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="KiwiEngine" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="KiwiEngine" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Nosetests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="KiwiEngine" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="KiwiEngine" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="py.test">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="KiwiEngine" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="testToRun" value="" />
+      <option name="keywords" value="" />
+      <option name="params" value="" />
+      <option name="USE_PARAM" value="false" />
+      <option name="USE_KEYWORD" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="foo" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="foo" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="foo">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="uninstall" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="uninstall" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="boing" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="boing" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="boing">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="gears" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="gears" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="gears">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="heightmap" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="heightmap" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="heightmap">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="offscreen" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="offscreen" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="offscreen">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="particles" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="particles" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="particles">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="simple" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="simple" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="simple">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="splitview" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="splitview" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="splitview">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="wave" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="wave" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="wave">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="glfw" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="glfw" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="clipboard" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="clipboard" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="clipboard">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="cursor" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="cursor" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="cursor">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="empty" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="empty" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="empty">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="events" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="events" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="events">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="gamma" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="gamma" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="gamma">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="glfwinfo" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="glfwinfo" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="glfwinfo">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="icon" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="icon" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="icon">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="iconify" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="iconify" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="iconify">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="joysticks" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="joysticks" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="joysticks">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="monitors" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="monitors" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="monitors">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="msaa" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="msaa" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="msaa">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="reopen" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="reopen" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="reopen">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="sharing" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="sharing" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="sharing">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="tearing" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="tearing" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="tearing">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="threads" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="threads" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="threads">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="timeout" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="timeout" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="timeout">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="title" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="title" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="title">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="windows" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="windows" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="windows">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Build All" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="KiwiEngine" EXPLICIT_BUILD_TARGET_NAME="all">
+      <envs>
+        <env name="GLAD_DEBUG" value="1" />
+      </envs>
+      <method />
+    </configuration>
+    <configuration default="false" name="glad" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="glad" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="testas" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="testas" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="testas">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="assimp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="assimp" CONFIG_NAME="Release">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="unit" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="unit" CONFIG_NAME="Release" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="unit">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="assimp_cmd" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="assimp_cmd" CONFIG_NAME="Release" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="assimp_cmd">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="KiwiEngine" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KiwiEngine" TARGET_NAME="KiwiEngine" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KiwiEngine" RUN_TARGET_NAME="KiwiEngine">
+      <envs />
+      <method />
+    </configuration>
+    <list size="36">
+      <item index="0" class="java.lang.String" itemvalue="Application.foo" />
+      <item index="1" class="java.lang.String" itemvalue="Application.uninstall" />
+      <item index="2" class="java.lang.String" itemvalue="Application.boing" />
+      <item index="3" class="java.lang.String" itemvalue="Application.gears" />
+      <item index="4" class="java.lang.String" itemvalue="Application.heightmap" />
+      <item index="5" class="java.lang.String" itemvalue="Application.offscreen" />
+      <item index="6" class="java.lang.String" itemvalue="Application.particles" />
+      <item index="7" class="java.lang.String" itemvalue="Application.simple" />
+      <item index="8" class="java.lang.String" itemvalue="Application.splitview" />
+      <item index="9" class="java.lang.String" itemvalue="Application.wave" />
+      <item index="10" class="java.lang.String" itemvalue="Application.glfw" />
+      <item index="11" class="java.lang.String" itemvalue="Application.clipboard" />
+      <item index="12" class="java.lang.String" itemvalue="Application.cursor" />
+      <item index="13" class="java.lang.String" itemvalue="Application.empty" />
+      <item index="14" class="java.lang.String" itemvalue="Application.events" />
+      <item index="15" class="java.lang.String" itemvalue="Application.gamma" />
+      <item index="16" class="java.lang.String" itemvalue="Application.glfwinfo" />
+      <item index="17" class="java.lang.String" itemvalue="Application.icon" />
+      <item index="18" class="java.lang.String" itemvalue="Application.iconify" />
+      <item index="19" class="java.lang.String" itemvalue="Application.joysticks" />
+      <item index="20" class="java.lang.String" itemvalue="Application.monitors" />
+      <item index="21" class="java.lang.String" itemvalue="Application.msaa" />
+      <item index="22" class="java.lang.String" itemvalue="Application.reopen" />
+      <item index="23" class="java.lang.String" itemvalue="Application.sharing" />
+      <item index="24" class="java.lang.String" itemvalue="Application.tearing" />
+      <item index="25" class="java.lang.String" itemvalue="Application.threads" />
+      <item index="26" class="java.lang.String" itemvalue="Application.timeout" />
+      <item index="27" class="java.lang.String" itemvalue="Application.title" />
+      <item index="28" class="java.lang.String" itemvalue="Application.windows" />
+      <item index="29" class="java.lang.String" itemvalue="Application.Build All" />
+      <item index="30" class="java.lang.String" itemvalue="Application.glad" />
+      <item index="31" class="java.lang.String" itemvalue="Application.testas" />
+      <item index="32" class="java.lang.String" itemvalue="Application.assimp" />
+      <item index="33" class="java.lang.String" itemvalue="Application.unit" />
+      <item index="34" class="java.lang.String" itemvalue="Application.assimp_cmd" />
+      <item index="35" class="java.lang.String" itemvalue="Application.KiwiEngine" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5e830278-0766-4089-9906-f86e00908806" name="Default" comment="" />
+      <created>1479842714273</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1479842714273</updated>
+      <workItem from="1479842715814" duration="3939000" />
+      <workItem from="1479855800902" duration="12304000" />
+      <workItem from="1479931443961" duration="18020000" />
+      <workItem from="1480035430560" duration="6761000" />
+      <workItem from="1480106712117" duration="17822000" />
+      <workItem from="1480135613673" duration="49341000" />
+      <workItem from="1480663581297" duration="96000" />
+      <workItem from="1480663690592" duration="12000" />
+      <workItem from="1480663705109" duration="23820000" />
+      <workItem from="1480873041297" duration="5427000" />
+      <workItem from="1480886682841" duration="7230000" />
+      <workItem from="1480969040756" duration="2797000" />
+      <workItem from="1480982821449" duration="4251000" />
+      <workItem from="1480996299107" duration="2759000" />
+      <workItem from="1481058735994" duration="14082000" />
+      <workItem from="1481136881139" duration="1745000" />
+      <workItem from="1481143199812" duration="64000" />
+      <workItem from="1481144798227" duration="3886000" />
+      <workItem from="1481166227260" duration="7996000" />
+      <workItem from="1481568018911" duration="457000" />
+    </task>
+    <task id="LOCAL-00001" summary="Massive changes">
+      <created>1479965082715</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1479965082715</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Fiddlin' around event system">
+      <created>1480047762680</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1480047762680</updated>
+    </task>
+    <task id="LOCAL-00003" summary="WAT">
+      <created>1480201627115</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1480201627115</updated>
+    </task>
+    <task id="LOCAL-00004" summary="WAT">
+      <created>1480201652085</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1480201652085</updated>
+    </task>
+    <task id="LOCAL-00005" summary="TEST">
+      <created>1480370178505</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1480370178505</updated>
+    </task>
+    <task id="LOCAL-00006" summary="TEST">
+      <created>1480712509535</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1480712509535</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Renderer now uses runtime defined shaders, better uniform usage, PhongMaterial is a thing and already going to be refactored, so its wise commit time">
+      <created>1480851190787</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1480851190787</updated>
+    </task>
+    <task id="LOCAL-00008" summary="stackgl discovery! phong with maps on the rails">
+      <created>1480855747906</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1480855747906</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Skybox and Scene::Entity rework">
+      <created>1480897463535</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1480897463536</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="183072000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="905" y="0" width="1655" height="1440" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32944608" sideWeight="0.49682286" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23542275" sideWeight="0.35623512" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31632653" sideWeight="0.45939243" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31632653" sideWeight="0.5305798" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32944608" sideWeight="0.49046862" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18367347" sideWeight="0.41723496" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31632653" sideWeight="0.5406076" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14383137" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32944608" sideWeight="0.48543087" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39941692" sideWeight="0.67077047" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32944608" sideWeight="0.49682286" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23542275" sideWeight="0.35623512" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31632653" sideWeight="0.46147737" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31632653" sideWeight="0.5305798" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32944608" sideWeight="0.49046862" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18367347" sideWeight="0.42136616" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18367347" sideWeight="0.57863384" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27601272" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32944608" sideWeight="0.48543087" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39941692" sideWeight="0.67077047" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="Massive changes" />
+    <MESSAGE value="Fiddlin' around event system" />
+    <MESSAGE value="WAT" />
+    <MESSAGE value="TEST" />
+    <MESSAGE value="Renderer now uses runtime defined shaders, better uniform usage, PhongMaterial is a thing and already going to be refactored, so its wise commit time" />
+    <MESSAGE value="stackgl discovery! phong with maps on the rails" />
+    <MESSAGE value="Skybox and Scene::Entity rework" />
+    <option name="LAST_COMMIT_MESSAGE" value="Skybox and Scene::Entity rework" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <default-breakpoints>
+        <breakpoint enabled="true" type="CidrExceptionBreakpoint">
+          <properties />
+        </breakpoint>
+      </default-breakpoints>
+      <option name="time" value="57" />
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="event.file.count" />
+        <watch expression="event.pos" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Assets/models/coin/coin00_nrm.png" />
+    <entry file="file://$PROJECT_DIR$/Assets/models/coin/coin00_alb.png" />
+    <entry file="file://$PROJECT_DIR$/Assets/models/coin/coin_emm.png" />
+    <entry file="file://$PROJECT_DIR$/Engine/Assets/Loader.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="37" column="93" selection-start-line="37" selection-start-column="93" selection-end-line="37" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/shaders/phong_map_frag.glsl" />
+    <entry file="file://$PROJECT_DIR$/Assets/models/twin_house/InsiSS08.png" />
+    <entry file="file://$PROJECT_DIR$/Assets/models/twin_house/InsiSS12.png" />
+    <entry file="file://$PROJECT_DIR$/Assets/models/twin_house/InsiSS13.png" />
+    <entry file="file://$PROJECT_DIR$/Assets/models/twin_house/InsiSS15.png" />
+    <entry file="file://$PROJECT_DIR$/Assets/models/twin_house/InsiSS16.png" />
+    <entry file="file://$PROJECT_DIR$/Assets/models/twin_house/InsiSS18.png" />
+    <entry file="file://$PROJECT_DIR$/Assets/models/twin_house/InsiSS19.png" />
+    <entry file="file://$PROJECT_DIR$/Assets/models/twin_house/ReadMe.txt" />
+    <entry file="file://$PROJECT_DIR$/Assets/models/twin_house/InsiSS03.png" />
+    <entry file="file://$PROJECT_DIR$/Assets/models/twin_house/InsiSS02.png" />
+    <entry file="file://$PROJECT_DIR$/Assets/models/twin_house/InsiSS01.png" />
+    <entry file="file://$PROJECT_DIR$/Assets/models/twin_house/InsiSS00.png" />
+    <entry file="file://$PROJECT_DIR$/Assets/models/twin_house/InsiMM11.png" />
+    <entry file="file://$PROJECT_DIR$/Assets/models/twin_house/InsiMM06.png" />
+    <entry file="file://$PROJECT_DIR$/Assets/models/twin_house/Inside.obj" />
+    <entry file="file://$PROJECT_DIR$/Assets/models/twin_house/Inside.mtl" />
+    <entry file="file://$PROJECT_DIR$/Assets/models/twin_house/InsiMM09.png" />
+    <entry file="file://$PROJECT_DIR$/Assets/models/twin_house/InsiSS05.png" />
+    <entry file="file://$PROJECT_DIR$/Engine/Primitives/AABB.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="39" column="59" selection-start-line="39" selection-start-column="59" selection-end-line="39" selection-end-column="59" />
+          <caret line="40" column="59" selection-start-line="40" selection-start-column="59" selection-end-line="40" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/Primitives/AABB.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/Primitives/Entity.h" />
+    <entry file="file://$PROJECT_DIR$/Engine/GUI/Freetype.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/GUI/Freetype.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/Renderer/Renderer.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="95" column="50" selection-start-line="95" selection-start-column="50" selection-end-line="95" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/Renderer/Renderer.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="34" column="54" selection-start-line="34" selection-start-column="54" selection-end-line="34" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/Assets/Loader.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1062">
+          <caret line="204" column="9" selection-start-line="204" selection-start-column="9" selection-end-line="204" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/Scene/Entity.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="972">
+          <caret line="86" column="51" selection-start-line="86" selection-start-column="51" selection-end-line="86" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/Primitives/Model.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/Scene/Player.cpp" />
+    <entry file="file://$PROJECT_DIR$/Engine/Event/Type.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="777">
+          <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/GUI/Easing.cpp" />
+    <entry file="file://$PROJECT_DIR$/Engine/Scene/Actuator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="47" column="46" selection-start-line="47" selection-start-column="46" selection-end-line="47" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Runner.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/Primitives/FPSCamera.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="709">
+          <caret line="112" column="42" selection-start-line="101" selection-start-column="32" selection-end-line="112" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/Primitives/FPSCamera.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1092">
+          <caret line="78" column="41" selection-start-line="78" selection-start-column="41" selection-end-line="78" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/Scene/Actuator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="33" column="78" selection-start-line="33" selection-start-column="78" selection-end-line="33" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/Scene/Level.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="60" column="30" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/Primitives/QuaternionFPSCamera.cpp" />
+    <entry file="file://$PROJECT_DIR$/Engine/Primitives/QuaternionFPSCamera.h" />
+    <entry file="file://$PROJECT_DIR$/Runner.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="32" column="89" selection-start-line="32" selection-start-column="89" selection-end-line="32" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/App.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="52" column="40" selection-start-line="52" selection-start-column="40" selection-end-line="52" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/Scene/Player.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/GUI/Easing.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="22" column="19" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Readme.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="15">
+            <caret line="1" column="91" selection-start-line="1" selection-start-column="91" selection-end-line="1" selection-end-column="91" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1205">
+          <caret line="73" column="27" selection-start-line="73" selection-start-column="27" selection-end-line="73" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
