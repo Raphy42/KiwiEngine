@@ -4,11 +4,7 @@
 
 #include <iostream>
 #include "App.h"
-#include "OpenglGraphicContext.h"
-#include "Event/CoreNotifier.h"
-#include "Renderer/ShaderBuilder.h"
-#include "Renderer/ProgramBuilder.h"
-#include "GUI/ImGui.h"
+
 
 std::unique_ptr<Kiwi::Engine::Event::CoreNotifier>
         Kiwi::Engine::Event::CoreNotifier::_instance;
@@ -17,22 +13,17 @@ Kiwi::Engine::App::App() :
         _graphics(new OpenglGraphicContext()),
         _hid(new GLFWDispatcher),
         _core(new CoreDispatcher),
-        _config("config/config.ini"),
-        _vfs(new VFS) {
+        _config("config/config.ini") {
     Event::CoreNotifier::getInstance()->bind(_core.get());
     _core->bind(&_coreListener);
-    if (!_vfs->bind(_config.get<std::string>("Filesystem.root")))
-        exit(EXIT_FAILURE);
+    g_globalInstance.VFS.bind(_config.get<std::string>("Filesystem.root"));
+    g_globalInstance.VFS.setDirectories({
+                                                {"shaders",  _config.get<std::string>("Filesystem.shaders")},
+                                                {"models",   _config.get<std::string>("Filesystem.models")},
+                                                {"textures", _config.get<std::string>("Filesystem.textures")},
+                                                {"levels",   _config.get<std::string>("Filesystem.levels")}
+                                        });
 
-    /**
-     * Set directory aliases
-     */
-    _vfs->setDirectories(std::unordered_map<std::string, std::string>{
-            {"shaders",  _config.get<std::string>("Filesystem.shaders")},
-            {"models",   _config.get<std::string>("Filesystem.models")},
-            {"textures", _config.get<std::string>("Filesystem.textures")},
-            {"levels",   _config.get<std::string>("Filesystem.levels")}
-    });
     //TODO configure each module accordingly
 }
 
@@ -50,7 +41,8 @@ void Kiwi::Engine::App::start() {
     Renderer::ProgramBuilder p_builder;
     Renderer::ShaderBuilder s_builder;
 
-    std::unordered_map<std::string, std::string> sources = _vfs->from("shaders").loadAllFromCurrentDirectory();
+    std::unordered_map<std::string, std::string> sources = g_globalInstance.VFS.from(
+            "shaders").loadAllFromCurrentDirectory();
 
     _renderer.bindShader(Renderer::Shading::Type::PHONG, p_builder.createProgramFromShaders(
             s_builder.createFromFile(GL_VERTEX_SHADER, sources["phong_vert.glsl"]),

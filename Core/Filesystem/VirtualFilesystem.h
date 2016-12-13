@@ -33,6 +33,8 @@ namespace Kiwi {
 
                 VirtualFilesystem from(std::string resource);
 
+                std::string getFilename(std::pair<std::string, std::string> resource);
+
             private:
                 std::string fileRead(const char *filename) const;
 

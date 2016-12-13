@@ -43,25 +43,29 @@ namespace Kiwi {
             public:
                 virtual void update(Event::Type::GLFWEvent &notification) override {
                     switch (notification.type) {
+                        case Event::Type::HumanInteraction::CHARACTER_INPUT :
+                            ImGui_ImplGlfwGL3_CharCallback(notification.handle, notification.character.codepoint);
+                            break;
                         case Event::Type::HumanInteraction::BUTTON_PRESSED :
                         case Event::Type::HumanInteraction::BUTTON_RELEASED :
-                            ImGui_ImplGlfwGL3_MouseButtonCallback(nullptr, notification.button.button,
+                            ImGui_ImplGlfwGL3_MouseButtonCallback(notification.handle, notification.button.button,
                                                                   notification.button.mods, 0);
                             break;
                         case Event::Type::HumanInteraction::KEY_RELEASED :
-                            ImGui_ImplGlfwGL3_KeyCallback(nullptr, notification.key.key, notification.key.scancode,
+                            ImGui_ImplGlfwGL3_KeyCallback(notification.handle, notification.key.key,
+                                                          notification.key.scancode,
                                                           GLFW_RELEASE, notification.key.mods);
                             break;
                         case Event::Type::HumanInteraction::KEY_PRESSED :
-                            ImGui_ImplGlfwGL3_KeyCallback(nullptr, notification.key.key, notification.key.scancode,
+                            ImGui_ImplGlfwGL3_KeyCallback(notification.handle, notification.key.key,
+                                                          notification.key.scancode,
                                                           GLFW_PRESS, notification.key.mods);
                             break;
                         case Event::Type::HumanInteraction::KEY_REPEATED :
-                            ImGui_ImplGlfwGL3_KeyCallback(nullptr, notification.key.key, notification.key.scancode,
+                            ImGui_ImplGlfwGL3_KeyCallback(notification.handle, notification.key.key,
+                                                          notification.key.scancode,
                                                           GLFW_REPEAT, notification.key.mods);
                             break;
-                        case Event::Type::HumanInteraction::CHARACTER_INPUT :
-                            ImGui_ImplGlfwGL3_CharCallback(nullptr, notification.character.codepoint);
                         default:
                             break;
                     }

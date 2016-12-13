@@ -13,7 +13,13 @@
 #include "../Core/Config.h"
 #include "Renderer/Renderer.h"
 #include "Assets/Storage.h"
-#include "Scene/Creator.h"
+#include "Scene/Creator.h"#
+#include "OpenglGraphicContext.h"
+#include "Event/CoreNotifier.h"
+#include "Renderer/ShaderBuilder.h"
+#include "Renderer/ProgramBuilder.h"
+#include "GUI/ImGui.h"
+#include "GlobalInstance.h"
 
 namespace Kiwi {
     namespace Engine {
@@ -54,7 +60,6 @@ namespace Kiwi {
 
         private:
             std::unique_ptr<GraphicContextInterface> _graphics;
-            std::unique_ptr<VFS> _vfs;
             Core::Config _config;
 
         protected:

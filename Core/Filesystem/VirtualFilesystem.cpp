@@ -106,16 +106,28 @@ void Kiwi::Core::Filesystem::VirtualFilesystem::setDirectories(
         fs::path tmp = _root;
         tmp.append(it.second);
         if (fs::exists(tmp) && fs::is_directory(tmp))
-            continue;
+            _directories[it.first] = tmp.string();
         else
             throw std::runtime_error("Unable to bind default resources");
     }
 }
 
 Kiwi::Core::Filesystem::VirtualFilesystem Kiwi::Core::Filesystem::VirtualFilesystem::from(std::string resource) {
-    _current = _root.append(_directories[resource]);
-    std::cout << _root;
+    _current = _directories[resource];
     return *this;
+}
+
+std::string Kiwi::Core::Filesystem::VirtualFilesystem::getFilename(std::pair<std::string, std::string> resource) {
+    fs::path cwd;
+    for (const auto &n : _directories) {
+        std::cout << "Key:[" << n.first << "] Value:[" << n.second << "]\n";
+    }
+    cwd = resource.second;
+    std::cout << cwd.string();
+    if (fs::exists(cwd))
+        return cwd.filename().string();
+    else
+        throw std::runtime_error("Malformed resource pair : " + resource.first + " " + resource.second);
 }
 
 

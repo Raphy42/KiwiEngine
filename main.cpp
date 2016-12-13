@@ -19,6 +19,8 @@
 
 namespace kE = Kiwi::Engine;
 
+#define IM_ARRAYSIZE(_ARR)  ((int)(sizeof(_ARR)/sizeof(*_ARR)))
+
 std::array<const char *, 20> type_str = {
         "NONE",
         "WINDOW_MOVED",
@@ -74,7 +76,7 @@ public:
 class DebugInputListener : public kE::Event::Listener<kE::Event::Type::GLFWEvent> {
 public:
     void update(Kiwi::Engine::Event::Type::GLFWEvent &notification) override {
-//        std::cout << type_str[static_cast<int>(notification.type)] << std::endl;
+//        ImGui::Text("Event : %s", type_str[static_cast<int>(notification.type)]);
     }
 };
 
@@ -105,7 +107,8 @@ public:
         _hid->bind(&cameraListener);
 
         kE::Primitive::Mesh cube = loader.createDefaultMesh(kE::Asset::Loader::Type::CUBE);
-        kE::Scene::Entity sponza = loader.createEntityFromModel("./Assets/models/crytek-sponza/sponza-fix.obj");
+        kE::Scene::Entity sponza = loader.createEntityFromModel("./Assets/models/hyrule_castle/hyrulecastle.obj");
+        std::cout << kE::g_globalInstance.VFS.getFilename({"models", "/hyrule_castle/hyrulecastle.obj"}) << std::endl;
         kE::Scene::Entity coin = loader.createEntityFromModel("./Assets/models/coin/Coin.obj");
 //        kE::Scene::Entity sibenik = loader.createEntityFromModel("./Assets/models/sibenik/sibenik.obj");
 //        kE::Scene::Entity bunny = loader.createEntityFromModel("./Assets/models/stanford_bunny.obj");
@@ -144,48 +147,7 @@ public:
 //        sponza.addChild(kE::Scene::Entity(cube, &brick, glm::vec3(0.f, 0.f, 0.f)));
 
 
-
-        kE::Scene::Entity skybox = kE::Scene::Entity(loader.createMeshFromVertices({-10.0f, 10.0f, -10.0f,
-                                                                                    -10.0f, -10.0f, -10.0f,
-                                                                                    10.0f, -10.0f, -10.0f,
-                                                                                    10.0f, -10.0f, -10.0f,
-                                                                                    10.0f, 10.0f, -10.0f,
-                                                                                    -10.0f, 10.0f, -10.0f,
-
-                                                                                    -10.0f, -10.0f, 10.0f,
-                                                                                    -10.0f, -10.0f, -10.0f,
-                                                                                    -10.0f, 10.0f, -10.0f,
-                                                                                    -10.0f, 10.0f, -10.0f,
-                                                                                    -10.0f, 10.0f, 10.0f,
-                                                                                    -10.0f, -10.0f, 10.0f,
-
-                                                                                    10.0f, -10.0f, -10.0f,
-                                                                                    10.0f, -10.0f, 10.0f,
-                                                                                    10.0f, 10.0f, 10.0f,
-                                                                                    10.0f, 10.0f, 10.0f,
-                                                                                    10.0f, 10.0f, -10.0f,
-                                                                                    10.0f, -10.0f, -10.0f,
-
-                                                                                    -10.0f, -10.0f, 10.0f,
-                                                                                    -10.0f, 10.0f, 10.0f,
-                                                                                    10.0f, 10.0f, 10.0f,
-                                                                                    10.0f, 10.0f, 10.0f,
-                                                                                    10.0f, -10.0f, 10.0f,
-                                                                                    -10.0f, -10.0f, 10.0f,
-
-                                                                                    -10.0f, 10.0f, -10.0f,
-                                                                                    10.0f, 10.0f, -10.0f,
-                                                                                    10.0f, 10.0f, 10.0f,
-                                                                                    10.0f, 10.0f, 10.0f,
-                                                                                    -10.0f, 10.0f, 10.0f,
-                                                                                    -10.0f, 10.0f, -10.0f,
-
-                                                                                    -10.0f, -10.0f, -10.0f,
-                                                                                    -10.0f, -10.0f, 10.0f,
-                                                                                    10.0f, -10.0f, -10.0f,
-                                                                                    10.0f, -10.0f, -10.0f,
-                                                                                    -10.0f, -10.0f, 10.0f,
-                                                                                    10.0f, -10.0f, 10.0f}),
+        kE::Scene::Entity skybox = kE::Scene::Entity(cube,
                                                      new kE::Renderer::CubeMaterial(loader.createCubeMap({
                                                                                                                  "./Assets/textures/skybox/right.jpg",
                                                                                                                  "./Assets/textures/skybox/left.jpg",
@@ -196,6 +158,9 @@ public:
 
                                                                                                          })));
 
+        kE::Scene::Actuator skybox_actuator;
+        skybox.bindActuator(&skybox_actuator);
+
         kE::Scene::Level l(sponza);
 
         l.setSkybox(skybox);
@@ -204,24 +169,36 @@ public:
         _renderer.bindCamera(&camera);
         _renderer.bindTarget(kE::Renderer::Target(1280, 800));
 
+        float pos[3] = {0, 0, 0};
+        char str[128] = "Salut";
+
         while (1) {
 
             ImGui_ImplGlfwGL3_NewFrame();
+            bool rotate;
+            bool gui_open = true;
 
-            {
-                bool rotate;
+            ImGui::Begin("Tools", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+            ImGui::Text("Camera position : %f %f %f", camera.getPosition().x, camera.getPosition().y,
+                        camera.getPosition().z);
+            ImGui::Separator();
+            ImGui::InputText("Input text", str, std::strlen(str));
 
-                glm::vec3 pos;
+            ImGui::DragFloat3("Global Alpha", pos, 0.005f, -3.f, 3.f, "%.2f");
+            ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate,
+                        ImGui::GetIO().Framerate);
 
-                ImGui::InputFloat3("Position", glm::value_ptr(pos));
-                ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-                ImGui::Checkbox("Rotate", &rotate);
+            ImGui::Checkbox("Rotate", &rotate);
 
-                if (rotate)
-                    coin_actuator.rotate(glm::vec3(0.f, 1.f, 0.f), glfwGetTime());
-                coin_actuator.position(pos)->update();
+            static float arr[] = {0.6f, 0.1f, 1.0f, 0.5f, 0.92f, 0.1f, 0.2f};
+            ImGui::PlotLines("Frame Times", arr, IM_ARRAYSIZE(arr));
 
-            }
+            ImGui::End();
+
+            if (rotate)
+                coin_actuator.rotate(glm::vec3(0.f, 1.f, 0.f), glfwGetTime());
+            coin_actuator.position(glm::vec3(pos[0], pos[1], pos[2]))->update();
+            skybox_actuator.setScale(glm::vec3(10.f, 10.f, 10.f))->update();
 
             run();
         }

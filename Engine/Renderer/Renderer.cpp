@@ -8,6 +8,7 @@
 #include "../../Core/Config.h"
 #include "../Assets/Loader.h"
 #include "Shading.h"
+#include "../../vendor/imgui/imgui.h"
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/glm.hpp>
 
@@ -23,7 +24,7 @@ namespace Kiwi {
             }
 
             void Renderer::render() {
-//                _target.bindFrame();
+                _target.bindFrame();
 
                 glClearColor(0.1f, 0.1f, 0.1f, 1.f);
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -42,14 +43,7 @@ namespace Kiwi {
                 GLProgram p = _shaders[static_cast<int>(_level.getSkybox().getMaterial()->getType())];
                 glUseProgram(p.get());
 
-                glUniformMatrix4fv(glGetUniformLocation(p.get(), "view"),
-                                   1, GL_FALSE, glm::value_ptr(glm::mat4(glm::mat3(_camera->getViewMat4()))));
-                glUniformMatrix4fv(glGetUniformLocation(p.get(), "projection"),
-                                   1, GL_FALSE, glm::value_ptr(_camera->getProjectionMat4()));
-
-                _level.getSkybox().getMesh().bind();
-                _level.getSkybox().getMaterial()->bind(0);
-                _level.getSkybox().getMesh().draw();
+                renderNode(_level.getSkybox());
 
 //                _target.renderFrame(static_cast<int>(Shading::Type::POST_PROCESS));
             }

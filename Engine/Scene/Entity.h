@@ -76,6 +76,7 @@ namespace Kiwi {
 
                 void bindActuator(Actuator *actuator) {
                     _actuator = actuator;
+                    setTransform(actuator->update());
                     for (auto &child : _children)
                         child.bindActuator(actuator);
                 }

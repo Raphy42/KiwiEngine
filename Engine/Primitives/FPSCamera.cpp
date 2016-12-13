@@ -71,7 +71,6 @@ void Kiwi::Engine::Primitive::FPSCamera::center(float xoffset, float yoffset) {
 
     _yaw += xoffset;
     _pitch += yoffset;
-    std::cout << _yaw << " " << _pitch << std::endl;
     glm::clamp(_pitch, -89.f, 89.f);
     updateVectors();
 }
@@ -79,7 +78,6 @@ void Kiwi::Engine::Primitive::FPSCamera::center(float xoffset, float yoffset) {
 void Kiwi::Engine::Primitive::FPSCamera::zoom(float y) {
     _zoom -= y;
     _zoom = glm::clamp(_zoom, 20.f, 120.f);
-    std::cout << _zoom<< std::endl;
 }
 
 void Kiwi::Engine::Primitive::FPSCamera::updateVectors() {

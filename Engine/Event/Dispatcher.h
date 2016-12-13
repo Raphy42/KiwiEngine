@@ -20,7 +20,7 @@ namespace Kiwi {
                 virtual ~Dispatcher() {};
 
                 void update(Notification &notification) {
-                    for (auto it : _listeners)
+                    for (auto &it : _listeners)
                         it->update(notification);
 
                 }

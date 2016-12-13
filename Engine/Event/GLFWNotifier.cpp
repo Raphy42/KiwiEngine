@@ -113,7 +113,6 @@ void Kiwi::Engine::Event::GLFWNotifier::start(void) {
         event.type = Type::HumanInteraction::CHARACTER_INPUT;
         event.character.codepoint = codepoint;
         event.character.mods = mods;
-        std::cout << codepoint << std::endl;
         getNotifier(w)->notify(event);
     });
 }
