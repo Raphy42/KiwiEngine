@@ -188,6 +188,11 @@ public:
             bool gui_open = true;
 
             ImGui::Begin("Tools", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+            ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.f / ImGui::GetIO().Framerate,
+                        ImGui::GetIO().Framerate);
+
+            ImGui::Separator();
+
             ImGui::Text("Camera position : %f %f %f", camera.getPosition().x, camera.getPosition().y,
                         camera.getPosition().z);
             if (ImGui::Button("Reset camera"))
@@ -198,8 +203,6 @@ public:
             ImGui::Text("Actuator test - Coin");
             ImGui::DragFloat3("Position", pos, 0.f, -3.f, 3.f, "%.2f");
             ImGui::DragFloat3("Scale", scale, 1.f, 1.f, 5.f, "%.2f");
-            ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.f / ImGui::GetIO().Framerate,
-                        ImGui::GetIO().Framerate);
 
             ImGui::Checkbox("Rotate", &rotate);
 
