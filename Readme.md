@@ -9,7 +9,17 @@ The engine uses modern OpenGL but has only been tested on MacOS.
 By the end I want it to be cross platform, so I try to be as platform agnostic as I can.
 
 
+##Usage:
+macOS only (for the moment)  
+`brew install boost` (for `boost::property_tree`, `boost::filesystem`)  
+`git clone --recursive https://github.com/Raphy42/KiwiEngine.git`  
+`cmake . && make`
+
+
 ##Implemented
+###Demo:
+1. PhongTexturedMaterial test on small scene with one dynamic light. (no shadows)
+
 ###Scene:
 1. Mesh, complex meshes and simple primitive (cube, plane)
 2. Actuator (position, rotation, scale)
@@ -36,16 +46,12 @@ By the end I want it to be cross platform, so I try to be as platform agnostic a
 1. PBR material (metallic workflow)
 2. uniform buffer object (std140)
 3. GLSL abstraction?
+4. Point shadow
 
 ###Other:
 1. Rigid body physics (with middleware abstraction in order to select different physic engine)
 2. Animation
 3. Voxels !!!! (need some work on those octree tho)
-
-
-##Usage:
-`git clone --recursive https://github.com/Raphy42/KiwiEngine.git`  
-`cmake . && make`
 
 ##Librairies:
 `boost` for the filesystem abstraction (added in c++17) and some other neat things (not included in vendor, need to install it with your favorite package manager)  
