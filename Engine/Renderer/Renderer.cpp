@@ -43,11 +43,12 @@ namespace Kiwi {
 //                _target.renderFrame(static_cast<int>(Shading::Type::POST_PROCESS));
 
                 ImGui::Begin("Light", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
-                ImGui::SliderFloat3("Light position", glm::value_ptr(_lightpos), -5.f, 5.f);
-                ImGui::SliderFloat3("Light color", glm::value_ptr(_lightcolor), 0.f, 1.f);
-                ImGui::SliderFloat3("Light ambient", glm::value_ptr(_lightambient), 0.f, 1.f);
-                ImGui::SliderFloat("Light falloff", &_falloff, 0.f, 1.f);
-                ImGui::SliderFloat("Light radius", &_radius, 0.f, 12.f);
+                ImGui::SliderFloat3("Position", glm::value_ptr(_lightpos), -5.f, 5.f);
+                ImGui::SliderFloat3("Color", glm::value_ptr(_lightcolor), 0.f, 1.f);
+                ImGui::SliderFloat3("Ambient", glm::value_ptr(_lightambient), 0.f, 1.f);
+                ImGui::SliderFloat("Falloff", &_falloff, 0.f, 1.f);
+                ImGui::SliderFloat("Radius", &_radius, 0.f, 12.f);
+                ImGui::Checkbox("Reflection only", &_shadows);
                 ImGui::End();
 
 
@@ -81,6 +82,7 @@ namespace Kiwi {
                     node.getMaterial()->setVec3Parameter("light_ambient", _lightambient);
                     node.getMaterial()->setParameter("light_falloff", _falloff);
                     node.getMaterial()->setParameter("light_radius", _radius);
+                    node.getMaterial()->setFlag("shadow", _shadows);
                 }
 
                 node.getMaterial()->bind(0);

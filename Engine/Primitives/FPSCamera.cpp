@@ -99,3 +99,7 @@ glm::mat4 Kiwi::Engine::Primitive::FPSCamera::getProjectionMat4() const {
 glm::vec3 Kiwi::Engine::Primitive::FPSCamera::getPosition(void) const {
     return _position;
 }
+
+void Kiwi::Engine::Primitive::FPSCamera::setPosition(glm::vec3 position) {
+    _position = position;
+}

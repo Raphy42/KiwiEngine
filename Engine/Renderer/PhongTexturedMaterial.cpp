@@ -40,6 +40,7 @@ void Kiwi::Engine::Renderer::PhongTexturedMaterial::bindShader(GLProgram shader)
     _locationMap.emplace("specular_map", glGetUniformLocation(bind, "texSpecular"));
     _locationMap.emplace("alpha_map", glGetUniformLocation(bind, "texAlpha"));
     _locationMap.emplace("normal_map", glGetUniformLocation(bind, "texNormal"));
+    _locationMap.emplace("shadow", glGetUniformLocation(bind, "shadows"));
 }
 
 void Kiwi::Engine::Renderer::PhongTexturedMaterial::addMap(Kiwi::Engine::Renderer::Texture texture) {
@@ -63,11 +64,13 @@ void Kiwi::Engine::Renderer::PhongTexturedMaterial::addMap(Kiwi::Engine::Rendere
 }
 
 void Kiwi::Engine::Renderer::PhongTexturedMaterial::setParameter(std::string name, float value) {
-    glUseProgram(_shader.get());
     glUniform1f(_locationMap[name], value);
 }
 
 void Kiwi::Engine::Renderer::PhongTexturedMaterial::setVec3Parameter(std::string name, glm::vec3 value) {
-    glUseProgram(_shader.get());
     glUniform3f(_locationMap[name], value.x, value.y, value.z);
+}
+
+void Kiwi::Engine::Renderer::PhongTexturedMaterial::setFlag(std::string name, bool value) {
+    glUniform1i(_locationMap[name], value);
 }

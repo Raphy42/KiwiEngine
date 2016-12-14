@@ -28,6 +28,8 @@ namespace Kiwi {
 
                 virtual void addMap(Texture texture) override;
 
+                virtual void setFlag(std::string name, bool value) override;
+
             private:
                 GLProgram _shader;
                 std::unordered_map<std::string, GLint> _locationMap;

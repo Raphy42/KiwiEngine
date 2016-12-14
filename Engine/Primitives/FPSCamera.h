@@ -33,6 +33,8 @@ namespace Kiwi {
 
                 glm::vec3 getPosition(void) const;
 
+                void setPosition(glm::vec3 position);
+
             private:
                 glm::vec3 _position;
                 glm::vec3 _front;

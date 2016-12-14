@@ -11,6 +11,7 @@ uniform mat4 model;
 out vec3 v_normal;
 out vec2 v_uv;
 out vec3 v_viewPos;
+out vec3 fragPos;
 
 void main() {
       mat4 modelViewMatrix = view * model;
@@ -20,6 +21,7 @@ void main() {
        v_viewPos = viewModelPosition.xyz;
        v_uv = uv;
        gl_Position = projection * viewModelPosition;
+       fragPos = vec3(model * vec4(pos, 1.f));
 
        // Rotate the object normals by a 3x3 normal matrix.
        // We could also do this CPU-side to avoid doing it per-vertex

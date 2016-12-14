@@ -34,6 +34,8 @@ namespace Kiwi {
 
                 virtual void addMap(Texture texture) override;
 
+                virtual void setFlag(std::string name, bool value) override;
+
             private:
                 void update();
 

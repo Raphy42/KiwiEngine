@@ -31,3 +31,7 @@ void Kiwi::Engine::Renderer::CubeMaterial::addMap(Kiwi::Engine::Renderer::Textur
         return;
     _cubemap = texture;
 }
+
+void Kiwi::Engine::Renderer::CubeMaterial::setFlag(std::string name, bool value) {
+
+}

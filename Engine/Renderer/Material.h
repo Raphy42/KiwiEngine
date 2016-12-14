@@ -30,6 +30,8 @@ namespace Kiwi { namespace Engine { namespace Renderer {
 
                 virtual void setParameter(std::string name, float value) = 0;
 
+                virtual void setFlag(std::string name, bool value) = 0;
+
                 virtual void bindShader(GLProgram shader) = 0;
 
                 virtual void addMap(Texture texture) = 0;

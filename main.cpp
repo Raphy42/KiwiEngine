@@ -99,6 +99,9 @@ public:
 
         kE::Primitive::Mesh cube = loader.createDefaultMesh(kE::Asset::Loader::Type::CUBE);
         kE::Scene::Entity hyrule = loader.createEntityFromModel("./Assets/models/hyrule_castle/hyrulecastle.obj");
+        kE::Scene::Actuator hyrule_actuator;
+        hyrule.bindActuator(&hyrule_actuator);
+        hyrule_actuator.position(glm::vec3(0.f, 2.f, 0.f))->update();
         kE::Scene::Entity coin = loader.createEntityFromModel("./Assets/models/coin/Coin.obj");
         kE::Scene::Entity sponza = loader.createEntityFromModel("./Assets/models/crytek-sponza/sponza-fix.obj");
 //        kE::Scene::Entity bunny = loader.createEntityFromModel("./Assets/models/stanford_bunny.obj");
@@ -130,14 +133,16 @@ public:
         coin.bindActuator(&coin_actuator);
 
         sponza.addChild(coin.getChildren()[0]);
+        hyrule.addChild(coin.getChildren()[0]);
+
         kE::Scene::Entity cube_test;
         cube_test.setChildren({
-                        kE::Scene::Entity(cube, &red_phong, glm::vec3(-1.f, 0.f, 1.f)),
-                        kE::Scene::Entity(cube, &green_phong, glm::vec3(1.f, 0.f, -1.f)),
-                        kE::Scene::Entity(cube, &blue_phong, glm::vec3(1.f, 0.f, 1.f)),
-                        kE::Scene::Entity(cube, &crate, glm::vec3(-1.f, 0.f, -1.f)),
-                        kE::Scene::Entity(cube, &brick, glm::vec3(0.f, 0.f, 0.f))
-                });
+                                      kE::Scene::Entity(cube, &red_phong, glm::vec3(-1.f, 0.f, 1.f)),
+                                      kE::Scene::Entity(cube, &green_phong, glm::vec3(1.f, 0.f, -1.f)),
+                                      kE::Scene::Entity(cube, &blue_phong, glm::vec3(1.f, 0.f, 1.f)),
+                                      kE::Scene::Entity(cube, &crate, glm::vec3(-1.f, 0.f, -1.f)),
+                                      kE::Scene::Entity(cube, &brick, glm::vec3(0.f, 0.f, 0.f))
+                              });
 
         kE::Scene::Actuator cube_mini_scene_actuator;
         cube_test.bindActuator(&cube_mini_scene_actuator);
@@ -171,7 +176,7 @@ public:
         _renderer.bindCamera(&camera);
         _renderer.bindTarget(kE::Renderer::Target(1280, 800));
 
-        float pos[3] = {0, 0, 0};
+        float pos[3] = {0, 1, 0};
         float scale[3] = {1, 1, 1};
         bool rotate = false;
 
@@ -185,14 +190,34 @@ public:
             ImGui::Begin("Tools", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
             ImGui::Text("Camera position : %f %f %f", camera.getPosition().x, camera.getPosition().y,
                         camera.getPosition().z);
+            if (ImGui::Button("Reset camera"))
+                camera.setPosition(glm::vec3(1.f, 1.f, 1.f));
+
             ImGui::Separator();
 
+            ImGui::Text("Actuator test - Coin");
             ImGui::DragFloat3("Position", pos, 0.f, -3.f, 3.f, "%.2f");
             ImGui::DragFloat3("Scale", scale, 1.f, 1.f, 5.f, "%.2f");
-            ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate,
+            ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.f / ImGui::GetIO().Framerate,
                         ImGui::GetIO().Framerate);
 
             ImGui::Checkbox("Rotate", &rotate);
+
+            ImGui::Separator();
+
+            ImGui::Text("Change scene");
+            if (ImGui::Button("Hyrule"))
+                _renderer.bindLevel(hyrule_level);
+            ImGui::SameLine();
+            if (ImGui::Button("Sponza"))
+                _renderer.bindLevel(sponza_level);
+
+            ImGui::Separator();
+
+            ImGui::Text("Keys\n"
+                                "1     - toggle wireframe\n"
+                                "WASD  - move and strafe\n"
+                                "Space - stop mouse tracking");
 
             ImGui::End();
 
@@ -200,10 +225,8 @@ public:
                 coin_actuator.rotate(glm::vec3(0.f, 1.f, 0.f), glfwGetTime());
             coin_actuator
                     .position(glm::vec3(pos[0], pos[1], pos[2]))
-                    ->setScale(glm::vec3(scale[0], scale[1], scale[2]))
+                    ->setScale(glm::vec3(scale[0] * 2, scale[1] * 2, scale[2] * 2))
                     ->update();
-            cube_mini_scene_actuator
-                    .setScale(glm::vec3(0.5f, 0.5f, 0.5f))->update();
 
             run();
         }

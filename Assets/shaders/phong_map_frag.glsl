@@ -14,6 +14,7 @@ struct Light {
 in vec2 v_uv;
 in vec3 v_viewPos;
 in vec3 v_normal;
+in vec3 fragPos;
 
 const vec2 UV_SCALE = vec2(1.0, 1.0);
 const float specularScale = 0.65;
@@ -31,14 +32,6 @@ uniform samplerCube depthMap;
 uniform float far_plane;
 uniform bool shadows;
 
-vec3 gridSamplingDisk[20] = vec3[]
-(
-   vec3(1, 1, 1), vec3(1, -1, 1), vec3(-1, -1, 1), vec3(-1, 1, 1),
-   vec3(1, 1, -1), vec3(1, -1, -1), vec3(-1, -1, -1), vec3(-1, 1, -1),
-   vec3(1, 1, 0), vec3(1, -1, 0), vec3(-1, -1, 0), vec3(-1, 1, 0),
-   vec3(1, 0, 1), vec3(-1, 0, 1), vec3(1, 0, -1), vec3(-1, 0, -1),
-   vec3(0, 1, 1), vec3(0, -1, 1), vec3(0, -1, -1), vec3(0, 1, -1)
-);
 
 //uniform int flatShading;
 uniform mat4 model;
@@ -48,6 +41,42 @@ uniform Light light;
 
 out vec4 color;
 
+vec3 gridSamplingDisk[20] = vec3[]
+(
+   vec3(1, 1, 1), vec3(1, -1, 1), vec3(-1, -1, 1), vec3(-1, 1, 1),
+   vec3(1, 1, -1), vec3(1, -1, -1), vec3(-1, -1, -1), vec3(-1, 1, -1),
+   vec3(1, 1, 0), vec3(1, -1, 0), vec3(-1, -1, 0), vec3(-1, 1, 0),
+   vec3(1, 0, 1), vec3(-1, 0, 1), vec3(1, 0, -1), vec3(-1, 0, -1),
+   vec3(0, 1, 1), vec3(0, -1, 1), vec3(0, -1, -1), vec3(0, 1, -1)
+);
+
+float ShadowCalculation(vec3 fragPos)
+{
+    // Get vector between fragment position and light position
+    vec3 fragToLight = fragPos - light.position;
+    // Get current linear depth as the length between the fragment and light position
+    float currentDepth = length(fragToLight);
+    // Test for shadows with PCF
+    float shadow = 0.0;
+    float bias = 0.15;
+    int samples = 20;
+    float viewDistance = length(v_viewPos - fragPos);
+    float diskRadius = (1.0 + (viewDistance / far_plane)) / 25.0;
+    for(int i = 0; i < samples; ++i)
+    {
+        float closestDepth = texture(depthMap, fragToLight + gridSamplingDisk[i] * diskRadius).r;
+        closestDepth *= far_plane;   // Undo mapping [0;1]
+        if(currentDepth - bias > closestDepth)
+            shadow += 1.0;
+    }
+    shadow /= float(samples);
+
+    // Display closestDepth as debug (to visualize depth cubemap)
+    // FragColor = vec4(vec3(closestDepth / far_plane), 1.0);
+
+    // return shadow;
+    return shadow;
+}
 // by Tom Madams
 // Simple:
 // https://imdoingitwrong.wordpress.com/2011/01/31/light-attenuation/
@@ -150,5 +179,7 @@ void main() {
     vec3 diffuse = light.color * orenNayarDiffuse(L, V, N, roughness, albedo) * falloff;
     vec3 ambient = light.ambient;
 
-    color.rgb = diffuseColor * (diffuse + ambient) + specular;
+    float shadow = shadows ? 1.f : 0.f;
+
+    color.rgb = (1.f - shadow) * diffuseColor * (diffuse + ambient) + specular;
 }

@@ -24,6 +24,8 @@ namespace Kiwi {
 
                 virtual void setParameter(std::string name, float value) override;
 
+                virtual void setFlag(std::string name, bool value) override;
+
                 virtual void bindShader(GLProgram shader) override;
 
                 virtual void addMap(Texture texture) override;

@@ -53,3 +53,7 @@ void Kiwi::Engine::Renderer::PhongMaterial::update() {
 void Kiwi::Engine::Renderer::PhongMaterial::setParameter(std::string name, float value) {
     throw std::runtime_error("Unused");
 }
+
+void Kiwi::Engine::Renderer::PhongMaterial::setFlag(std::string name, bool value) {
+
+}
