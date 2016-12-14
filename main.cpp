@@ -7,6 +7,7 @@
 #include "Engine/Renderer/PhongTexturedMaterial.h"
 #include "Engine/Renderer/CubeMaterial.h"
 
+#define TEST
 
 namespace kE = Kiwi::Engine;
 
