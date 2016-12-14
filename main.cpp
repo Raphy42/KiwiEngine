@@ -98,7 +98,7 @@ public:
         _hid->bind(&cameraListener);
 
         kE::Primitive::Mesh cube = loader.createDefaultMesh(kE::Asset::Loader::Type::CUBE);
-//        kE::Scene::Entity hyrule = loader.createEntityFromModel("./Assets/models/hyrule_castle/hyrulecastle.obj");
+        kE::Scene::Entity hyrule = loader.createEntityFromModel("./Assets/models/hyrule_castle/hyrulecastle.obj");
         kE::Scene::Entity coin = loader.createEntityFromModel("./Assets/models/coin/Coin.obj");
         kE::Scene::Entity sponza = loader.createEntityFromModel("./Assets/models/crytek-sponza/sponza-fix.obj");
 //        kE::Scene::Entity bunny = loader.createEntityFromModel("./Assets/models/stanford_bunny.obj");
@@ -158,15 +158,16 @@ public:
         skybox.bindActuator(&skybox_actuator);
 
         kE::Scene::Level sponza_level(sponza);
-//        kE::Scene::Level hyrule_level(hyrule);
+        kE::Scene::Level hyrule_level(hyrule);
 
-//        hyrule_level.setSkybox(skybox);
         skybox_actuator
                 .setScale(glm::vec3(100.f, 100.f, 100.f))
                 ->update();
+
+        hyrule_level.setSkybox(skybox);
         sponza_level.setSkybox(skybox);
 
-        _renderer.bindLevel(sponza_level);
+        _renderer.bindLevel(hyrule_level);
         _renderer.bindCamera(&camera);
         _renderer.bindTarget(kE::Renderer::Target(1280, 800));
 

@@ -26,6 +26,20 @@ uniform sampler2D texNormal;
 uniform sampler2D texSpecular;
 uniform sampler2D texAlpha;
 
+uniform samplerCube depthMap;
+
+uniform float far_plane;
+uniform bool shadows;
+
+vec3 gridSamplingDisk[20] = vec3[]
+(
+   vec3(1, 1, 1), vec3(1, -1, 1), vec3(-1, -1, 1), vec3(-1, 1, 1),
+   vec3(1, 1, -1), vec3(1, -1, -1), vec3(-1, -1, -1), vec3(-1, 1, -1),
+   vec3(1, 1, 0), vec3(1, -1, 0), vec3(-1, -1, 0), vec3(-1, 1, 0),
+   vec3(1, 0, 1), vec3(-1, 0, 1), vec3(1, 0, -1), vec3(-1, 0, -1),
+   vec3(0, 1, 1), vec3(0, -1, 1), vec3(0, -1, -1), vec3(0, 1, -1)
+);
+
 //uniform int flatShading;
 uniform mat4 model;
 uniform mat4 view;

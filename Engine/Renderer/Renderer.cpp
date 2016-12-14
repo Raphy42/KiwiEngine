@@ -42,11 +42,13 @@ namespace Kiwi {
 
 //                _target.renderFrame(static_cast<int>(Shading::Type::POST_PROCESS));
 
+                ImGui::Begin("Light", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
                 ImGui::SliderFloat3("Light position", glm::value_ptr(_lightpos), -5.f, 5.f);
                 ImGui::SliderFloat3("Light color", glm::value_ptr(_lightcolor), 0.f, 1.f);
                 ImGui::SliderFloat3("Light ambient", glm::value_ptr(_lightambient), 0.f, 1.f);
                 ImGui::SliderFloat("Light falloff", &_falloff, 0.f, 1.f);
                 ImGui::SliderFloat("Light radius", &_radius, 0.f, 12.f);
+                ImGui::End();
 
 
             }
