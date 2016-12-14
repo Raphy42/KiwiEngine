@@ -41,6 +41,14 @@ namespace Kiwi {
                 std::vector<GLProgram>      _shaders;
                 Target                      _target;
 
+                glm::vec3 _lightpos;
+                glm::vec3 _lightcolor = glm::vec3(1.f, 1.f, 1.f);
+                glm::vec3 _lightambient = glm::vec3(1.f, 0.9f, 0.4f);
+
+                float _falloff = .12f;
+                float _radius = 10.f;
+
+
                 void updateNode(Scene::Entity node);
             };
         }

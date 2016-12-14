@@ -2,19 +2,10 @@
 #include <array>
 #include <glm/gtc/type_ptr.hpp>
 #include "Engine/App.h"
-#include "Engine/Event/Type.h"
-#include "Engine/Event/Listener.h"
-#include "Engine/Event/Dispatcher.h"
-#include "Engine/Event/GLFWNotifier.h"
-#include "Engine/Event/CoreNotifier.h"
-#include "Engine/Primitives/Mesh.h"
 #include "Engine/Assets/Loader.h"
-#include "Engine/Scene/Level.h"
-#include "Engine/Assets/Storage.h"
 #include "Engine/Renderer/PhongMaterial.h"
 #include "Engine/Renderer/PhongTexturedMaterial.h"
 #include "Engine/Renderer/CubeMaterial.h"
-#include "Engine/GUI/ImGui.h"
 
 
 namespace kE = Kiwi::Engine;
@@ -107,10 +98,9 @@ public:
         _hid->bind(&cameraListener);
 
         kE::Primitive::Mesh cube = loader.createDefaultMesh(kE::Asset::Loader::Type::CUBE);
-        kE::Scene::Entity sponza = loader.createEntityFromModel("./Assets/models/hyrule_castle/hyrulecastle.obj");
-        std::cout << kE::g_globalInstance.VFS.getFilename({"models", "/hyrule_castle/hyrulecastle.obj"}) << std::endl;
+//        kE::Scene::Entity hyrule = loader.createEntityFromModel("./Assets/models/hyrule_castle/hyrulecastle.obj");
         kE::Scene::Entity coin = loader.createEntityFromModel("./Assets/models/coin/Coin.obj");
-//        kE::Scene::Entity sibenik = loader.createEntityFromModel("./Assets/models/sibenik/sibenik.obj");
+        kE::Scene::Entity sponza = loader.createEntityFromModel("./Assets/models/crytek-sponza/sponza-fix.obj");
 //        kE::Scene::Entity bunny = loader.createEntityFromModel("./Assets/models/stanford_bunny.obj");
 //
         kE::Renderer::PhongMaterial red_phong;
@@ -140,11 +130,17 @@ public:
         coin.bindActuator(&coin_actuator);
 
         sponza.addChild(coin.getChildren()[0]);
-//        sponza.addChild(kE::Scene::Entity(cube, &red_phong, glm::vec3(-1.f, 0.f, 1.f)));
-//        sponza.addChild(kE::Scene::Entity(cube, &green_phong, glm::vec3(1.f, 0.f, -1.f)));
-//        sponza.addChild(kE::Scene::Entity(cube, &blue_phong, glm::vec3(1.f, 0.f, 1.f)));
-//        sponza.addChild(kE::Scene::Entity(cube, &crate, glm::vec3(-1.f, 0.f, -1.f)));
-//        sponza.addChild(kE::Scene::Entity(cube, &brick, glm::vec3(0.f, 0.f, 0.f)));
+        kE::Scene::Entity cube_test;
+        cube_test.setChildren({
+                        kE::Scene::Entity(cube, &red_phong, glm::vec3(-1.f, 0.f, 1.f)),
+                        kE::Scene::Entity(cube, &green_phong, glm::vec3(1.f, 0.f, -1.f)),
+                        kE::Scene::Entity(cube, &blue_phong, glm::vec3(1.f, 0.f, 1.f)),
+                        kE::Scene::Entity(cube, &crate, glm::vec3(-1.f, 0.f, -1.f)),
+                        kE::Scene::Entity(cube, &brick, glm::vec3(0.f, 0.f, 0.f))
+                });
+
+        kE::Scene::Actuator cube_mini_scene_actuator;
+        cube_test.bindActuator(&cube_mini_scene_actuator);
 
 
         kE::Scene::Entity skybox = kE::Scene::Entity(cube,
@@ -161,44 +157,52 @@ public:
         kE::Scene::Actuator skybox_actuator;
         skybox.bindActuator(&skybox_actuator);
 
-        kE::Scene::Level l(sponza);
+        kE::Scene::Level sponza_level(sponza);
+//        kE::Scene::Level hyrule_level(hyrule);
 
-        l.setSkybox(skybox);
+//        hyrule_level.setSkybox(skybox);
+        skybox_actuator
+                .setScale(glm::vec3(100.f, 100.f, 100.f))
+                ->update();
+        sponza_level.setSkybox(skybox);
 
-        _renderer.bindLevel(l);
+        _renderer.bindLevel(sponza_level);
         _renderer.bindCamera(&camera);
         _renderer.bindTarget(kE::Renderer::Target(1280, 800));
 
         float pos[3] = {0, 0, 0};
-        char str[128] = "Salut";
+        float scale[3] = {1, 1, 1};
+        bool rotate = false;
+
+        glfwSwapInterval(1);
 
         while (1) {
 
             ImGui_ImplGlfwGL3_NewFrame();
-            bool rotate;
             bool gui_open = true;
 
             ImGui::Begin("Tools", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
             ImGui::Text("Camera position : %f %f %f", camera.getPosition().x, camera.getPosition().y,
                         camera.getPosition().z);
             ImGui::Separator();
-            ImGui::InputText("Input text", str, std::strlen(str));
 
-            ImGui::DragFloat3("Global Alpha", pos, 0.005f, -3.f, 3.f, "%.2f");
+            ImGui::DragFloat3("Position", pos, 0.f, -3.f, 3.f, "%.2f");
+            ImGui::DragFloat3("Scale", scale, 1.f, 1.f, 5.f, "%.2f");
             ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate,
                         ImGui::GetIO().Framerate);
 
             ImGui::Checkbox("Rotate", &rotate);
 
-            static float arr[] = {0.6f, 0.1f, 1.0f, 0.5f, 0.92f, 0.1f, 0.2f};
-            ImGui::PlotLines("Frame Times", arr, IM_ARRAYSIZE(arr));
-
             ImGui::End();
 
             if (rotate)
                 coin_actuator.rotate(glm::vec3(0.f, 1.f, 0.f), glfwGetTime());
-            coin_actuator.position(glm::vec3(pos[0], pos[1], pos[2]))->update();
-            skybox_actuator.setScale(glm::vec3(10.f, 10.f, 10.f))->update();
+            coin_actuator
+                    .position(glm::vec3(pos[0], pos[1], pos[2]))
+                    ->setScale(glm::vec3(scale[0], scale[1], scale[2]))
+                    ->update();
+            cube_mini_scene_actuator
+                    .setScale(glm::vec3(0.5f, 0.5f, 0.5f))->update();
 
             run();
         }

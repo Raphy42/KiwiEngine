@@ -6,16 +6,13 @@
 #define KIWIENGINE_COREGRAPHICS_H
 
 //todo handle cross platform
-#if defined(GLAD_DEBUG)
-#include <glad/glad.h>
-extern "C" = void pre_gl_call(const char *name, void *f, int length, ...)
-    { printf("Calling: %s (%d arguments)\n", name, length); }
-
-    glad_set_pre_callback(pre_gl_call);
-#elif defined(__APPLE__)
+#if defined(__APPLE__)
 
 #define GLFW_INCLUDE_GLCOREARB
 #include <GLFW/glfw3.h>
+#include <OpenCL/cl_gl.h>
+#include <OpenCL/cl_gl_ext.h>
+#include <OpenGL/OpenGL.h>
 
 #include <Opengl/gl3.h>
 

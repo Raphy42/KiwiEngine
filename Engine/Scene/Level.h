@@ -14,7 +14,7 @@ namespace Kiwi { namespace Engine { namespace Scene {
             public:
                 Level() {};
 
-                Level(Entity &root) : _root(root) {}
+                Level(Entity &root) : _root(root), _dirty(true) {}
                 ~Level() {};
 
                 Entity getScene() {
@@ -45,7 +45,7 @@ namespace Kiwi { namespace Engine { namespace Scene {
                     Level::_transform = _transform;
                 }
 
-                void setSkybox(Entity skybox) {
+                void setSkybox(Entity &skybox) {
                     _skybox = skybox;
                 }
 
@@ -61,12 +61,21 @@ namespace Kiwi { namespace Engine { namespace Scene {
                     _player = player;
                 }
 
+                bool isDirty() const {
+                    return _dirty;
+                }
+
+                void setDirty(bool dirty) {
+                    _dirty = dirty;
+                }
+
             private:
                 Entity                              _root;
                 Entity                              _skybox;
                 Player                              _player;
                 std::string                         _name;
                 glm::mat4                           _transform;
+                bool                                _dirty;
             };
         }
     }

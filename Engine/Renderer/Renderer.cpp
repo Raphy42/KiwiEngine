@@ -4,13 +4,8 @@
 
 #include <iostream>
 #include "Renderer.h"
-#include "ShaderBuilder.h"
-#include "../../Core/Config.h"
-#include "../Assets/Loader.h"
-#include "Shading.h"
 #include "../../vendor/imgui/imgui.h"
 #include <glm/gtc/type_ptr.hpp>
-#include <glm/glm.hpp>
 
 namespace Kiwi {
     namespace Engine {
@@ -46,6 +41,14 @@ namespace Kiwi {
                 renderNode(_level.getSkybox());
 
 //                _target.renderFrame(static_cast<int>(Shading::Type::POST_PROCESS));
+
+                ImGui::SliderFloat3("Light position", glm::value_ptr(_lightpos), -5.f, 5.f);
+                ImGui::SliderFloat3("Light color", glm::value_ptr(_lightcolor), 0.f, 1.f);
+                ImGui::SliderFloat3("Light ambient", glm::value_ptr(_lightambient), 0.f, 1.f);
+                ImGui::SliderFloat("Light falloff", &_falloff, 0.f, 1.f);
+                ImGui::SliderFloat("Light radius", &_radius, 0.f, 12.f);
+
+
             }
 
             void Renderer::renderNode(Scene::Entity node) {
@@ -71,11 +74,11 @@ namespace Kiwi {
                     node.getMaterial()->setVec3Parameter("view_pos", camera);
                     node.getMaterial()->setVec3Parameter("light_color", glm::vec3(1.0f, 1.0f, 1.0f));
                 } else if (node.getMaterial()->getType() == Shading::Type::PHONG_TEXTURED) {
-                    node.getMaterial()->setVec3Parameter("light_position", glm::vec3(0.f, 5.f, 0.f));
-                    node.getMaterial()->setVec3Parameter("light_color", glm::vec3(1.f, 1.f, 1.f));
-                    node.getMaterial()->setVec3Parameter("light_ambient", glm::vec3(0.8f, 0.7f, 0.69f));
-                    node.getMaterial()->setParameter("light_falloff", .12f);
-                    node.getMaterial()->setParameter("light_radius", 10.f);
+                    node.getMaterial()->setVec3Parameter("light_pos", _lightpos);
+                    node.getMaterial()->setVec3Parameter("light_color", _lightcolor);
+                    node.getMaterial()->setVec3Parameter("light_ambient", _lightambient);
+                    node.getMaterial()->setParameter("light_falloff", _falloff);
+                    node.getMaterial()->setParameter("light_radius", _radius);
                 }
 
                 node.getMaterial()->bind(0);
@@ -112,11 +115,15 @@ namespace Kiwi {
 
             void Renderer::bindLevel(Scene::Level level) {
                 _level = level;
-                for (auto entity : _level.get_root().getChildren()) {
-                    if (entity.getMaterial())
-                        entity.getMaterial()->bindShader(_shaders[static_cast<int>(entity.getMaterial()->getType())]);
+                if (_level.isDirty()) {
+                    for (auto entity : _level.get_root().getChildren()) {
+                        if (entity.getMaterial())
+                            entity.getMaterial()->bindShader(
+                                    _shaders[static_cast<int>(entity.getMaterial()->getType())]);
+                    }
+                    _level.getSkybox().getMaterial()->bindShader(_shaders[static_cast<int>(Shading::Type::SKYBOX)]);
                 }
-                _level.getSkybox().getMaterial()->bindShader(_shaders[static_cast<int>(Shading::Type::SKYBOX)]);
+                _level.setDirty(false);
             }
         }
     }
