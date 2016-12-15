@@ -69,11 +69,6 @@ void Kiwi::Engine::App::start() {
 
 void Kiwi::Engine::App::run() {
     /**
-     * Triggers all event listeners listening to GLFWEvents
-     */
-    _graphics->Update();
-
-    /**
      * Render the current frame
      */
     _renderer.render();

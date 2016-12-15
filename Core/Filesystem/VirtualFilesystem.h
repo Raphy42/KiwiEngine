@@ -9,6 +9,11 @@
 #include <fstream>
 #include <boost/filesystem.hpp>
 #include <unordered_map>
+#include <boost/filesystem/operations.hpp>
+#include <boost/range/iterator_range.hpp>
+#include <iostream>
+
+namespace fs = boost::filesystem;
 
 namespace Kiwi {
     namespace Core {
@@ -34,6 +39,11 @@ namespace Kiwi {
                 VirtualFilesystem from(std::string resource);
 
                 std::string getFilename(std::pair<std::string, std::string> resource);
+
+                template <typename T>
+                bool exists(T filename) {
+                    return fs::exists(fs::path(filename));
+                }
 
             private:
                 std::string fileRead(const char *filename) const;

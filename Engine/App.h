@@ -59,10 +59,10 @@ namespace Kiwi {
             virtual void loop(void) = 0;
 
         private:
-            std::unique_ptr<GraphicContextInterface> _graphics;
             Core::Config _config;
 
         protected:
+            std::unique_ptr<GraphicContextInterface> _graphics;
             std::unique_ptr<GLFWDispatcher>     _hid;
             std::unique_ptr<CoreDispatcher>     _core;
 

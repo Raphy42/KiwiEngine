@@ -3,11 +3,6 @@
 //
 
 #include "VirtualFilesystem.h"
-#include <boost/range/iterator_range.hpp>
-#include <iostream>
-#include <unordered_map>
-
-namespace fs = boost::filesystem;
 
 Kiwi::Core::Filesystem::VirtualFilesystem::VirtualFilesystem() {
     _root = fs::current_path();
@@ -99,7 +94,8 @@ Kiwi::Core::Filesystem::VirtualFilesystem::fileRead(const char *filename) const 
     return str;
 }
 
-void Kiwi::Core::Filesystem::VirtualFilesystem::setDirectories(
+void
+Kiwi::Core::Filesystem::VirtualFilesystem::setDirectories(
         const std::unordered_map<std::string, std::string> &directories) {
     _directories = directories;
     for (const auto &it : _directories) {
@@ -112,22 +108,20 @@ void Kiwi::Core::Filesystem::VirtualFilesystem::setDirectories(
     }
 }
 
-Kiwi::Core::Filesystem::VirtualFilesystem Kiwi::Core::Filesystem::VirtualFilesystem::from(std::string resource) {
+Kiwi::Core::Filesystem::VirtualFilesystem
+Kiwi::Core::Filesystem::VirtualFilesystem::from(std::string resource) {
     _current = _directories[resource];
     return *this;
 }
 
-std::string Kiwi::Core::Filesystem::VirtualFilesystem::getFilename(std::pair<std::string, std::string> resource) {
+std::string
+Kiwi::Core::Filesystem::VirtualFilesystem::getFilename(std::pair<std::string, std::string> resource) {
     fs::path cwd;
-    for (const auto &n : _directories) {
-        std::cout << "Key:[" << n.first << "] Value:[" << n.second << "]\n";
-    }
-    cwd = resource.second;
-    std::cout << cwd.string();
-    if (fs::exists(cwd))
-        return cwd.filename().string();
-    else
-        throw std::runtime_error("Malformed resource pair : " + resource.first + " " + resource.second);
+
+    cwd = _directories.at(resource.first);
+    cwd.append(resource.second);
+    return cwd.string();
 }
+
 
 

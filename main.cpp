@@ -6,6 +6,7 @@
 #include "Engine/Renderer/PhongMaterial.h"
 #include "Engine/Renderer/PhongTexturedMaterial.h"
 #include "Engine/Renderer/CubeMaterial.h"
+#include "Editor/Editor.h"
 
 #define TEST
 
@@ -180,10 +181,12 @@ public:
         float pos[3] = {0, 1, 0};
         float scale[3] = {1, 1, 1};
         bool rotate = false;
+        char buf[125] = "hello";
 
         glfwSwapInterval(1);
 
         while (1) {
+            _graphics->Update();
 
             ImGui_ImplGlfwGL3_NewFrame();
             bool gui_open = true;
@@ -222,7 +225,7 @@ public:
                                 "1     - toggle wireframe\n"
                                 "WASD  - move and strafe\n"
                                 "Space - stop mouse tracking");
-
+            ImGui::InputText("This is a test", buf, 125);
             ImGui::End();
 
             if (rotate)
@@ -235,14 +238,15 @@ public:
             run();
         }
     }
-
-private:
-    std::unique_ptr<VFS> _vfs;
 };
 
 int main(void) {
-    Game *game = new Game();
+//    Game *game = new Game();
 
-    game->loop();
+    Kiwi::Editor::Editor *editor = new Kiwi::Editor::Editor();
+
+    editor->init();
+    while (1)
+        editor->loop();
     return 0;
 }
