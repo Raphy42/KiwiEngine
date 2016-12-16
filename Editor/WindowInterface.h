@@ -5,6 +5,9 @@
 #ifndef KIWIENGINE_WINDOWINTERFACE_H
 #define KIWIENGINE_WINDOWINTERFACE_H
 
+#include <unordered_map>
+#include <string>
+
 namespace Kiwi {
     namespace Editor {
         class WindowInterface {

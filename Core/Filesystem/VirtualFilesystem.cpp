@@ -123,5 +123,14 @@ Kiwi::Core::Filesystem::VirtualFilesystem::getFilename(std::pair<std::string, st
     return cwd.string();
 }
 
+std::vector<fs::path>
+Kiwi::Core::Filesystem::VirtualFilesystem::getDirectoryEntries(const char *resource) {
+    fs::path cwd;
+    std::vector<fs::path> paths;
 
+    cwd = _directories.at(resource);
+    for (auto &file : boost::make_iterator_range(fs::directory_iterator(cwd), {}))
+        paths.push_back(file);
+    return paths;
+}
 

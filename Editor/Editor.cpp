@@ -3,9 +3,8 @@
 //
 
 #include "Editor.h"
-#include "../Engine/Renderer/CubeMaterial.h"
-#include "../Engine/Assets/Loader.h"
-#include "EditorWindow.h"
+#include "GlobalInstance.h"
+#include "LevelPropertyWindow.h"
 
 class UserInputListener : public kE::Event::Listener<kE::Event::Type::GLFWEvent> {
 public:
@@ -85,25 +84,34 @@ namespace Kiwi {
             _renderer.bindCamera(camera);
 
             _windows.push_back(new EditorWindow);
+            _windows.push_back(new LevelPropertyWindow);
         }
 
         void Editor::loop() {
             _graphics->Update();
+            processEvent();
             ImGui_ImplGlfwGL3_NewFrame();
-
-            ImGui::Begin("Editor", nullptr, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_AlwaysAutoResize);
-            ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.f / ImGui::GetIO().Framerate,
-                        ImGui::GetIO().Framerate);
-
-            ImGui::End();
 
             std::for_each(_windows.begin(), _windows.end(), [](WindowInterface *window){
                 window->render();
             });
 
-            ImGui::ShowTestWindow();
+//            ImGui::ShowTestWindow();
 
             run();
+        }
+
+        void Editor::processEvent() {
+
+            switch (g_globalInstance.state) {
+                case State::SCENE_OPENED:
+                kE::Scene::Creator creator;
+                    g_globalInstance.world = creator.createLevelFromConfig(g_globalInstance.levelConfig);
+                    g_globalInstance.state = State::SCENE_LOADED;
+                    break;
+                default:
+                    break;
+            }
         }
 
     }

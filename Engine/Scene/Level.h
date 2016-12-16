@@ -33,7 +33,7 @@ namespace Kiwi { namespace Engine { namespace Scene {
                     return _name;
                 }
 
-                void set_name(const std::string &name) {
+                void setName(const std::string &name) {
                     _name = name;
                 }
 

@@ -2,18 +2,29 @@
 // Created by Raphael DANTZER on 12/15/16.
 //
 
-#ifndef KIWIENGINE_GLOBALINSTANCE_H
-#define KIWIENGINE_GLOBALINSTANCE_H
+#ifndef KIWIENGINE_GLOBALEDITORINSTANCE_H
+#define KIWIENGINE_GLOBALEDITORINSTANCE_H
 
 #include "../Core/Config.h"
 #include "../Core/Filesystem/VirtualFilesystem.h"
+#include "../Engine/Scene/Level.h"
 
 namespace Kiwi {
     namespace Editor {
+
+        enum class State : int {
+            NONE = 0x0,
+            SCENE_OPENED,
+            SCENE_MODIFIED,
+            SCENE_LOADED,
+            SCENE_SAVED
+        };
+
         static struct GlobalInstance {
             GlobalInstance() :
                     editorConfig("config/editor.json"),
-                    coreConfig("config/config.ini")
+                    coreConfig("config/config.ini"),
+                    state(State::NONE)
             {
                 vfs.bind(coreConfig.get<std::string>("Filesystem.root"));
                 vfs.setDirectories({
@@ -26,10 +37,13 @@ namespace Kiwi {
 
             Core::JSONConfig                        editorConfig;
             Core::Config                            coreConfig;
+            Core::JSONConfig                        levelConfig;
             Core::Filesystem::VirtualFilesystem     vfs;
+            State                                   state;
+            Kiwi::Engine::Scene::Level              world;
         } g_globalInstance;
     }
 }
 
 
-#endif //KIWIENGINE_GLOBALINSTANCE_H
+#endif //KIWIENGINE_GLOBALEDITORINSTANCE_H

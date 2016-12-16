@@ -3,13 +3,13 @@
 //
 
 #include "EditorWindow.h"
-#include "GlobalInstance.h"
 
 
 Kiwi::Editor::EditorWindow::EditorWindow() : Kiwi::Editor::WindowInterface() {
     _recentFiles = g_globalInstance.editorConfig.getVector<std::string>("recent_files");
     _flags["file_creation"] = false;
     _flags["file_opening"] = false;
+    _flags["error"] = false;
 }
 
 Kiwi::Editor::EditorWindow::~EditorWindow() {
@@ -31,10 +31,15 @@ void Kiwi::Editor::EditorWindow::render() {
             if (ImGui::MenuItem("Paste", "CTRL+V")) {}
             ImGui::EndMenu();
         }
+        if (_flags["error"])
+            ImGui::MenuItem("Error log", _lastError);
         ImGui::EndMainMenuBar();
     }
     if (_flags["file_creation"])
         fileCreation(&_flags["file_creation"]);
+    if (_flags["file_opening"])
+        fileOpen(&_flags["file_opening"]);
+
 }
 
 void Kiwi::Editor::EditorWindow::fileDialog() {
@@ -87,10 +92,35 @@ void Kiwi::Editor::EditorWindow::fileCreation(bool *p_open) {
 void Kiwi::Editor::EditorWindow::fileOpen(bool *p_open) {
     if (!ImGui::Begin("Open file", p_open, ImGuiWindowFlags_AlwaysAutoResize)) {
         ImGui::End();
-        return ;
+        return;
     }
 
-    
+    static std::vector<fs::path> files;
+    static fs::path current;
+
+    if (files.size() == 0) {
+        files = g_globalInstance.vfs.getDirectoryEntries("levels");
+    }
+
+    if (ImGui::BeginMenu(current.filename().size() ? current.filename().c_str() : "Select one")) {
+        for (const auto &file : files)
+            if (ImGui::MenuItem(file.filename().c_str(), file.relative_path().c_str()))
+                current = file;
+        ImGui::EndMenu();
+    }
+
+    if (current.filename().size()) {
+        if (ImGui::Button("Open")) {
+            try {
+                g_globalInstance.levelConfig = Core::JSONConfig(current.string());
+                g_globalInstance.state = State::SCENE_OPENED;
+                _flags["file_opening"] = false;
+            } catch (const std::exception &e) {
+                _flags["error"] = true;
+                std::cout << e.what() << std::endl;
+            }
+        }
+    }
 
     ImGui::End();
 }

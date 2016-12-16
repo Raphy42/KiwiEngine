@@ -9,6 +9,9 @@
 #include "../Engine/Scene/Level.h"
 #include "ImGuizmo.h"
 #include "WindowInterface.h"
+#include "../Engine/Renderer/CubeMaterial.h"
+#include "../Engine/Assets/Loader.h"
+#include "EditorWindow.h"
 
 namespace kE = Kiwi::Engine;
 
@@ -19,6 +22,7 @@ namespace Kiwi { namespace Editor {
 
             void loop();
             void init();
+            void processEvent();
 
         private:
             kE::Scene::Level                _level;

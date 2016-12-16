@@ -12,11 +12,10 @@ namespace Kiwi { namespace Engine { namespace Scene {
             class Creator
             {
             public:
-                Creator() {};
-                ~Creator() {};
+                Creator() = default;
+                ~Creator() = default;
 
-                Level               *createLevelFromConfig(Core::JSONConfig config);
-                Level               *createLevelFromScene(Entity *root) const;
+                Level               createLevelFromConfig(Core::JSONConfig config);
 
             private:
             };

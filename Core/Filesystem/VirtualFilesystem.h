@@ -40,6 +40,8 @@ namespace Kiwi {
 
                 std::string getFilename(std::pair<std::string, std::string> resource);
 
+                std::vector<fs::path> getDirectoryEntries(const char *resource);
+
                 template <typename T>
                 bool exists(T filename) {
                     return fs::exists(fs::path(filename));

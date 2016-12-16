@@ -16,6 +16,7 @@ namespace Kiwi {
     namespace Core {
         class Config {
         public:
+            Config() = default;
             Config(std::string source) {
                 boost::property_tree::ini_parser::read_ini(source, _ptree);
             }
@@ -37,6 +38,7 @@ namespace Kiwi {
 
         class JSONConfig {
         public:
+            JSONConfig() = default;
             JSONConfig(std::string source) {
                 boost::property_tree::json_parser::read_json(source, _ptree);
             }

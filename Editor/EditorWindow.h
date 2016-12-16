@@ -11,6 +11,7 @@
 #include <vector>
 #include <unordered_map>
 #include "WindowInterface.h"
+#include "GlobalInstance.h"
 
 namespace Kiwi { namespace Editor {
         class EditorWindow : public WindowInterface {
@@ -25,8 +26,10 @@ namespace Kiwi { namespace Editor {
 
             std::vector<std::string>                _recentFiles;
 
-            void        fileCreation(bool *p_open);
-            void        fileOpen(bool *p_open);
+            void                                    fileCreation(bool *p_open);
+            void                                    fileOpen(bool *p_open);
+
+            const char                              *_lastError;
         };
     }
 }
