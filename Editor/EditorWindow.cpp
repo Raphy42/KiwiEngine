@@ -3,10 +3,11 @@
 //
 
 #include "EditorWindow.h"
+#include "../Engine/Scene/Creator.h"
 
 
 Kiwi::Editor::EditorWindow::EditorWindow() : Kiwi::Editor::WindowInterface() {
-    _recentFiles = g_globalInstance.editorConfig.getVector<std::string>("recent_files");
+    _recentFiles = GlobalInstance::get().editorConfig.getVector<std::string>("recent_files");
     _flags["file_creation"] = false;
     _flags["file_opening"] = false;
     _flags["error"] = false;
@@ -79,8 +80,8 @@ void Kiwi::Editor::EditorWindow::fileCreation(bool *p_open) {
     ImGui::Combo("Type", &current, items, 2);
 
     if (std::strlen(buffer) && current != -1 && !file_exists_already) if (ImGui::Button("Create")) {
-        std::string path = g_globalInstance.vfs.getFilename(std::make_pair("textures", std::string(buffer)));
-        if (g_globalInstance.vfs.exists(path))
+        std::string path = GlobalInstance::get().vfs.getFilename(std::make_pair("textures", std::string(buffer)));
+        if (GlobalInstance::get().vfs.exists(path))
             file_exists_already = true;
         else
             *p_open = false;
@@ -99,7 +100,7 @@ void Kiwi::Editor::EditorWindow::fileOpen(bool *p_open) {
     static fs::path current;
 
     if (files.size() == 0) {
-        files = g_globalInstance.vfs.getDirectoryEntries("levels");
+        files = GlobalInstance::get().vfs.getDirectoryEntries("levels");
     }
 
     if (ImGui::BeginMenu(current.filename().size() ? current.filename().c_str() : "Select one")) {
@@ -111,14 +112,12 @@ void Kiwi::Editor::EditorWindow::fileOpen(bool *p_open) {
 
     if (current.filename().size()) {
         if (ImGui::Button("Open")) {
-            try {
-                g_globalInstance.levelConfig = Core::JSONConfig(current.string());
-                g_globalInstance.state = State::SCENE_OPENED;
-                _flags["file_opening"] = false;
-            } catch (const std::exception &e) {
-                _flags["error"] = true;
-                std::cout << e.what() << std::endl;
-            }
+            std::cout << current.string() << std::endl;
+            GlobalInstance::get().levelConfig = Core::JSONConfig(current.string()); //todo catch exceptions
+            GlobalInstance::get().world = Kiwi::Engine::Scene::Creator::createLevelFromConfig(GlobalInstance::get().levelConfig);
+            std::cout << GlobalInstance::get().world.get_name() << std::endl;
+            _flags["file_opening"] = false;
+            GlobalInstance::get().state = State::SCENE_OPENED;
         }
     }
 

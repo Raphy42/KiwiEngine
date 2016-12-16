@@ -7,7 +7,7 @@
 #include "GlobalInstance.h"
 
 void Kiwi::Editor::LevelPropertyWindow::render() {
-    if (g_globalInstance.state != State::SCENE_LOADED)
+    if (GlobalInstance::get().state < State::SCENE_LOADED)
         return;
 
     if (!ImGui::Begin("Level properties", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
@@ -15,7 +15,7 @@ void Kiwi::Editor::LevelPropertyWindow::render() {
         return;
     }
 
-    ImGui::Text("Name: %s", g_globalInstance.world.get_name().c_str());
+    ImGui::Text("%s", GlobalInstance::get().world.get_name().c_str());
 
     ImGui::End();
 }

@@ -16,8 +16,17 @@ namespace Kiwi {
     namespace Core {
         class Config {
         public:
-            Config() = default;
-            Config(std::string source) {
+            virtual ~Config() = default;
+
+        protected:
+            boost::property_tree::ptree _ptree;
+        };
+
+        class INIConfig : public Config {
+        public:
+            INIConfig() = default;
+
+            INIConfig(std::string source) {
                 boost::property_tree::ini_parser::read_ini(source, _ptree);
             }
 
@@ -31,14 +40,12 @@ namespace Kiwi {
                 }
                 return T();
             }
-
-        private:
-            boost::property_tree::ptree _ptree;
         };
 
-        class JSONConfig {
+        class JSONConfig : public Config {
         public:
             JSONConfig() = default;
+
             JSONConfig(std::string source) {
                 boost::property_tree::json_parser::read_json(source, _ptree);
             }
@@ -67,10 +74,17 @@ namespace Kiwi {
                 return data;
             }
 
-        private:
-            boost::property_tree::ptree _ptree;
+            template<typename T>
+            std::vector<T> getMatrix(const char *key) const {
+                std::vector<T> ret;
+
+                for (const auto &row : _ptree.get_child(key)) {
+                    for (const auto &cell : row.second) {
+                        ret.push_back(cell.second.get_value<T>());
+                    }
+                }
+                return ret;
+            }
         };
-    }
-}
 
 #endif //KIWIENGINE_CONFIG_H

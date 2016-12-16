@@ -70,10 +70,10 @@ namespace Kiwi {
 
                                                                                          })));
 
-            kE::Scene::Actuator skybox_actor;
-            skybox.bindActuator(&skybox_actor);
-
-            skybox_actor.setScale(glm::vec3(10.f, 10.f, 10.f))->update();
+            kE::Scene::Actuator *skybox_actor = new kE::Scene::Actuator;
+            skybox.bindActuator(skybox_actor);
+//
+            skybox_actor->setScale(glm::vec3(100.f, 100.f, 100.f))->update();
 
             kE::Scene::Entity root;
 
@@ -92,10 +92,9 @@ namespace Kiwi {
             processEvent();
             ImGui_ImplGlfwGL3_NewFrame();
 
-            std::for_each(_windows.begin(), _windows.end(), [](WindowInterface *window){
+            std::for_each(_windows.begin(), _windows.end(), [](WindowInterface *window) {
                 window->render();
             });
-
 //            ImGui::ShowTestWindow();
 
             run();
@@ -103,11 +102,11 @@ namespace Kiwi {
 
         void Editor::processEvent() {
 
-            switch (g_globalInstance.state) {
+            switch (GlobalInstance::get().state) {
                 case State::SCENE_OPENED:
-                kE::Scene::Creator creator;
-                    g_globalInstance.world = creator.createLevelFromConfig(g_globalInstance.levelConfig);
-                    g_globalInstance.state = State::SCENE_LOADED;
+                    kE::Scene::Creator creator;
+                    GlobalInstance::get().world = creator.createLevelFromConfig(GlobalInstance::get().levelConfig);
+                    GlobalInstance::get().state = State::SCENE_LOADED;
                     break;
                 default:
                     break;

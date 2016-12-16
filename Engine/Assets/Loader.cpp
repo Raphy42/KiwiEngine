@@ -4,7 +4,7 @@
 
 #include <string>
 #include "Loader.h"
-#include "../../Core/Config.h"
+#include "../../Core/INIConfig.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 

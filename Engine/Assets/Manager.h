@@ -6,7 +6,7 @@
 #define KIWIENGINE_MANAGER_H
 
 #include "../../Core/Filesystem/VirtualFilesystem.h"
-#include "../../Core/Config.h"
+#include "../../Core/INIConfig.h"
 #include "Storage.h"
 
 namespace Kiwi {
@@ -21,7 +21,7 @@ namespace Kiwi {
             private:
                 Storage _storage;
                 Core::Filesystem::VirtualFilesystem _vfs;
-                Core::Config _config;
+                Core::INIConfig _config;
             };
         }
     }

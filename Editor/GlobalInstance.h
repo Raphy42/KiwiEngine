@@ -5,7 +5,7 @@
 #ifndef KIWIENGINE_GLOBALEDITORINSTANCE_H
 #define KIWIENGINE_GLOBALEDITORINSTANCE_H
 
-#include "../Core/Config.h"
+#include "../Core/INIConfig.h"
 #include "../Core/Filesystem/VirtualFilesystem.h"
 #include "../Engine/Scene/Level.h"
 
@@ -15,12 +15,13 @@ namespace Kiwi {
         enum class State : int {
             NONE = 0x0,
             SCENE_OPENED,
-            SCENE_MODIFIED,
             SCENE_LOADED,
+            SCENE_MODIFIED,
             SCENE_SAVED
         };
 
-        static struct GlobalInstance {
+        class GlobalInstance {
+        public:
             GlobalInstance() :
                     editorConfig("config/editor.json"),
                     coreConfig("config/config.ini"),
@@ -36,12 +37,21 @@ namespace Kiwi {
             };
 
             Core::JSONConfig                        editorConfig;
-            Core::Config                            coreConfig;
+            Core::INIConfig                            coreConfig;
             Core::JSONConfig                        levelConfig;
             Core::Filesystem::VirtualFilesystem     vfs;
             State                                   state;
             Kiwi::Engine::Scene::Level              world;
-        } g_globalInstance;
+
+            static GlobalInstance &get(void) {
+                static GlobalInstance instance;
+                return instance;
+            }
+
+        private:
+
+        };
+
     }
 }
 

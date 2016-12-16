@@ -1,16 +1,12 @@
 {
-  "name": "test",
-  "transform": {},
-  "meshes": [
-    {
-      "name": "stanford_bunny.obj",
-      "transform": {
-        "position": [1.0, 1.3, 1.0]
+  "name": "This is a test map, trying to break my editor",
+  "description": {
+    "transform": {},
+    "meshes": [
+      {
+        "name": "crytek-sponza/sponza-fix.obj",
+        "transform": {}
       }
-    },
-    {
-      "name": "dabrovic-sponza/sponza.obj",
-      "transform": {}
-    }
-  ]
+    ]
+  }
 }
