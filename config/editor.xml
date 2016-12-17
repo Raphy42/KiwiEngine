@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="14">
+<properties class_id="0" tracking_level="0" version="0">
+	<last_files class_id="1" tracking_level="0" version="0">
+		<count>2</count>
+		<item_version>0</item_version>
+		<item>/Users/rdantzer/Desktop/KiwiEngine/Assets/levels/bidon.json</item>
+		<item>/Users/rdantzer/Desktop/KiwiEngine/Assets/levels/test.json</item>
+	</last_files>
+	<current_file>/Users/rdantzer/Desktop/KiwiEngine/Assets/levels/test.json</current_file>
+</properties>
+</boost_serialization>
+

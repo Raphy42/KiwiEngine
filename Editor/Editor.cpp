@@ -3,8 +3,8 @@
 //
 
 #include "Editor.h"
-#include "GlobalInstance.h"
 #include "LevelPropertyWindow.h"
+#include <boost/archive/binary_oarchive.hpp>
 
 class UserInputListener : public kE::Event::Listener<kE::Event::Type::GLFWEvent> {
 public:
@@ -61,14 +61,16 @@ namespace Kiwi {
 
             kE::Scene::Entity skybox(cube,
                                      new kE::Renderer::CubeMaterial(loader.createCubeMap({
-                                                                                                 "./Assets/textures/skybox/right.jpg",
-                                                                                                 "./Assets/textures/skybox/left.jpg",
-                                                                                                 "./Assets/textures/skybox/top.jpg",
-                                                                                                 "./Assets/textures/skybox/bottom.jpg",
-                                                                                                 "./Assets/textures/skybox/back.jpg",
-                                                                                                 "./Assets/textures/skybox/front.jpg",
+                                                                                                 "./Assets/textures/grid.tga",
+                                                                                                 "./Assets/textures/grid.tga",
+                                                                                                 "./Assets/textures/grid.tga",
+                                                                                                 "./Assets/textures/grid.tga",
+                                                                                                 "./Assets/textures/grid.tga",
+                                                                                                 "./Assets/textures/grid.tga",
 
                                                                                          })));
+
+            _defaultSkybox = skybox;
 
             kE::Scene::Actuator *skybox_actor = new kE::Scene::Actuator;
             skybox.bindActuator(skybox_actor);
@@ -77,14 +79,20 @@ namespace Kiwi {
 
             kE::Scene::Entity root;
 
-            _level = kE::Scene::Level(root);
-            _level.setSkybox(skybox);
+            GlobalInstance::get().world = kE::Scene::Level(root);
+            GlobalInstance::get().world.setSkybox(skybox);
 
-            _renderer.bindLevel(_level);
+            _renderer.bindLevel(GlobalInstance::get().world);
             _renderer.bindCamera(camera);
 
             _windows.push_back(new EditorWindow);
             _windows.push_back(new LevelPropertyWindow);
+
+            std::ofstream f("test.dat", std::ios::binary);
+            {
+                boost::archive::binary_oarchive b(f);
+                b << BOOST_SERIALIZATION_NVP(root);
+            }
         }
 
         void Editor::loop() {
@@ -107,6 +115,7 @@ namespace Kiwi {
                     kE::Scene::Creator creator;
                     GlobalInstance::get().world = creator.createLevelFromConfig(GlobalInstance::get().levelConfig);
                     GlobalInstance::get().state = State::SCENE_LOADED;
+                    _renderer.bindLevel(GlobalInstance::get().world);
                     break;
                 default:
                     break;

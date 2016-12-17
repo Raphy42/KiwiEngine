@@ -4,32 +4,33 @@
 
 #include "Asset.h"
 
-Kiwi::Engine::Asset::Asset::Asset(std::string &name, Kiwi::Engine::Asset::Asset::Type &type) :
-        _name(name),
-        _type(type) {}
+namespace Kiwi {
+    namespace Engine {
+        namespace Asset {
+            void Prop::load(const unsigned int flags) {
 
-Kiwi::Engine::Asset::Asset::Asset(std::string &name, Kiwi::Engine::Asset::Asset::Type &type,
-                                  std::shared_ptr<Kiwi::Engine::Primitive::Mesh> mesh,
-                                  std::shared_ptr<Kiwi::Engine::Renderer::Material> material) :
-        _name(name),
-        _type(type),
-        _mesh(mesh),
-        _material(material) {}
+            }
 
+            Asset::Type Prop::getType(void) const {
+                return Type::PROP;
+            }
 
-Kiwi::Engine::Asset::Asset::Type
-Kiwi::Engine::Asset::Asset::getType(void) const {
-    return _type;
-}
+            void World::load(const unsigned int flags) {
 
+            }
 
-Kiwi::Engine::Primitive::AABB
-Kiwi::Engine::Asset::Asset::getBounds(void) const {
-    return Kiwi::Engine::Primitive::AABB();
-}
+            Asset::Type World::getType(void) const {
+                return Type::WORLD;
+            }
 
-void
-Kiwi::Engine::Asset::Asset::setBounds(Kiwi::Engine::Primitive::AABB &bounds) {
-    _bounds = bounds;
+            void Texture::load(const unsigned int flags) {
+
+            }
+
+            Asset::Type Texture::getType(void) const {
+                return Type::TEXTURE;
+            }
+        }
+    }
 }
 

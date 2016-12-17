@@ -9,6 +9,9 @@
 #include <glm/vec2.hpp>
 #include <vector>
 #include <glm/detail/type_mat.hpp>
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/base_object.hpp>
+#include <boost/serialization/string.hpp>
 #include "../../Core/Graphics.h"
 
 namespace Kiwi {
@@ -25,7 +28,7 @@ namespace Kiwi {
                     TRIANGLE_FAN = GL_TRIANGLE_FAN
                 };
 
-                Mesh() {};
+                Mesh() = default;
 
                 Mesh(GLuint vao, GLuint vbo, GLuint ebo, unsigned long size) :
                         _vao(vao),
@@ -63,6 +66,17 @@ namespace Kiwi {
                 unsigned long   _size;
 
             private:
+                friend class boost::serialization::access;
+
+                template <class Archive>
+                void serialize(Archive &ar, const unsigned int flags) {
+                    ar & BOOST_SERIALIZATION_NVP(_vao);
+                    ar & BOOST_SERIALIZATION_NVP(_vbo);
+                    ar & BOOST_SERIALIZATION_NVP(_ebo);
+                    ar & BOOST_SERIALIZATION_NVP(_size);
+                    ar & BOOST_SERIALIZATION_NVP(_topology);
+                }
+
                 Topology _topology;
             };
         }

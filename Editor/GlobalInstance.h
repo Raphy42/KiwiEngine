@@ -8,6 +8,10 @@
 #include "../Core/Config.h"
 #include "../Core/Filesystem/VirtualFilesystem.h"
 #include "../Engine/Scene/Level.h"
+#include "Properties.h"
+
+#include <boost/archive/xml_oarchive.hpp>
+#include <boost/archive/xml_iarchive.hpp>
 
 namespace Kiwi {
     namespace Editor {
@@ -23,20 +27,40 @@ namespace Kiwi {
         class GlobalInstance {
         public:
             GlobalInstance() :
-                    editorConfig("config/editor.json"),
                     coreConfig("config/config.ini"),
                     state(State::NONE)
             {
                 vfs.bind(coreConfig.get<std::string>("Filesystem.root"));
                 vfs.setDirectories({
-                                           {"shaders",  coreConfig.get<std::string>("Filesystem.shaders")},
-                                           {"models",   coreConfig.get<std::string>("Filesystem.models")},
-                                           {"textures", coreConfig.get<std::string>("Filesystem.textures")},
-                                           {"levels",   coreConfig.get<std::string>("Filesystem.levels")}
+                                           {"shaders",  coreConfig.get("Filesystem.shaders")},
+                                           {"models",   coreConfig.get("Filesystem.models")},
+                                           {"textures", coreConfig.get("Filesystem.textures")},
+                                           {"levels",   coreConfig.get("Filesystem.levels")}
                                    });
+                std::string filename = "config/" + coreConfig.get("Config.editor");
+                if (vfs.exists(filename)) {
+                    std::ifstream f(filename);
+                    {
+                        if (f.good()) {
+                            boost::archive::xml_iarchive iarchive(f);
+                            iarchive >> BOOST_SERIALIZATION_NVP(properties);
+                        }
+                    }
+                }
             };
 
-            Core::JSONConfig                        editorConfig;
+            ~GlobalInstance() {
+                std::string filename = "config/" + coreConfig.get("Config.editor");
+                std::ofstream f(filename);
+                {
+                    if (f.good()) {
+                        boost::archive::xml_oarchive oarchive(f);
+                        oarchive << BOOST_SERIALIZATION_NVP(properties);
+                    }
+                }
+            }
+
+            Properties                              properties;
             Core::INIConfig                         coreConfig;
             Core::JSONConfig                        levelConfig;
             Core::Filesystem::VirtualFilesystem     vfs;

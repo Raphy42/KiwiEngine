@@ -12,7 +12,7 @@
 namespace Kiwi { namespace Engine { namespace Scene {
             class Level {
             public:
-                Level() {};
+                Level() = default;
 
                 Level(Entity &root) : _root(root), _dirty(true) {}
                 ~Level() {};
@@ -69,7 +69,7 @@ namespace Kiwi { namespace Engine { namespace Scene {
                     _dirty = dirty;
                 }
 
-            private:
+            protected:
                 Entity                              _root;
                 Entity                              _skybox;
                 Player                              _player;

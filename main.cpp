@@ -7,6 +7,7 @@
 #include "Engine/Renderer/PhongTexturedMaterial.h"
 #include "Engine/Renderer/CubeMaterial.h"
 #include "Editor/Editor.h"
+#include "Editor/Properties.h"
 
 #define TEST
 
@@ -246,6 +247,7 @@ int main(void) {
     Kiwi::Editor::Editor *editor = new Kiwi::Editor::Editor();
 
     editor->init();
+
     try {
         while (1)
             editor->loop();

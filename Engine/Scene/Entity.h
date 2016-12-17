@@ -12,6 +12,14 @@
 #include "../Renderer/Material.h"
 #include "Actuator.h"
 
+
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/base_object.hpp>
+#include <boost/serialization/string.hpp>
+
+#include "../../Core/serialization.h"
+
+
 namespace Kiwi {
     namespace Engine {
         namespace Scene {
@@ -23,7 +31,7 @@ namespace Kiwi {
 
                 };
 
-                Entity() : _material(nullptr) {};
+                Entity() = default;
 
                 Entity(Primitive::Mesh mesh, Renderer::Material *material) :
                         _mesh(mesh),
@@ -82,6 +90,17 @@ namespace Kiwi {
                 }
 
             private:
+                friend class boost::serialization::access;
+
+                template <class Archive>
+                void serialize(Archive &ar, const unsigned int flags) {
+                    ar & BOOST_SERIALIZATION_NVP(_mesh);
+                    ar & BOOST_SERIALIZATION_NVP(_material);
+                    ar & BOOST_SERIALIZATION_NVP(_children);
+                    ar & BOOST_SERIALIZATION_NVP(_transform);
+                    ar & BOOST_SERIALIZATION_NVP(_actuator);
+                }
+
                 Primitive::Mesh         _mesh;
                 Renderer::Material      *_material;
                 std::vector<Entity>     _children;

@@ -8,7 +8,7 @@
 
 Kiwi::Editor::EditorWindow::EditorWindow() :
         Kiwi::Editor::WindowInterface(),
-        _recentFiles(GlobalInstance::get().editorConfig.getVector<std::string>("recent_files"))
+        _recentFiles(GlobalInstance::get().properties.getLastFiles())
 {
     _flags["file_creation"] = false;
     _flags["file_opening"] = false;
@@ -46,6 +46,10 @@ void Kiwi::Editor::EditorWindow::render() {
 }
 
 void Kiwi::Editor::EditorWindow::fileDialog() {
+    std::string last_file = GlobalInstance::get().properties.getCurrentFile();
+    if (last_file.size())
+        if (ImGui::MenuItem("Recover last session"))
+            loadLevel(last_file);
     ImGui::MenuItem("New", nullptr, &_flags["file_creation"]);
     ImGui::MenuItem("Open", "Ctrl+O", &_flags["file_opening"]);
     if (ImGui::BeginMenu("Open Recent")) {
@@ -135,8 +139,8 @@ void Kiwi::Editor::EditorWindow::loadLevel(std::string filename) {
 
     if (it == std::end(_recentFiles)) {
         _recentFiles.push_back(filename);
-        GlobalInstance::get().editorConfig.appendValue<std::string>("last_file", filename);
-        GlobalInstance::get().editorConfig.appendValue<std::string>("recent_files", filename, true);
+        GlobalInstance::get().properties.setCurrentFile(filename);
+        GlobalInstance::get().properties.addLastFile(filename);
     }
 }
 

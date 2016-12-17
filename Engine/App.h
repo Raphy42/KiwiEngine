@@ -13,7 +13,7 @@
 #include "../Core/Config.h"
 #include "Renderer/Renderer.h"
 #include "Assets/Storage.h"
-#include "Scene/Creator.h"#
+#include "Scene/Creator.h"
 #include "OpenglGraphicContext.h"
 #include "Event/CoreNotifier.h"
 #include "Renderer/ShaderBuilder.h"

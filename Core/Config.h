@@ -43,7 +43,7 @@ namespace Kiwi {
                 boost::property_tree::write_ini(_filename, _ptree);
             }
 
-            template<typename T>
+            template<typename T = std::string>
             T get(const char *key) const {
                 try {
                     T value = _ptree.get<T>(key);
@@ -131,8 +131,8 @@ namespace Kiwi {
                     save();
             }
 
-            template<typename T>
-            void appendValue(const char *key, const T data, bool write = false) {
+            template <typename T>
+            void appendValues(const char *key, const std::vector<T> data, bool write = false) {
                 boost::property_tree::ptree array, element;
 
                 try {
@@ -140,10 +140,16 @@ namespace Kiwi {
                 } catch (const boost::property_tree::ptree_bad_path &e) {
                     std::cerr << e.what() << std::endl;
                 }
-                array.push_back(data);
-                _ptree.put_child(boost::property_tree::ptree::path_type(key), array);
+                for (const auto &it : data)
+                    array.put("", it);
+                _ptree.push_back(std::make_pair(key, array));
                 if (write)
                     save();
+            }
+
+            template<typename T>
+            void appendValue(const char *key, const T data, bool write = false) {
+                appendValues<T>(key, {data}, write);
             }
         };
     }

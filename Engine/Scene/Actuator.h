@@ -9,6 +9,8 @@
 #include <glm/detail/type_mat4x4.hpp>
 #include "../GUI/Easing.h"
 #include <chrono>
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/base_object.hpp>
 
 /**
  * Constructs the transform matrix, which is then used by its bound entity
@@ -29,6 +31,17 @@ namespace Kiwi { namespace Engine { namespace Scene {
                 glm::mat4            update(void);
 
             private:
+                friend class boost::serialization::access;
+
+                template <class Archive>
+                void serialize(Archive &ar, const unsigned int flags) {
+                    ar & BOOST_SERIALIZATION_NVP(_pos);
+                    ar & BOOST_SERIALIZATION_NVP(_scale);
+                    ar & BOOST_SERIALIZATION_NVP(_rotation);
+                    ar & BOOST_SERIALIZATION_NVP(_transform);
+                    ar & BOOST_SERIALIZATION_NVP(_angle);
+                }
+
                 glm::vec3                                           _pos;
                 glm::vec3                                           _scale;
                 glm::vec3                                           _rotation;

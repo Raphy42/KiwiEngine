@@ -16,33 +16,49 @@ namespace Kiwi {
             class Asset {
             public:
                 enum class Type : int {
-                    SCENE,
+                    WORLD,
                     PROP,
+                    TEXTURE,
                 };
 
                 Asset() = default;
 
-                Asset(std::string &name, Type &type);
+                virtual void load(const unsigned int flags) = 0;
+                virtual Type getType(void) const = 0;
 
-                Asset(std::string &name, Type &type, std::shared_ptr<Primitive::Mesh> mesh,
-                      std::shared_ptr<Renderer::Material> material);
+            protected:
+                std::string         _filename;
+                std::string         _name;
 
-                virtual ~Asset() {};
+                friend boost::serialization::access;
 
-                Type getType(void) const;
+                template<class Archive>
+                void serialize(Archive &ar, const unsigned int flags) {
+                    ar & BOOST_SERIALIZATION_NVP(_filename);
+                    ar & BOOST_SERIALIZATION_NVP(_name);
+                }
 
-                Primitive::AABB getBounds(void) const;
+            };
 
-                void setBounds(Primitive::AABB &bounds);
+            class World : public Asset {
+            public:
+                virtual void load(const unsigned int flags) override;
 
-            private:
-                std::string _name;
-                Type _type;
+                virtual Type getType(void) const override;
+            };
 
-                std::shared_ptr<Primitive::Mesh> _mesh;
-                std::shared_ptr<Renderer::Material> _material;
+            class Prop : public Asset {
+            public:
+                virtual void load(const unsigned int flags) override;
 
-                Primitive::AABB _bounds;
+                virtual Type getType(void) const override;
+            };
+
+            class Texture : public Asset {
+            public:
+                virtual void load(const unsigned int flags) override;
+
+                virtual Type getType(void) const override;
             };
         }
     }
