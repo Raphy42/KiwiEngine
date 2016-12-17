@@ -6,7 +6,7 @@
 #define KIWIENGINE_MANAGER_H
 
 #include "../../Core/Filesystem/VirtualFilesystem.h"
-#include "../../Core/INIConfig.h"
+#include "../../Core/Config.h"
 #include "Storage.h"
 
 namespace Kiwi {

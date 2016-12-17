@@ -10,7 +10,7 @@
 #include "../Core/Filesystem/VirtualFilesystem.h"
 #include "GraphicContextInterface.h"
 #include "Event/Dispatcher.h"
-#include "../Core/INIConfig.h"
+#include "../Core/Config.h"
 #include "Renderer/Renderer.h"
 #include "Assets/Storage.h"
 #include "Scene/Creator.h"#

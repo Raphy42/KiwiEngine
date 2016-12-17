@@ -5,7 +5,7 @@
 #ifndef KIWIENGINE_GLOBALEDITORINSTANCE_H
 #define KIWIENGINE_GLOBALEDITORINSTANCE_H
 
-#include "../Core/INIConfig.h"
+#include "../Core/Config.h"
 #include "../Core/Filesystem/VirtualFilesystem.h"
 #include "../Engine/Scene/Level.h"
 
@@ -37,14 +37,14 @@ namespace Kiwi {
             };
 
             Core::JSONConfig                        editorConfig;
-            Core::INIConfig                            coreConfig;
+            Core::INIConfig                         coreConfig;
             Core::JSONConfig                        levelConfig;
             Core::Filesystem::VirtualFilesystem     vfs;
             State                                   state;
             Kiwi::Engine::Scene::Level              world;
 
             static GlobalInstance &get(void) {
-                static GlobalInstance instance;
+                static GlobalInstance instance; //Todo: you gotta love those side effects
                 return instance;
             }
 

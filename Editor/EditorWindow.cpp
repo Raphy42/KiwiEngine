@@ -6,8 +6,10 @@
 #include "../Engine/Scene/Creator.h"
 
 
-Kiwi::Editor::EditorWindow::EditorWindow() : Kiwi::Editor::WindowInterface() {
-    _recentFiles = GlobalInstance::get().editorConfig.getVector<std::string>("recent_files");
+Kiwi::Editor::EditorWindow::EditorWindow() :
+        Kiwi::Editor::WindowInterface(),
+        _recentFiles(GlobalInstance::get().editorConfig.getVector<std::string>("recent_files"))
+{
     _flags["file_creation"] = false;
     _flags["file_opening"] = false;
     _flags["error"] = false;
@@ -47,11 +49,14 @@ void Kiwi::Editor::EditorWindow::fileDialog() {
     ImGui::MenuItem("New", nullptr, &_flags["file_creation"]);
     ImGui::MenuItem("Open", "Ctrl+O", &_flags["file_opening"]);
     if (ImGui::BeginMenu("Open Recent")) {
-        if (_recentFiles.size())
-            for (const auto &it : _recentFiles)
-                ImGui::MenuItem(it.c_str());
-        else
+        if (_recentFiles.size()) {
+            for (const auto &it : _recentFiles) {
+                if (ImGui::MenuItem(it.c_str()))
+                    loadLevel(it);
+            }
+        } else {
             ImGui::MenuItem("No recent files");
+        }
         ImGui::EndMenu();
     }
     if (ImGui::MenuItem("Save", "Ctrl+S")) {}
@@ -79,13 +84,14 @@ void Kiwi::Editor::EditorWindow::fileCreation(bool *p_open) {
     ImGui::InputText("Filename", buffer, 256);
     ImGui::Combo("Type", &current, items, 2);
 
-    if (std::strlen(buffer) && current != -1 && !file_exists_already) if (ImGui::Button("Create")) {
-        std::string path = GlobalInstance::get().vfs.getFilename(std::make_pair("textures", std::string(buffer)));
-        if (GlobalInstance::get().vfs.exists(path))
-            file_exists_already = true;
-        else
-            *p_open = false;
-    }
+    if (std::strlen(buffer) && current != -1 && !file_exists_already)
+        if (ImGui::Button("Create")) {
+            std::string path = GlobalInstance::get().vfs.getFilename(std::make_pair("textures", std::string(buffer)));
+            if (GlobalInstance::get().vfs.exists(path))
+                file_exists_already = true;
+            else
+                *p_open = false;
+        }
 
     ImGui::End();
 }
@@ -112,15 +118,25 @@ void Kiwi::Editor::EditorWindow::fileOpen(bool *p_open) {
 
     if (current.filename().size()) {
         if (ImGui::Button("Open")) {
-            std::cout << current.string() << std::endl;
-            GlobalInstance::get().levelConfig = Core::JSONConfig(current.string()); //todo catch exceptions
-            GlobalInstance::get().world = Kiwi::Engine::Scene::Creator::createLevelFromConfig(GlobalInstance::get().levelConfig);
-            std::cout << GlobalInstance::get().world.get_name() << std::endl;
-            _flags["file_opening"] = false;
-            GlobalInstance::get().state = State::SCENE_OPENED;
+            loadLevel(current.string());
         }
     }
 
     ImGui::End();
+}
+
+void Kiwi::Editor::EditorWindow::loadLevel(std::string filename) {
+    GlobalInstance::get().levelConfig = Core::JSONConfig(filename); //todo catch exceptions
+    GlobalInstance::get().world = Kiwi::Engine::Scene::Creator::createLevelFromConfig(
+            GlobalInstance::get().levelConfig);
+    _flags["file_opening"] = false;
+    GlobalInstance::get().state = State::SCENE_OPENED;
+    auto it = std::find(_recentFiles.begin(), _recentFiles.end(), filename);
+
+    if (it == std::end(_recentFiles)) {
+        _recentFiles.push_back(filename);
+        GlobalInstance::get().editorConfig.appendValue<std::string>("last_file", filename);
+        GlobalInstance::get().editorConfig.appendValue<std::string>("recent_files", filename, true);
+    }
 }
 

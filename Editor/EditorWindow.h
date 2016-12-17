@@ -29,6 +29,8 @@ namespace Kiwi { namespace Editor {
             void                                    fileCreation(bool *p_open);
             void                                    fileOpen(bool *p_open);
 
+            void                                    loadLevel(std::string filename);
+
             const char                              *_lastError;
         };
     }

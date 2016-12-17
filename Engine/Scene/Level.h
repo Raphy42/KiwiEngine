@@ -41,7 +41,7 @@ namespace Kiwi { namespace Engine { namespace Scene {
                     return _transform;
                 }
 
-                void set_transform(const glm::mat4 &_transform) {
+                void setTransform(const glm::mat4 &_transform) {
                     Level::_transform = _transform;
                 }
 

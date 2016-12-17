@@ -6,7 +6,7 @@
 #define KIWIENGINE_CREATOR_H
 
 #include "Level.h"
-#include "../../Core/INIConfig.h"
+#include "../../Core/Config.h"
 
 namespace Kiwi { namespace Engine { namespace Scene {
             class Creator

@@ -31,8 +31,9 @@ namespace Kiwi {
                         _vao(vao),
                         _vbo(vbo),
                         _ebo(ebo),
-                        _topology(Topology::TRIANGLES),
-                        _size(size) {}
+                        _size(size),
+                        _topology(Topology::TRIANGLES)
+                {}
 
                 void bind(void) const {
                     glBindVertexArray(_vao);

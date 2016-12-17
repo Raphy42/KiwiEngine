@@ -246,7 +246,12 @@ int main(void) {
     Kiwi::Editor::Editor *editor = new Kiwi::Editor::Editor();
 
     editor->init();
-    while (1)
-        editor->loop();
+    try {
+        while (1)
+            editor->loop();
+    } catch (const std::exception &e) {
+        std::cerr << e.what() << std::endl;
+        exit(EXIT_FAILURE);
+    }
     return 0;
 }
