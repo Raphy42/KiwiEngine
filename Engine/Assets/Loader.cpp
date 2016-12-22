@@ -20,6 +20,22 @@ extern struct _cube cube;
 
 namespace kE = Kiwi::Engine;
 
+static void checkbounds(const glm::vec3 &v, glm::vec3 &min, glm::vec3 &max)
+{
+    if (v.x < min.x)
+        min.x = v.x;
+    if (v.y < min.y)
+        min.y = v.y;
+    if (v.z < min.z)
+        min.z = v.z;
+    if (v.x > max.x)
+        max.x = v.x;
+    if (v.y > max.y)
+        max.y = v.y;
+    if (v.z > max.z)
+        max.z = v.z;
+}
+
 kE::Primitive::Mesh
 Kiwi::Engine::Asset::Loader::createMeshFromVertices(std::vector<float> v) {
     GLuint vao, vbo, ebo;
@@ -207,12 +223,14 @@ Kiwi::Engine::Asset::Loader::processAiMesh(aiMesh *mesh, const aiScene *aScene) 
     std::vector<glm::vec3> v, n, b, t;
     std::vector<glm::vec2> uvs;
     std::vector<unsigned int> idx;
+
     for (GLuint i = 0; i < mesh->mNumVertices; i++) {
         glm::vec3 vertex; // We declare a placeholder vector since assimp uses its own vector class that doesn't directly convert to glm's vec3 class so we transfer the data to this placeholder glm::vec3 first.
         // Positions
         vertex.x = mesh->mVertices[i].x;
         vertex.y = mesh->mVertices[i].y;
         vertex.z = mesh->mVertices[i].z;
+
         // Normals
         glm::vec3 normal;
         if (!mesh->HasNormals())
@@ -452,6 +470,70 @@ Kiwi::Engine::Renderer::Texture Kiwi::Engine::Asset::Loader::createCubeMap(std::
     glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
 
     return kE::Renderer::Texture(GL_TEXTURE_CUBE_MAP, textureID, kE::Renderer::Texture::Type::CUBE_MAP);
+}
+
+GraphData *Kiwi::Engine::Asset::Loader::createGraphFromModel(const char *filename) {
+    Kiwi::Engine::Primitive::Mesh
+    Kiwi::Engine::Asset::Loader::processAiMesh(aiMesh *mesh, const aiScene *aScene) {
+        std::vector<glm::vec3> v, n, b, t;
+        std::vector<glm::vec2> uvs;
+        std::vector<unsigned int> idx;
+        glm::vec3 min, max;
+
+        for (GLuint i = 0; i < mesh->mNumVertices; i++) {
+            glm::vec3 vertex; // We declare a placeholder vector since assimp uses its own vector class that doesn't directly convert to glm's vec3 class so we transfer the data to this placeholder glm::vec3 first.
+            // Positions
+            vertex.x = mesh->mVertices[i].x;
+            vertex.y = mesh->mVertices[i].y;
+            vertex.z = mesh->mVertices[i].z;
+
+            // Normals
+            glm::vec3 normal;
+            if (!mesh->HasNormals())
+            {
+                normal = glm::vec3(1.f);
+            }
+            else
+            {
+                normal.x = mesh->mNormals[i].x;
+                normal.y = mesh->mNormals[i].y;
+                normal.z = mesh->mNormals[i].z;
+            }
+            glm::vec2 uv;
+            if (mesh->HasTextureCoords(0)) // Does the mesh contain texture coordinates?
+            {
+                // A vertex can contain up to 8 different texture coordinates. We thus make the assumption that we won't
+                // use models where a vertex can have multiple texture coordinates so we always take the first set (0).
+                uv.x = mesh->mTextureCoords[0][i].x;
+                uv.y = mesh->mTextureCoords[0][i].y;
+            } else {
+                uv = glm::vec2(0.0f, 0.0f);
+            }
+            if (mesh->HasTangentsAndBitangents()) {
+                glm::vec3 tangent(mesh->mTangents[i].x, mesh->mTangents[i].y, mesh->mTangents[i].z);
+                glm::vec3 bitangent(mesh->mBitangents[i].x, mesh->mBitangents[i].y, mesh->mBitangents[i].z);
+                t.push_back(tangent);
+                b.push_back(bitangent);
+            }
+            //todo stream interleave
+            v.push_back(vertex);
+            n.push_back(normal);
+            uvs.push_back(uv);
+        }
+        // Now wak through each of the mesh's faces (a face is a mesh its triangle) and retrieve the corresponding vertex indices.
+        for (GLuint i = 0; i < mesh->mNumFaces; i++) {
+            aiFace face = mesh->mFaces[i];
+            // Retrieve all indices of the face and store them in the indices vector
+            for (GLuint j = 0; j < face.mNumIndices; j++)
+                idx.push_back(face.mIndices[j]);
+        }
+        Primitive::Mesh mesh;
+
+        if (t.size() && b.size())
+            mesh = createMeshVUVNTBStrideIndexed(v, uvs, n, idx, b, t);
+        else
+            mesh = createMeshVUVNStrideIndexed(v, uvs, n, idx);
+    }
 }
 
 

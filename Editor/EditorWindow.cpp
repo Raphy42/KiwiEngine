@@ -8,8 +8,7 @@
 
 Kiwi::Editor::EditorWindow::EditorWindow() :
         Kiwi::Editor::WindowInterface(),
-        _recentFiles(GlobalInstance::get().properties.getLastFiles())
-{
+        _recentFiles(GlobalInstance::get().properties.getLastFiles()) {
     _flags["file_creation"] = false;
     _flags["file_opening"] = false;
     _flags["error"] = false;
@@ -34,6 +33,13 @@ void Kiwi::Editor::EditorWindow::render() {
             if (ImGui::MenuItem("Paste", "CTRL+V")) {}
             ImGui::EndMenu();
         }
+        if (ImGui::BeginMenu("Windows")) {
+            if (ImGui::MenuItem("Tools", "CTRL+T", GlobalInstance::get().properties.getState(
+                    "tools"))) { GlobalInstance::get().properties.toggleState("tools"); }
+            if (ImGui::MenuItem("Properties", "CTRL+P", GlobalInstance::get().properties.getState(
+                    "properties"))) { GlobalInstance::get().properties.toggleState("properties"); }
+            ImGui::EndMenu();
+        }
         if (_flags["error"])
             ImGui::MenuItem("Error log", _lastError);
         ImGui::EndMainMenuBar();
@@ -47,9 +53,8 @@ void Kiwi::Editor::EditorWindow::render() {
 
 void Kiwi::Editor::EditorWindow::fileDialog() {
     std::string last_file = GlobalInstance::get().properties.getCurrentFile();
-    if (last_file.size())
-        if (ImGui::MenuItem("Recover last session"))
-            loadLevel(last_file);
+    if (last_file.size()) if (ImGui::MenuItem("Recover last session"))
+        loadLevel(last_file);
     ImGui::MenuItem("New", nullptr, &_flags["file_creation"]);
     ImGui::MenuItem("Open", "Ctrl+O", &_flags["file_opening"]);
     if (ImGui::BeginMenu("Open Recent")) {
@@ -88,14 +93,13 @@ void Kiwi::Editor::EditorWindow::fileCreation(bool *p_open) {
     ImGui::InputText("Filename", buffer, 256);
     ImGui::Combo("Type", &current, items, 2);
 
-    if (std::strlen(buffer) && current != -1 && !file_exists_already)
-        if (ImGui::Button("Create")) {
-            std::string path = GlobalInstance::get().vfs.getFilename(std::make_pair("textures", std::string(buffer)));
-            if (GlobalInstance::get().vfs.exists(path))
-                file_exists_already = true;
-            else
-                *p_open = false;
-        }
+    if (std::strlen(buffer) && current != -1 && !file_exists_already) if (ImGui::Button("Create")) {
+        std::string path = GlobalInstance::get().vfs.getFilename(std::make_pair("textures", std::string(buffer)));
+        if (GlobalInstance::get().vfs.exists(path))
+            file_exists_already = true;
+        else
+            *p_open = false;
+    }
 
     ImGui::End();
 }

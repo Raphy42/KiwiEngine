@@ -8,6 +8,7 @@
 #include "Engine/Renderer/CubeMaterial.h"
 #include "Editor/Editor.h"
 #include "Editor/Properties.h"
+#include "Core/bsp.h"
 
 #define TEST
 

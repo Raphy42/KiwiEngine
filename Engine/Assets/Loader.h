@@ -12,6 +12,7 @@
 #include "../Primitives/Mesh.h"
 #include "../Primitives/Model.h"
 #include "../Scene/Entity.h"
+#include "../Scene/Graph.h"
 
 namespace Kiwi {
     namespace Engine {
@@ -21,7 +22,6 @@ namespace Kiwi {
             class Loader {
             public:
                 friend  Primitive::Mesh;
-                friend  Primitive::Model;
 
                 enum class Type : int {
                     PLANE = 0x0,
@@ -62,6 +62,8 @@ namespace Kiwi {
                 Primitive::Mesh createMeshFromSimpleModel(const char *filename);
 
                 Scene::Entity createEntityFromModel(const char *filename);
+
+                Scene::GraphData *createGraphFromModel(const char *filename);
 
             private:
                 Primitive::Mesh createMeshVUVNStride(std::vector<glm::vec3> v,

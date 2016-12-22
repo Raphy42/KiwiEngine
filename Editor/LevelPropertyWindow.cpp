@@ -7,7 +7,7 @@
 #include "GlobalInstance.h"
 
 void Kiwi::Editor::LevelPropertyWindow::render() {
-    if (GlobalInstance::get().state < State::SCENE_LOADED)
+    if (!GlobalInstance::get().properties.getState("properties"))
         return;
 
     if (!ImGui::Begin("Level properties", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
@@ -15,13 +15,7 @@ void Kiwi::Editor::LevelPropertyWindow::render() {
         return;
     }
 
-    static char buffer[256] = "default";
 
-    ImGui::Text("%s", GlobalInstance::get().world.get_name().c_str());
-//    ImGui::InputText("World name", buffer, 256);
-//    static std::vector<float> transform;
-//    for (const auto &var : transform)
-//        ImGui::Text("%f", var);
 
     ImGui::End();
 }

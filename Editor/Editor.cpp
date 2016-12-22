@@ -4,6 +4,7 @@
 
 #include "Editor.h"
 #include "LevelPropertyWindow.h"
+#include "ToolsWindow.h"
 #include <boost/archive/binary_oarchive.hpp>
 
 class UserInputListener : public kE::Event::Listener<kE::Event::Type::GLFWEvent> {
@@ -87,6 +88,7 @@ namespace Kiwi {
 
             _windows.push_back(new EditorWindow);
             _windows.push_back(new LevelPropertyWindow);
+            _windows.push_back(new ToolsWindow(camera));
 
             std::ofstream f("test.dat", std::ios::binary);
             {
@@ -99,11 +101,13 @@ namespace Kiwi {
             _graphics->Update();
             processEvent();
             ImGui_ImplGlfwGL3_NewFrame();
+            ImGuizmo::BeginFrame();
+            ImGui::GetIO().MouseDrawCursor = true;
 
             std::for_each(_windows.begin(), _windows.end(), [](WindowInterface *window) {
                 window->render();
             });
-//            ImGui::ShowTestWindow();
+            ImGui::ShowTestWindow();
 
             run();
         }

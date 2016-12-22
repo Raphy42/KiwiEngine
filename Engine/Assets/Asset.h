@@ -6,9 +6,9 @@
 #define KIWIENGINE_ASSET_H
 
 #include <string>
-#include "../Primitives/Mesh.h"
-#include "../Renderer/Material.h"
-#include "../Primitives/AABB.h"
+#include <boost/serialization/access.hpp>
+#include <boost/serialization/nvp.hpp>
+#include <boost/serialization/string.hpp>
 
 namespace Kiwi {
     namespace Engine {
