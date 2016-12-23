@@ -10,7 +10,6 @@
 #include <assimp/scene.h>
 #include <assimp/Importer.hpp>
 #include "../Primitives/Mesh.h"
-#include "../Primitives/Model.h"
 #include "../Scene/Entity.h"
 #include "../Scene/Graph.h"
 
@@ -63,7 +62,7 @@ namespace Kiwi {
 
                 Scene::Entity createEntityFromModel(const char *filename);
 
-                Scene::GraphData *createGraphFromModel(const char *filename);
+                Scene::Graph *createGraphFromModel(const char *filename);
 
             private:
                 Primitive::Mesh createMeshVUVNStride(std::vector<glm::vec3> v,
@@ -84,6 +83,7 @@ namespace Kiwi {
                 Primitive::Mesh createPlane(unsigned int x, unsigned int columns);
 
                 Primitive::Mesh processAiMesh(aiMesh *mesh, const aiScene *aScene);
+                Primitive::Mesh processAiMesh(aiMesh *mesh, const aiScene *aScene, std::pair<glm::vec3, glm::vec3> *box);
 
                 Renderer::Texture
                 loadMaterialTexture(aiMaterial *material, aiTextureType type, Renderer::Texture::Type map);

@@ -7,9 +7,8 @@
 
 #include "../Primitives/AABB.h"
 #include "../Primitives/Mesh.h"
-#include "Entity.h"
-#include "../../Core/bsp.h"
-#include "../Renderer/Renderer.h"
+#include "../Renderer/Material.h"
+#include "Actuator.h"
 
 namespace Kiwi {
     namespace Engine {
@@ -29,6 +28,8 @@ namespace Kiwi {
                 Primitive::Mesh     mesh;
                 Renderer::Material  *material;
                 Actuator            *actuator;
+                std::string         name;
+                //Todo uuid
             };
 
             class Graph {
@@ -43,13 +44,25 @@ namespace Kiwi {
 
                 void removeFromIndex(unsigned int index);
 
-            private:
-                friend                          Renderer::Renderer;
+                std::vector<GraphData *> data() const;
 
-                std::vector<GraphData *> _data;
+                bool isDirty() const;
+
+                void setDirty(bool dirty);
+
+                const std::string &getName() const;
+
+                void setName(const std::string &_name);
+
+            protected:
+                std::vector<GraphData *>    _data;
+                std::string                 _name;
+
+                bool        _dirty = true;
             };
 
             class GraphFactory {
+            public:
                 static GraphData *create(Primitive::Mesh mesh, Renderer::Material *material,
                                          std::pair<glm::vec3, glm::vec3> bounds, Actuator *actuator = nullptr);
             };

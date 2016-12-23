@@ -11,6 +11,7 @@
 #include "Program.h"
 #include "Target.h"
 #include "Shading.h"
+#include "../Scene/Graph.h"
 
 namespace Kiwi {
     namespace Engine {
@@ -31,9 +32,16 @@ namespace Kiwi {
 
                 void render();
 
+                /**
+                 * Experimentations
+                 */
+                void renderGraph(const Scene::Graph *graph);
+                void updateGraphMaterials(Scene::Graph *graph);
+
             private:
                 void recursiveRender(Scene::Entity node);
                 void renderNode(Scene::Entity node);
+                void renderGraphNode(const Scene::GraphData *node);
 
                 std::vector<Material>       _materials;
                 Primitive::FPSCamera        *_camera;

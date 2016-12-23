@@ -12,11 +12,11 @@
 		<bucket_count>2</bucket_count>
 		<item_version>0</item_version>
 		<item class_id="3" tracking_level="0" version="0">
-			<first>properties</first>
-			<second>0</second>
+			<first>tools</first>
+			<second>1</second>
 		</item>
 		<item>
-			<first>tools</first>
+			<first>properties</first>
 			<second>1</second>
 		</item>
 	</windows>

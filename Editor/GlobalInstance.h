@@ -8,6 +8,7 @@
 #include "../Core/Config.h"
 #include "../Core/Filesystem/VirtualFilesystem.h"
 #include "../Engine/Scene/Level.h"
+#include "../Engine/Scene/Graph.h"
 #include "Properties.h"
 
 #include <boost/archive/xml_oarchive.hpp>
@@ -66,6 +67,12 @@ namespace Kiwi {
             Core::Filesystem::VirtualFilesystem     vfs;
             State                                   state;
             Kiwi::Engine::Scene::Level              world;
+            Kiwi::Engine::Scene::Graph              *graph;
+
+            //Cache
+            struct _cache {
+                std::vector<Kiwi::Engine::Scene::GraphData *> selection;
+            } cache;
 
             static GlobalInstance &get(void) {
                 static GlobalInstance instance; //Todo: you gotta love those side effects

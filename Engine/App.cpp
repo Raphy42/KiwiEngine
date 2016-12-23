@@ -71,7 +71,7 @@ void Kiwi::Engine::App::run() {
     /**
      * Render the current frame
      */
-    _renderer.render();
+//    _renderer.render();
 
     ImGui::Render();
 

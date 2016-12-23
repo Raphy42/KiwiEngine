@@ -22,24 +22,25 @@ void Kiwi::Editor::ToolsWindow::render() {
     ImGui::SameLine();
     if (ImGui::RadioButton("Scale", _currentOperation == ImGuizmo::SCALE))
         _currentOperation = ImGuizmo::SCALE;
-    static glm::mat4 transform;
-    //TODO replace by actual entity
-    ImGuizmo::DrawCube(glm::value_ptr(_camera->getViewMat4()), glm::value_ptr(_camera->getProjectionMat4()), glm::value_ptr(transform));
-    process(transform);
+    if (GlobalInstance::get().cache.selection.size())
+        process(GlobalInstance::get().cache.selection[0]);
 
 
     ImGui::End();
 }
 
-void Kiwi::Editor::ToolsWindow::process(glm::mat4 &transform) {
+void Kiwi::Editor::ToolsWindow::process(Kiwi::Engine::Scene::GraphData *data) {
     float matrixTranslation[3], matrixRotation[3], matrixScale[3];
+
+    glm::mat4 transform = data->actuator->update();
+
+    ImGui::Text(data->name.c_str());
 
     ImGuizmo::DecomposeMatrixToComponents(glm::value_ptr(transform), matrixTranslation, matrixRotation, matrixScale);
     ImGui::InputFloat3("Position", matrixTranslation, 3);
     ImGui::InputFloat3("Rotation", matrixRotation, 3);
     ImGui::InputFloat3("Scale", matrixScale, 3);
-    ImGuizmo::RecomposeMatrixFromComponents(matrixTranslation, matrixRotation, matrixScale, glm::value_ptr(transform));
-
+    data->actuator->recompose(matrixTranslation, matrixRotation, matrixScale);
     if (_currentOperation != ImGuizmo::SCALE) {
         if (ImGui::RadioButton("Local", _currentMode == ImGuizmo::LOCAL))
             _currentMode = ImGuizmo::LOCAL;
@@ -68,6 +69,8 @@ void Kiwi::Editor::ToolsWindow::process(glm::mat4 &transform) {
 
     ImGuizmo::Manipulate(glm::value_ptr(_camera->getViewMat4()), glm::value_ptr(_camera->getProjectionMat4()),
                          _currentOperation, _currentMode, glm::value_ptr(transform), NULL, useSnap ? &snap.x : NULL);
+    data->actuator->recompose(transform);
+
     if (ImGuizmo::IsOver() || ImGuizmo::IsUsing())
         ImGui::SetMouseCursor(2);
 }

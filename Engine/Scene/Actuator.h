@@ -24,6 +24,8 @@ namespace Kiwi { namespace Engine { namespace Scene {
                 virtual ~Actuator() {};
 
                 Actuator        *position(glm::vec3 pos);
+                void            recompose(float *t, float *r, float *s);
+                void            recompose(glm::mat4 &transform);
                 Actuator        *setScale(glm::vec3 scale);
                 Actuator        *rotate(glm::vec3 rotation, float angle);
                 Actuator        *ease(GUI::Easing ease, float duration);
@@ -42,9 +44,9 @@ namespace Kiwi { namespace Engine { namespace Scene {
                     ar & BOOST_SERIALIZATION_NVP(_angle);
                 }
 
-                glm::vec3                                           _pos;
-                glm::vec3                                           _scale;
-                glm::vec3                                           _rotation;
+                glm::mat4 _pos;
+                glm::mat4 _scale;
+                glm::mat4 _rotation;
                 glm::mat4                                           _transform;
                 float                                               _angle;
                 float                                               _duration;
@@ -52,6 +54,7 @@ namespace Kiwi { namespace Engine { namespace Scene {
                 std::chrono::time_point<std::chrono::system_clock>  _start;
                 std::chrono::time_point<std::chrono::system_clock>  _end;
                 std::chrono::duration<float>                        _elapsedSeconds;
+                bool _dirty;
             };
         }
     }

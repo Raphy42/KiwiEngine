@@ -36,6 +36,26 @@ void Kiwi::Engine::Scene::Graph::removeFromIndex(unsigned int index) {
     _data.erase(_data.begin() + index);
 }
 
+std::vector<Kiwi::Engine::Scene::GraphData *> Kiwi::Engine::Scene::Graph::data() const {
+    return _data;
+}
+
+bool Kiwi::Engine::Scene::Graph::isDirty() const {
+    return _dirty;
+}
+
+void Kiwi::Engine::Scene::Graph::setDirty(bool dirty) {
+    _dirty = dirty;
+}
+
+const std::string &Kiwi::Engine::Scene::Graph::getName() const {
+    return _name;
+}
+
+void Kiwi::Engine::Scene::Graph::setName(const std::string &name) {
+    _name = name;
+}
+
 Kiwi::Engine::Scene::GraphData *
 Kiwi::Engine::Scene::GraphFactory::create(Kiwi::Engine::Primitive::Mesh mesh,
                                                                           Kiwi::Engine::Renderer::Material *material,

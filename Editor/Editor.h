@@ -29,6 +29,7 @@ namespace Kiwi { namespace Editor {
             kE::Primitive::FPSCamera        _camera;
             std::vector<WindowInterface *>  _windows;
             Engine::Scene::Entity           _defaultSkybox;
+            Engine::Scene::Graph *_graph;
         };
     }
 }

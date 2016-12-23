@@ -78,23 +78,13 @@ namespace Kiwi {
 //
             skybox_actor->setScale(glm::vec3(100.f, 100.f, 100.f))->update();
 
-            kE::Scene::Entity root;
+            _graph = GlobalInstance::get().graph;
 
-            GlobalInstance::get().world = kE::Scene::Level(root);
-            GlobalInstance::get().world.setSkybox(skybox);
-
-            _renderer.bindLevel(GlobalInstance::get().world);
             _renderer.bindCamera(camera);
 
             _windows.push_back(new EditorWindow);
             _windows.push_back(new LevelPropertyWindow);
             _windows.push_back(new ToolsWindow(camera));
-
-            std::ofstream f("test.dat", std::ios::binary);
-            {
-                boost::archive::binary_oarchive b(f);
-                b << BOOST_SERIALIZATION_NVP(root);
-            }
         }
 
         void Editor::loop() {
@@ -109,6 +99,8 @@ namespace Kiwi {
             });
             ImGui::ShowTestWindow();
 
+            _renderer.updateGraphMaterials(_graph); //todo extract to Engine::run
+            _renderer.renderGraph(_graph);
             run();
         }
 

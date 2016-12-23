@@ -37,7 +37,7 @@ static void checkbounds(const glm::vec3 &v, glm::vec3 &min, glm::vec3 &max)
 }
 
 kE::Primitive::Mesh
-Kiwi::Engine::Asset::Loader::createMeshFromVertices(std::vector<float> v) {
+kE::Asset::Loader::createMeshFromVertices(std::vector<float> v) {
     GLuint vao, vbo, ebo;
 
     glGenVertexArrays(1, &vao);
@@ -58,7 +58,7 @@ Kiwi::Engine::Asset::Loader::createMeshFromVertices(std::vector<float> v) {
 }
 
 kE::Primitive::Mesh
-Kiwi::Engine::Asset::Loader::createDefaultMesh(Kiwi::Engine::Asset::Loader::Type type) {
+kE::Asset::Loader::createDefaultMesh(kE::Asset::Loader::Type type) {
     switch (type) {
         case Type::CUBE :
             return createMeshVUVNStride(cube.v, cube.uv, cube.n);
@@ -74,7 +74,7 @@ Kiwi::Engine::Asset::Loader::createDefaultMesh(Kiwi::Engine::Asset::Loader::Type
  */
 
 kE::Primitive::Mesh
-Kiwi::Engine::Asset::Loader::createMeshVUVNStride(std::vector<glm::vec3> v, std::vector<glm::vec2> uv,
+kE::Asset::Loader::createMeshVUVNStride(std::vector<glm::vec3> v, std::vector<glm::vec2> uv,
                                                   std::vector<glm::vec3> n) {
     GLuint vao, vbo, ebo;
 
@@ -98,7 +98,7 @@ Kiwi::Engine::Asset::Loader::createMeshVUVNStride(std::vector<glm::vec3> v, std:
 }
 
 kE::Renderer::Texture
-Kiwi::Engine::Asset::Loader::createTexture(Kiwi::Engine::Asset::Loader::Target target, std::string source) {
+kE::Asset::Loader::createTexture(kE::Asset::Loader::Target target, std::string source) {
     int w, h, comp;
     stbi_set_flip_vertically_on_load(true);
 
@@ -138,8 +138,8 @@ Kiwi::Engine::Asset::Loader::createTexture(Kiwi::Engine::Asset::Loader::Target t
     return kE::Renderer::Texture(GL_TEXTURE_2D, texture);
 }
 
-Kiwi::Engine::Primitive::Mesh
-Kiwi::Engine::Asset::Loader::createPlane(unsigned int rows, unsigned int columns) {
+kE::Primitive::Mesh
+kE::Asset::Loader::createPlane(unsigned int rows, unsigned int columns) {
     bool oddRow = false;
 
     float dX = 1.0f / rows;
@@ -177,8 +177,8 @@ Kiwi::Engine::Asset::Loader::createPlane(unsigned int rows, unsigned int columns
     return mesh;
 }
 
-Kiwi::Engine::Primitive::Mesh
-Kiwi::Engine::Asset::Loader::createMeshVUVNStrideIndexed(std::vector<glm::vec3> v, std::vector<glm::vec2> uv,
+kE::Primitive::Mesh
+kE::Asset::Loader::createMeshVUVNStrideIndexed(std::vector<glm::vec3> v, std::vector<glm::vec2> uv,
                                                          std::vector<glm::vec3> n, std::vector<unsigned int> i) {
     GLuint vao, vbo, ebo;
 
@@ -204,8 +204,8 @@ Kiwi::Engine::Asset::Loader::createMeshVUVNStrideIndexed(std::vector<glm::vec3> 
     return mesh;
 }
 
-Kiwi::Engine::Primitive::Mesh
-Kiwi::Engine::Asset::Loader::createMeshFromSimpleModel(const char *filename) {
+kE::Primitive::Mesh
+kE::Asset::Loader::createMeshFromSimpleModel(const char *filename) {
     Assimp::Importer importer;
     const aiScene *scene = importer.ReadFile(filename, aiProcess_Triangulate |
                                                        aiProcess_GenNormals | aiProcess_FlipUVs |
@@ -218,8 +218,8 @@ Kiwi::Engine::Asset::Loader::createMeshFromSimpleModel(const char *filename) {
     return processAiMesh(mesh, scene);
 }
 
-Kiwi::Engine::Primitive::Mesh
-Kiwi::Engine::Asset::Loader::processAiMesh(aiMesh *mesh, const aiScene *aScene) {
+kE::Primitive::Mesh
+kE::Asset::Loader::processAiMesh(aiMesh *mesh, const aiScene *aScene) {
     std::vector<glm::vec3> v, n, b, t;
     std::vector<glm::vec2> uvs;
     std::vector<unsigned int> idx;
@@ -277,8 +277,63 @@ Kiwi::Engine::Asset::Loader::processAiMesh(aiMesh *mesh, const aiScene *aScene) 
         return createMeshVUVNStrideIndexed(v, uvs, n, idx);
 }
 
-Kiwi::Engine::Scene::Entity
-Kiwi::Engine::Asset::Loader::createEntityFromModel(const char *filename) {
+kE::Scene::Graph *kE::Asset::Loader::createGraphFromModel(const char *filename) {
+    std::string file = filename;
+    _path = file.substr(0, file.find_last_of('/')); //todo potential fatal failure to fix
+
+    kE::Scene::Graph *graph = new kE::Scene::Graph;
+    kE::Scene::GraphData *data;
+
+    Assimp::Importer importer;
+    const aiScene *scene = importer.ReadFile(filename, aiProcess_Triangulate |
+                                                       aiProcess_GenNormals |
+                                                       aiProcess_JoinIdenticalVertices |
+                                                       aiProcess_GenUVCoords | aiProcess_CalcTangentSpace);
+    if (!scene || scene->mFlags == AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
+        throw std::runtime_error(importer.GetErrorString());
+
+    std::pair<glm::vec3, glm::vec3> bounds;
+
+    for (int i = 0; i < scene->mNumMeshes; ++i) {
+        if (scene->mMeshes[i]->mMaterialIndex > 0) {
+            aiString matName;
+            scene->mMaterials[scene->mMeshes[i]->mMaterialIndex]->Get(AI_MATKEY_NAME, matName);
+
+            std::cout << std::endl;
+            std::cout << "Creating new PhongTexturedMaterial: " << matName.C_Str() << std::endl;
+
+            kE::Renderer::PhongTexturedMaterial *material = new kE::Renderer::PhongTexturedMaterial();
+            aiMaterial *obj_material = scene->mMaterials[scene->mMeshes[i]->mMaterialIndex];
+
+            material->addMap(
+                    loadMaterialTexture(obj_material, aiTextureType_DIFFUSE, kE::Renderer::Texture::Type::DIFFUSE));
+            material->addMap(
+                    loadMaterialTexture(obj_material, aiTextureType_HEIGHT, kE::Renderer::Texture::Type::NORMAL));
+            material->addMap(
+                    loadMaterialTexture(obj_material, aiTextureType_SPECULAR, kE::Renderer::Texture::Type::SPECULAR));
+            material->addMap(
+                    loadMaterialTexture(obj_material, aiTextureType_OPACITY, kE::Renderer::Texture::Type::ALPHA));
+            kE::Primitive::Mesh mesh = processAiMesh(scene->mMeshes[i], scene, &bounds);
+            data = kE::Scene::GraphFactory::create(mesh, material, bounds);
+        } else { //no textures found, phongmaterial with white default color TODO: replace by debug
+            kE::Renderer::PhongMaterial *material = new kE::Renderer::PhongMaterial();
+
+            std::cout << "Phong material creation" << std::endl;
+
+            material->setColor(glm::vec3(1.0f, 1.0f, 1.0f));
+            kE::Primitive::Mesh mesh = processAiMesh(scene->mMeshes[i], scene, &bounds);
+            data = kE::Scene::GraphFactory::create(mesh, material, bounds);
+        }
+        if (scene->mMeshes[i]->mName.length)
+            data->name = scene->mMeshes[i]->mName.C_Str();
+        else
+            data->name = "default";
+        graph->add(data);
+    }
+    return graph;
+}
+kE::Scene::Entity
+kE::Asset::Loader::createEntityFromModel(const char *filename) {
     std::string file = filename;
     _path = file.substr(0, file.find_last_of('/')); //todo potential fatal failure to fix
     kE::Scene::Entity node;
@@ -325,7 +380,7 @@ Kiwi::Engine::Asset::Loader::createEntityFromModel(const char *filename) {
 }
 
 kE::Renderer::Texture
-Kiwi::Engine::Asset::Loader::loadMaterialTexture(aiMaterial *material, aiTextureType type,
+kE::Asset::Loader::loadMaterialTexture(aiMaterial *material, aiTextureType type,
                                                  kE::Renderer::Texture::Type map) {
     aiString str;
     if (!material->GetTextureCount(type)) {
@@ -358,8 +413,8 @@ Kiwi::Engine::Asset::Loader::loadMaterialTexture(aiMaterial *material, aiTexture
     }
 }
 
-Kiwi::Engine::Primitive::Mesh
-Kiwi::Engine::Asset::Loader::createMeshVUVNTBStrideIndexed(std::vector<glm::vec3> v, std::vector<glm::vec2> uv,
+kE::Primitive::Mesh
+kE::Asset::Loader::createMeshVUVNTBStrideIndexed(std::vector<glm::vec3> v, std::vector<glm::vec2> uv,
                                                            std::vector<glm::vec3> n, std::vector<unsigned int> i,
                                                            std::vector<glm::vec3> t, std::vector<glm::vec3> b) {
     GLuint vao, vbo, ebo;
@@ -386,8 +441,8 @@ Kiwi::Engine::Asset::Loader::createMeshVUVNTBStrideIndexed(std::vector<glm::vec3
     return mesh;
 }
 
-Kiwi::Engine::Renderer::Texture
-Kiwi::Engine::Asset::Loader::createMap(std::string source, Kiwi::Engine::Renderer::Texture::Type type, bool alpha) {
+kE::Renderer::Texture
+kE::Asset::Loader::createMap(std::string source, kE::Renderer::Texture::Type type, bool alpha) {
     int w, h, comp;
     stbi_set_flip_vertically_on_load(true);
 
@@ -435,7 +490,7 @@ Kiwi::Engine::Asset::Loader::createMap(std::string source, Kiwi::Engine::Rendere
     return kE::Renderer::Texture(GL_TEXTURE_2D, texture, type);
 }
 
-Kiwi::Engine::Renderer::Texture Kiwi::Engine::Asset::Loader::createCubeMap(std::vector<const char *> sources) {
+kE::Renderer::Texture kE::Asset::Loader::createCubeMap(std::vector<const char *> sources) {
     GLuint textureID;
     glGenTextures(1, &textureID);
 
@@ -472,68 +527,68 @@ Kiwi::Engine::Renderer::Texture Kiwi::Engine::Asset::Loader::createCubeMap(std::
     return kE::Renderer::Texture(GL_TEXTURE_CUBE_MAP, textureID, kE::Renderer::Texture::Type::CUBE_MAP);
 }
 
-GraphData *Kiwi::Engine::Asset::Loader::createGraphFromModel(const char *filename) {
-    Kiwi::Engine::Primitive::Mesh
-    Kiwi::Engine::Asset::Loader::processAiMesh(aiMesh *mesh, const aiScene *aScene) {
-        std::vector<glm::vec3> v, n, b, t;
-        std::vector<glm::vec2> uvs;
-        std::vector<unsigned int> idx;
-        glm::vec3 min, max;
+Kiwi::Engine::Primitive::Mesh
+Kiwi::Engine::Asset::Loader::processAiMesh(aiMesh *mesh, const aiScene *aScene, std::pair<glm::vec3, glm::vec3> *box) {
+    std::vector<glm::vec3> v, n, b, t;
+    std::vector<glm::vec2> uvs;
+    std::vector<unsigned int> idx;
+    glm::vec3 min, max;
+    for (GLuint i = 0; i < mesh->mNumVertices; i++) {
+        glm::vec3 vertex; // We declare a placeholder vector since assimp uses its own vector class that doesn't directly convert to glm's vec3 class so we transfer the data to this placeholder glm::vec3 first.
+        // Positions
+        vertex.x = mesh->mVertices[i].x;
+        vertex.y = mesh->mVertices[i].y;
+        vertex.z = mesh->mVertices[i].z;
 
-        for (GLuint i = 0; i < mesh->mNumVertices; i++) {
-            glm::vec3 vertex; // We declare a placeholder vector since assimp uses its own vector class that doesn't directly convert to glm's vec3 class so we transfer the data to this placeholder glm::vec3 first.
-            // Positions
-            vertex.x = mesh->mVertices[i].x;
-            vertex.y = mesh->mVertices[i].y;
-            vertex.z = mesh->mVertices[i].z;
+        checkbounds(vertex, min, max);
 
-            // Normals
-            glm::vec3 normal;
-            if (!mesh->HasNormals())
-            {
-                normal = glm::vec3(1.f);
-            }
-            else
-            {
-                normal.x = mesh->mNormals[i].x;
-                normal.y = mesh->mNormals[i].y;
-                normal.z = mesh->mNormals[i].z;
-            }
-            glm::vec2 uv;
-            if (mesh->HasTextureCoords(0)) // Does the mesh contain texture coordinates?
-            {
-                // A vertex can contain up to 8 different texture coordinates. We thus make the assumption that we won't
-                // use models where a vertex can have multiple texture coordinates so we always take the first set (0).
-                uv.x = mesh->mTextureCoords[0][i].x;
-                uv.y = mesh->mTextureCoords[0][i].y;
-            } else {
-                uv = glm::vec2(0.0f, 0.0f);
-            }
-            if (mesh->HasTangentsAndBitangents()) {
-                glm::vec3 tangent(mesh->mTangents[i].x, mesh->mTangents[i].y, mesh->mTangents[i].z);
-                glm::vec3 bitangent(mesh->mBitangents[i].x, mesh->mBitangents[i].y, mesh->mBitangents[i].z);
-                t.push_back(tangent);
-                b.push_back(bitangent);
-            }
-            //todo stream interleave
-            v.push_back(vertex);
-            n.push_back(normal);
-            uvs.push_back(uv);
+        // Normals
+        glm::vec3 normal;
+        if (!mesh->HasNormals())
+        {
+            normal = glm::vec3(1.f);
         }
-        // Now wak through each of the mesh's faces (a face is a mesh its triangle) and retrieve the corresponding vertex indices.
-        for (GLuint i = 0; i < mesh->mNumFaces; i++) {
-            aiFace face = mesh->mFaces[i];
-            // Retrieve all indices of the face and store them in the indices vector
-            for (GLuint j = 0; j < face.mNumIndices; j++)
-                idx.push_back(face.mIndices[j]);
-        }
-        Primitive::Mesh mesh;
-
-        if (t.size() && b.size())
-            mesh = createMeshVUVNTBStrideIndexed(v, uvs, n, idx, b, t);
         else
-            mesh = createMeshVUVNStrideIndexed(v, uvs, n, idx);
+        {
+            normal.x = mesh->mNormals[i].x;
+            normal.y = mesh->mNormals[i].y;
+            normal.z = mesh->mNormals[i].z;
+        }
+        glm::vec2 uv;
+        if (mesh->HasTextureCoords(0)) // Does the mesh contain texture coordinates?
+        {
+            // A vertex can contain up to 8 different texture coordinates. We thus make the assumption that we won't
+            // use models where a vertex can have multiple texture coordinates so we always take the first set (0).
+            uv.x = mesh->mTextureCoords[0][i].x;
+            uv.y = mesh->mTextureCoords[0][i].y;
+        } else {
+            uv = glm::vec2(0.0f, 0.0f);
+        }
+        if (mesh->HasTangentsAndBitangents()) {
+            glm::vec3 tangent(mesh->mTangents[i].x, mesh->mTangents[i].y, mesh->mTangents[i].z);
+            glm::vec3 bitangent(mesh->mBitangents[i].x, mesh->mBitangents[i].y, mesh->mBitangents[i].z);
+            t.push_back(tangent);
+            b.push_back(bitangent);
+        }
+        //todo stream interleave
+        v.push_back(vertex);
+        n.push_back(normal);
+        uvs.push_back(uv);
     }
+    // Now wak through each of the mesh's faces (a face is a mesh its triangle) and retrieve the corresponding vertex indices.
+    for (GLuint i = 0; i < mesh->mNumFaces; i++) {
+        aiFace face = mesh->mFaces[i];
+        // Retrieve all indices of the face and store them in the indices vector
+        for (GLuint j = 0; j < face.mNumIndices; j++)
+            idx.push_back(face.mIndices[j]);
+    }
+    box->first = min;
+    box->second = max;
+    if (t.size() && b.size())
+        return createMeshVUVNTBStrideIndexed(v, uvs, n, idx, b, t);
+    else
+        return createMeshVUVNStrideIndexed(v, uvs, n, idx);
 }
+
 
 

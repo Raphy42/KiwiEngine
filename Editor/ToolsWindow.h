@@ -8,6 +8,7 @@
 #include <ImGuizmo.h>
 #include "WindowInterface.h"
 #include "../Engine/Primitives/Camera.h"
+#include "../Engine/Scene/Graph.h"
 
 namespace Kiwi {
     namespace Editor {
@@ -18,7 +19,7 @@ namespace Kiwi {
             virtual void render() override;
 
         private:
-            void process(glm::mat4 &transform);
+            void process(Kiwi::Engine::Scene::GraphData *data);
 
             ImGuizmo::OPERATION                 _currentOperation = ImGuizmo::ROTATE;
             ImGuizmo::MODE                      _currentMode = ImGuizmo::WORLD;

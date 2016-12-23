@@ -129,6 +129,70 @@ namespace Kiwi {
                 }
                 _level.setDirty(false);
             }
+
+            void Renderer::renderGraph(const Scene::Graph *graph) {
+
+                glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+                glEnable(GL_DEPTH_TEST);
+                glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+                glDepthFunc(GL_LESS);
+                if (graph == nullptr)
+                    return;
+                for (const auto &node : graph->data()) {
+                    renderGraphNode(node);
+                }
+            }
+
+            void Renderer::renderGraphNode(const Scene::GraphData *node) {
+                glm::vec3 lightPos = glm::vec3(1.f, 1.f, 1.f);
+                glm::vec3 camera = _camera->getPosition();
+                GLProgram program = _shaders[static_cast<int>(node->material->getType())];
+
+                //todo refactor camera
+                //todo refactor perspective
+                //todo refactor uniforms
+
+                glUseProgram(program.get());
+
+                glUniformMatrix4fv(glGetUniformLocation(program.get(), "view"),
+                                   1, GL_FALSE, glm::value_ptr(_camera->getViewMat4()));
+                glUniformMatrix4fv(glGetUniformLocation(program.get(), "model"),
+                                   1, GL_FALSE, glm::value_ptr(node->actuator->update()));
+                glUniformMatrix4fv(glGetUniformLocation(program.get(), "projection"),
+                                   1, GL_FALSE, glm::value_ptr(_camera->getProjectionMat4()));
+
+                if (node->material->getType() == Shading::Type::PHONG) {
+                    node->material->setVec3Parameter("light_pos", glm::vec3(0.f, 3.f, 0.f));
+                    node->material->setVec3Parameter("view_pos", camera);
+                    node->material->setVec3Parameter("light_color", glm::vec3(1.0f, 1.0f, 1.0f));
+                } else if (node->material->getType() == Shading::Type::PHONG_TEXTURED) {
+                    node->material->setVec3Parameter("light_pos", _lightpos);
+                    node->material->setVec3Parameter("light_color", _lightcolor);
+                    node->material->setVec3Parameter("light_ambient", _lightambient);
+                    node->material->setParameter("light_falloff", _falloff);
+                    node->material->setParameter("light_radius", _radius);
+                    node->material->setFlag("shadow", _shadows);
+                }
+
+                node->material->bind(0);
+                node->mesh.bind();
+                node->mesh.draw();
+                glBindTexture(GL_TEXTURE_2D, 0);
+            }
+
+            void Renderer::updateGraphMaterials(Scene::Graph *graph) {
+                if (graph == nullptr)
+                    return;
+                if (graph->isDirty()) {
+                    for (auto &node : graph->data()) {
+                        if (node->material)
+                        node->material->bindShader(_shaders[static_cast<int>(node->material->getType())]);
+                    }
+                    graph->setDirty(false);
+                }
+            }
         }
     }
 }

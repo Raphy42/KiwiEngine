@@ -17,7 +17,6 @@ namespace Kiwi {
             virtual void        render() = 0;
 
         protected:
-            bool                                    _open;
             std::unordered_map<std::string, bool>   _flags;
         };
     }
