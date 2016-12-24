@@ -6,12 +6,16 @@
 #define KIWIENGINE_LEVELPROPERTYWINDOW_H
 
 #include "WindowInterface.h"
+#include "../Engine/Scene/Graph.h"
 
 namespace Kiwi {
     namespace Editor {
         class LevelPropertyWindow : public WindowInterface {
         public:
             virtual void render() override;
+
+        private:
+            std::vector<Kiwi::Engine::Scene::Graph *>       _assets;
         };
 
     }

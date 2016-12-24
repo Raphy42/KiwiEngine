@@ -52,6 +52,7 @@ macOS only (for the moment)
 1. Rigid body physics (with middleware abstraction in order to select different physic engine)
 2. Animation
 3. Voxels !!!! (need some work on those octree tho)
+4. std::launch::async/std::packaged_task loader
 
 ##Librairies:
 `boost` for the filesystem abstraction (added in c++17) and some other neat things (not included in vendor, need to install it with your favorite package manager)  

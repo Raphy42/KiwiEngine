@@ -78,8 +78,6 @@ namespace Kiwi {
 //
             skybox_actor->setScale(glm::vec3(100.f, 100.f, 100.f))->update();
 
-            _graph = GlobalInstance::get().graph;
-
             _renderer.bindCamera(camera);
 
             _windows.push_back(new EditorWindow);
@@ -88,6 +86,7 @@ namespace Kiwi {
         }
 
         void Editor::loop() {
+            _graph = GlobalInstance::get().graph;
             _graphics->Update();
             processEvent();
             ImGui_ImplGlfwGL3_NewFrame();
@@ -97,7 +96,6 @@ namespace Kiwi {
             std::for_each(_windows.begin(), _windows.end(), [](WindowInterface *window) {
                 window->render();
             });
-            ImGui::ShowTestWindow();
 
             _renderer.updateGraphMaterials(_graph); //todo extract to Engine::run
             _renderer.renderGraph(_graph);

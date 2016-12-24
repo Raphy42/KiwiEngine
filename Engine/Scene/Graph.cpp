@@ -7,6 +7,7 @@
 unsigned long
 Kiwi::Engine::Scene::Graph::add(GraphData *data) {
     _data.push_back(data);
+    _dirty = true;
     return _data.size();
 }
 

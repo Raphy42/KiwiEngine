@@ -5,6 +5,9 @@
 #include <imgui.h>
 #include "LevelPropertyWindow.h"
 #include "GlobalInstance.h"
+#include "../Engine/Assets/Loader.h"
+#include "../Engine/Scene/Graph.h"
+#include "../Engine/Renderer/PhongMaterial.h"
 
 void
 Kiwi::Editor::LevelPropertyWindow::render() {
@@ -31,9 +34,36 @@ Kiwi::Editor::LevelPropertyWindow::render() {
     ImGui::Text("Name: %s", GlobalInstance::get().graph->getName().c_str());
     ImGui::Text("Elements: %lu", GlobalInstance::get().graph->data().size());
 
-    const char *items[] = {"cube"};
-    static int current = -1;
-    ImGui::Combo("Type", &current, items, 10);
+    static std::vector<fs::path> paths;
+
+    if (paths.size() == 0)
+        paths = GlobalInstance::get().vfs.getDirectoryEntries("models");
+
+    if (ImGui::BeginMenu("Load asset")) {
+        if (paths.size()) {
+            for (const auto &it : paths) {
+                if (ImGui::MenuItem(it.c_str())) {
+                    static Kiwi::Engine::Asset::Loader loader;
+                    _assets.push_back(loader.createGraphFromModel(it.c_str(), it.filename().string()));
+                }
+
+            }
+        } else {
+            ImGui::MenuItem("No files");
+        }
+        ImGui::EndMenu();
+    }
+    if (ImGui::BeginMenu("Assets")) {
+        if (_assets.size()) {
+            for (auto &it : _assets) {
+                if (ImGui::MenuItem(it->getName().c_str())) {
+                    for (auto &asset : it->data())
+                        GlobalInstance::get().graph->add(asset);
+                }
+            }
+        }
+        ImGui::EndMenu();
+    }
 
     ImGui::PushStyleVar(ImGuiStyleVar_ChildWindowRounding, 5.0f);
     ImGui::Columns(1);

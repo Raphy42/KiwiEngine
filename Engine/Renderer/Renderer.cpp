@@ -146,7 +146,6 @@ namespace Kiwi {
             }
 
             void Renderer::renderGraphNode(const Scene::GraphData *node) {
-                glm::vec3 lightPos = glm::vec3(1.f, 1.f, 1.f);
                 glm::vec3 camera = _camera->getPosition();
                 GLProgram program = _shaders[static_cast<int>(node->material->getType())];
 

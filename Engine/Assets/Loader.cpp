@@ -277,12 +277,13 @@ kE::Asset::Loader::processAiMesh(aiMesh *mesh, const aiScene *aScene) {
         return createMeshVUVNStrideIndexed(v, uvs, n, idx);
 }
 
-kE::Scene::Graph *kE::Asset::Loader::createGraphFromModel(const char *filename) {
+kE::Scene::Graph *kE::Asset::Loader::createGraphFromModel(const char *filename, std::string name) {
     std::string file = filename;
     _path = file.substr(0, file.find_last_of('/')); //todo potential fatal failure to fix
 
     kE::Scene::Graph *graph = new kE::Scene::Graph;
     kE::Scene::GraphData *data;
+    graph->setName(name);
 
     Assimp::Importer importer;
     const aiScene *scene = importer.ReadFile(filename, aiProcess_Triangulate |

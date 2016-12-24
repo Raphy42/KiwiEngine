@@ -62,7 +62,7 @@ namespace Kiwi {
 
                 Scene::Entity createEntityFromModel(const char *filename);
 
-                Scene::Graph *createGraphFromModel(const char *filename);
+                Scene::Graph *createGraphFromModel(const char *filename, std::string name = "default");
 
             private:
                 Primitive::Mesh createMeshVUVNStride(std::vector<glm::vec3> v,
