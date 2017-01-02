@@ -71,3 +71,19 @@ Kiwi::Engine::Scene::GraphFactory::create(Kiwi::Engine::Primitive::Mesh mesh,
     data->actuator = (actuator ? actuator : new Actuator);
     return data;
 }
+
+Kiwi::Engine::Scene::GraphData *
+Kiwi::Engine::Scene::GraphFactory::create(Kiwi::Engine::Primitive::Mesh mesh,
+                                          Kiwi::Engine::Renderer::Material *material,
+                                          Kiwi::Engine::Primitive::AABB &bounds,
+                                          Actuator *actuator)
+{
+    GraphData   *data;
+
+    data = new GraphData();
+    data->material = material;
+    data->mesh = mesh;
+    data->bounds = bounds;
+    data->actuator = (actuator ? actuator : new Actuator);
+    return data;
+}

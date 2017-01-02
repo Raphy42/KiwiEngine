@@ -57,27 +57,6 @@ namespace Kiwi {
             _hid->bind(mainListener);
             _hid->bind(imGuiListener);
 
-
-            kE::Primitive::Mesh cube = loader.createDefaultMesh(kE::Asset::Loader::Type::CUBE);
-
-            kE::Scene::Entity skybox(cube,
-                                     new kE::Renderer::CubeMaterial(loader.createCubeMap({
-                                                                                                 "./Assets/textures/grid.tga",
-                                                                                                 "./Assets/textures/grid.tga",
-                                                                                                 "./Assets/textures/grid.tga",
-                                                                                                 "./Assets/textures/grid.tga",
-                                                                                                 "./Assets/textures/grid.tga",
-                                                                                                 "./Assets/textures/grid.tga",
-
-                                                                                         })));
-
-            _defaultSkybox = skybox;
-
-            kE::Scene::Actuator *skybox_actor = new kE::Scene::Actuator;
-            skybox.bindActuator(skybox_actor);
-//
-            skybox_actor->setScale(glm::vec3(100.f, 100.f, 100.f))->update();
-
             _graph = GlobalInstance::get().graph;
 
             _renderer.bindCamera(camera);

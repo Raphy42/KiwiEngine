@@ -65,6 +65,8 @@ namespace Kiwi {
             public:
                 static GraphData *create(Primitive::Mesh mesh, Renderer::Material *material,
                                          std::pair<glm::vec3, glm::vec3> bounds, Actuator *actuator = nullptr);
+                static GraphData *create(Primitive::Mesh mesh, Renderer::Material *material,
+                                         Primitive::AABB &bounds, Actuator *actuator = nullptr);
             };
         }
     }
