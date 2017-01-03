@@ -6,6 +6,7 @@
 #include "LevelPropertyWindow.h"
 #include "GlobalInstance.h"
 #include "../Engine/Assets/Loader.h"
+#include "../Engine/GUI/Helper.h"
 
 void
 Kiwi::Editor::LevelPropertyWindow::render() {
@@ -72,24 +73,22 @@ void Kiwi::Editor::LevelPropertyWindow::addEntityToSceneDialog() const {
     if (ImGui::Button("New Asset"))
         ImGui::OpenPopup("Load Asset");
 
-    static int selected = 0;
+    static int selected = -1;
 
-    if (ImGui::BeginPopupModal("Load Asset")) {
-        int i = 0;
-        for (const auto &it : GlobalInstance::get().vfs.getDirectoryEntries("models"))
-            if (ImGui::Selectable(it.filename().c_str()), selected == i) {
-                selected = i;
-                Kiwi::Engine::Asset::Loader loader;
-                auto graph = loader.createGraphFromModel(it.c_str())->data();
-
-                cache.insert(cache.end(), graph.begin(), graph.end());
-            }
+    if (ImGui::BeginPopup("Load Asset")) {
+        static fs::path path = ImGui::ListDirectoryEntries(fs::current_path().append("Assets"))
+        if (path.extension() == "fbx") {
+            Kiwi::Engine::Asset::Loader loader;
+            auto graph = loader.createGraphFromModel(path.c_str());
+            cache.insert(cache.end(), graph->data().begin(), graph->data.end());
+        }
         ImGui::EndPopup();
     }
 
+    ImGui::Text("Graph size %lu", cache.size());
 
     for (const auto &it : cache)
-        if (ImGui::Selectable(it->name.c_str()))
+        if (ImGui::Selectable(it->name.c_str(), false))
             GlobalInstance::get().graph->add(
 
                     Kiwi::Engine::Scene::GraphFactory::create(it->mesh, it->material, it->bounds));
