@@ -12,6 +12,7 @@
 #include "../Primitives/Mesh.h"
 #include "../Scene/Entity.h"
 #include "../Scene/Graph.h"
+#include "../../Core/Filesystem/VirtualFilesystem.h"
 
 namespace Kiwi {
     namespace Engine {
@@ -63,6 +64,8 @@ namespace Kiwi {
                 Scene::Entity createEntityFromModel(const char *filename);
 
                 Scene::Graph *createGraphFromModel(const char *filename, std::string name = "default");
+
+                bool isValidFile(const fs::path &file) const;
 
             private:
                 Primitive::Mesh createMeshVUVNStride(std::vector<glm::vec3> v,

@@ -72,6 +72,7 @@ namespace Kiwi {
             //Cache
             struct _cache {
                 std::vector<Kiwi::Engine::Scene::GraphData *> selection;
+                Engine::Primitive::FPSCamera *camera;
             } cache;
 
             static GlobalInstance &get(void) {

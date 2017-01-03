@@ -4,8 +4,6 @@
 
 #include "Editor.h"
 #include "LevelPropertyWindow.h"
-#include "ToolsWindow.h"
-#include <boost/archive/binary_oarchive.hpp>
 
 class UserInputListener : public kE::Event::Listener<kE::Event::Type::GLFWEvent> {
 public:
@@ -50,6 +48,7 @@ namespace Kiwi {
             UserInputListener *mainListener = new UserInputListener;
             kE::Primitive::FPSCamera *camera = new kE::Primitive::FPSCamera(glm::vec3(1.f, 1.f, 1.f),
                                                                             glm::vec3(0.f, 1.f, 0.f));
+            GlobalInstance::get().cache.camera = camera;
             kE::Primitive::FPSCameraEventListener *cameraListener = new kE::Primitive::FPSCameraEventListener(camera);
             kE::GUI::ImGuiListener *imGuiListener = new kE::GUI::ImGuiListener;
 
@@ -61,7 +60,6 @@ namespace Kiwi {
 
             _windows.push_back(new EditorWindow);
             _windows.push_back(new LevelPropertyWindow);
-            _windows.push_back(new ToolsWindow(camera));
         }
 
         void Editor::loop() {

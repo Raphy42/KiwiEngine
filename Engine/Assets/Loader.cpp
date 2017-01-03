@@ -591,5 +591,12 @@ Kiwi::Engine::Asset::Loader::processAiMesh(aiMesh *mesh, const aiScene *aScene, 
         return createMeshVUVNStrideIndexed(v, uvs, n, idx);
 }
 
+bool Kiwi::Engine::Asset::Loader::isValidFile(const fs::path &path) const {
+    Assimp::Importer importer;
+
+    return importer.IsExtensionSupported(std::strrchr(path.extension().c_str(), '.'));
+}
+
+
 
 
