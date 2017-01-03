@@ -62,6 +62,16 @@ namespace ImGui {
         data->actuator->recompose(matrixTranslation, matrixRotation, matrixScale);
         static ImGuizmo::OPERATION currentOperation;
         static ImGuizmo::MODE currentMode;
+
+        if (ImGui::RadioButton("Rotate", currentOperation == ImGuizmo::ROTATE))
+            currentOperation = ImGuizmo::ROTATE;
+        ImGui::SameLine();
+        if (ImGui::RadioButton("Translate", currentOperation == ImGuizmo::TRANSLATE))
+            currentOperation = ImGuizmo::TRANSLATE;
+        ImGui::SameLine();
+        if (ImGui::RadioButton("Scale", currentOperation == ImGuizmo::SCALE))
+            currentOperation = ImGuizmo::SCALE;
+
         if (currentOperation != ImGuizmo::SCALE) {
             if (ImGui::RadioButton("Local", currentMode == ImGuizmo::LOCAL))
                 currentMode = ImGuizmo::LOCAL;
@@ -87,15 +97,6 @@ namespace ImGui {
                 ImGui::InputFloat("Scale Snap", glm::value_ptr(snap));
                 break;
         }
-
-        if (ImGui::RadioButton("Rotate", currentOperation == ImGuizmo::ROTATE))
-            currentOperation = ImGuizmo::ROTATE;
-        ImGui::SameLine();
-        if (ImGui::RadioButton("Translate", currentOperation == ImGuizmo::TRANSLATE))
-            currentOperation = ImGuizmo::TRANSLATE;
-        ImGui::SameLine();
-        if (ImGui::RadioButton("Scale", currentOperation == ImGuizmo::SCALE))
-            currentOperation = ImGuizmo::SCALE;
         ImGuizmo::Manipulate(glm::value_ptr(camera->getViewMat4()), glm::value_ptr(camera->getProjectionMat4()),
                              currentOperation, currentMode, glm::value_ptr(transform), NULL, useSnap ? &snap.x : NULL);
         data->actuator->recompose(transform);
