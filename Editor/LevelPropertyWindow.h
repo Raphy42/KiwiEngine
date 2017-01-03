@@ -14,8 +14,9 @@ namespace Kiwi {
         public:
             virtual void render() override;
 
-        private:
-            std::vector<Kiwi::Engine::Scene::Graph *>       _assets;
+            void addEntityToSceneDialog() const;
+            void showEntityList() const;
+            void showEntityDetail(Kiwi::Engine::Scene::GraphData *pData) const;
         };
 
     }

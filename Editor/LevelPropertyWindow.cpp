@@ -6,19 +6,17 @@
 #include "LevelPropertyWindow.h"
 #include "GlobalInstance.h"
 #include "../Engine/Assets/Loader.h"
-#include "../Engine/Scene/Graph.h"
-#include "../Engine/Renderer/PhongMaterial.h"
 
 void
 Kiwi::Editor::LevelPropertyWindow::render() {
     if (!GlobalInstance::get().properties.getState("properties"))
         return;
 
+    ImGui::SetNextWindowSize(ImVec2(500, 440), ImGuiSetCond_FirstUseEver);
     if (!ImGui::Begin("Level properties", nullptr, ImGuiWindowFlags_AlwaysVerticalScrollbar)) {
         ImGui::End();
         return;
     }
-
 
     if (GlobalInstance::get().graph == nullptr) {
         static char buffer[256] = "default";
@@ -29,50 +27,85 @@ Kiwi::Editor::LevelPropertyWindow::render() {
         }
         ImGui::End();
         return;
+    } else {
+
+        ImGui::Text("Name: %s", GlobalInstance::get().graph->getName().c_str());
+        ImGui::Text("Elements: %lu", GlobalInstance::get().graph->data().size());
+
+        showEntityList();
     }
-
-    ImGui::Text("Name: %s", GlobalInstance::get().graph->getName().c_str());
-    ImGui::Text("Elements: %lu", GlobalInstance::get().graph->data().size());
-
-    static std::vector<fs::path> paths;
-
-    if (paths.size() == 0)
-        paths = GlobalInstance::get().vfs.getDirectoryEntries("models");
-
-    if (ImGui::BeginMenu("Load asset")) {
-        if (paths.size()) {
-            for (const auto &it : paths) {
-                if (ImGui::MenuItem(it.c_str())) {
-                    static Kiwi::Engine::Asset::Loader loader;
-                    _assets.push_back(loader.createGraphFromModel(it.c_str(), it.filename().string()));
-                }
-
-            }
-        } else {
-            ImGui::MenuItem("No files");
-        }
-        ImGui::EndMenu();
-    }
-    if (ImGui::BeginMenu("Assets")) {
-        if (_assets.size()) {
-            for (auto &it : _assets) {
-                if (ImGui::MenuItem(it->getName().c_str())) {
-                    for (auto &asset : it->data())
-                        GlobalInstance::get().graph->add(asset);
-                }
-            }
-        }
-        ImGui::EndMenu();
-    }
-
-    ImGui::PushStyleVar(ImGuiStyleVar_ChildWindowRounding, 5.0f);
-    ImGui::Columns(1);
-    for (const auto &it : GlobalInstance::get().graph->data())
-        if (ImGui::Button(it->name.c_str(), ImVec2(-1.f, 0.f))) {
-            GlobalInstance::get().cache.selection.clear(); //todo this is quite dirty but it does the job
-            GlobalInstance::get().cache.selection.push_back(it);
-        }
-    ImGui::PopStyleVar();
 
     ImGui::End();
+}
+
+void Kiwi::Editor::LevelPropertyWindow::showEntityList() const {
+    static int selected = 0;
+
+    ImGui::BeginChild("Entity list", ImVec2(150, 0), true);
+
+    if (ImGui::Button("New")) {
+        ImGui::OpenPopup("Add Entity");
+    }
+    addEntityToSceneDialog();
+
+    int i = 0;
+    for (const auto &node : GlobalInstance::get().graph->data())
+        if (ImGui::Selectable(node->name.c_str(), selected == i++)) {
+            selected = i;
+        }
+
+    ImGui::EndChild();
+    ImGui::SameLine();
+
+    // right
+
+    if (selected)
+        showEntityDetail(GlobalInstance::get().graph->data()[selected]);
+}
+
+void Kiwi::Editor::LevelPropertyWindow::addEntityToSceneDialog() const {
+    if (!ImGui::BeginPopupModal("Add Entity"))
+        return;
+
+    static std::vector<Kiwi::Engine::Scene::GraphData *> cache;
+
+    if (ImGui::Button("New Asset"))
+        ImGui::OpenPopup("Load Asset");
+
+    static int selected = 0;
+
+    if (ImGui::BeginPopupModal("Load Asset")) {
+        int i = 0;
+        for (const auto &it : GlobalInstance::get().vfs.getDirectoryEntries("models"))
+            if (ImGui::Selectable(it.filename().c_str()), selected == i) {
+                selected = i;
+                Kiwi::Engine::Asset::Loader loader;
+                auto graph = loader.createGraphFromModel(it.c_str())->data();
+
+                cache.insert(cache.end(), graph.begin(), graph.end());
+            }
+        ImGui::EndPopup();
+    }
+
+
+    for (const auto &it : cache)
+        if (ImGui::Selectable(it->name.c_str()))
+            GlobalInstance::get().graph->add(
+
+                    Kiwi::Engine::Scene::GraphFactory::create(it->mesh, it->material, it->bounds));
+
+    if (ImGui::Button("Close"))
+        ImGui::CloseCurrentPopup();
+    ImGui::EndPopup();
+}
+
+void Kiwi::Editor::LevelPropertyWindow::showEntityDetail(Kiwi::Engine::Scene::GraphData *pData) const {
+    ImGui::BeginGroup();
+    ImGui::BeginChild(pData->name.c_str(),
+                      ImVec2(0, -ImGui::GetItemsLineHeightWithSpacing())); // Leave room for 1 line below us
+    ImGui::EndChild();
+    ImGui::BeginChild("buttons");
+    if (ImGui::Button("Save")) {}
+    ImGui::EndChild();
+    ImGui::EndGroup();
 }
