@@ -49,13 +49,6 @@ public:
                 switch (notification.key.key) {
                     case GLFW_KEY_ESCAPE :
                         exit(EXIT_SUCCESS);
-                    case GLFW_KEY_1: {
-                        if (wireframe)
-                            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-                        else
-                            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-                        wireframe = !wireframe;
-                    }
                     default:
                         break;
                 }

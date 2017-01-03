@@ -4,6 +4,7 @@
 
 #include "Editor.h"
 #include "LevelPropertyWindow.h"
+#include "AssetManagerWindow.h"
 
 class UserInputListener : public kE::Event::Listener<kE::Event::Type::GLFWEvent> {
 public:
@@ -60,6 +61,7 @@ namespace Kiwi {
 
             _windows.push_back(new EditorWindow);
             _windows.push_back(new LevelPropertyWindow);
+            _windows.push_back(new AssetManagerWindow);
         }
 
         void Editor::loop() {
@@ -76,6 +78,9 @@ namespace Kiwi {
 
             _renderer.updateGraphMaterials(_graph); //todo extract to Engine::run
             _renderer.renderGraph(_graph);
+            
+            ImGui::ShowTestWindow();
+
             run();
         }
 

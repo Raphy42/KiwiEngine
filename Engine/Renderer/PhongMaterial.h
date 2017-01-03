@@ -36,12 +36,15 @@ namespace Kiwi {
 
                 virtual void setFlag(std::string name, bool value) override;
 
+                glm::vec3 _color;
             private:
+
+
                 void update();
 
                 GLProgram _shader;
                 std::unordered_map<std::string, GLint> _locationMap;
-                glm::vec3 _color;
+
                 glm::vec3 _diffuse;
                 glm::vec3 _ambient;
                 glm::vec3 _specular;

@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Renderer.h"
 #include "../../vendor/imgui/imgui.h"
+#include "../../Core/scope_decl.h"
 #include <glm/gtc/type_ptr.hpp>
 
 namespace Kiwi {
@@ -163,7 +164,7 @@ namespace Kiwi {
                                    1, GL_FALSE, glm::value_ptr(_camera->getProjectionMat4()));
 
                 if (node->material->getType() == Shading::Type::PHONG) {
-                    node->material->setVec3Parameter("light_pos", glm::vec3(0.f, 3.f, 0.f));
+                    node->material->setVec3Parameter("light_pos", glm::vec3(5.f, 5.f, 5.f));
                     node->material->setVec3Parameter("view_pos", camera);
                     node->material->setVec3Parameter("light_color", glm::vec3(1.0f, 1.0f, 1.0f));
                 } else if (node->material->getType() == Shading::Type::PHONG_TEXTURED) {
@@ -173,11 +174,17 @@ namespace Kiwi {
                     node->material->setParameter("light_falloff", _falloff);
                     node->material->setParameter("light_radius", _radius);
                     node->material->setFlag("shadow", _shadows);
+                } else if (node->material->getType() == Shading::Type::DEBUG) {
+                        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
                 }
 
                 node->material->bind(0);
                 node->mesh.bind();
                 node->mesh.draw();
+
+                if (node->material->getType() == Shading::Type::DEBUG)
+                    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
                 glBindTexture(GL_TEXTURE_2D, 0);
             }
 
@@ -187,7 +194,7 @@ namespace Kiwi {
                 if (graph->isDirty()) {
                     for (auto &node : graph->data()) {
                         if (node->material)
-                        node->material->bindShader(_shaders[static_cast<int>(node->material->getType())]);
+                            node->material->bindShader(_shaders[static_cast<int>(node->material->getType())]);
                     }
                     graph->setDirty(false);
                 }

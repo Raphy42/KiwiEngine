@@ -49,10 +49,8 @@ void Kiwi::Editor::LevelPropertyWindow::showEntityList() {
     }
     addEntityToSceneDialog();
 
-    int i = 0;
-
     static Kiwi::Engine::Scene::GraphData *data = nullptr;
-    ImGui::ListGraphEntries(GlobalInstance::get().graph, [&](Kiwi::Engine::Scene::GraphData *graph){
+    ImGui::ListGraphEntries(GlobalInstance::get().graph, [&](Kiwi::Engine::Scene::GraphData *graph) {
         data = graph;
     });
     ImGui::EndChild();
@@ -86,11 +84,11 @@ void Kiwi::Editor::LevelPropertyWindow::addEntityToSceneDialog() {
     ImGui::Text("Graph size %lu", _cache.size());
 
     for (const auto &it : _cache)
-       ImGui::ListGraphEntries(it, [](Kiwi::Engine::Scene::GraphData *graph){
-           auto node = Kiwi::Engine::Scene::GraphFactory::create(graph->mesh, graph->material, graph->bounds);
-           node->name = graph->name;
-           GlobalInstance::get().graph->add(node);
-       });
+        ImGui::ListGraphEntries(it, [](Kiwi::Engine::Scene::GraphData *graph) {
+            auto node = Kiwi::Engine::Scene::GraphFactory::create(graph->mesh, graph->material, graph->bounds);
+            node->name = graph->name;
+            GlobalInstance::get().graph->add(node);
+        });
 
     if (ImGui::Button("Close"))
         ImGui::CloseCurrentPopup();
@@ -103,6 +101,9 @@ void Kiwi::Editor::LevelPropertyWindow::showEntityDetail(Kiwi::Engine::Scene::Gr
                       ImVec2(0, -ImGui::GetItemsLineHeightWithSpacing()));
     ImGui::Text("%s", pData->name.c_str());
     ImGui::Text("Shader id %lu", pData->material->getType());
+    if (pData->material->getType() == Kiwi::Engine::Renderer::Shading::Type::PHONG)
+        ImGui::PhongMaterialEditor(static_cast<Kiwi::Engine::Renderer::PhongMaterial *>(pData->material));
+
     ImGui::Separator();
     ImGui::Manipulate(pData, GlobalInstance::get().cache.camera);
     ImGui::EndChild();

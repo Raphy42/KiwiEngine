@@ -43,6 +43,8 @@ namespace ImGui {
             for (const auto &entry : graph->data())
                 if (ImGui::MenuItem(entry->name.c_str()))
                     lambda(entry);
+            if (!graph->data().size())
+                ImGui::Text("No items");
             ImGui::EndMenu();
         }
     }
@@ -103,6 +105,20 @@ namespace ImGui {
 
         if (ImGuizmo::IsOver() || ImGuizmo::IsUsing())
             ImGui::SetMouseCursor(2);
+    }
+
+    inline void PhongMaterialEditor(Kiwi::Engine::Renderer::PhongMaterial *material) {
+        static float color[4] = {material->_color.x, material->_color.y, material->_color.y, 1.f};
+        ImGui::ColorButton({material->_color.x, material->_color.y, material->_color.y, 1.f});
+        if (ImGui::BeginPopupContextItem("color context menu"))
+        {
+            ImGui::Text("Edit color");
+            ImGui::ColorEdit3("##edit", &color[0]);
+            if (ImGui::Button("Close"))
+                material->setColor(glm::make_vec3(color));
+                ImGui::CloseCurrentPopup();
+            ImGui::EndPopup();
+        }
     }
 }
 
